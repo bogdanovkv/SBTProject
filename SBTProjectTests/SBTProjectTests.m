@@ -7,7 +7,6 @@
 //
 
 #import <XCTest/XCTest.h>
-
 @interface SBTProjectTests : XCTestCase
 
 @end
