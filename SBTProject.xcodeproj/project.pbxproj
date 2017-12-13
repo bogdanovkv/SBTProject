@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14F39DB81FE160BF00EDEA1A /* KVBSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F39DB71FE160BF00EDEA1A /* KVBSearchViewController.m */; };
+		14F39DBC1FE163D000EDEA1A /* KVBViewWithParametres.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F39DBB1FE163D000EDEA1A /* KVBViewWithParametres.m */; };
+		14F39DBF1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F39DBE1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m */; };
 		14F682C91FDEEE84004F3BE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F682C81FDEEE84004F3BE5 /* AppDelegate.m */; };
-		14F682CC1FDEEE84004F3BE5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F682CB1FDEEE84004F3BE5 /* ViewController.m */; };
-		14F682CF1FDEEE84004F3BE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14F682CD1FDEEE84004F3BE5 /* Main.storyboard */; };
+		14F682CC1FDEEE84004F3BE5 /* KVBWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F682CB1FDEEE84004F3BE5 /* KVBWelcomeViewController.m */; };
 		14F682D21FDEEE84004F3BE5 /* SBTProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14F682D01FDEEE84004F3BE5 /* SBTProject.xcdatamodeld */; };
 		14F682D41FDEEE84004F3BE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14F682D31FDEEE84004F3BE5 /* Assets.xcassets */; };
-		14F682D71FDEEE84004F3BE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14F682D51FDEEE84004F3BE5 /* LaunchScreen.storyboard */; };
 		14F682DA1FDEEE84004F3BE5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F682D91FDEEE84004F3BE5 /* main.m */; };
 		14F682E41FDEEE85004F3BE5 /* SBTProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F682E31FDEEE85004F3BE5 /* SBTProjectTests.m */; };
 		14F682EF1FDEEE85004F3BE5 /* SBTProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F682EE1FDEEE85004F3BE5 /* SBTProjectUITests.m */; };
@@ -38,15 +39,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14F39DB61FE160BF00EDEA1A /* KVBSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBSearchViewController.h; sourceTree = "<group>"; };
+		14F39DB71FE160BF00EDEA1A /* KVBSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBSearchViewController.m; sourceTree = "<group>"; };
+		14F39DBA1FE163D000EDEA1A /* KVBViewWithParametres.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBViewWithParametres.h; sourceTree = "<group>"; };
+		14F39DBB1FE163D000EDEA1A /* KVBViewWithParametres.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBViewWithParametres.m; sourceTree = "<group>"; };
+		14F39DBD1FE1D03900EDEA1A /* KVBFlightsTableDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFlightsTableDataSource.h; sourceTree = "<group>"; };
+		14F39DBE1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFlightsTableDataSource.m; sourceTree = "<group>"; };
 		14F682C41FDEEE84004F3BE5 /* SBTProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SBTProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F682C71FDEEE84004F3BE5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		14F682C81FDEEE84004F3BE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		14F682CA1FDEEE84004F3BE5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		14F682CB1FDEEE84004F3BE5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		14F682CE1FDEEE84004F3BE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		14F682CA1FDEEE84004F3BE5 /* KVBWelcomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBWelcomeViewController.h; sourceTree = "<group>"; };
+		14F682CB1FDEEE84004F3BE5 /* KVBWelcomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBWelcomeViewController.m; sourceTree = "<group>"; };
 		14F682D11FDEEE84004F3BE5 /* SBTProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SBTProject.xcdatamodel; sourceTree = "<group>"; };
 		14F682D31FDEEE84004F3BE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		14F682D61FDEEE84004F3BE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14F682D81FDEEE84004F3BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14F682D91FDEEE84004F3BE5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		14F682DF1FDEEE85004F3BE5 /* SBTProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SBTProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +104,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		14F39DB91FE1635600EDEA1A /* SearcController */ = {
+			isa = PBXGroup;
+			children = (
+				14F39DB61FE160BF00EDEA1A /* KVBSearchViewController.h */,
+				14F39DB71FE160BF00EDEA1A /* KVBSearchViewController.m */,
+				14F39DBA1FE163D000EDEA1A /* KVBViewWithParametres.h */,
+				14F39DBB1FE163D000EDEA1A /* KVBViewWithParametres.m */,
+				14F39DBD1FE1D03900EDEA1A /* KVBFlightsTableDataSource.h */,
+				14F39DBE1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m */,
+			);
+			path = SearcController;
+			sourceTree = "<group>";
+		};
 		14F682BB1FDEEE84004F3BE5 = {
 			isa = PBXGroup;
 			children = (
@@ -126,11 +144,10 @@
 			children = (
 				14F682C71FDEEE84004F3BE5 /* AppDelegate.h */,
 				14F682C81FDEEE84004F3BE5 /* AppDelegate.m */,
-				14F682CA1FDEEE84004F3BE5 /* ViewController.h */,
-				14F682CB1FDEEE84004F3BE5 /* ViewController.m */,
-				14F682CD1FDEEE84004F3BE5 /* Main.storyboard */,
+				14F682CA1FDEEE84004F3BE5 /* KVBWelcomeViewController.h */,
+				14F682CB1FDEEE84004F3BE5 /* KVBWelcomeViewController.m */,
+				14F39DB91FE1635600EDEA1A /* SearcController */,
 				14F682D31FDEEE84004F3BE5 /* Assets.xcassets */,
-				14F682D51FDEEE84004F3BE5 /* LaunchScreen.storyboard */,
 				14F682D81FDEEE84004F3BE5 /* Info.plist */,
 				14F682D91FDEEE84004F3BE5 /* main.m */,
 				14F682D01FDEEE84004F3BE5 /* SBTProject.xcdatamodeld */,
@@ -279,9 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14F682D71FDEEE84004F3BE5 /* LaunchScreen.storyboard in Resources */,
 				14F682D41FDEEE84004F3BE5 /* Assets.xcassets in Resources */,
-				14F682CF1FDEEE84004F3BE5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,10 +420,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F39DBF1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m in Sources */,
+				14F39DBC1FE163D000EDEA1A /* KVBViewWithParametres.m in Sources */,
 				14F682D21FDEEE84004F3BE5 /* SBTProject.xcdatamodeld in Sources */,
-				14F682CC1FDEEE84004F3BE5 /* ViewController.m in Sources */,
+				14F682CC1FDEEE84004F3BE5 /* KVBWelcomeViewController.m in Sources */,
 				14F682DA1FDEEE84004F3BE5 /* main.m in Sources */,
 				14F682C91FDEEE84004F3BE5 /* AppDelegate.m in Sources */,
+				14F39DB81FE160BF00EDEA1A /* KVBSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,25 +460,6 @@
 			targetProxy = 14F682EB1FDEEE85004F3BE5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		14F682CD1FDEEE84004F3BE5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				14F682CE1FDEEE84004F3BE5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		14F682D51FDEEE84004F3BE5 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				14F682D61FDEEE84004F3BE5 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		14F682F11FDEEE85004F3BE5 /* Debug */ = {

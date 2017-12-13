@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "KVBWelcomeViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +17,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [UIWindow new];
+    self.window.frame = UIScreen.mainScreen.bounds;
+    self.window.rootViewController = [KVBWelcomeViewController new];
+    
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
