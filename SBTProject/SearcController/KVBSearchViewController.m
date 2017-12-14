@@ -65,6 +65,7 @@
             make.left.equalTo(self.view.mas_left);
             make.right.equalTo(self.view.mas_right);
             make.bottom.equalTo(self.view.mas_bottom);
+            
         }];
     }
     return self;
@@ -72,6 +73,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+  
     // Do any additional setup after loading the view.
 }
 
@@ -82,12 +84,23 @@
 
 #pragma mark -Buttons
 
--(void) startSearch
+- (void) startSearch
 {
     NSLog(@"Start search");
     
+    [self.view layoutIfNeeded];
+    
+    [UIView animateWithDuration:1 animations:^{
+        [self.searchButton mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@(0));
+        }];
+        [self.view layoutIfNeeded];
+    }];
 
 }
+
+#pragma mark -Animations
+
 
 
 @end

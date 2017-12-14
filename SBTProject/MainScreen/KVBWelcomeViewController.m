@@ -8,7 +8,10 @@
 
 #import "KVBWelcomeViewController.h"
 #import "KVBSearchViewController.h"
+#import "KVBSavedFlightsViewController.h"
+#import "KVBSettingsViewController.h"
 #import <Masonry.h>
+
 const CGFloat KVBLeftRightOffset = 20;
 
 @interface KVBWelcomeViewController ()
@@ -89,11 +92,6 @@ const CGFloat KVBLeftRightOffset = 20;
             
         }];
         
-        
-        
-        
-        
-        
     }
     return self;
 }
@@ -126,7 +124,14 @@ const CGFloat KVBLeftRightOffset = 20;
     KVBSearchViewController *searchViewConctroller = [KVBSearchViewController new];
     searchViewConctroller.currentLocation = self.currenLocation;
     searchViewConctroller.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0];
-    tabBarController.viewControllers = @[searchViewConctroller];
+    
+    KVBSavedFlightsViewController *sfvc = [KVBSavedFlightsViewController new];
+    sfvc.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemDownloads tag:1];
+    
+    KVBSettingsViewController *settingVC = [KVBSettingsViewController new];
+    settingVC.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemHistory tag:2];
+    
+    tabBarController.viewControllers = @[searchViewConctroller, sfvc, settingVC];
     
     [self presentViewController:tabBarController animated:YES completion:nil];
 }
