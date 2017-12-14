@@ -10,11 +10,12 @@
 #import "KVBSearchViewController.h"
 #import "KVBSavedFlightsViewController.h"
 #import "KVBSettingsViewController.h"
+#import "KVBRequest.h"
 #import <Masonry.h>
 
 const CGFloat KVBLeftRightOffset = 20;
 
-@interface KVBWelcomeViewController ()
+@interface KVBWelcomeViewController ()<KVBRequestCompletitionProtocol>
 
 @property(nonatomic, strong) UILabel *welcomeLabel;
 @property(nonatomic, strong) UILabel *locationLabel;
@@ -22,6 +23,8 @@ const CGFloat KVBLeftRightOffset = 20;
 @property(nonatomic, strong) UIButton *changeLocationButton;
 @property(nonatomic, strong) UIButton *acceptButton;
 @property(nonatomic, strong) NSString *currenLocation;
+@property(nonatomic, strong) KVBRequest *request;
+
 
 @end
 
@@ -33,6 +36,9 @@ const CGFloat KVBLeftRightOffset = 20;
     if (self) {
         
         _currenLocation = @"TestLocation";
+        
+        _request = [KVBRequest new];
+        _request.delegate = self;
         
         _changeLocationButton = [UIButton new];
         [_changeLocationButton setTitleColor:UIColor.greenColor forState:UIControlStateNormal];
@@ -100,6 +106,9 @@ const CGFloat KVBLeftRightOffset = 20;
 {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
+    
+    [self.request whereAreMe];
+
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -135,4 +144,16 @@ const CGFloat KVBLeftRightOffset = 20;
     
     [self presentViewController:tabBarController animated:YES completion:nil];
 }
+
+#pragma mark -KVBRequestCompletitionProtocol
+
+- (void)taskComplete
+{
+    NSString *countryName = self.request.currentLoacation[@"country_name"];
+    NSString *cityName = self.request.currentLoacation[@"name"];
+
+    self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", countryName, cityName];
+    
+}
+
 @end
