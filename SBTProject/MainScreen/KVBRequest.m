@@ -24,29 +24,8 @@ static NSString *const KVBLocationsRequestUrl = @"http://www.travelpayouts.com/w
     urlComponents.queryItems = @[locale, callback, token];
     
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:urlComponents.URL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
-        if(error)
-        {
-            NSLog(@"Error %@ in request %@", error.userInfo , KVBLocationsRequestUrl);
-            self.currentLoacation = nil;
-        }
-        else
-        {
-            NSError *error = nil;
-            self.currentLoacation = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-            
-        }
-        
-        dispatch_async(dispatch_get_main_queue(),
-                    ^{
-                        [self.delegate taskComplete];
-
-        });
-        
-    }];
-    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:self.delegate delegateQueue:nil];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:urlComponents.URL];
     [dataTask resume];
     
 }

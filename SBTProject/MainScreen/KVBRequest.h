@@ -8,20 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol KVBRequestCompletitionProtocol;
-
 @interface KVBRequest : NSObject
 @property(strong, nonatomic) NSDictionary *currentLoacation;
-@property(weak, nonatomic) id<KVBRequestCompletitionProtocol> delegate;
+@property(weak, nonatomic) id<NSURLSessionDelegate> delegate;
 
 - (void)whereAreMe;
 - (void) getAll;
 
 @end
 
-@protocol KVBRequestCompletitionProtocol
-
-@required
-- (void) taskComplete;
-
-@end

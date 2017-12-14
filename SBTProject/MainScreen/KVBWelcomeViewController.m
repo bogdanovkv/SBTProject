@@ -15,7 +15,7 @@
 
 const CGFloat KVBLeftRightOffset = 20;
 
-@interface KVBWelcomeViewController ()<KVBRequestCompletitionProtocol>
+@interface KVBWelcomeViewController ()<NSURLSessionDelegate>
 
 @property(nonatomic, strong) UILabel *welcomeLabel;
 @property(nonatomic, strong) UILabel *locationLabel;
@@ -144,16 +144,16 @@ const CGFloat KVBLeftRightOffset = 20;
     
     [self presentViewController:tabBarController animated:YES completion:nil];
 }
-
-#pragma mark -KVBRequestCompletitionProtocol
-
-- (void)taskComplete
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+    didReceiveData:(NSData *)data
 {
-    NSString *countryName = self.request.currentLoacation[@"country_name"];
-    NSString *cityName = self.request.currentLoacation[@"name"];
+    NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSString *countryName = recievedData[@"country_name"];
+    NSString *cityName = recievedData[@"name"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+                self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", countryName, cityName];
+    });
 
-    self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", countryName, cityName];
-    
 }
 
 @end
