@@ -24,6 +24,7 @@ const CGFloat KVBLeftRightOffset = 20;
 @property(nonatomic, strong) UIButton *acceptButton;
 @property(nonatomic, strong) NSString *currenLocation;
 @property(nonatomic, strong) KVBRequest *request;
+@property(nonatomic, strong) UITableView *tableWithCities;
 
 
 @end
@@ -35,7 +36,7 @@ const CGFloat KVBLeftRightOffset = 20;
     self = [super init];
     if (self) {
         
-        _currenLocation = @"TestLocation";
+        _currenLocation = @"Loading your location";
         
         _request = [KVBRequest new];
         _request.delegate = self;
@@ -108,6 +109,7 @@ const CGFloat KVBLeftRightOffset = 20;
     self.view.backgroundColor = UIColor.whiteColor;
     
     [self.request whereAreMe];
+    [self.request recieveAllContriesWithCities];
 
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -144,13 +146,17 @@ const CGFloat KVBLeftRightOffset = 20;
     
     [self presentViewController:tabBarController animated:YES completion:nil];
 }
+
+#pragma mark -NSURLSessionDelegate
+
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
     didReceiveData:(NSData *)data
 {
     NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     NSString *countryName = recievedData[@"country_name"];
     NSString *cityName = recievedData[@"name"];
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
                 self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", countryName, cityName];
     });
 

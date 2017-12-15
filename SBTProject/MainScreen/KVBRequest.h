@@ -13,7 +13,7 @@
 @property(weak, nonatomic) id<NSURLSessionDelegate> delegate;
 
 - (void)whereAreMe;
-- (void) getAll;
+- (void)recieveAllContriesWithCities;
 
 @end
 
