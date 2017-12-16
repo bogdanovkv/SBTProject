@@ -1,15 +1,16 @@
 //
 //  Countries+CoreDataClass.h
-//  
+//  SBTProject
 //
-//  Created by Константин Богданов on 15.12.2017.
+//  Created by Константин Богданов on 16.12.2017.
+//  Copyright © 2017 Константин Богданов. All rights reserved.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Cities;
+@class Airpots, Cities;
 
 NS_ASSUME_NONNULL_BEGIN
 

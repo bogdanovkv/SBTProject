@@ -109,7 +109,12 @@ const CGFloat KVBLeftRightOffset = 20;
     self.view.backgroundColor = UIColor.whiteColor;
     
     [self.request whereAreMe];
-    [self.request recieveAllContriesWithCities];
+    
+    if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"isDataExist"] isEqualToString: @"Exist"])
+    {
+        [self.request recieveAllContriesWithCities];
+
+    }
 
     // Do any additional setup after loading the view, typically from a nib.
 }

@@ -1,8 +1,9 @@
 //
 //  Cities+CoreDataProperties.m
-//  
+//  SBTProject
 //
-//  Created by Константин Богданов on 15.12.2017.
+//  Created by Константин Богданов on 16.12.2017.
+//  Copyright © 2017 Константин Богданов. All rights reserved.
 //
 //
 
@@ -18,5 +19,8 @@
 @dynamic countryCode;
 @dynamic name;
 @dynamic parrentCountry;
+@dynamic airport;
+@dynamic nameRu;
+
 
 @end

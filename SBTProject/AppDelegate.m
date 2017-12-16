@@ -23,6 +23,8 @@
     self.window.rootViewController = [KVBWelcomeViewController new];
     
     [self.window makeKeyAndVisible];
+    
+    
     return YES;
 }
 

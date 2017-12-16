@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		141920661FE3CD6500F85CF5 /* SBTProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141920641FE3CD6500F85CF5 /* SBTProject.xcdatamodeld */; };
 		141920691FE3D68900F85CF5 /* KVBPreparatoryCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 141920681FE3D68900F85CF5 /* KVBPreparatoryCoreData.m */; };
-		14764B771FE3F55A00EEC944 /* Countries+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B711FE3F55A00EEC944 /* Countries+CoreDataProperties.m */; };
-		14764B781FE3F55A00EEC944 /* Cities+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B721FE3F55A00EEC944 /* Cities+CoreDataProperties.m */; };
-		14764B791FE3F55A00EEC944 /* Cities+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B731FE3F55A00EEC944 /* Cities+CoreDataClass.m */; };
-		14764B7A1FE3F55A00EEC944 /* Countries+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B761FE3F55A00EEC944 /* Countries+CoreDataClass.m */; };
+		14764B931FE528EF00EEC944 /* Countries+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B891FE528EF00EEC944 /* Countries+CoreDataClass.m */; };
+		14764B941FE528EF00EEC944 /* Countries+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B8A1FE528EF00EEC944 /* Countries+CoreDataProperties.m */; };
+		14764B951FE528EF00EEC944 /* Airpots+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B8D1FE528EF00EEC944 /* Airpots+CoreDataClass.m */; };
+		14764B961FE528EF00EEC944 /* Airpots+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B8E1FE528EF00EEC944 /* Airpots+CoreDataProperties.m */; };
+		14764B971FE528EF00EEC944 /* Cities+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B911FE528EF00EEC944 /* Cities+CoreDataClass.m */; };
+		14764B981FE528EF00EEC944 /* Cities+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B921FE528EF00EEC944 /* Cities+CoreDataProperties.m */; };
 		14DA56631FE26CA900FAB89A /* KVBSavedFlightsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DA56621FE26CA900FAB89A /* KVBSavedFlightsViewController.m */; };
 		14DA56691FE26FC200FAB89A /* KVBFlightsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DA56681FE26FC200FAB89A /* KVBFlightsDataSource.m */; };
 		14DA566D1FE278A100FAB89A /* KVBSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DA566C1FE278A100FAB89A /* KVBSettingsViewController.m */; };
@@ -51,14 +53,18 @@
 		141920651FE3CD6500F85CF5 /* SBTProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SBTProject.xcdatamodel; sourceTree = "<group>"; };
 		141920671FE3D68900F85CF5 /* KVBPreparatoryCoreData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBPreparatoryCoreData.h; sourceTree = "<group>"; };
 		141920681FE3D68900F85CF5 /* KVBPreparatoryCoreData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBPreparatoryCoreData.m; sourceTree = "<group>"; };
-		14764B6F1FE3F55A00EEC944 /* Countries+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Countries+CoreDataProperties.h"; sourceTree = SOURCE_ROOT; };
-		14764B701FE3F55A00EEC944 /* Cities+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cities+CoreDataProperties.h"; sourceTree = SOURCE_ROOT; };
-		14764B711FE3F55A00EEC944 /* Countries+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Countries+CoreDataProperties.m"; sourceTree = SOURCE_ROOT; };
-		14764B721FE3F55A00EEC944 /* Cities+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Cities+CoreDataProperties.m"; sourceTree = SOURCE_ROOT; };
-		14764B731FE3F55A00EEC944 /* Cities+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Cities+CoreDataClass.m"; sourceTree = SOURCE_ROOT; };
-		14764B741FE3F55A00EEC944 /* Cities+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cities+CoreDataClass.h"; sourceTree = SOURCE_ROOT; };
-		14764B751FE3F55A00EEC944 /* Countries+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Countries+CoreDataClass.h"; sourceTree = SOURCE_ROOT; };
-		14764B761FE3F55A00EEC944 /* Countries+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Countries+CoreDataClass.m"; sourceTree = SOURCE_ROOT; };
+		14764B871FE528EF00EEC944 /* Countries+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Countries+CoreDataProperties.h"; sourceTree = "<group>"; };
+		14764B881FE528EF00EEC944 /* Countries+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Countries+CoreDataClass.h"; sourceTree = "<group>"; };
+		14764B891FE528EF00EEC944 /* Countries+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Countries+CoreDataClass.m"; sourceTree = "<group>"; };
+		14764B8A1FE528EF00EEC944 /* Countries+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Countries+CoreDataProperties.m"; sourceTree = "<group>"; };
+		14764B8B1FE528EF00EEC944 /* Airpots+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Airpots+CoreDataProperties.h"; sourceTree = "<group>"; };
+		14764B8C1FE528EF00EEC944 /* Airpots+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Airpots+CoreDataClass.h"; sourceTree = "<group>"; };
+		14764B8D1FE528EF00EEC944 /* Airpots+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Airpots+CoreDataClass.m"; sourceTree = "<group>"; };
+		14764B8E1FE528EF00EEC944 /* Airpots+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Airpots+CoreDataProperties.m"; sourceTree = "<group>"; };
+		14764B8F1FE528EF00EEC944 /* Cities+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cities+CoreDataProperties.h"; sourceTree = "<group>"; };
+		14764B901FE528EF00EEC944 /* Cities+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cities+CoreDataClass.h"; sourceTree = "<group>"; };
+		14764B911FE528EF00EEC944 /* Cities+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Cities+CoreDataClass.m"; sourceTree = "<group>"; };
+		14764B921FE528EF00EEC944 /* Cities+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Cities+CoreDataProperties.m"; sourceTree = "<group>"; };
 		14DA56611FE26CA900FAB89A /* KVBSavedFlightsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBSavedFlightsViewController.h; sourceTree = "<group>"; };
 		14DA56621FE26CA900FAB89A /* KVBSavedFlightsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBSavedFlightsViewController.m; sourceTree = "<group>"; };
 		14DA56671FE26FC200FAB89A /* KVBFlightsDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFlightsDataSource.h; sourceTree = "<group>"; };
@@ -134,14 +140,18 @@
 		1419206A1FE3D6BD00F85CF5 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				14764B6F1FE3F55A00EEC944 /* Countries+CoreDataProperties.h */,
-				14764B751FE3F55A00EEC944 /* Countries+CoreDataClass.h */,
-				14764B761FE3F55A00EEC944 /* Countries+CoreDataClass.m */,
-				14764B711FE3F55A00EEC944 /* Countries+CoreDataProperties.m */,
-				14764B701FE3F55A00EEC944 /* Cities+CoreDataProperties.h */,
-				14764B741FE3F55A00EEC944 /* Cities+CoreDataClass.h */,
-				14764B731FE3F55A00EEC944 /* Cities+CoreDataClass.m */,
-				14764B721FE3F55A00EEC944 /* Cities+CoreDataProperties.m */,
+				14764B871FE528EF00EEC944 /* Countries+CoreDataProperties.h */,
+				14764B881FE528EF00EEC944 /* Countries+CoreDataClass.h */,
+				14764B891FE528EF00EEC944 /* Countries+CoreDataClass.m */,
+				14764B8A1FE528EF00EEC944 /* Countries+CoreDataProperties.m */,
+				14764B8B1FE528EF00EEC944 /* Airpots+CoreDataProperties.h */,
+				14764B8C1FE528EF00EEC944 /* Airpots+CoreDataClass.h */,
+				14764B8D1FE528EF00EEC944 /* Airpots+CoreDataClass.m */,
+				14764B8E1FE528EF00EEC944 /* Airpots+CoreDataProperties.m */,
+				14764B8F1FE528EF00EEC944 /* Cities+CoreDataProperties.h */,
+				14764B901FE528EF00EEC944 /* Cities+CoreDataClass.h */,
+				14764B911FE528EF00EEC944 /* Cities+CoreDataClass.m */,
+				14764B921FE528EF00EEC944 /* Cities+CoreDataProperties.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -499,19 +509,21 @@
 			files = (
 				14DA56631FE26CA900FAB89A /* KVBSavedFlightsViewController.m in Sources */,
 				14DA566D1FE278A100FAB89A /* KVBSettingsViewController.m in Sources */,
-				14764B781FE3F55A00EEC944 /* Cities+CoreDataProperties.m in Sources */,
+				14764B981FE528EF00EEC944 /* Cities+CoreDataProperties.m in Sources */,
+				14764B931FE528EF00EEC944 /* Countries+CoreDataClass.m in Sources */,
 				14F39DBF1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m in Sources */,
-				14764B7A1FE3F55A00EEC944 /* Countries+CoreDataClass.m in Sources */,
+				14764B961FE528EF00EEC944 /* Airpots+CoreDataProperties.m in Sources */,
 				141920661FE3CD6500F85CF5 /* SBTProject.xcdatamodeld in Sources */,
 				14F39DBC1FE163D000EDEA1A /* KVBViewWithParametres.m in Sources */,
 				14F682CC1FDEEE84004F3BE5 /* KVBWelcomeViewController.m in Sources */,
-				14764B771FE3F55A00EEC944 /* Countries+CoreDataProperties.m in Sources */,
 				141920691FE3D68900F85CF5 /* KVBPreparatoryCoreData.m in Sources */,
+				14764B951FE528EF00EEC944 /* Airpots+CoreDataClass.m in Sources */,
+				14764B941FE528EF00EEC944 /* Countries+CoreDataProperties.m in Sources */,
 				14F682DA1FDEEE84004F3BE5 /* main.m in Sources */,
 				14F682C91FDEEE84004F3BE5 /* AppDelegate.m in Sources */,
 				14DA56691FE26FC200FAB89A /* KVBFlightsDataSource.m in Sources */,
 				14F39DB81FE160BF00EDEA1A /* KVBSearchViewController.m in Sources */,
-				14764B791FE3F55A00EEC944 /* Cities+CoreDataClass.m in Sources */,
+				14764B971FE528EF00EEC944 /* Cities+CoreDataClass.m in Sources */,
 				14DA56711FE2814500FAB89A /* KVBRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

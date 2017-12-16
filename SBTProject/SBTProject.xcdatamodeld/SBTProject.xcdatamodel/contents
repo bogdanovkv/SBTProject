@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C88" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Airpots" representedClassName="Airpots" syncable="YES">
+        <attribute name="city_codeIATA" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="codeIATA" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country_codeIATA" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameRu" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="parrentCountry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Countries" inverseName="airport" inverseEntity="Countries" syncable="YES"/>
+        <relationship name="parrrentCity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cities" inverseName="airport" inverseEntity="Cities" syncable="YES"/>
+    </entity>
     <entity name="Cities" representedClassName="Cities" syncable="YES">
         <attribute name="codeIATA" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameRu" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="airport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Airpots" inverseName="parrrentCity" inverseEntity="Airpots" syncable="YES"/>
         <relationship name="parrentCountry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Countries" inverseName="allcities" inverseEntity="Countries" syncable="YES"/>
     </entity>
     <entity name="Countries" representedClassName="Countries" syncable="YES">
         <attribute name="codeIATA" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameRu" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="airport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Airpots" inverseName="parrentCountry" inverseEntity="Airpots" syncable="YES"/>
         <relationship name="allcities" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Cities" inverseName="parrentCountry" inverseEntity="Cities" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Cities" positionX="-8426" positionY="-5803" width="128" height="103"/>
-        <element name="Countries" positionX="-8642" positionY="-5803" width="128" height="103"/>
+        <element name="Airpots" positionX="-8201" positionY="-5842" width="128" height="148"/>
+        <element name="Cities" positionX="-8417" positionY="-5839" width="128" height="133"/>
+        <element name="Countries" positionX="-8633" positionY="-5839" width="128" height="133"/>
     </elements>
 </model>
