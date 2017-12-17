@@ -15,7 +15,7 @@ static NSString *const KVBRequestAllCities = @"http://api.travelpayouts.com/data
 static NSString *const KVBRequestAllAirports = @"http://api.travelpayouts.com/data/airports.json";
 
 @interface KVBPreparatoryCoreData : NSObject <NSURLSessionDelegate>
-
+@property(nonatomic, copy) NSDictionary *currentLocation;
 @property(nonatomic, copy) NSDictionary *countriesDictionary;
 @property(nonatomic, copy) NSDictionary *citiesDictionary;
 @property(nonatomic, copy) NSDictionary *airportDictionary;

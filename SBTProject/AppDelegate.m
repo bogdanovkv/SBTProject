@@ -20,8 +20,12 @@
     
     self.window = [UIWindow new];
     self.window.frame = UIScreen.mainScreen.bounds;
-    self.window.rootViewController = [KVBWelcomeViewController new];
     
+    KVBWelcomeViewController *welcomeVC = [KVBWelcomeViewController new];
+    welcomeVC.persistentContainer = self.persistentContainer;
+    
+    self.window.rootViewController = welcomeVC;
+
     [self.window makeKeyAndVisible];
     
     

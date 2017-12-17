@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 @interface KVBWelcomeViewController : UIViewController
-
+@property(nonatomic, weak) NSPersistentContainer *persistentContainer;
 
 @end
 

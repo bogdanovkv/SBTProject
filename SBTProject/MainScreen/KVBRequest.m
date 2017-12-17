@@ -58,10 +58,6 @@
 {
     NSURLComponents *urlComponents = [NSURLComponents componentsWithString:string];
     
-//    NSURLQueryItem *token = [NSURLQueryItem queryItemWithName:@"token" value:KVBTravelpayouts];
-//
-//    urlComponents.queryItems = @[token];
-    
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:self.coreDataConstructor delegateQueue:self.downloadTaskQueue];
     NSURLSessionDownloadTask *dataTask = [session downloadTaskWithRequest:[NSURLRequest requestWithURL:urlComponents.URL]];

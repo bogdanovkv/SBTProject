@@ -74,6 +74,7 @@
         newCountry.name = country[@"name"];
         newCountry.codeIATA = country[@"code"];
         newCountry.currency = [NSString stringWithFormat:@"%@", country[@"currency"]];
+        
         NSDictionary *namesCountries = country[@"name_translations"];
         
         newCountry.nameRu = namesCountries[@"ru"];
@@ -87,6 +88,7 @@
         newCity.name = city[@"name"];
         newCity.codeIATA = city[@"code"];
         newCity.countryCode =city[@"country_code"];
+        
         NSDictionary *namesCities = city[@"name_translations"];
         
         newCity.nameRu = namesCities[@"ru"];
@@ -101,18 +103,18 @@
         newAirport.country_codeIATA = airport[@"country_code"];
         newAirport.city_codeIATA = airport[@"city_code"];
         
-        
         NSDictionary *namesAirport = airport[@"name_translations"];
         
         newAirport.nameRu = namesAirport[@"ru"];
         
     }
     
-    [self.context save:nil];
+    NSError *saveError=nil;
+    [self.context save: &saveError];
+    
+    
     [[NSUserDefaults standardUserDefaults] setValue:@"Exist" forKey:@"isDataExist"];
 }
-
-
 
 
 @end
