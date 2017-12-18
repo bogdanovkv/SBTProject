@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Cities;
 
 @interface KVBSearchViewController : UIViewController
-@property(nonatomic, strong) NSString *currentLocation;
+
+@property(nonatomic, strong) Cities *currentLocation;
 
 @end

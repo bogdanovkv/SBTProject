@@ -24,20 +24,13 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
 
 @property(nonatomic, strong) UILabel *welcomeLabel;
 @property(nonatomic, strong) UITextField *locationField;
-@property(nonatomic, strong) UILabel *auestionLabel;
-@property(nonatomic, strong) UIButton *changeLocationButton;
 @property(nonatomic, strong) UIButton *acceptButton;
-@property(nonatomic, strong) NSString *currenLocation;
-@property(nonatomic, strong) NSString *countryCode;
 @property(nonatomic, strong) KVBRequest *request;
 @property(nonatomic, strong) UITableView *tableWithCities;
-@property(nonatomic, strong) NSArray<Cities*> *countriesNames;
-@property(nonatomic, strong) NSArray *names;
-@property(nonatomic, strong) NSArray *locationSet;
-
-
-
-
+@property(nonatomic, copy) NSArray *names;        //array in table or cities or countries
+@property(nonatomic, copy) NSArray *locationSet;  //names of coutry and city
+@property(nonatomic, copy) NSString *countryCode; //code of current contry
+@property(nonatomic, strong) Cities *city;
 
 @end
 
@@ -48,19 +41,12 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
     self = [super init];
     if (self) {
         
-        _currenLocation = @"Loading your location";
-        
         _countryCode = @"RU";
         
         _names = [NSArray array];
         
         _request = [KVBRequest new];
         _request.delegate = self;
-        
-        _changeLocationButton = [UIButton new];
-        [_changeLocationButton setTitleColor:UIColor.greenColor forState:UIControlStateNormal];
-        [_changeLocationButton setTitle:@"Change" forState:UIControlStateNormal];
-        [_changeLocationButton addTarget:self action:@selector(changeLocation) forControlEvents:UIControlEventTouchDown];
         
         _acceptButton = [UIButton new];
         [_acceptButton setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
@@ -76,7 +62,7 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         
         _locationField = [UITextField new];
         _locationField.backgroundColor = UIColor.clearColor;
-        _locationField.text = _currenLocation;
+        _locationField.text = @"Loading";
         _locationField.textAlignment = NSTextAlignmentCenter;
         _locationField.delegate = self;
         
@@ -85,7 +71,6 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         _tableWithCities.dataSource = self;
         _tableWithCities.delegate = self;
         
-        [self.view addSubview:_changeLocationButton];
         [self.view addSubview:_acceptButton];
         [self.view addSubview:_welcomeLabel];
         [self.view addSubview:_locationField];
@@ -94,16 +79,8 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         [_acceptButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_locationField.mas_bottom).offset(10);
             make.right.equalTo(self.view.mas_right).offset(-KVBLeftRightOffset);
-            make.height.equalTo(_changeLocationButton.mas_height);
-            make.width.equalTo(_changeLocationButton.mas_width);
-            
-        }];
-
-        [_changeLocationButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_locationField.mas_bottom).offset(10);
             make.left.equalTo(self.view.mas_left).offset(KVBLeftRightOffset);
-            make.height.equalTo(@(20));
-            make.right.equalTo(_acceptButton.mas_left).offset(KVBLeftRightOffset);
+            make.height.mas_equalTo(40);
             
         }];
         
@@ -126,7 +103,7 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
             make.top.equalTo(_acceptButton.mas_bottom).offset(20);
             make.left.equalTo(self.view.mas_left);
             make.right.equalTo(self.view.mas_right);
-            make.bottom.equalTo(self.view.mas_bottom);
+            make.bottom.equalTo(self.view.mas_bottom).offset(-216);
         }];
         
     }
@@ -157,28 +134,75 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
 }
 
 #pragma mark UIButton events
-- (void)changeLocation
-{
-    [self.tableWithCities reloadData];
-}
 
 - (void)acceptLocation
 {
-    UITabBarController *tabBarController = [UITabBarController new];
     
-    KVBSearchViewController *searchViewConctroller = [KVBSearchViewController new];
-    searchViewConctroller.currentLocation = self.currenLocation;
-    searchViewConctroller.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0];
+    if([self checkNames])
+    {
+        UITabBarController *tabBarController = [UITabBarController new];
+        
+        KVBSearchViewController *searchViewConctroller = [KVBSearchViewController new];
+        searchViewConctroller.currentLocation = self.city;
+        searchViewConctroller.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0];
+        
+        KVBSavedFlightsViewController *sfvc = [KVBSavedFlightsViewController new];
+        sfvc.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemDownloads tag:1];
+        
+        KVBSettingsViewController *settingVC = [KVBSettingsViewController new];
+        settingVC.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemHistory tag:2];
+        
+        tabBarController.viewControllers = @[searchViewConctroller, sfvc, settingVC];
+        
+        [self presentViewController:tabBarController animated:YES completion:nil];
+    }
+    else
+    {
+        NSArray * pathArray = @[@(self.locationField.center), @(CGPointMake(self.locationField.center.x -15, self.locationField.center.y)),@(CGPointMake(self.locationField.center.x + 15, self.locationField.center.y)), @(self.locationField.center)];
+        
+        CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+        pathAnimation.values = pathArray;
+        pathAnimation.duration = 1.0;
+        [self.locationField.layer addAnimation:pathAnimation forKey:@"position"];
+    }
+   
+}
+
+- (BOOL) checkNames
+{
+    NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:@","];
+    NSArray *array = [self.locationField.text componentsSeparatedByCharactersInSet:characterSet];
+    NSMutableOrderedSet *mutableSet = [NSMutableOrderedSet orderedSetWithArray:array];
+    [mutableSet removeObject:@""];
     
-    KVBSavedFlightsViewController *sfvc = [KVBSavedFlightsViewController new];
-    sfvc.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemDownloads tag:1];
-    
-    KVBSettingsViewController *settingVC = [KVBSettingsViewController new];
-    settingVC.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemHistory tag:2];
-    
-    tabBarController.viewControllers = @[searchViewConctroller, sfvc, settingVC];
-    
-    [self presentViewController:tabBarController animated:YES completion:nil];
+    if(mutableSet.count == 2)
+    {
+        NSString *countryName = [self deleteWhiteSpaces:mutableSet.firstObject];
+        NSString *cityName = [self deleteWhiteSpaces:mutableSet.lastObject];
+        
+        NSArray<Countries*> *country = [self findLocationInEntity:NSStringFromClass([Countries class]) withName:countryName];
+        NSArray<Cities*> *city = [self findLocationInEntity:NSStringFromClass([Cities class]) withName:cityName];
+
+        if(country.count == 1 && city.count == 1)
+        {
+            Cities *nativeCity = city[0];
+            NSLog(@"%@", nativeCity.nameRu);
+            NSLog(@"%@", nativeCity.parrentCountry.nameRu);
+
+            Countries *nativeCountry = country[0];
+            nativeCity.parrentCountry = nativeCity.parrentCountry == nil ? nativeCountry : nativeCity.parrentCountry;
+            NSLog(@"%@", nativeCity.parrentCountry.nameRu);
+
+            self.city = nativeCity;
+            if ([self.persistentContainer.viewContext hasChanges])
+            {
+                [self.persistentContainer.viewContext save:nil];
+            }
+            return YES;
+        }
+    }
+    return NO;
+
 }
 
 #pragma mark -NSURLSessionDelegate
@@ -193,6 +217,7 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
     
     dispatch_async(dispatch_get_main_queue(), ^
     {
+        self.locationSet = @[countryName, cityName];
         self.locationField.text = [NSString stringWithFormat:@"%@, %@", countryName, cityName];
         
     });
@@ -269,11 +294,14 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
     
     self.locationSet = mutableArray;
     
-    if (self.locationSet.count == 1)
+    if(self.locationSet.count >= 1)
     {
         [self setupNativeCountryCode];
     }
-   
+   else
+   {
+       self.names = nil;
+   }
     
     [self.tableWithCities reloadData];
     return YES;
@@ -307,17 +335,23 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
     
     return @"";
 }
-- (void) setupNativeCountryCode
+- (void)setupNativeCountryCode
 {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Countries class])];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name == (%@) OR nameRu == %@",[self.locationSet[0] capitalizedString] ,[self.locationSet[0] capitalizedString]];
-    NSArray *nativeCoutry = [self.persistentContainer.viewContext executeFetchRequest:fetchRequest error:nil];
+
+    NSArray *nativeCoutry = [self findLocationInEntity:NSStringFromClass([Countries class]) withName:[self.locationSet[0] capitalizedString]];
     
     if(nativeCoutry.count != 0)
     {
         Countries *country = nativeCoutry[0];
         self.countryCode = country.codeIATA;
     }
+}
+
+- (NSArray*) findLocationInEntity:(NSString*) entity withName:(NSString*) name
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:entity];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name == (%@) OR nameRu == %@",[name capitalizedString] ,[name capitalizedString]];
+    return [self.persistentContainer.viewContext executeFetchRequest:fetchRequest error:nil];
 }
 
 #pragma mark - UITableViewDelegate
@@ -330,7 +364,6 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
     {
         Countries *country = self.names[indexPath.row];
         self.countryCode = country.codeIATA;
-        self.currenLocation = country.name;
         self.locationField.text = [NSString stringWithFormat:@"%@,", [tableView cellForRowAtIndexPath:indexPath].textLabel.text];
 
     }
@@ -338,7 +371,11 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         
 
     {
-        self.locationField.text = [NSString stringWithFormat:@"%@, %@",self.currenLocation, [tableView cellForRowAtIndexPath:indexPath].textLabel.text];
+        Cities *city = self.names[indexPath.row];
+        NSMutableArray *array = [NSMutableArray arrayWithArray:self.locationSet];
+        array[1] = city;
+        self.locationSet = array;
+        self.locationField.text = [NSString stringWithFormat:@"%@, %@",self.locationSet[0], city.name];
     }
 }
 
