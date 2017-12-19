@@ -58,12 +58,14 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         _welcomeLabel = [UILabel new];
         _welcomeLabel.backgroundColor = UIColor.clearColor;
         _welcomeLabel.text = @"Hello !\nPlease, choose your location:";
-        _welcomeLabel.numberOfLines = 2;
+        _welcomeLabel.numberOfLines = 0;
         _welcomeLabel.textAlignment = NSTextAlignmentCenter;
+        _welcomeLabel.preferredMaxLayoutWidth = UIScreen.mainScreen.bounds.size.width - 2*KVBLeftRightOffset;
         
         _locationField = [UITextField new];
         _locationField.backgroundColor = UIColor.clearColor;
         _locationField.text = @"Loading";
+        _locationField.placeholder = @"Country, city";
         _locationField.textAlignment = NSTextAlignmentCenter;
         _locationField.delegate = self;
         
@@ -123,8 +125,6 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         [self.request recieveAllContriesWithCities];
 
     }
-
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 
@@ -183,6 +183,8 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         NSArray<Countries*> *country = [self findLocationInEntity:NSStringFromClass([Countries class]) withName:countryName];
         NSArray<Cities*> *city = [self findLocationInEntity:NSStringFromClass([Cities class]) withName:cityName];
 
+        NSLog(@"%li", country.count);
+        NSLog(@"%li", city.count);
         if(country.count == 1 && city.count == 1)
         {
             Cities *nativeCity = city[0];
@@ -210,10 +212,20 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
 }
 
 #pragma mark -NSURLSessionDelegate
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+didCompleteWithError:(nullable NSError *)error
+{
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
+        self.welcomeLabel.text = [NSString stringWithFormat:@"%@ Please write your location.", error.localizedDescription];
+        self.locationField.text = nil;
+    });
+}
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
     didReceiveData:(NSData *)data
 {
+    
     NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     self.request.currentLoacation = recievedData;
     NSString *countryName = recievedData[@"country_name"];
@@ -311,6 +323,13 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
     return YES;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
 - (NSString*)deleteWhiteSpaces: (NSString*) stringWithSpaces
 {
     NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:@" "];
@@ -335,8 +354,6 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         return result;
     }
         
-
-    
     return @"";
 }
 - (void)setupNativeCountryCode
@@ -382,6 +399,10 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         self.locationField.text = [NSString stringWithFormat:@"%@, %@",self.locationSet[0], city.name];
     }
 }
+
+
+
+
 
 
 @end

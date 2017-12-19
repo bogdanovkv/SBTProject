@@ -38,26 +38,29 @@
     NSData *data = [NSData dataWithContentsOfURL:location];
     NSDictionary* reciever = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
    
-    if([downloadTask.currentRequest.URL isEqual:[NSURL URLWithString: KVBRequestAllCountries]])
+    if(!error)
     {
-        self.countriesDictionary = reciever;
-    }
-    if([downloadTask.currentRequest.URL isEqual:[NSURL URLWithString: KVBRequestAllCities]])
-    {
-        self.citiesDictionary = reciever;
-    }
+            if([downloadTask.currentRequest.URL isEqual:[NSURL URLWithString: KVBRequestAllCountries]])
+        {
+            self.countriesDictionary = reciever;
+        }
+        if([downloadTask.currentRequest.URL isEqual:[NSURL URLWithString: KVBRequestAllCities]])
+        {
+            self.citiesDictionary = reciever;
+        }
     
-    if([downloadTask.currentRequest.URL isEqual:[NSURL URLWithString: KVBRequestAllAirports]])
-    {
-        self.airportDictionary = reciever;
-    }
-    
-    if(self.countriesDictionary.count != 0 && self.citiesDictionary.count != 0 && self.airportDictionary.count != 0)
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-                    [self setupCoreData];
-
-        });
+        if([downloadTask.currentRequest.URL isEqual:[NSURL URLWithString: KVBRequestAllAirports]])
+        {
+            self.airportDictionary = reciever;
+        }
+        
+        if(self.countriesDictionary.count != 0 && self.citiesDictionary.count != 0 && self.airportDictionary.count != 0)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                        [self setupCoreData];
+            
+            });
+        }
     }
 
 }
