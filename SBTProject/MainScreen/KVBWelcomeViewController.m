@@ -215,11 +215,15 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
 didCompleteWithError:(nullable NSError *)error
 {
-    dispatch_async(dispatch_get_main_queue(), ^
+    if(error)
     {
-        self.welcomeLabel.text = [NSString stringWithFormat:@"%@ Please write your location.", error.localizedDescription];
-        self.locationField.text = nil;
-    });
+        dispatch_async(dispatch_get_main_queue(), ^
+                       {
+                           self.welcomeLabel.text = [NSString stringWithFormat:@"%@ Please write your location.", error.localizedDescription];
+                           self.locationField.text = nil;
+                       });
+    }
+
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
@@ -353,7 +357,7 @@ didCompleteWithError:(nullable NSError *)error
         }
         return result;
     }
-        
+    
     return @"";
 }
 - (void)setupNativeCountryCode
@@ -371,7 +375,7 @@ didCompleteWithError:(nullable NSError *)error
 - (NSArray*) findLocationInEntity:(NSString*) entity withName:(NSString*) name
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:entity];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name ==(%@) OR nameRu == %@",[name capitalizedString] ,[name capitalizedString]];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name == (%@) OR nameRu == %@",[name capitalizedString] ,[name capitalizedString]];
     return [self.persistentContainer.viewContext executeFetchRequest:fetchRequest error:nil];
 }
 
@@ -379,7 +383,6 @@ didCompleteWithError:(nullable NSError *)error
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     
     if (self.locationSet.count == 1)
     {
