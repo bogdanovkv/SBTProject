@@ -9,6 +9,9 @@
 #import "KVBSearchViewController.h"
 #import "KVBViewWithParametres.h"
 #import "KVBFlightsTableDataSource.h"
+#import "Cities+CoreDataClass.h"
+#import "Countries+CoreDataClass.h"
+#import "Airpots+CoreDataClass.h"
 #import <Masonry.h>
 
 @interface KVBSearchViewController ()<UITableViewDelegate>
@@ -17,16 +20,21 @@
 @property(nonatomic, strong) UIButton *searchButton;
 @property(nonatomic, strong) UITableView *tableWithFlights;
 @property(nonatomic, strong) KVBFlightsTableDataSource *dataSourse;
+@property(nonatomic, strong) Cities *currentLocation;
+
 @end
 
 @implementation KVBSearchViewController
 
-- (instancetype)init
+- (instancetype)initWithDeparture: (Cities*) city
 {
     self = [super init];
     if (self) {
         
+        _currentLocation = city;
+        
         _searchView = [KVBViewWithParametres new];
+        _searchView.departureLabel.text = [NSString stringWithFormat:@"%@, %@", city.name, city.parrentCountry.name];
         _searchView.backgroundColor = UIColor.whiteColor;
         
         _searchButton = [UIButton new];

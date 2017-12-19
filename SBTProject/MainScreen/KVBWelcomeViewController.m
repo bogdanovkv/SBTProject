@@ -49,10 +49,11 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         _request.delegate = self;
         
         _acceptButton = [UIButton new];
-        [_acceptButton setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
+        [_acceptButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         [_acceptButton setTitle:@"Next" forState:UIControlStateNormal];
         [_acceptButton addTarget:self action:@selector(acceptLocation) forControlEvents:UIControlEventTouchDown];
-        _acceptButton.backgroundColor = UIColor.clearColor;
+        _acceptButton.backgroundColor = UIColor.grayColor;
+        _acceptButton.layer.cornerRadius = 15;
         
         _welcomeLabel = [UILabel new];
         _welcomeLabel.backgroundColor = UIColor.clearColor;
@@ -142,8 +143,7 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
     {
         UITabBarController *tabBarController = [UITabBarController new];
         
-        KVBSearchViewController *searchViewConctroller = [KVBSearchViewController new];
-        searchViewConctroller.currentLocation = self.city;
+        KVBSearchViewController *searchViewConctroller = [[KVBSearchViewController alloc] initWithDeparture:self.city];
         searchViewConctroller.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0];
         
         KVBSavedFlightsViewController *sfvc = [KVBSavedFlightsViewController new];
@@ -190,6 +190,10 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
             NSLog(@"%@", nativeCity.parrentCountry.nameRu);
 
             Countries *nativeCountry = country[0];
+            if(![nativeCity.countryCode isEqualToString:nativeCountry.codeIATA])
+            {
+                return NO;
+            }
             nativeCity.parrentCountry = nativeCity.parrentCountry == nil ? nativeCountry : nativeCity.parrentCountry;
             NSLog(@"%@", nativeCity.parrentCountry.nameRu);
 
@@ -350,7 +354,7 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
 - (NSArray*) findLocationInEntity:(NSString*) entity withName:(NSString*) name
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:entity];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name == (%@) OR nameRu == %@",[name capitalizedString] ,[name capitalizedString]];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name ==(%@) OR nameRu == %@",[name capitalizedString] ,[name capitalizedString]];
     return [self.persistentContainer.viewContext executeFetchRequest:fetchRequest error:nil];
 }
 

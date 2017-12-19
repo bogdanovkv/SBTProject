@@ -11,6 +11,6 @@
 
 @interface KVBSearchViewController : UIViewController
 
-@property(nonatomic, strong) Cities *currentLocation;
 
+- (instancetype)initWithDeparture: (Cities*) city;
 @end

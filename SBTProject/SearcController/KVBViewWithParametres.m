@@ -19,11 +19,11 @@ const CGFloat KVBLeftRightOffsetInView = 20;
     if (self) {
         
         _departureLabel = [UITextField new];
-        _departureLabel.placeholder = @"Test departure";
+        _departureLabel.placeholder = @"Departure";
         _departureLabel.backgroundColor = UIColor.clearColor;
 
         _arrivalLabel = [UITextField new];
-        _arrivalLabel.placeholder = @"Test arrival";
+        _arrivalLabel.placeholder = @"Arrival";
         _arrivalLabel.backgroundColor = UIColor.clearColor;
 
         _departureDate = [UITextField new];
