@@ -25,9 +25,19 @@
         <relationship name="airport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Airpots" inverseName="parrentCountry" inverseEntity="Airpots" syncable="YES"/>
         <relationship name="allcities" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Cities" inverseName="parrentCountry" inverseEntity="Cities" syncable="YES"/>
     </entity>
+    <entity name="Flyight" representedClassName="Flyight" syncable="YES" codeGenerationType="class">
+        <attribute name="airline" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="arrivalDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="cost" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="departureDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="flightNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="arrival" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cities" syncable="YES"/>
+        <relationship name="departure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cities" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Airpots" positionX="-8201" positionY="-5842" width="128" height="148"/>
         <element name="Cities" positionX="-8417" positionY="-5839" width="128" height="133"/>
         <element name="Countries" positionX="-8633" positionY="-5839" width="128" height="133"/>
+        <element name="Flyight" positionX="-8424" positionY="-5778" width="128" height="150"/>
     </elements>
 </model>

@@ -28,7 +28,7 @@
     return self;
 }
 
-- (void) whereAreMe
+- (void)whereAreMe
 {
     NSURLComponents *urlComponents = [NSURLComponents componentsWithString:KVBLocationsRequestWhereAreMe];
    
@@ -46,7 +46,7 @@
     
 }
 
-- (void) recieveAllContriesWithCities
+- (void)recieveAllContriesWithCities
 {
     [self recieveByURL:KVBRequestAllCountries];
     [self recieveByURL:KVBRequestAllCities];
@@ -54,7 +54,7 @@
 
 }
 
--(void) recieveByURL: (NSString*) string
+- (void)recieveByURL: (NSString*) string
 {
     NSURLComponents *urlComponents = [NSURLComponents componentsWithString:string];
     

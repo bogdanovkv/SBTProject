@@ -7,20 +7,29 @@
 //
 
 #import "KVBFlightsTableDataSource.h"
+#import "KVBSearchViewController.h"
+#import "KVBFlyightsRequests.h"
+#import "KVBFlyightModel.h"
+@interface KVBFlightsTableDataSource()
+@end
 
 @implementation KVBFlightsTableDataSource
+
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    cell.textLabel.text = [NSString stringWithFormat:@"Test flight %li", indexPath.row];
+    KVBFlyightModel *model = self.popularDirections[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"Test flight %@ %@", model.airlineName, model.arrivalDate];
     
     return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.popularDirections.count;
 }
+
+
 
 @end

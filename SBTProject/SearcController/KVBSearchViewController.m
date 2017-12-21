@@ -9,18 +9,22 @@
 #import "KVBSearchViewController.h"
 #import "KVBViewWithParametres.h"
 #import "KVBFlightsTableDataSource.h"
+#import "KVBFlyightsRequests.h"
 #import "Cities+CoreDataClass.h"
 #import "Countries+CoreDataClass.h"
 #import "Airpots+CoreDataClass.h"
+#import "KVBFlyightsRequests.h"
+#import "KVBFlyightModel.h"
 #import <Masonry.h>
 
-@interface KVBSearchViewController ()<UITableViewDelegate>
-
+@interface KVBSearchViewController ()<UITableViewDelegate, NSURLSessionDataDelegate, NSURLSessionDelegate>
+@property(nonatomic, strong) UITableView *tableWithFlights;
+@property(nonatomic, strong) Cities *currentLocation;
 @property(nonatomic, strong) KVBViewWithParametres *searchView;
 @property(nonatomic, strong) UIButton *searchButton;
-@property(nonatomic, strong) UITableView *tableWithFlights;
 @property(nonatomic, strong) KVBFlightsTableDataSource *dataSourse;
-@property(nonatomic, strong) Cities *currentLocation;
+@property(nonatomic,strong) KVBFlyightsRequests *request;
+
 
 @end
 
@@ -32,6 +36,9 @@
     if (self) {
         
         _currentLocation = city;
+        
+        _request = [KVBFlyightsRequests new];
+        _request.user = self;
         
         _searchView = [KVBViewWithParametres new];
         _searchView.departureLabel.text = [NSString stringWithFormat:@"%@, %@", city.name, city.parrentCountry.name];
@@ -48,7 +55,6 @@
         [_tableWithFlights registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
         _dataSourse = [KVBFlightsTableDataSource new];
         _tableWithFlights.dataSource = _dataSourse;
-        
         
         [self.view addSubview:_searchView];
         [self.view addSubview:_searchButton];
@@ -94,10 +100,11 @@
 
 - (void) startSearch
 {
-    NSLog(@"Start search");
+#pragma mark -LayoutIfNeeded is needed?
     
+    [self.request recievePopularDirectionFRomCity:self.currentLocation onPage:0];
+
     [self.view layoutIfNeeded];
-    
     [UIView animateWithDuration:1 animations:^{
         [self.searchButton mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(@(0));
@@ -107,6 +114,30 @@
    
 
 }
+
+#pragma mark -NSURLSessionDelegate
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(nullable NSError *)error
+{
+    
+}
+
+#pragma mark -NSURLSessionDataDelegate
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+    didReceiveData:(NSData *)data
+{
+    NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.dataSourse.popularDirections = [KVBFlyightModel arrayFromDictionaries:recievedData[@"data"]];
+        
+        [self.tableWithFlights reloadData];
+    });
+    
+}
+
 
 #pragma mark -Animations
 

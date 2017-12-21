@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class KVBSearchViewController;
+@class KVBFlyightsRequests;
+@class KVBFlyightModel;
 @interface KVBFlightsTableDataSource : NSObject <UITableViewDataSource>
+
+@property(nonatomic, strong) NSArray<KVBFlyightModel*> *popularDirections;
 
 @end
