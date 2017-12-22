@@ -10,6 +10,8 @@
 #import "KVBViewWithParametres.h"
 #import "KVBFlightsTableDataSource.h"
 #import "KVBFlyightsRequests.h"
+#import "KVBPopalarDirectionCell.h"
+#import "KVBTableViewFlightCell.h"
 #import "Cities+CoreDataClass.h"
 #import "Countries+CoreDataClass.h"
 #import "Airpots+CoreDataClass.h"
@@ -52,9 +54,12 @@
         
         _tableWithFlights = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStylePlain];
         _tableWithFlights.delegate = self;
-        [_tableWithFlights registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+        [_tableWithFlights registerClass:[KVBTableViewFlightCell class] forCellReuseIdentifier:KVBCustomFlightCellIdentifier];
+        [_tableWithFlights registerClass:[KVBPopalarDirectionCell class] forCellReuseIdentifier:@"Cell"];
         _dataSourse = [KVBFlightsTableDataSource new];
         _tableWithFlights.dataSource = _dataSourse;
+        _tableWithFlights.estimatedRowHeight = 44.0;
+        _tableWithFlights.rowHeight = UITableViewAutomaticDimension;
         
         [self.view addSubview:_searchView];
         [self.view addSubview:_searchButton];
@@ -81,6 +86,7 @@
             make.bottom.equalTo(self.view.mas_bottom);
             
         }];
+        
     }
     return self;
 }
@@ -103,12 +109,13 @@
 #pragma mark -LayoutIfNeeded is needed?
     
     [self.request recievePopularDirectionFRomCity:self.currentLocation onPage:0];
-
+//    [self.request recieveCheapTicketsFromCity:self.currentLocation departmentDate:nil toCity:nil arrivalDate:nil];
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:1 animations:^{
         [self.searchButton mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(@(0));
         }];
+        [self.searchButton setTitle:nil forState:UIControlStateNormal];
         [self.view layoutIfNeeded];
     }];
    
@@ -129,12 +136,21 @@
 {
     NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     
+//    if(dataTask.taskIdentifier == 1)
+//    {
+//        NSDictionary *cheap = recievedData[self.currentLocation.codeIATA];
+//        self.dataSourse.cheapTickets = [KVBFlyightModel arrayFromDictionaries:cheap];
+//    }
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.dataSourse.popularDirections = [KVBFlyightModel arrayFromDictionaries:recievedData[@"data"]];
-        
-        [self.tableWithFlights reloadData];
-    });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.dataSourse.popularDirections = [KVBFlyightModel arrayFromDictionaries:recievedData[@"data"]];
+            self.dataSourse.cell = [[KVBPopalarDirectionCell alloc] initWithCollection:self.dataSourse.popularDirections];
+       
+            [self.tableWithFlights reloadData];
+        });
+
+
+    
     
 }
 

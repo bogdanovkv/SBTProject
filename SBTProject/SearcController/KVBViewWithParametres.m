@@ -11,6 +11,10 @@
 
 const CGFloat KVBLeftRightOffsetInView = 20;
 
+@interface KVBViewWithParametres()
+@property(nonatomic, strong) UIImageView * imageView;
+@end
+
 @implementation KVBViewWithParametres
 
 - (instancetype)init
@@ -18,31 +22,48 @@ const CGFloat KVBLeftRightOffsetInView = 20;
     self = [super init];
     if (self) {
         
+        
+        
         _departureLabel = [UITextField new];
         _departureLabel.placeholder = @"Departure";
         _departureLabel.backgroundColor = UIColor.clearColor;
-
+        _departureLabel.borderStyle = UITextBorderStyleRoundedRect;
+        _departureLabel.backgroundColor = UIColor.whiteColor;
+        _departureLabel.alpha = 0.8;
+        
         _arrivalLabel = [UITextField new];
         _arrivalLabel.placeholder = @"Arrival";
         _arrivalLabel.backgroundColor = UIColor.clearColor;
+        _arrivalLabel.borderStyle = UITextBorderStyleRoundedRect;
+        _arrivalLabel.backgroundColor = UIColor.whiteColor;
+        _arrivalLabel.alpha = 0.8;
 
         _departureDate = [UITextField new];
         _departureDate.placeholder = @"te.st.date";
         _departureDate.backgroundColor = UIColor.clearColor;
-
-        _departureDate = [UITextField new];
-        _departureDate.placeholder = @"te.st.date";
-        _departureDate.backgroundColor = UIColor.clearColor;
+        _departureDate.borderStyle = UITextBorderStyleRoundedRect;
+        _departureDate.backgroundColor = UIColor.whiteColor;
+        _departureDate.alpha = 0.8;
 
         _arrivalDate = [UITextField new];
         _arrivalDate.placeholder = @"te.st.date";
         _arrivalDate.backgroundColor = UIColor.clearColor;
+        _arrivalDate.borderStyle = UITextBorderStyleRoundedRect;
+        _arrivalDate.backgroundColor = UIColor.whiteColor;
+        _arrivalDate.alpha = 0.8;
 
+        _imageView = [UIImageView new];
+        _imageView.image = [UIImage imageNamed:@"backimg.jpg"];
+        
+        [self addSubview:_imageView];
         [self addSubview:_departureLabel];
         [self addSubview:_arrivalLabel];
         [self addSubview:_departureDate];
         [self addSubview:_arrivalDate];
 
+        [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
         
         [_departureLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.mas_top).offset(KVBLeftRightOffsetInView);

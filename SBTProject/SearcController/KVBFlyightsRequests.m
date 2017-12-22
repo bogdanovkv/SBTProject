@@ -33,8 +33,37 @@
     [self recieveByURL:urlComponents];
 }
 
-- (void) recieveCheapTicketsFromCity:(Cities*)departure fromCity:(Cities*) destination onPage: (NSInteger) page
+- (void) recieveCheapTicketsFromCity:(Cities*)departure departmentDate: (NSDate*) departmentDate toCity:(Cities*) destination arrivalDate: (NSDate*) arrivalDate;
 {
+    NSURLComponents *urlComponents = [NSURLComponents componentsWithString:KVBCheapTiktetFromCityToCity];
+    
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.dateFormat = @"YYYY-MM";
+    
+    NSURLQueryItem *origin = [NSURLQueryItem queryItemWithName:@"origin" value:departure.codeIATA];
+    NSURLQueryItem *token = [NSURLQueryItem queryItemWithName:@"token" value:KVBTravelpayouts];
+    NSURLQueryItem *destinationCode = [NSURLQueryItem queryItemWithName:@"destination" value:@"HKT"];
+
+    NSMutableArray *array = [NSMutableArray arrayWithObjects:origin, token, destinationCode, nil];
+    
+
+    NSURLQueryItem *returnDate = [NSURLQueryItem queryItemWithName:@"return_date" value: [dateFormatter stringFromDate:arrivalDate]];
+
+    if (arrivalDate)
+    {
+        [array addObject:returnDate];
+    }
+    
+    NSURLQueryItem *departDate = [NSURLQueryItem queryItemWithName:@"depart_date" value: [dateFormatter stringFromDate:departmentDate]];
+
+    if (departmentDate)
+    {
+        [array addObject:departDate];
+    }
+    
+    urlComponents.queryItems = array;
+    
+    [self recieveByURL:urlComponents];
     
 }
 
@@ -43,7 +72,7 @@
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:self.user delegateQueue:self.dataTaskQueue];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:[NSURLRequest requestWithURL:components.URL]];
-    
+
     [dataTask resume];
     
 }

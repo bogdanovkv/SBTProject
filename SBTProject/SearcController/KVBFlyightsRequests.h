@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 static NSString *const KVBTravelpayouts = @"fe17c550289588390f32bb8a4caf562f";
 static NSString *const KVBPopularDirections = @"http://api.travelpayouts.com/v1/city-directions";
-static NSString *const KVBCheapTiktetFromCityToCity = @"http://api.travelpayouts.com/v1/prices/calendar";
+static NSString *const KVBCheapTiktetFromCityToCity = @"http://api.travelpayouts.com/v1/prices/direct";
 
 @class Cities;
 @interface KVBFlyightsRequests : NSObject
@@ -17,7 +17,7 @@ static NSString *const KVBCheapTiktetFromCityToCity = @"http://api.travelpayouts
 
 - (void) recieveCheapTicketsOnPage: (NSInteger) page;
 - (void) recievePopularDirectionFRomCity:(Cities*)city onPage: (NSInteger) page;
-- (void) recieveCheapTicketsFromCity:(Cities*)departure fromCity:(Cities*) destination onPage: (NSInteger) page;
+- (void) recieveCheapTicketsFromCity:(Cities*)departure departmentDate: (NSDate*) departmentDate toCity:(Cities*) destination arrivalDate: (NSDate*) arrivalDate;
 
 
 @end

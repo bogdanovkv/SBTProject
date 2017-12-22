@@ -6,10 +6,16 @@
 //  Copyright © 2017 Константин Богданов. All rights reserved.
 //
 
+
+
 #import "KVBFlightsTableDataSource.h"
 #import "KVBSearchViewController.h"
 #import "KVBFlyightsRequests.h"
+#import "KVBPopalarDirectionCell.h"
+#import "KVBTableViewFlightCell.h"
 #import "KVBFlyightModel.h"
+
+
 @interface KVBFlightsTableDataSource()
 @end
 
@@ -18,18 +24,35 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    KVBFlyightModel *model = self.popularDirections[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"Test flight %@ %@", model.airlineName, model.arrivalDate];
     
-    return cell;
+    if(indexPath.section == 0)
+    {
+        return self.cell == nil ? [tableView dequeueReusableCellWithIdentifier:@"Cell"]: self.cell;
+    }
+    else
+    {
+        KVBTableViewFlightCell *cell = [tableView dequeueReusableCellWithIdentifier:KVBCustomFlightCellIdentifier forIndexPath:indexPath];
+
+        
+        KVBFlyightModel *model = self.popularDirections[indexPath.row];
+        cell.departureLabel.text = model.arrivalCode;
+        cell.arrivalLabel.text = model.destinationCode;
+        cell.priceLabel.text = [NSString stringWithFormat:@"%li p.", model.cost];
+        
+        return cell;
+    }
+
+    
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.popularDirections.count;
+    return section == 0 ? 1 : self.popularDirections.count;
 }
 
-
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+{
+    return 2;
+}
 
 @end

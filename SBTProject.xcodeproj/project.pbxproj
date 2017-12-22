@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		1405594E1FEB81FC000014D5 /* KVBPopalarDirectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405594D1FEB81FC000014D5 /* KVBPopalarDirectionCell.m */; };
 		140559511FEB835F000014D5 /* KVBFlyightModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 140559501FEB835F000014D5 /* KVBFlyightModel.m */; };
+		1408232C1FEC24B60030298C /* KVBCollectionViewFlightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1408232B1FEC24B60030298C /* KVBCollectionViewFlightCell.m */; };
+		140823301FED5F0E0030298C /* backimg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1408232F1FED5F0E0030298C /* backimg.jpg */; };
+		140823321FED60740030298C /* iconfl.png in Resources */ = {isa = PBXBuildFile; fileRef = 140823311FED60730030298C /* iconfl.png */; };
+		140823351FED6C040030298C /* KVBTableViewFlightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140823341FED6C040030298C /* KVBTableViewFlightCell.m */; };
+		140823371FED8DF40030298C /* flight.png in Resources */ = {isa = PBXBuildFile; fileRef = 140823361FED8DF40030298C /* flight.png */; };
 		14113C8B1FEA85C400781FBD /* KVBFlyightsRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14113C8A1FEA85C400781FBD /* KVBFlyightsRequests.m */; };
 		141920661FE3CD6500F85CF5 /* SBTProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141920641FE3CD6500F85CF5 /* SBTProject.xcdatamodeld */; };
 		141920691FE3D68900F85CF5 /* KVBPreparatoryCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 141920681FE3D68900F85CF5 /* KVBPreparatoryCoreData.m */; };
@@ -57,6 +62,13 @@
 		1405594D1FEB81FC000014D5 /* KVBPopalarDirectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBPopalarDirectionCell.m; sourceTree = "<group>"; };
 		1405594F1FEB835F000014D5 /* KVBFlyightModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFlyightModel.h; sourceTree = "<group>"; };
 		140559501FEB835F000014D5 /* KVBFlyightModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFlyightModel.m; sourceTree = "<group>"; };
+		1408232A1FEC24B60030298C /* KVBCollectionViewFlightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBCollectionViewFlightCell.h; sourceTree = "<group>"; };
+		1408232B1FEC24B60030298C /* KVBCollectionViewFlightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBCollectionViewFlightCell.m; sourceTree = "<group>"; };
+		1408232F1FED5F0E0030298C /* backimg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = backimg.jpg; path = ../../../Downloads/backimg.jpg; sourceTree = "<group>"; };
+		140823311FED60730030298C /* iconfl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconfl.png; path = ../../../Downloads/iconfl.png; sourceTree = "<group>"; };
+		140823331FED6C040030298C /* KVBTableViewFlightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBTableViewFlightCell.h; sourceTree = "<group>"; };
+		140823341FED6C040030298C /* KVBTableViewFlightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBTableViewFlightCell.m; sourceTree = "<group>"; };
+		140823361FED8DF40030298C /* flight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flight.png; path = ../../../Downloads/flight.png; sourceTree = "<group>"; };
 		14113C891FEA85C400781FBD /* KVBFlyightsRequests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFlyightsRequests.h; sourceTree = "<group>"; };
 		14113C8A1FEA85C400781FBD /* KVBFlyightsRequests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFlyightsRequests.m; sourceTree = "<group>"; };
 		141920651FE3CD6500F85CF5 /* SBTProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SBTProject.xcdatamodel; sourceTree = "<group>"; };
@@ -209,8 +221,15 @@
 				14F39DBE1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m */,
 				1405594C1FEB81FC000014D5 /* KVBPopalarDirectionCell.h */,
 				1405594D1FEB81FC000014D5 /* KVBPopalarDirectionCell.m */,
+				140823331FED6C040030298C /* KVBTableViewFlightCell.h */,
+				140823341FED6C040030298C /* KVBTableViewFlightCell.m */,
+				1408232A1FEC24B60030298C /* KVBCollectionViewFlightCell.h */,
+				1408232B1FEC24B60030298C /* KVBCollectionViewFlightCell.m */,
 				14113C891FEA85C400781FBD /* KVBFlyightsRequests.h */,
 				14113C8A1FEA85C400781FBD /* KVBFlyightsRequests.m */,
+				140823361FED8DF40030298C /* flight.png */,
+				140823311FED60730030298C /* iconfl.png */,
+				1408232F1FED5F0E0030298C /* backimg.jpg */,
 			);
 			path = SearcController;
 			sourceTree = "<group>";
@@ -398,7 +417,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				140823321FED60740030298C /* iconfl.png in Resources */,
+				140823301FED5F0E0030298C /* backimg.jpg in Resources */,
 				14F682D41FDEEE84004F3BE5 /* Assets.xcassets in Resources */,
+				140823371FED8DF40030298C /* flight.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +548,7 @@
 				14DA566D1FE278A100FAB89A /* KVBSettingsViewController.m in Sources */,
 				14764B981FE528EF00EEC944 /* Cities+CoreDataProperties.m in Sources */,
 				14764B931FE528EF00EEC944 /* Countries+CoreDataClass.m in Sources */,
+				1408232C1FEC24B60030298C /* KVBCollectionViewFlightCell.m in Sources */,
 				14F39DBF1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m in Sources */,
 				14764B961FE528EF00EEC944 /* Airpots+CoreDataProperties.m in Sources */,
 				141920661FE3CD6500F85CF5 /* SBTProject.xcdatamodeld in Sources */,
@@ -541,6 +564,7 @@
 				14DA56691FE26FC200FAB89A /* KVBFlightsDataSource.m in Sources */,
 				14F39DB81FE160BF00EDEA1A /* KVBSearchViewController.m in Sources */,
 				14764B971FE528EF00EEC944 /* Cities+CoreDataClass.m in Sources */,
+				140823351FED6C040030298C /* KVBTableViewFlightCell.m in Sources */,
 				14DA56711FE2814500FAB89A /* KVBRequest.m in Sources */,
 				140559511FEB835F000014D5 /* KVBFlyightModel.m in Sources */,
 			);

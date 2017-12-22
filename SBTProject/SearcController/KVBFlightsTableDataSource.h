@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+
+static NSString *const KVBCustomFlightCellIdentifier = @"KVBCustomFlightCellIdentifier";
+
+
 @class KVBSearchViewController;
-@class KVBFlyightsRequests;
+@class KVBPopalarDirectionCell;
 @class KVBFlyightModel;
 @interface KVBFlightsTableDataSource : NSObject <UITableViewDataSource>
 
-@property(nonatomic, strong) NSArray<KVBFlyightModel*> *popularDirections;
+@property(nonatomic, copy) NSArray<KVBFlyightModel*> *popularDirections;
+@property(nonatomic, copy) NSArray<KVBFlyightModel*> *cheapTickets;
+@property(nonatomic, strong) KVBPopalarDirectionCell *cell;
 
 @end
