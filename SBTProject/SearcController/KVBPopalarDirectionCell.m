@@ -20,6 +20,7 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
 
 @implementation KVBPopalarDirectionCell
 
+
 - (instancetype)initWithCollection:(NSArray *)popularDirections
 {
     self = [super init];

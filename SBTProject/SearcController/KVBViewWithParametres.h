@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface KVBViewWithParametres : UIView
-@property(nonatomic, strong) UITextField *departureLabel;
+@property(nonatomic, strong) UITextField *departureField;
 @property(nonatomic, strong) UITextField *departureDate;
-@property(nonatomic, strong) UITextField *arrivalLabel;
+@property(nonatomic, strong) UITextField *arrivalField;
 @property(nonatomic, strong) UITextField *arrivalDate;
 @property(nonatomic, strong) UITextField *backgroundImage;
 

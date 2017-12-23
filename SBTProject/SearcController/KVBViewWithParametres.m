@@ -24,19 +24,19 @@ const CGFloat KVBLeftRightOffsetInView = 20;
         
         
         
-        _departureLabel = [UITextField new];
-        _departureLabel.placeholder = @"Departure";
-        _departureLabel.backgroundColor = UIColor.clearColor;
-        _departureLabel.borderStyle = UITextBorderStyleRoundedRect;
-        _departureLabel.backgroundColor = UIColor.whiteColor;
-        _departureLabel.alpha = 0.8;
+        _departureField = [UITextField new];
+        _departureField.placeholder = @"Departure";
+        _departureField.backgroundColor = UIColor.clearColor;
+        _departureField.borderStyle = UITextBorderStyleRoundedRect;
+        _departureField.backgroundColor = UIColor.whiteColor;
+        _departureField.alpha = 0.8;
         
-        _arrivalLabel = [UITextField new];
-        _arrivalLabel.placeholder = @"Arrival";
-        _arrivalLabel.backgroundColor = UIColor.clearColor;
-        _arrivalLabel.borderStyle = UITextBorderStyleRoundedRect;
-        _arrivalLabel.backgroundColor = UIColor.whiteColor;
-        _arrivalLabel.alpha = 0.8;
+        _arrivalField = [UITextField new];
+        _arrivalField.placeholder = @"Arrival";
+        _arrivalField.backgroundColor = UIColor.clearColor;
+        _arrivalField.borderStyle = UITextBorderStyleRoundedRect;
+        _arrivalField.backgroundColor = UIColor.whiteColor;
+        _arrivalField.alpha = 0.8;
 
         _departureDate = [UITextField new];
         _departureDate.placeholder = @"te.st.date";
@@ -56,8 +56,8 @@ const CGFloat KVBLeftRightOffsetInView = 20;
         _imageView.image = [UIImage imageNamed:@"backimg.jpg"];
         
         [self addSubview:_imageView];
-        [self addSubview:_departureLabel];
-        [self addSubview:_arrivalLabel];
+        [self addSubview:_departureField];
+        [self addSubview:_arrivalField];
         [self addSubview:_departureDate];
         [self addSubview:_arrivalDate];
 
@@ -65,16 +65,16 @@ const CGFloat KVBLeftRightOffsetInView = 20;
             make.edges.equalTo(self);
         }];
         
-        [_departureLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [_departureField mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.mas_top).offset(KVBLeftRightOffsetInView);
             make.left.equalTo(self.mas_left).offset(KVBLeftRightOffsetInView);
-            make.right.equalTo(_arrivalLabel.mas_left).offset(-KVBLeftRightOffsetInView);
+            make.right.equalTo(_arrivalField.mas_left).offset(-KVBLeftRightOffsetInView);
             make.height.equalTo(@(20));
-            make.width.equalTo(_arrivalLabel.mas_width);
+            make.width.equalTo(_arrivalField.mas_width);
             
         }];
         
-        [_arrivalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [_arrivalField mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.mas_top).offset(KVBLeftRightOffsetInView);
             make.right.equalTo(self.mas_right).offset(-KVBLeftRightOffsetInView);
             make.height.equalTo(@(20));
@@ -82,7 +82,7 @@ const CGFloat KVBLeftRightOffsetInView = 20;
         }];
 
         [_departureDate mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_departureLabel.mas_bottom).offset(KVBLeftRightOffsetInView);
+            make.top.equalTo(_departureField.mas_bottom).offset(KVBLeftRightOffsetInView);
             make.left.equalTo(self.mas_left).offset(KVBLeftRightOffsetInView);
             make.right.equalTo(_arrivalDate.mas_left).offset(-KVBLeftRightOffsetInView);
             make.height.equalTo(@(20));
@@ -91,9 +91,9 @@ const CGFloat KVBLeftRightOffsetInView = 20;
         }];
         
         [_arrivalDate mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_arrivalLabel.mas_bottom).offset(KVBLeftRightOffsetInView);
+            make.top.equalTo(_arrivalField.mas_bottom).offset(KVBLeftRightOffsetInView);
             make.right.equalTo(self.mas_right).offset(-KVBLeftRightOffsetInView);
-            make.height.equalTo(_departureLabel.mas_height);
+            make.height.equalTo(_departureField.mas_height);
             make.bottom.equalTo(self.mas_bottom).offset(-KVBLeftRightOffsetInView);
             
         }];

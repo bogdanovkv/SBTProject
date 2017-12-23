@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface KVBPopalarDirectionCell : UITableViewCell
-- (instancetype)initWithCollection: (NSArray*) popularDirections;
+
+- (instancetype)initWithCollection:(NSArray *)popularDirections;
+
 @end

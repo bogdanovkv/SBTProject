@@ -43,7 +43,7 @@
         _request.user = self;
         
         _searchView = [KVBViewWithParametres new];
-        _searchView.departureLabel.text = [NSString stringWithFormat:@"%@, %@", city.name, city.parrentCountry.name];
+        _searchView.departureField.text = [NSString stringWithFormat:@"%@, %@", city.name, city.parrentCountry.name];
         _searchView.backgroundColor = UIColor.whiteColor;
         
         _searchButton = [UIButton new];
@@ -93,6 +93,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.request recievePopularDirectionFRomCity:self.currentLocation onPage:0];
+
   
     // Do any additional setup after loading the view.
 }
@@ -108,8 +110,7 @@
 {
 #pragma mark -LayoutIfNeeded is needed?
     
-    [self.request recievePopularDirectionFRomCity:self.currentLocation onPage:0];
-//    [self.request recieveCheapTicketsFromCity:self.currentLocation departmentDate:nil toCity:nil arrivalDate:nil];
+    [self.request recieveCheapTicketsFromCity:self.currentLocation departmentDate:nil toCity:nil arrivalDate:nil];
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:1 animations:^{
         [self.searchButton mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -135,23 +136,29 @@
     didReceiveData:(NSData *)data
 {
     NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    
-//    if(dataTask.taskIdentifier == 1)
-//    {
-//        NSDictionary *cheap = recievedData[self.currentLocation.codeIATA];
-//        self.dataSourse.cheapTickets = [KVBFlyightModel arrayFromDictionaries:cheap];
-//    }
 
+    
+    if([dataTask.currentRequest.URL.path isEqual:@"/v1/prices/direct"])
+    {
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.dataSourse.popularDirections = [KVBFlyightModel arrayFromDictionaries:recievedData[@"data"]];
-            self.dataSourse.cell = [[KVBPopalarDirectionCell alloc] initWithCollection:self.dataSourse.popularDirections];
-       
+            NSDictionary *cheap = recievedData[@"data"];
+            self.dataSourse.cheapTickets = [KVBFlyightModel arrayFromDictionaries:cheap[@"HKT"]];
             [self.tableWithFlights reloadData];
+
         });
 
 
-    
-    
+    }
+    if([dataTask.currentRequest.URL.path isEqual:@"/v1/city-directions"])
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.dataSourse.popularDirections = [KVBFlyightModel arrayFromDictionaries:recievedData[@"data"]];
+            self.dataSourse.cell = [[KVBPopalarDirectionCell alloc] initWithCollection:self.dataSourse.popularDirections];
+            
+            [self.tableWithFlights reloadData];
+        });
+    }
+
 }
 
 

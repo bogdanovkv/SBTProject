@@ -17,6 +17,7 @@
 
 
 @interface KVBFlightsTableDataSource()
+@property(nonatomic, strong) NSArray* sections;
 @end
 
 @implementation KVBFlightsTableDataSource
@@ -34,7 +35,7 @@
         KVBTableViewFlightCell *cell = [tableView dequeueReusableCellWithIdentifier:KVBCustomFlightCellIdentifier forIndexPath:indexPath];
 
         
-        KVBFlyightModel *model = self.popularDirections[indexPath.row];
+        KVBFlyightModel *model = self.cheapTickets[indexPath.row];
         cell.departureLabel.text = model.arrivalCode;
         cell.arrivalLabel.text = model.destinationCode;
         cell.priceLabel.text = [NSString stringWithFormat:@"%li p.", model.cost];
@@ -47,7 +48,7 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 1 : self.popularDirections.count;
+    return section == 0 ? 1 : self.cheapTickets.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
