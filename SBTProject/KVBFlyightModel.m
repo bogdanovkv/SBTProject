@@ -25,7 +25,7 @@
     return array;
 }
 
-- (instancetype)initWithDictionary:(NSDictionary*) flightDictionary
+- (instancetype)initWithDictionary:(NSDictionary*)flightDictionary
 {
     self = [super init];
     if (self) {
@@ -49,20 +49,13 @@
     return validString;
 }
           
-- (NSDate*)dateFromString: (NSString*) dateString
+- (NSDate*)dateFromString:(NSString*)dateString
 {
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
     return [dateFormatter dateFromString:dateString];
 }
 
-                         
-                         
-                         
-                         
-                         
-                         
-                         
 //FlyightDictionary
 //MIL =         {
 //    airline = I9;

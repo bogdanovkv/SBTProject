@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *currency;
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSString *nameRu;
-@property (nullable, nonatomic, retain) Cities *allcities;
+@property (nullable, nonatomic, retain) Cities *childCity;
 @property (nullable, nonatomic, retain) Airpots *airport;
 
 @end

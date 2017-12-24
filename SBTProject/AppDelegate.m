@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "KVBWelcomeViewController.h"
+#import "KVBLocationViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -21,8 +21,7 @@
     self.window = [UIWindow new];
     self.window.frame = UIScreen.mainScreen.bounds;
     
-    KVBWelcomeViewController *welcomeVC = [KVBWelcomeViewController new];
-    welcomeVC.persistentContainer = self.persistentContainer;
+    KVBLocationViewController *welcomeVC = [[KVBLocationViewController alloc] initWithContext:self.persistentContainer.viewContext];
     
     self.window.rootViewController = welcomeVC;
 

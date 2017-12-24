@@ -95,8 +95,6 @@
     [super viewDidLoad];
     [self.request recievePopularDirectionFRomCity:self.currentLocation onPage:0];
 
-  
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,9 +117,8 @@
         [self.searchButton setTitle:nil forState:UIControlStateNormal];
         [self.view layoutIfNeeded];
     }];
-   
-
 }
+
 
 #pragma mark -NSURLSessionDelegate
 
@@ -130,13 +127,13 @@
     
 }
 
+
 #pragma mark -NSURLSessionDataDelegate
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
     didReceiveData:(NSData *)data
 {
     NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-
     
     if([dataTask.currentRequest.URL.path isEqual:@"/v1/prices/direct"])
     {
@@ -160,10 +157,5 @@
     }
 
 }
-
-
-#pragma mark -Animations
-
-
 
 @end

@@ -18,7 +18,7 @@
 @dynamic codeIATA;
 @dynamic currency;
 @dynamic name;
-@dynamic allcities;
+@dynamic childCity;
 @dynamic airport;
 @dynamic nameRu;
 

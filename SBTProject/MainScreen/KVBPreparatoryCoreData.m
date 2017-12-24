@@ -67,10 +67,6 @@
 
 -(void) setupCoreData
 {
-    
-    
-    
-    
     for (NSDictionary *country in self.countriesDictionary)
     {
         Countries *newCountry = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Countries class]) inManagedObjectContext:self.context];

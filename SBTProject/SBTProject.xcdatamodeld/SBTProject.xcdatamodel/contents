@@ -15,7 +15,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameRu" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="airport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Airpots" inverseName="parrrentCity" inverseEntity="Airpots" syncable="YES"/>
-        <relationship name="parrentCountry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Countries" inverseName="allcities" inverseEntity="Countries" syncable="YES"/>
+        <relationship name="parrentCountry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Countries" inverseName="childCity" inverseEntity="Countries" syncable="YES"/>
     </entity>
     <entity name="Countries" representedClassName="Countries" syncable="YES">
         <attribute name="codeIATA" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,7 +23,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameRu" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="airport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Airpots" inverseName="parrentCountry" inverseEntity="Airpots" syncable="YES"/>
-        <relationship name="allcities" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Cities" inverseName="parrentCountry" inverseEntity="Cities" syncable="YES"/>
+        <relationship name="childCity" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Cities" inverseName="parrentCountry" inverseEntity="Cities" syncable="YES"/>
     </entity>
     <entity name="Flyight" representedClassName="Flyight" syncable="YES" codeGenerationType="class">
         <attribute name="airline" optional="YES" attributeType="String" syncable="YES"/>
@@ -37,7 +37,7 @@
     <elements>
         <element name="Airpots" positionX="-8201" positionY="-5842" width="128" height="148"/>
         <element name="Cities" positionX="-8417" positionY="-5839" width="128" height="133"/>
-        <element name="Countries" positionX="-8633" positionY="-5839" width="128" height="133"/>
+        <element name="Countries" positionX="-8633" positionY="-5839" width="128" height="135"/>
         <element name="Flyight" positionX="-8424" positionY="-5778" width="128" height="150"/>
     </elements>
 </model>

@@ -69,15 +69,19 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         _locationField.textAlignment = NSTextAlignmentCenter;
         _locationField.delegate = self;
         
-        _tableWithCities = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStyleGrouped];
+        
+        
+        _tableWithCities = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 320) style:UITableViewStyleGrouped];
         [_tableWithCities registerClass:[UITableViewCell class] forCellReuseIdentifier: KVBCityIdentifier];
         _tableWithCities.dataSource = self;
         _tableWithCities.delegate = self;
         
+        _locationField.inputView = self.tableWithCities;
+
         [self.view addSubview:_acceptButton];
         [self.view addSubview:_welcomeLabel];
         [self.view addSubview:_locationField];
-        [self.view addSubview:_tableWithCities];
+//        [self.view addSubview:_tableWithCities];
 
         [_acceptButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_locationField.mas_bottom).offset(10);
@@ -102,12 +106,12 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
             
         }];
         
-        [_tableWithCities mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_acceptButton.mas_bottom).offset(20);
-            make.left.equalTo(self.view.mas_left);
-            make.right.equalTo(self.view.mas_right);
-            make.bottom.equalTo(self.view.mas_bottom).offset(-216);
-        }];
+//        [_tableWithCities mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(_acceptButton.mas_bottom).offset(20);
+//            make.left.equalTo(self.view.mas_left);
+//            make.right.equalTo(self.view.mas_right);
+//            make.bottom.equalTo(self.view.mas_bottom).offset(-216);
+//        }];
         
     }
     return self;
@@ -139,7 +143,7 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
 - (void)acceptLocation
 {
     
-    if([self checkNames])
+    if ([self checkNames])
     {
         UITabBarController *tabBarController = [UITabBarController new];
         
@@ -243,6 +247,8 @@ didCompleteWithError:(nullable NSError *)error
     });
 
 }
+
+
 #pragma mark - UITableViewDataSource
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
@@ -291,6 +297,7 @@ didCompleteWithError:(nullable NSError *)error
     
     return self.names.count;
 }
+
 
 #pragma mark -UITexFieldDelegate
 
@@ -360,6 +367,7 @@ didCompleteWithError:(nullable NSError *)error
     
     return @"";
 }
+
 - (void)setupNativeCountryCode
 {
 
@@ -379,6 +387,7 @@ didCompleteWithError:(nullable NSError *)error
     return [self.persistentContainer.viewContext executeFetchRequest:fetchRequest error:nil];
 }
 
+
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -391,8 +400,7 @@ didCompleteWithError:(nullable NSError *)error
         self.locationField.text = [NSString stringWithFormat:@"%@,", [tableView cellForRowAtIndexPath:indexPath].textLabel.text];
 
     }
-    if(self.locationSet.count == 2)
-        
+    if (self.locationSet.count == 2)
 
     {
         Cities *city = self.names[indexPath.row];
@@ -402,10 +410,5 @@ didCompleteWithError:(nullable NSError *)error
         self.locationField.text = [NSString stringWithFormat:@"%@, %@",self.locationSet[0], city.name];
     }
 }
-
-
-
-
-
 
 @end
