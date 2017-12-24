@@ -27,11 +27,13 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
 @property(nonatomic, strong) UITextField *countryField;
 @property(nonatomic, copy) NSArray *countriesArray;
 @property(nonatomic, strong) UIButton *acceptButton;
-@property(nonatomic, strong) KVBRequest *request;
 @property(nonatomic, strong) UITableView *tableWithCities;
+@property(nonatomic, weak) NSManagedObjectContext *context;
+@property(nonatomic, strong) KVBRequest *request;
 @property(nonatomic, strong) Cities *city;
 @property(nonatomic, strong) Countries *country;
 @property(nonatomic, strong) KVBCoreDataServise *coreDataService;
+
 
 @end
 
@@ -45,6 +47,8 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         
         _request = [KVBRequest new];
         _request.delegate = self;
+        
+        _context = context;
         
         _coreDataService = [[KVBCoreDataServise alloc] initWithContext:context];
         
@@ -61,7 +65,7 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         _welcomeLabel.numberOfLines = 0;
         _welcomeLabel.textAlignment = NSTextAlignmentCenter;
         
-        _tableWithCities = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 320) style:UITableViewStyleGrouped];
+        _tableWithCities = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 400) style:UITableViewStyleGrouped];
         [_tableWithCities registerClass:[UITableViewCell class] forCellReuseIdentifier: KVBCityIdentifier];
         _tableWithCities.dataSource = self;
         _tableWithCities.delegate = self;
@@ -159,7 +163,7 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
 
         UITabBarController *tabBarController = [UITabBarController new];
         
-        KVBSearchViewController *searchViewConctroller = [[KVBSearchViewController alloc] initWithDeparture:self.city];
+        KVBSearchViewController *searchViewConctroller = [[KVBSearchViewController alloc] initWithDeparture:self.city withContext:self.context];
         searchViewConctroller.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0];
         
         KVBSavedFlightsViewController *sfvc = [KVBSavedFlightsViewController new];
@@ -261,7 +265,6 @@ didCompleteWithError:(nullable NSError *)error
         [self.tableWithCities reloadData];
     }
 }
-
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {

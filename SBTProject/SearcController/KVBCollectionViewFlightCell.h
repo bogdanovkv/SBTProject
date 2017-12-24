@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface KVBCollectionViewFlightCell : UICollectionViewCell
+
 @property(nonatomic, strong) UILabel *arrivalLabel;
 @property(nonatomic, strong) UILabel *departureLabel;
 @property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) UILabel *priceLabel;
-
 
 @end

@@ -42,7 +42,8 @@
     
     NSURLQueryItem *origin = [NSURLQueryItem queryItemWithName:@"origin" value:departure.codeIATA];
     NSURLQueryItem *token = [NSURLQueryItem queryItemWithName:@"token" value:KVBTravelpayouts];
-    NSURLQueryItem *destinationCode = [NSURLQueryItem queryItemWithName:@"destination" value:@"HKT"];
+    
+    NSURLQueryItem *destinationCode = [NSURLQueryItem queryItemWithName:@"destination" value:destination.codeIATA];
 
     NSMutableArray *array = [NSMutableArray arrayWithObjects:origin, token, destinationCode, nil];
     

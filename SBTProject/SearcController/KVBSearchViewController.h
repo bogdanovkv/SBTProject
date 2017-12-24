@@ -11,6 +11,6 @@
 
 @interface KVBSearchViewController : UIViewController
 
-- (instancetype)initWithDeparture: (Cities*) city;
+- (instancetype)initWithDeparture: (Cities*) city withContext: (NSManagedObjectContext*) context;
 
 @end

@@ -19,9 +19,10 @@
 #import "KVBFlyightModel.h"
 #import <Masonry.h>
 
-@interface KVBSearchViewController ()<UITableViewDelegate, NSURLSessionDataDelegate, NSURLSessionDelegate>
+@interface KVBSearchViewController ()<UITableViewDelegate, NSURLSessionDataDelegate, NSURLSessionDelegate, KVBSearchViewDelegate>
 @property(nonatomic, strong) UITableView *tableWithFlights;
-@property(nonatomic, strong) Cities *currentLocation;
+@property(nonatomic, strong) Cities *departureCity;
+@property(nonatomic, strong) Cities *arrivalCity;
 @property(nonatomic, strong) KVBViewWithParametres *searchView;
 @property(nonatomic, strong) UIButton *searchButton;
 @property(nonatomic, strong) KVBFlightsTableDataSource *dataSourse;
@@ -32,19 +33,20 @@
 
 @implementation KVBSearchViewController
 
-- (instancetype)initWithDeparture: (Cities*) city
+- (instancetype)initWithDeparture: (Cities*) city withContext: (NSManagedObjectContext*) context
 {
     self = [super init];
     if (self) {
         
-        _currentLocation = city;
+        _departureCity = city;
         
         _request = [KVBFlyightsRequests new];
         _request.user = self;
         
-        _searchView = [KVBViewWithParametres new];
+        _searchView = [[KVBViewWithParametres alloc]initWithContext:context];
         _searchView.departureField.text = [NSString stringWithFormat:@"%@, %@", city.name, city.parrentCountry.name];
         _searchView.backgroundColor = UIColor.whiteColor;
+        _searchView.delegate = self;
         
         _searchButton = [UIButton new];
         _searchButton.backgroundColor = UIColor.blueColor;
@@ -93,7 +95,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.request recievePopularDirectionFRomCity:self.currentLocation onPage:0];
+    [self.request recievePopularDirectionFRomCity:self.departureCity onPage:0];
 
 }
 
@@ -108,19 +110,18 @@
 {
 #pragma mark -LayoutIfNeeded is needed?
     
-    [self.request recieveCheapTicketsFromCity:self.currentLocation departmentDate:nil toCity:nil arrivalDate:nil];
-    [self.view layoutIfNeeded];
-    [UIView animateWithDuration:1 animations:^{
-        [self.searchButton mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(@(0));
-        }];
-        [self.searchButton setTitle:nil forState:UIControlStateNormal];
-        [self.view layoutIfNeeded];
-    }];
+    [self.request recieveCheapTicketsFromCity:self.departureCity departmentDate:nil toCity:self.arrivalCity arrivalDate:nil];
+//    [self.view layoutIfNeeded];
+//    [UIView animateWithDuration:1 animations:^{
+//        [self.searchButton mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.height.equalTo(@(0));
+//        }];
+//        [self.searchButton setTitle:nil forState:UIControlStateNormal];
+//        [self.view layoutIfNeeded];
+//    }];
 }
 
-
-#pragma mark -NSURLSessionDelegate
+#pragma mark - NSURLSessionDelegate
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(nullable NSError *)error
 {
@@ -157,5 +158,30 @@
     }
 
 }
+
+
+#pragma mark - KVBSearchViewDelegate
+
+- (void)arrivalCityChangedWithCity:(Cities *)city
+{
+   self.arrivalCity = city;
+}
+
+- (void)arrivalDateChangedWithDate:(NSDate *)date
+{
+}
+
+- (void)departureCityChangedWithCity:(Cities *)city
+{
+    self.departureCity = city;
+    [self.request recievePopularDirectionFRomCity:self.departureCity onPage:0];
+}
+
+- (void)departureDateChangedWithDate:(NSDate *)date
+{
+    
+}
+
+
 
 @end
