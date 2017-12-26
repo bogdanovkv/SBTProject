@@ -44,7 +44,7 @@
         _request.user = self;
         
         _searchView = [[KVBViewWithParametres alloc]initWithContext:context];
-        _searchView.departureField.text = [NSString stringWithFormat:@"%@, %@", city.name, city.parrentCountry.name];
+        _searchView.departureField.text = [NSString stringWithFormat:@"%@, %@", city.parrentCountry.codeIATA, city.name];
         _searchView.backgroundColor = UIColor.whiteColor;
         _searchView.delegate = self;
         
@@ -78,7 +78,6 @@
             make.left.equalTo(self.view.mas_left);
             make.right.equalTo(self.view.mas_right);
             make.height.equalTo(@(30));
-                                
         }];
         
         [_tableWithFlights mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -86,7 +85,6 @@
             make.left.equalTo(self.view.mas_left);
             make.right.equalTo(self.view.mas_right);
             make.bottom.equalTo(self.view.mas_bottom);
-            
         }];
         
     }
@@ -136,11 +134,11 @@
 {
     NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     
-    if([dataTask.currentRequest.URL.path isEqual:@"/v1/prices/direct"])
+    if([dataTask.currentRequest.URL.path isEqual:@"/v1/prices/cheap"])
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSDictionary *cheap = recievedData[@"data"];
-            self.dataSourse.cheapTickets = [KVBFlyightModel arrayFromDictionaries:cheap[@"HKT"]];
+            self.dataSourse.cheapTickets = [KVBFlyightModel arrayFromDictionariesWithjClassType:cheap];
             [self.tableWithFlights reloadData];
 
         });

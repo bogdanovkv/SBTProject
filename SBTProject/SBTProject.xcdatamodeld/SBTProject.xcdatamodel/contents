@@ -28,6 +28,7 @@
     <entity name="Flyight" representedClassName="Flyight" syncable="YES" codeGenerationType="class">
         <attribute name="airline" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="arrivalDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="classNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="cost" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="departureDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="flightNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -38,6 +39,6 @@
         <element name="Airpots" positionX="-8201" positionY="-5842" width="128" height="148"/>
         <element name="Cities" positionX="-8417" positionY="-5839" width="128" height="133"/>
         <element name="Countries" positionX="-8633" positionY="-5839" width="128" height="135"/>
-        <element name="Flyight" positionX="-8424" positionY="-5778" width="128" height="150"/>
+        <element name="Flyight" positionX="-8424" positionY="-5778" width="128" height="165"/>
     </elements>
 </model>

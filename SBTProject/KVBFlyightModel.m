@@ -25,6 +25,27 @@
     return array;
 }
 
++ (NSArray<KVBFlyightModel*>*)arrayFromDictionariesWithjClassType:(NSDictionary*) flightsDictionary
+{
+    NSMutableArray *array = [NSMutableArray array];
+    
+    NSArray *allKeys = [flightsDictionary allKeys];
+    
+    for(NSString *key in allKeys)
+    {
+        NSArray *arrayWithClassKeys = [flightsDictionary[key] allKeys];
+        for (NSString *keyClass in arrayWithClassKeys)
+        {
+            KVBFlyightModel *flight = [[KVBFlyightModel alloc] initWithDictionary:flightsDictionary[key][keyClass]];
+            flight.classNumber = [keyClass integerValue];
+            [array addObject:flight];
+        }
+        
+        
+    }
+    return array;
+}
+
 - (instancetype)initWithDictionary:(NSDictionary*)flightDictionary
 {
     self = [super init];
@@ -39,6 +60,7 @@
     }
     return self;
 }
+
 - (NSString*)validValueFromString:(NSString*) inputString
 {
     NSString *validString = @"No info";

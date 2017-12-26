@@ -17,8 +17,11 @@
 @property(nonatomic, strong) NSDate *arrivalDate;
 @property(nonatomic, assign) NSInteger cost;
 @property(nonatomic, assign) NSInteger flightNumber;
+@property(nonatomic, assign) NSInteger classNumber;
+
 
 + (NSArray<KVBFlyightModel*>*) arrayFromDictionaries:(NSDictionary*) flightsDictionary;
++ (NSArray<KVBFlyightModel*>*)arrayFromDictionariesWithjClassType:(NSDictionary*) flightsDictionary;
 
 - (instancetype)initWithDictionary:(NSDictionary*) flightDictionary;
 

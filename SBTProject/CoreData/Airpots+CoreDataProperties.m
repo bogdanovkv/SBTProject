@@ -11,16 +11,17 @@
 
 @implementation Airpots (CoreDataProperties)
 
-+ (NSFetchRequest<Airpots *> *)fetchRequest {
-	return [[NSFetchRequest alloc] initWithEntityName:@"Airpots"];
-}
-
 @dynamic codeIATA;
 @dynamic name;
 @dynamic country_codeIATA;
 @dynamic city_codeIATA;
+@dynamic classNumber;
 @dynamic parrrentCity;
 @dynamic parrentCountry;
 @dynamic nameRu;
+
++ (NSFetchRequest<Airpots *> *)fetchRequest {
+    return [[NSFetchRequest alloc] initWithEntityName:@"Airpots"];
+}
 
 @end

@@ -25,8 +25,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    
-    if(indexPath.section == 0)
+        if(indexPath.section == 0)
     {
         return self.cell == nil ? [tableView dequeueReusableCellWithIdentifier:@"Cell"]: self.cell;
     }
@@ -34,7 +33,6 @@
     {
         KVBTableViewFlightCell *cell = [tableView dequeueReusableCellWithIdentifier:KVBCustomFlightCellIdentifier forIndexPath:indexPath];
 
-        
         KVBFlyightModel *model = self.cheapTickets[indexPath.row];
         cell.departureLabel.text = model.arrivalCode;
         cell.arrivalLabel.text = model.destinationCode;
@@ -42,8 +40,6 @@
         
         return cell;
     }
-
-    
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section

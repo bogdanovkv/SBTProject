@@ -9,6 +9,7 @@
 #import "KVBTableViewFlightCell.h"
 #import <Masonry.h>
 const NSInteger KVBElementOffsetTable = 10;
+const NSInteger KVBPhotoSize = 50;
 
 @implementation KVBTableViewFlightCell
 
@@ -58,9 +59,9 @@ const NSInteger KVBElementOffsetTable = 10;
         }];
 
         [_customImage mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView.mas_top);
-            make.height.mas_equalTo(50);
-            make.width.mas_equalTo(50);
+            make.top.equalTo(self.contentView.mas_top).offset(KVBElementOffsetTable);
+            make.height.mas_equalTo(KVBPhotoSize);
+            make.width.mas_equalTo(KVBPhotoSize);
             make.centerX.mas_equalTo(self.contentView.mas_centerX);
         }];
         
