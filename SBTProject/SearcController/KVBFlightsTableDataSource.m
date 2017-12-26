@@ -39,6 +39,8 @@
         cell.arrival = self.arrivalCity.name;
         cell.price = [NSString stringWithFormat:@"%li p.", model.cost];
         
+        cell.arrivalDate = model.arrivalDate;
+        cell.departureDate = model.departureDate;
         return cell;
     }
 }
