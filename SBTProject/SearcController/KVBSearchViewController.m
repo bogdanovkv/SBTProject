@@ -36,8 +36,8 @@
 - (instancetype)initWithDeparture: (Cities*) city withContext: (NSManagedObjectContext*) context
 {
     self = [super init];
-    if (self) {
-        
+    if (self)
+    {
         _departureCity = city;
         
         _request = [KVBFlyightsRequests new];
@@ -102,11 +102,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark -Buttons
 
 - (void) startSearch
 {
 #pragma mark -LayoutIfNeeded is needed?
+    self.dataSourse.departureCity = self.departureCity;
+    self.dataSourse.arrivalCity = self.arrivalCity;
     
     [self.request recieveCheapTicketsFromCity:self.departureCity departmentDate:nil toCity:self.arrivalCity arrivalDate:nil];
 //    [self.view layoutIfNeeded];
@@ -118,6 +121,7 @@
 //        [self.view layoutIfNeeded];
 //    }];
 }
+
 
 #pragma mark - NSURLSessionDelegate
 
@@ -140,7 +144,6 @@
             NSDictionary *cheap = recievedData[@"data"];
             self.dataSourse.cheapTickets = [KVBFlyightModel arrayFromDictionariesWithjClassType:cheap];
             [self.tableWithFlights reloadData];
-
         });
 
 
@@ -150,7 +153,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             self.dataSourse.popularDirections = [KVBFlyightModel arrayFromDictionaries:recievedData[@"data"]];
             self.dataSourse.cell = [[KVBPopalarDirectionCell alloc] initWithCollection:self.dataSourse.popularDirections];
-            
             [self.tableWithFlights reloadData];
         });
     }
@@ -179,7 +181,5 @@
 {
     
 }
-
-
 
 @end

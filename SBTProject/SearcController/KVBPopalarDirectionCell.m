@@ -63,7 +63,7 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
     KVBFlyightModel *flight = self.popularDirections[indexPath.row];
     
     cell.arrivalLabel.text = flight.arrivalCode;
-    cell.departureLabel.text = flight.destinationCode;
+    cell.departureLabel.text = flight.departureCode;
     cell.priceLabel.text = [NSString stringWithFormat:@"%li", flight.cost];
 
     cell.backgroundColor = UIColor.grayColor;

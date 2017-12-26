@@ -11,14 +11,13 @@
 @interface KVBFlyightModel : NSObject
 
 @property(nonatomic, copy) NSString *airlineName;
-@property(nonatomic, copy) NSString *destinationCode;
+@property(nonatomic, copy) NSString *departureCode;
 @property(nonatomic, copy) NSString *arrivalCode;
 @property(nonatomic, strong) NSDate *departureDate;
 @property(nonatomic, strong) NSDate *arrivalDate;
 @property(nonatomic, assign) NSInteger cost;
 @property(nonatomic, assign) NSInteger flightNumber;
 @property(nonatomic, assign) NSInteger classNumber;
-
 
 + (NSArray<KVBFlyightModel*>*) arrayFromDictionaries:(NSDictionary*) flightsDictionary;
 + (NSArray<KVBFlyightModel*>*)arrayFromDictionariesWithjClassType:(NSDictionary*) flightsDictionary;

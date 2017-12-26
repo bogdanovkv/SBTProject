@@ -14,6 +14,7 @@
 #import "KVBPopalarDirectionCell.h"
 #import "KVBTableViewFlightCell.h"
 #import "KVBFlyightModel.h"
+#import "Cities+CoreDataClass.h"
 
 
 @interface KVBFlightsTableDataSource()
@@ -34,9 +35,9 @@
         KVBTableViewFlightCell *cell = [tableView dequeueReusableCellWithIdentifier:KVBCustomFlightCellIdentifier forIndexPath:indexPath];
 
         KVBFlyightModel *model = self.cheapTickets[indexPath.row];
-        cell.departureLabel.text = model.arrivalCode;
-        cell.arrivalLabel.text = model.destinationCode;
-        cell.priceLabel.text = [NSString stringWithFormat:@"%li p.", model.cost];
+        cell.departure = self.departureCity.name;
+        cell.arrival = self.arrivalCity.name;
+        cell.price = [NSString stringWithFormat:@"%li p.", model.cost];
         
         return cell;
     }

@@ -51,8 +51,8 @@
     self = [super init];
     if (self) {
         _airlineName = [self validValueFromString:flightDictionary[@"airline"]];
-        _destinationCode = [self validValueFromString:flightDictionary[@"destination"]];
-        _arrivalCode = [self validValueFromString:flightDictionary[@"origin"]];
+        _arrivalCode = [self validValueFromString:flightDictionary[@"destination"]];
+        _departureCode = [self validValueFromString:flightDictionary[@"origin"]];
         _departureDate = [self dateFromString:flightDictionary[@"departure_at"] ];
         _arrivalDate = [self dateFromString:flightDictionary[@"return_at"]];
         _cost = [flightDictionary[@"price"] integerValue];
