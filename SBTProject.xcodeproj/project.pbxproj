@@ -199,8 +199,6 @@
 			children = (
 				1408C9DD1FEEE960007D2B3E /* KVBLocationViewController.h */,
 				1408C9DE1FEEE960007D2B3E /* KVBLocationViewController.m */,
-				1408AB9D1FEFF9C200C0E2C9 /* KVBCoreDataServise.h */,
-				1408AB9E1FEFF9C200C0E2C9 /* KVBCoreDataServise.m */,
 				14DA566F1FE2814500FAB89A /* KVBRequest.h */,
 				14DA56701FE2814500FAB89A /* KVBRequest.m */,
 				141920671FE3D68900F85CF5 /* KVBPreparatoryCoreData.h */,
@@ -259,6 +257,8 @@
 				14F682C81FDEEE84004F3BE5 /* AppDelegate.m */,
 				1405594F1FEB835F000014D5 /* KVBFlyightModel.h */,
 				140559501FEB835F000014D5 /* KVBFlyightModel.m */,
+				1408AB9D1FEFF9C200C0E2C9 /* KVBCoreDataServise.h */,
+				1408AB9E1FEFF9C200C0E2C9 /* KVBCoreDataServise.m */,
 				1419206A1FE3D6BD00F85CF5 /* CoreData */,
 				14DA566E1FE280A400FAB89A /* MainScreen */,
 				14DA566A1FE2775500FAB89A /* SettingsViewController */,
@@ -706,9 +706,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2U7B3D7RG7;
 				INFOPLIST_FILE = SBTProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sbt.SBTProject;
+				PRODUCT_BUNDLE_IDENTIFIER = kvb.SBTProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -720,9 +721,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2U7B3D7RG7;
 				INFOPLIST_FILE = SBTProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sbt.SBTProject;
+				PRODUCT_BUNDLE_IDENTIFIER = kvb.SBTProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

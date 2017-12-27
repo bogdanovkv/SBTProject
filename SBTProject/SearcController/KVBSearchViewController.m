@@ -12,6 +12,7 @@
 #import "KVBFlyightsRequests.h"
 #import "KVBPopalarDirectionCell.h"
 #import "KVBTableViewFlightCell.h"
+#import "KVBCoreDataServise.h"
 #import "Cities+CoreDataClass.h"
 #import "Countries+CoreDataClass.h"
 #import "Airpots+CoreDataClass.h"
@@ -59,6 +60,7 @@
         [_tableWithFlights registerClass:[KVBTableViewFlightCell class] forCellReuseIdentifier:KVBCustomFlightCellIdentifier];
         [_tableWithFlights registerClass:[KVBPopalarDirectionCell class] forCellReuseIdentifier:@"Cell"];
         _dataSourse = [KVBFlightsTableDataSource new];
+        _dataSourse.coreDataServise = [[KVBCoreDataServise alloc]initWithContext:context];
         _tableWithFlights.dataSource = _dataSourse;
         _tableWithFlights.estimatedRowHeight = 44.0;
         _tableWithFlights.rowHeight = UITableViewAutomaticDimension;
@@ -93,7 +95,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.request recievePopularDirectionFRomCity:self.departureCity onPage:0];
+    [self updatePopularDirectionsFromCity];
 
 }
 
@@ -111,7 +113,15 @@
     self.dataSourse.departureCity = self.departureCity;
     self.dataSourse.arrivalCity = self.arrivalCity;
     
-    [self.request recieveCheapTicketsFromCity:self.departureCity departmentDate:nil toCity:self.arrivalCity arrivalDate:nil];
+    [self.request recieveCheapTicketsFromCity:self.departureCity departmentDate:nil toCity:self.arrivalCity arrivalDate:nil withCompletitionHandler:^(NSData *data, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+
+            NSDictionary *cheap = recievedData[@"data"];
+            self.dataSourse.cheapTickets = [KVBFlyightModel arrayFromDictionariesWithjClassType:cheap];
+            [self.tableWithFlights reloadData];
+        });
+    }];
 //    [self.view layoutIfNeeded];
 //    [UIView animateWithDuration:1 animations:^{
 //        [self.searchButton mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -122,41 +132,18 @@
 //    }];
 }
 
-
-#pragma mark - NSURLSessionDelegate
-
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(nullable NSError *)error
+- (void)updatePopularDirectionsFromCity
 {
-    
-}
-
-
-#pragma mark -NSURLSessionDataDelegate
-
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
-    didReceiveData:(NSData *)data
-{
-    NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    
-    if([dataTask.currentRequest.URL.path isEqual:@"/v1/prices/cheap"])
-    {
+    [self.request recievePopularDirectionFRomCity:self.departureCity onPage:0 withCompletitionHandler:^(NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSDictionary *cheap = recievedData[@"data"];
-            self.dataSourse.cheapTickets = [KVBFlyightModel arrayFromDictionariesWithjClassType:cheap];
-            [self.tableWithFlights reloadData];
-        });
-
-
-    }
-    if([dataTask.currentRequest.URL.path isEqual:@"/v1/city-directions"])
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
             self.dataSourse.popularDirections = [KVBFlyightModel arrayFromDictionaries:recievedData[@"data"]];
             self.dataSourse.cell = [[KVBPopalarDirectionCell alloc] initWithCollection:self.dataSourse.popularDirections];
             [self.tableWithFlights reloadData];
         });
-    }
-
+    }];
 }
 
 
@@ -169,12 +156,13 @@
 
 - (void)arrivalDateChangedWithDate:(NSDate *)date
 {
+    
 }
 
 - (void)departureCityChangedWithCity:(Cities *)city
 {
     self.departureCity = city;
-    [self.request recievePopularDirectionFRomCity:self.departureCity onPage:0];
+    [self updatePopularDirectionsFromCity];
 }
 
 - (void)departureDateChangedWithDate:(NSDate *)date

@@ -38,10 +38,9 @@
         {
             KVBFlyightModel *flight = [[KVBFlyightModel alloc] initWithDictionary:flightsDictionary[key][keyClass]];
             flight.classNumber = [keyClass integerValue];
+            flight.arrivalCode = [[self alloc] validValueFromString:key];
             [array addObject:flight];
         }
-        
-        
     }
     return array;
 }

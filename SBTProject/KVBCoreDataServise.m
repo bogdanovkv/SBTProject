@@ -77,14 +77,15 @@
     return cityInArray;
 }
 
-//- (void)setupChildCities:(NSArray*) arrayWithCities forCountry: (Countries*) country
-//{
-//    for (Cities* city in arrayWithCities)
-//    {
-//        [self setupParentCountry:country forCity:city];
-//    }
-//    [self.context save:nil];
-//}
+- (NSArray<Cities*>*)recieveCityByCityCode:(NSString*)codeIATA
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Cities class])];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"codeIATA == %@", codeIATA];
+    
+    NSArray *cityInArray = [self.context executeFetchRequest:fetchRequest error:nil];
+    
+    return cityInArray;
+}
 
 
 - (void)setupParentCountry:(Countries*)parrenntCountry forCity:(Cities*)city
