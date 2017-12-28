@@ -144,6 +144,9 @@
             
             self.dataSourse.popularDirections = [KVBFlyightModel arrayFromDictionaries:recievedData[@"data"]];
             self.dataSourse.cell = [[KVBPopalarDirectionCell alloc] initWithCollection:self.dataSourse.popularDirections];
+            self.dataSourse.cell.navController = self.navigationController;
+            self.dataSourse.cell.coreDataServise = self.dataSourse.coreDataServise;
+    
             [self.tableWithFlights reloadData];
         });
     }];
@@ -178,7 +181,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    KVBFlyightInfoViewController *flightInfoVC = [KVBFlyightInfoViewController new];
+    KVBFlyightInfoViewController *flightInfoVC = [[KVBFlyightInfoViewController alloc] initWithFlightModel:self.dataSourse.cheapTickets[indexPath.row] departureCity:self.departureCity arrivalCity:self.arrivalCity withCoreDataServise:self.dataSourse.coreDataServise];
     
     [self.navigationController pushViewController:flightInfoVC animated:YES];
 }

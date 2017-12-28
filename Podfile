@@ -9,5 +9,4 @@ target 'SBTProject' do
     	pod ‘OCMock’, '~> 3.4.1’
   end
 
-
 end

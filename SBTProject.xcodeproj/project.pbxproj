@@ -14,6 +14,7 @@
 		140823351FED6C040030298C /* KVBTableViewFlightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140823341FED6C040030298C /* KVBTableViewFlightCell.m */; };
 		1408AB9F1FEFF9C200C0E2C9 /* KVBCoreDataServise.m in Sources */ = {isa = PBXBuildFile; fileRef = 1408AB9E1FEFF9C200C0E2C9 /* KVBCoreDataServise.m */; };
 		1408C9DF1FEEE961007D2B3E /* KVBLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1408C9DE1FEEE960007D2B3E /* KVBLocationViewController.m */; };
+		140CAB6B1FF583E300B6E339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 140CAB6A1FF583E300B6E339 /* Assets.xcassets */; };
 		14113C8B1FEA85C400781FBD /* KVBFlyightsRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14113C8A1FEA85C400781FBD /* KVBFlyightsRequests.m */; };
 		141920661FE3CD6500F85CF5 /* SBTProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141920641FE3CD6500F85CF5 /* SBTProject.xcdatamodeld */; };
 		141920691FE3D68900F85CF5 /* KVBPreparatoryCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 141920681FE3D68900F85CF5 /* KVBPreparatoryCoreData.m */; };
@@ -31,7 +32,6 @@
 		14F39DBC1FE163D000EDEA1A /* KVBViewWithParametres.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F39DBB1FE163D000EDEA1A /* KVBViewWithParametres.m */; };
 		14F39DBF1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F39DBE1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m */; };
 		14F682C91FDEEE84004F3BE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F682C81FDEEE84004F3BE5 /* AppDelegate.m */; };
-		14F682D41FDEEE84004F3BE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14F682D31FDEEE84004F3BE5 /* Assets.xcassets */; };
 		14F682DA1FDEEE84004F3BE5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F682D91FDEEE84004F3BE5 /* main.m */; };
 		14F682E41FDEEE85004F3BE5 /* SBTProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F682E31FDEEE85004F3BE5 /* SBTProjectTests.m */; };
 		14F682EF1FDEEE85004F3BE5 /* SBTProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F682EE1FDEEE85004F3BE5 /* SBTProjectUITests.m */; };
@@ -71,6 +71,7 @@
 		1408AB9E1FEFF9C200C0E2C9 /* KVBCoreDataServise.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBCoreDataServise.m; sourceTree = "<group>"; };
 		1408C9DD1FEEE960007D2B3E /* KVBLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KVBLocationViewController.h; path = /Users/konstantinbogdanov/SBTProject/SBTProject/MainScreen/KVBLocationViewController.h; sourceTree = "<absolute>"; };
 		1408C9DE1FEEE960007D2B3E /* KVBLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KVBLocationViewController.m; path = /Users/konstantinbogdanov/SBTProject/SBTProject/MainScreen/KVBLocationViewController.m; sourceTree = "<absolute>"; };
+		140CAB6A1FF583E300B6E339 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		14113C891FEA85C400781FBD /* KVBFlyightsRequests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFlyightsRequests.h; sourceTree = "<group>"; };
 		14113C8A1FEA85C400781FBD /* KVBFlyightsRequests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFlyightsRequests.m; sourceTree = "<group>"; };
 		141920651FE3CD6500F85CF5 /* SBTProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SBTProject.xcdatamodel; sourceTree = "<group>"; };
@@ -105,7 +106,6 @@
 		14F682C41FDEEE84004F3BE5 /* SBTProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SBTProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F682C71FDEEE84004F3BE5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		14F682C81FDEEE84004F3BE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		14F682D31FDEEE84004F3BE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14F682D81FDEEE84004F3BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14F682D91FDEEE84004F3BE5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		14F682DF1FDEEE85004F3BE5 /* SBTProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SBTProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,8 +269,8 @@
 				14DA566A1FE2775500FAB89A /* SettingsViewController */,
 				14DA56601FE2691A00FAB89A /* SavedFlyights */,
 				14F39DB91FE1635600EDEA1A /* SearcController */,
-				14F682D31FDEEE84004F3BE5 /* Assets.xcassets */,
 				141920641FE3CD6500F85CF5 /* SBTProject.xcdatamodeld */,
+				140CAB6A1FF583E300B6E339 /* Assets.xcassets */,
 				14F682D81FDEEE84004F3BE5 /* Info.plist */,
 				14F682D91FDEEE84004F3BE5 /* main.m */,
 			);
@@ -418,7 +418,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14F682D41FDEEE84004F3BE5 /* Assets.xcassets in Resources */,
+				140CAB6B1FF583E300B6E339 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

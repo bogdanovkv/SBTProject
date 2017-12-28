@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class KVBCoreDataServise;
 @class KVBFlyightModel;
 @class Cities;
 
 @interface KVBFlyightInfoViewController : UIViewController
 
-@property(nonatomic, strong) KVBFlyightModel *flightModel;
-@property(nonatomic, strong) Cities *departureCity;
-@property(nonatomic, strong) Cities *arrivalCity;
+- (instancetype)initWithFlightModel:(KVBFlyightModel*)flightModel departureCity:(Cities*)departureCity arrivalCity:(Cities*)arrivalCity         withCoreDataServise: (KVBCoreDataServise*) coreDataServise;
 
 @end

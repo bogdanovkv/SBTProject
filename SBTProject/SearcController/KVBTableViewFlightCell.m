@@ -90,6 +90,7 @@ const NSInteger KVBPhotoSize = 50;
         make.top.equalTo(_departureLabel.mas_bottom).offset(KVBElementOffsetTable);
         make.left.equalTo(self.contentView.mas_left).offset(KVBElementOffsetTable);
         make.right.equalTo(_customImage.mas_left).offset(-KVBElementOffsetTable);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-KVBElementOffsetTable);
     }];
     
     [_customImage mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -103,7 +104,6 @@ const NSInteger KVBPhotoSize = 50;
         make.top.equalTo(_customImage.mas_bottom).offset(KVBElementOffsetTable);
         make.left.equalTo(self.contentView.mas_left).offset(KVBElementOffsetTable);
         make.right.equalTo(self.contentView.mas_right).offset(-KVBElementOffsetTable);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-KVBElementOffsetTable);
     }];
     [super updateConstraints];
 }

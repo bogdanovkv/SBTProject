@@ -8,11 +8,13 @@
 
 #import "KVBPopalarDirectionCell.h"
 #import "KVBCollectionViewFlightCell.h"
+#import "KVBFlyightInfoViewController.h"
 #import "KVBFlyightModel.h"
+#import "KVBCoreDataServise.h"
 #import <Masonry.h>
 static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCell";
 
-@interface KVBPopalarDirectionCell()<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface KVBPopalarDirectionCell()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property(nonatomic, strong) UICollectionView *collectionView;
 @property(nonatomic, copy) NSArray *popularDirections;
 @end
@@ -37,6 +39,7 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
         _collectionView.backgroundColor = UIColor.whiteColor;
         [_collectionView registerClass:[KVBCollectionViewFlightCell class] forCellWithReuseIdentifier:KVBCollectionViewCustomCell];
         _collectionView.dataSource = self;
+        _collectionView.delegate = self;
         [self.contentView addSubview:_collectionView];
 
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -73,6 +76,17 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.popularDirections.count;
 }
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    KVBFlyightModel *model = self.popularDirections[indexPath.row];
+    Cities *departureCity = [self.coreDataServise recieveCityByCityCode:model.departureCode].firstObject;
+    Cities *arrivalCity = [self.coreDataServise recieveCityByCityCode:model.arrivalCode].firstObject;
 
+    
+    KVBFlyightInfoViewController *flightInfoVC = [[KVBFlyightInfoViewController alloc] initWithFlightModel:self.popularDirections[indexPath.row] departureCity:departureCity arrivalCity:arrivalCity withCoreDataServise:self.coreDataServise];
+
+    [self.navController pushViewController:flightInfoVC animated:YES];
+}
 
 @end

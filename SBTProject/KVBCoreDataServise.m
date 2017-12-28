@@ -10,7 +10,7 @@
 #import "Cities+CoreDataClass.h"
 #import "Countries+CoreDataClass.h"
 #import "Airpots+CoreDataClass.h"
-
+#import "KVBFlyightModel.h"
 @interface KVBCoreDataServise()
 
 @property(nonatomic, strong) NSManagedObjectContext *context;
@@ -94,6 +94,11 @@
     {
         city.parrentCountry = parrenntCountry;
     }
+}
+
+- (void)saveFlight:(KVBFlyightModel*)flyightModel
+{
+    
 }
 
 
