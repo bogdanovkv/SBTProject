@@ -15,25 +15,7 @@
 
 @implementation KVBFlyightsRequests
 
-- (void) recieveCheapTicketsOnPage: (NSInteger) page
-{
-    
-}
-
-- (void) recievePopularDirectionFRomCity:(Cities*)city onPage: (NSInteger) page
-{
-    
-    NSURLComponents *urlComponents = [NSURLComponents componentsWithString:KVBPopularDirections];
-    
-    NSURLQueryItem *origin = [NSURLQueryItem queryItemWithName:@"origin" value:city.codeIATA];
-    NSURLQueryItem *token = [NSURLQueryItem queryItemWithName:@"token" value:KVBTravelpayouts];
-    
-    urlComponents.queryItems = @[origin, token];
-    
-    [self recieveByURL:urlComponents];
-}
-
-- (void) recieveCheapTicketsFromCity:(Cities*)departure departmentDate: (NSDate*) departmentDate toCity:(Cities*) destination arrivalDate: (NSDate*) arrivalDate;
+- (void) recieveCheapTicketsFromCity:(Cities*)departure departmentDate: (NSDate*) departmentDate toCity:(Cities*) destination arrivalDate: (NSDate*) arrivalDate withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler
 {
     NSURLComponents *urlComponents = [NSURLComponents componentsWithString:KVBCheapTiktetFromCityToCity];
     
@@ -64,18 +46,30 @@
     
     urlComponents.queryItems = array;
     
-    [self recieveByURL:urlComponents];
+    [self recieveByURL:urlComponents withCompletitionHandler:completionHandler];
     
 }
 
-- (void)recieveByURL: (NSURLComponents*) components
+- (void) recievePopularDirectionFRomCity:(Cities *)city onPage:(NSInteger)page withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler
+{
+    NSURLComponents *urlComponents = [NSURLComponents componentsWithString:KVBPopularDirections];
+    
+    NSURLQueryItem *origin = [NSURLQueryItem queryItemWithName:@"origin" value:city.codeIATA];
+    NSURLQueryItem *token = [NSURLQueryItem queryItemWithName:@"token" value:KVBTravelpayouts];
+    
+    urlComponents.queryItems = @[origin, token];
+    
+    [self recieveByURL:urlComponents withCompletitionHandler:completionHandler];
+}
+
+- (void)recieveByURL: (NSURLComponents*) components withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler
 {
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:self.user delegateQueue:self.dataTaskQueue];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:[NSURLRequest requestWithURL:components.URL]];
-
-    [dataTask resume];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:[NSURLRequest requestWithURL:components.URL] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        completionHandler(data, error);
+    }];
     
+    [dataTask resume];
 }
-
 @end

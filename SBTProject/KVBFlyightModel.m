@@ -38,10 +38,9 @@
         {
             KVBFlyightModel *flight = [[KVBFlyightModel alloc] initWithDictionary:flightsDictionary[key][keyClass]];
             flight.classNumber = [keyClass integerValue];
+            flight.arrivalCode = [[self alloc] validValueFromString:key];
             [array addObject:flight];
         }
-        
-        
     }
     return array;
 }
@@ -51,10 +50,11 @@
     self = [super init];
     if (self) {
         _airlineName = [self validValueFromString:flightDictionary[@"airline"]];
-        _destinationCode = [self validValueFromString:flightDictionary[@"destination"]];
-        _arrivalCode = [self validValueFromString:flightDictionary[@"origin"]];
+        _arrivalCode = [self validValueFromString:flightDictionary[@"destination"]];
+        _departureCode = [self validValueFromString:flightDictionary[@"origin"]];
         _departureDate = [self dateFromString:flightDictionary[@"departure_at"] ];
         _arrivalDate = [self dateFromString:flightDictionary[@"return_at"]];
+        _airlineCode = [self validValueFromString:flightDictionary[@"airline"]];
         _cost = [flightDictionary[@"price"] integerValue];
         _flightNumber = [flightDictionary[@"flight_number"] integerValue];
     }

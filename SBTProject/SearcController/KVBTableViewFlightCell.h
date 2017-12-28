@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface KVBTableViewFlightCell : UITableViewCell
-@property(nonatomic, strong) UILabel *arrivalLabel;
-@property(nonatomic, strong) UILabel *departureLabel;
+
+@property(nonatomic, strong) NSString *arrival;
+@property(nonatomic, strong) NSString *departure;
 @property(nonatomic, strong) UIImageView *customImage;
-@property(nonatomic, strong) UILabel *priceLabel;
+@property(nonatomic, strong) NSString *price;
+@property(nonatomic, strong) NSDate *departureDate;
+@property(nonatomic, strong) NSDate *arrivalDate;
+
 @end

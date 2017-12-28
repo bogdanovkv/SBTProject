@@ -17,6 +17,7 @@
 - (instancetype)initWithContext: (NSManagedObjectContext*) context;
 - (NSArray*)recieveCountries;
 - (NSArray*)recieveCitiesFromCountry:(Countries*) country;
+- (NSArray<Cities*>*)recieveCityByCityCode:(NSString*)codeIATA;
 - (NSArray*)findLocationInEntity:(NSString*) entity withName:(NSString*) name;
 - (NSArray*)recieveCityByName:(NSString*)cityName inCountry:(Countries*)country;
 

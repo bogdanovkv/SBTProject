@@ -59,7 +59,7 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
         _tableWithCountries.dataSource = self;
         [_tableWithCountries registerClass:[UITableViewCell class] forCellReuseIdentifier:KVBDefaulrCellIdentifier];
         
-        _inputView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 400)];
+        _inputView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 320)];
         [_inputView addSubview:_tableWithCountries];
         [_inputView addSubview:_tableWithCities];
         
@@ -148,6 +148,7 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
         make.bottom.equalTo(self.inputView.mas_bottom);
     }];
     
+    [super updateConstraints];
 }
 
 
@@ -179,9 +180,7 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
     }
     if ([tableView isEqual:self.tableWithCities])
     {
-       
         return self.citiesArray.count;
-
     }
     return 0;
 }
