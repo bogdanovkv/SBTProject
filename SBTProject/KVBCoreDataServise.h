@@ -11,6 +11,8 @@
 
 @class Cities;
 @class Countries;
+@class Flyight;
+@class KVBFlyightModel;
 
 @interface KVBCoreDataServise : NSObject
 
@@ -20,5 +22,7 @@
 - (NSArray<Cities*>*)recieveCityByCityCode:(NSString*)codeIATA;
 - (NSArray*)findLocationInEntity:(NSString*) entity withName:(NSString*) name;
 - (NSArray*)recieveCityByName:(NSString*)cityName inCountry:(Countries*)country;
+- (NSArray<Flyight*>*)recieveAllFlyights;
+- (void)saveFlight:(KVBFlyightModel*)flyightModel;
 
 @end

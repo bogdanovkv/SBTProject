@@ -50,11 +50,16 @@ const CGFloat KVBFontSize = 20.0f;
         NSDateFormatter *dateFormatter = [NSDateFormatter new];
         dateFormatter.dateFormat = @"dd.MM.yyyy' 'HH:mm";
         
-        _departureCity = departureCity;
+        _coreDataServise = coreDataServise;
         
         _flightModel = flightModel;
 
+        _departureCity = departureCity;
+        
         _arrivalCity = !arrivalCity ? [coreDataServise recieveCityByCityCode:flightModel.arrivalCode].firstObject : arrivalCity ;
+        
+        _flightModel.arrivalCode = _arrivalCity.codeIATA;
+        _flightModel.departureCode = _departureCity.codeIATA;
         
         _fromLabel = [UILabel new];
         _fromLabel.numberOfLines = 0;
@@ -182,7 +187,9 @@ const CGFloat KVBFontSize = 20.0f;
 
 - (void)saveButtonAction
 {
-    NSLog(@"SaveAction");
+    
+    [self.coreDataServise saveFlight:self.flightModel];
+    NSLog(@"In core data %li flights", [self.coreDataServise recieveAllFlyights].count);
 }
 
 @end

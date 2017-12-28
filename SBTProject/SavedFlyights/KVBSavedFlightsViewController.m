@@ -8,15 +8,20 @@
 
 #import "KVBSavedFlightsViewController.h"
 #import "KVBFlightsDataSource.h"
+#import "KVBCoreDataServise.h"
 #import <Masonry.h>
+
 @interface KVBSavedFlightsViewController ()
+
 @property(nonatomic, strong) UICollectionView *collectionWithFlyights;
 @property(nonatomic, strong) KVBFlightsDataSource *dataSourse;
+@property(nonatomic, strong) KVBCoreDataServise* coreDataService;
+
 @end
 
 @implementation KVBSavedFlightsViewController
 
-- (instancetype)init
+- (instancetype)initWithCoreDataService:(KVBCoreDataServise*)coreDataServise
 {
     self = [super init];
     if (self) {

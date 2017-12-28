@@ -10,7 +10,9 @@
 #import "Cities+CoreDataClass.h"
 #import "Countries+CoreDataClass.h"
 #import "Airpots+CoreDataClass.h"
+#import "Flyight+CoreDataClass.h"
 #import "KVBFlyightModel.h"
+
 @interface KVBCoreDataServise()
 
 @property(nonatomic, strong) NSManagedObjectContext *context;
@@ -98,8 +100,34 @@
 
 - (void)saveFlight:(KVBFlyightModel*)flyightModel
 {
+    Flyight *flight = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Flyight class]) inManagedObjectContext:self.context];
+    flight.airline = flyightModel.airlineCode;
+    flight.arrivalDate = flyightModel.arrivalDate;
+    flight.classNumber = flyightModel.classNumber;
+    flight.cost = (int)flyightModel.cost;
+    flight.departureDate = flyightModel.departureDate;
+    flight.flightNumber = flyightModel.flightNumber;
     
+    flight.departure = [self recieveCityByCityCode:flyightModel.departureCode].firstObject;
+    flight.arrival = [self recieveCityByCityCode:flyightModel.arrivalCode].firstObject;
+//
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Flyight class])];
+//    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"airline == %@ AND arrivalDate == %@ AND arrivalDate == %@ AND classNumber == %li AND cost == %li AND departureDate "]
+    NSError *error = nil;
+    [self.context save:&error];
+    
+    if(!error)
+    {
+        NSLog(@"\n%@",error.userInfo);
+    }
+
 }
 
+- (NSArray<Flyight*>*)recieveAllFlyights
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Flyight class])];
+    
+    return [self.context executeFetchRequest:fetchRequest error:nil];
+}
 
 @end
