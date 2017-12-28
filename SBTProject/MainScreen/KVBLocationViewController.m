@@ -164,7 +164,8 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         UITabBarController *tabBarController = [UITabBarController new];
         
         KVBSearchViewController *searchViewConctroller = [[KVBSearchViewController alloc] initWithDeparture:self.city withContext:self.context];
-        searchViewConctroller.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:searchViewConctroller];
+        navController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0];
         
         KVBSavedFlightsViewController *sfvc = [KVBSavedFlightsViewController new];
         sfvc.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemDownloads tag:1];
@@ -172,7 +173,7 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         KVBSettingsViewController *settingVC = [KVBSettingsViewController new];
         settingVC.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemHistory tag:2];
         
-        tabBarController.viewControllers = @[searchViewConctroller, sfvc, settingVC];
+        tabBarController.viewControllers = @[navController, sfvc, settingVC];
 
         [self presentViewController:tabBarController animated:YES completion:nil];
     }
@@ -195,8 +196,7 @@ didCompleteWithError:(nullable NSError *)error
 {
     if(error)
     {
-        dispatch_async(dispatch_get_main_queue(), ^
-                       {
+        dispatch_async(dispatch_get_main_queue(), ^{
                            self.welcomeLabel.text = [NSString stringWithFormat:@"%@ Please write your location.", error.localizedDescription];
                            self.cityField.text = nil;
                        });
@@ -281,6 +281,7 @@ didCompleteWithError:(nullable NSError *)error
         Cities* city = self.countriesArray[indexPath.row];
         self.cityField.text = city.name;
         self.city = city;
+        
         [self.cityField resignFirstResponder];
     }
     if ([self.countryField isFirstResponder])

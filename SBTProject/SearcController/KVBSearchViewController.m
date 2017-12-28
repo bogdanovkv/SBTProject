@@ -18,6 +18,7 @@
 #import "Airpots+CoreDataClass.h"
 #import "KVBFlyightsRequests.h"
 #import "KVBFlyightModel.h"
+#import "KVBFlyightInfoViewController.h"
 #import <Masonry.h>
 
 @interface KVBSearchViewController ()<UITableViewDelegate, NSURLSessionDataDelegate, NSURLSessionDelegate, KVBSearchViewDelegate>
@@ -88,7 +89,6 @@
             make.right.equalTo(self.view.mas_right);
             make.bottom.equalTo(self.view.mas_bottom);
         }];
-        
     }
     return self;
 }
@@ -96,14 +96,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self updatePopularDirectionsFromCity];
-
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self.navigationController setNavigationBarHidden:YES];
+}
 
 #pragma mark -Buttons
 
@@ -168,6 +171,16 @@
 - (void)departureDateChangedWithDate:(NSDate *)date
 {
     
+}
+
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    KVBFlyightInfoViewController *flightInfoVC = [KVBFlyightInfoViewController new];
+    
+    [self.navigationController pushViewController:flightInfoVC animated:YES];
 }
 
 @end

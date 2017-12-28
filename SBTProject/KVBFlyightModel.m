@@ -54,6 +54,7 @@
         _departureCode = [self validValueFromString:flightDictionary[@"origin"]];
         _departureDate = [self dateFromString:flightDictionary[@"departure_at"] ];
         _arrivalDate = [self dateFromString:flightDictionary[@"return_at"]];
+        _airlineCode = [self validValueFromString:flightDictionary[@"airline"]];
         _cost = [flightDictionary[@"price"] integerValue];
         _flightNumber = [flightDictionary[@"flight_number"] integerValue];
     }

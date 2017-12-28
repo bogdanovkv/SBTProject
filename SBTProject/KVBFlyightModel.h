@@ -13,6 +13,7 @@
 @property(nonatomic, copy) NSString *airlineName;
 @property(nonatomic, copy) NSString *departureCode;
 @property(nonatomic, copy) NSString *arrivalCode;
+@property(nonatomic, copy) NSString *airlineCode;
 @property(nonatomic, strong) NSDate *departureDate;
 @property(nonatomic, strong) NSDate *arrivalDate;
 @property(nonatomic, assign) NSInteger cost;
