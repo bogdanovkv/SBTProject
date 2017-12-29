@@ -13,11 +13,6 @@
 #import "Flyight+CoreDataClass.h"
 #import "KVBFlyightModel.h"
 
-@interface KVBCoreDataServise()
-
-@property(nonatomic, strong) NSManagedObjectContext *context;
-
-@end
 
 @implementation KVBCoreDataServise
 
@@ -85,7 +80,8 @@
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"codeIATA == %@", codeIATA];
     
     NSArray *cityInArray = [self.context executeFetchRequest:fetchRequest error:nil];
-    
+    NSLog(@"%li", cityInArray.count);
+
     return cityInArray;
 }
 
@@ -109,7 +105,10 @@
     flight.flightNumber = flyightModel.flightNumber;
     
     flight.departure = [self recieveCityByCityCode:flyightModel.departureCode].firstObject;
+    NSLog(@"%@", flight.departure);
     flight.arrival = [self recieveCityByCityCode:flyightModel.arrivalCode].firstObject;
+    NSLog(@"%@", flight.arrival);
+
 //
 //    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Flyight class])];
 //    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"airline == %@ AND arrivalDate == %@ AND arrivalDate == %@ AND classNumber == %li AND cost == %li AND departureDate "]

@@ -12,10 +12,10 @@
 
 @property(nonatomic, copy) NSString *from;
 @property(nonatomic, copy) NSString *to;
-@property(nonatomic, copy) NSString *price;
 @property(nonatomic, strong) NSDate *departureDate;
 @property(nonatomic, strong) NSDate *backDate;
 @property(nonatomic, assign) NSInteger classNumber;
+@property(nonatomic, assign) NSInteger price;
 
 - (void)startAnimation;
 

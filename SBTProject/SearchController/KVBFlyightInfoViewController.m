@@ -60,7 +60,8 @@ const CGFloat KVBFontSize = 20.0f;
         
         _flightModel.arrivalCode = _arrivalCity.codeIATA;
         _flightModel.departureCode = _departureCity.codeIATA;
-        
+        NSLog(@"ZZZZZZZ%@", _flightModel.departureCode);
+
         _fromLabel = [UILabel new];
         _fromLabel.numberOfLines = 0;
         _fromLabel.text = [NSString stringWithFormat:@"From:    %@", _departureCity.name];
@@ -189,7 +190,6 @@ const CGFloat KVBFontSize = 20.0f;
 {
     
     [self.coreDataServise saveFlight:self.flightModel];
-    NSLog(@"In core data %li flights", [self.coreDataServise recieveAllFlyights].count);
 }
 
 @end

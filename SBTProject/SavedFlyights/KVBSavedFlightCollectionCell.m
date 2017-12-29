@@ -9,6 +9,7 @@
 #import "KVBSavedFlightCollectionCell.h"
 #import <Masonry.h>
 
+const NSInteger KVBFontSizeInCollectionCell = 25;
 const NSInteger KVBElementOffsetInCollectionCell = 15;
 const CGSize KVBPlaneIconSize = {30,30};
 
@@ -34,20 +35,30 @@ const CGSize KVBPlaneIconSize = {30,30};
     if (self)
     {
         _fromLabel = [UILabel new];
-        _fromLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:20];
+        _fromLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:KVBFontSizeInCollectionCell];
+        _fromLabel.textAlignment = NSTextAlignmentCenter;
         
         _toLabel = [UILabel new];
-        _toLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:20];
-       
+        _toLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:KVBFontSizeInCollectionCell];
+        _toLabel.textAlignment = NSTextAlignmentCenter;
+
         _priceLabel = [UILabel new];
-        _priceLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:20];
-        
+        _priceLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:KVBFontSizeInCollectionCell];
+        _priceLabel.textAlignment = NSTextAlignmentCenter;
+
         _departureDateLabel = [UILabel new];
-        _departureDateLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:20];
-        
+        _departureDateLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:KVBFontSizeInCollectionCell];
+        _fromLabel.textAlignment = NSTextAlignmentCenter;
+
         _backDateLabel = [UILabel new];
-        _backDateLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:20];
+        _backDateLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:KVBFontSizeInCollectionCell];
+        _backDateLabel.textAlignment = NSTextAlignmentCenter;
+
+        _classLabel = [UILabel new];
+        _classLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:KVBFontSizeInCollectionCell];
+        _classLabel.textAlignment = NSTextAlignmentCenter;
         
+
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.contentView.bounds.size.height - KVBPlaneIconSize.height, KVBPlaneIconSize.width, KVBPlaneIconSize.height)];
         _imageView.image = [UIImage imageNamed:@"collIcon"];
         
@@ -97,28 +108,35 @@ const CGSize KVBPlaneIconSize = {30,30};
         make.top.equalTo(_fromLabel.mas_bottom).offset(KVBElementOffsetInCollectionCell);
         make.left.equalTo(self.contentView.mas_left);
         make.right.equalTo(self.contentView.mas_right);
-        make.height.equalTo(_fromLabel.mas_height);
+        make.height.equalTo(_fromLabel);
     }];
     
     [_toLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_departureDateLabel.mas_bottom).offset(KVBElementOffsetInCollectionCell);
         make.left.equalTo(self.contentView.mas_left);
         make.right.equalTo(self.contentView.mas_right);
-        make.height.equalTo(_departureDateLabel.mas_height);
+        make.height.equalTo(_departureDateLabel);
     }];
-    
+
     [_backDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_toLabel.mas_bottom).offset(KVBElementOffsetInCollectionCell);
         make.left.equalTo(self.contentView.mas_left);
         make.right.equalTo(self.contentView.mas_right);
-        make.height.equalTo(_toLabel.mas_height);
+        make.height.equalTo(_toLabel);
     }];
-    
+
     [_classLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_backDateLabel.mas_bottom).offset(KVBElementOffsetInCollectionCell);
         make.left.equalTo(self.contentView.mas_left);
         make.right.equalTo(self.contentView.mas_right);
-        make.height.equalTo(_backDateLabel.mas_height);
+        make.height.equalTo(_backDateLabel);
+    }];
+
+    [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_classLabel.mas_bottom).offset(KVBElementOffsetInCollectionCell);
+        make.left.equalTo(self.contentView.mas_left);
+        make.right.equalTo(self.contentView.mas_right);
+        make.height.equalTo(_classLabel);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(- KVBPlaneIconSize.height - KVBElementOffsetInCollectionCell);
     }];
     
@@ -131,13 +149,13 @@ const CGSize KVBPlaneIconSize = {30,30};
 - (void)setTo:(NSString *)to
 {
     _to = to;
-    self.toLabel.text = _to;
+    self.toLabel.text = [NSString stringWithFormat:@"To %@", _to];
 }
 
 - (void)setFrom:(NSString *)from
 {
     _from = from;
-    self.fromLabel.text = _from;
+    self.fromLabel.text = [NSString stringWithFormat:@"From %@", _from];
 }
 
 - (void)setBackDate:(NSDate *)backDate
@@ -145,21 +163,21 @@ const CGSize KVBPlaneIconSize = {30,30};
     _backDate = backDate;
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     dateFormatter.dateFormat = @"dd.MM.yyyy' 'HH:mm";
-    self.backDateLabel.text = [dateFormatter stringFromDate:_backDate];
+    self.backDateLabel.text = [NSString stringWithFormat:@"Return at %@", [dateFormatter stringFromDate:_backDate]];
 }
 
-- (void)setDepartureDate:(NSDate *)departureDate
+- (void)setDepartureDate:(NSDate*)departureDate
 {
     _departureDate = departureDate;
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     dateFormatter.dateFormat = @"dd.MM.yyyy' 'HH:mm";
-    self.departureDateLabel.text = [dateFormatter stringFromDate:_departureDate];
+    self.departureDateLabel.text =  [NSString stringWithFormat:@"Departure at %@", [dateFormatter stringFromDate:_departureDate]];
 }
 
-- (void)setPrice:(NSString *)price
+- (void)setPrice:(NSInteger)price
 {
     _price = price;
-    self.priceLabel.text = _price;
+    self.priceLabel.text = [NSString stringWithFormat:@"Price %li p.", _price];
 }
 
 - (void)setClassNumber:(NSInteger)classNumber
@@ -179,7 +197,6 @@ const CGSize KVBPlaneIconSize = {30,30};
     pathAnimation.values = @[@(CGPointMake(self.imageView.center.x, self.imageView.center.y)), @(CGPointMake( - self.imageView.center.x + self.contentView.bounds.size.width, self.imageView.center.y)), ];
     pathAnimation.duration = 5.0;
     [self.imageView.layer addAnimation:pathAnimation forKey:@"position"];
-    
     
     self.imageView.center = newCenter;
 }

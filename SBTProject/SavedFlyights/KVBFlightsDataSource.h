@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <CoreData/CoreData.h>
 @interface KVBFlightsDataSource : NSObject <UICollectionViewDataSource>
 
-
+- (instancetype)initWithFetchController:(NSFetchedResultsController*)fetchController;
 
 @end

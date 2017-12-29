@@ -11,8 +11,12 @@
 
 @implementation Cities (CoreDataProperties)
 
-+ (NSFetchRequest<Cities *> *)fetchRequest {
-	return [[NSFetchRequest alloc] initWithEntityName:@"Cities"];
++ (NSFetchRequest<Cities *> *)fetchRequest
+{
+	NSFetchRequest *fetchRequest =  [[NSFetchRequest alloc] initWithEntityName:@"Cities"];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"arrival.name" ascending:YES]];
+    return fetchRequest;
+    
 }
 
 @dynamic codeIATA;

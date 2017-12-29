@@ -15,8 +15,8 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameRu" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="airport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Airpots" inverseName="parrrentCity" inverseEntity="Airpots" syncable="YES"/>
-        <relationship name="flightArrival" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Flyight" inverseName="arrival" inverseEntity="Flyight" syncable="YES"/>
-        <relationship name="flightDeaparture" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Flyight" inverseName="departure" inverseEntity="Flyight" syncable="YES"/>
+        <relationship name="flightArrival" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flyight" inverseName="arrival" inverseEntity="Flyight" syncable="YES"/>
+        <relationship name="flightDeaparture" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flyight" inverseName="departure" inverseEntity="Flyight" syncable="YES"/>
         <relationship name="parrentCountry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Countries" inverseName="childCity" inverseEntity="Countries" syncable="YES"/>
     </entity>
     <entity name="Countries" representedClassName="Countries" syncable="YES">
@@ -27,7 +27,7 @@
         <relationship name="airport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Airpots" inverseName="parrentCountry" inverseEntity="Airpots" syncable="YES"/>
         <relationship name="childCity" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Cities" inverseName="parrentCountry" inverseEntity="Cities" syncable="YES"/>
     </entity>
-    <entity name="Flyight" representedClassName="Flyight" syncable="YES" codeGenerationType="class">
+    <entity name="Flyight" representedClassName="Flyight" syncable="YES">
         <attribute name="airline" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="arrivalDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="classNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
