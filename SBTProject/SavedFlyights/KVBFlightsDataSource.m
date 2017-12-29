@@ -7,12 +7,17 @@
 //
 
 #import "KVBFlightsDataSource.h"
-
+#import "KVBSavedFlightCollectionCell.h"
 @implementation KVBFlightsDataSource
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    KVBSavedFlightCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     cell.backgroundColor = UIColor.grayColor;
+    cell.from = @"test1";
+    cell.to = @"test";
+    cell.price = @"1234";
+    cell.backDate = nil;
+    cell.classNumber = 1;
     return cell;
     
 }

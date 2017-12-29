@@ -167,7 +167,7 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:searchViewConctroller];
         navController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0];
         
-        KVBSavedFlightsViewController *sfvc = [KVBSavedFlightsViewController new];
+        KVBSavedFlightsViewController *sfvc = [[KVBSavedFlightsViewController alloc] initWithCoreDataService:self.coreDataService];
         sfvc.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemDownloads tag:1];
         
         KVBSettingsViewController *settingVC = [KVBSettingsViewController new];

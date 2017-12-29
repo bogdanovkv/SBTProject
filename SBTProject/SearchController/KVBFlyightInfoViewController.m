@@ -160,14 +160,14 @@ const CGFloat KVBFontSize = 20.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UIColor *topColor = [UIColor colorWithRed:14 / 255.0 green:115 / 255.0 blue:68 / 255.0 alpha:1.0f];
-    UIColor *middleColor = [UIColor colorWithRed:118 / 255.0 green:208 / 255.0 blue:227 / 255.0 alpha:1.0f];
-    UIColor *bottomColor = [UIColor colorWithRed:209 / 255.0 green:58 / 255.0 blue:31 / 255.0 alpha:1.0f];
+    UIColor *topColor = [UIColor colorWithRed:89 / 255.0 green:89 / 255.0 blue:89 / 255.0 alpha:1.0f];
+    UIColor *middleColor = [UIColor colorWithRed:200 / 255.0 green:200 / 255.0 blue:200 / 255.0 alpha:1.0f];
+    UIColor *bottomColor = [UIColor colorWithRed:0 / 255.0 green:0 / 255.0 blue:0 / 255.0 alpha:1.0f];
    
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
     gradient.colors = @[(id)topColor.CGColor, (id)middleColor.CGColor, (id)bottomColor.CGColor ];
-    
+
     [self.view.layer insertSublayer:gradient atIndex:0];
     
 }
