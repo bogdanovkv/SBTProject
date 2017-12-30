@@ -168,12 +168,13 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         navController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0];
         
         KVBSavedFlightsViewController *sfvc = [[KVBSavedFlightsViewController alloc] initWithCoreDataService:self.coreDataService];
-        sfvc.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemDownloads tag:1];
+        UINavigationController *navControllerForSaved = [[UINavigationController alloc] initWithRootViewController:sfvc];
+        navControllerForSaved.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemDownloads tag:1];
         
         KVBSettingsViewController *settingVC = [KVBSettingsViewController new];
         settingVC.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemHistory tag:2];
         
-        tabBarController.viewControllers = @[navController, sfvc, settingVC];
+        tabBarController.viewControllers = @[navController, navControllerForSaved, settingVC];
 
         [self presentViewController:tabBarController animated:YES completion:nil];
     }

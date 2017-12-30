@@ -85,9 +85,8 @@ const CGSize KVBPlaneIconSize = {30,30};
     return self;
 }
 
+
 #pragma mark - Constreints
-                             
-                             
 
 - (void)setupConstraints
 {

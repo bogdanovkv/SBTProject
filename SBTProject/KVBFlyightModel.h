@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class Flyight;
+
 @interface KVBFlyightModel : NSObject
 
-@property(nonatomic, copy) NSString *airlineName;
 @property(nonatomic, copy) NSString *departureCode;
 @property(nonatomic, copy) NSString *arrivalCode;
 @property(nonatomic, copy) NSString *airlineCode;
@@ -23,6 +24,7 @@
 + (NSArray<KVBFlyightModel*>*) arrayFromDictionaries:(NSDictionary*) flightsDictionary;
 + (NSArray<KVBFlyightModel*>*)arrayFromDictionariesWithjClassType:(NSDictionary*) flightsDictionary;
 
+- (instancetype)initWithFlight:(Flyight*)flight;
 - (instancetype)initWithDictionary:(NSDictionary*) flightDictionary;
 
 @end

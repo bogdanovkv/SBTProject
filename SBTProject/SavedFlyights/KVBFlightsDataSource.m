@@ -13,8 +13,6 @@
 
 @interface KVBFlightsDataSource()
 
-@property(nonatomic, strong) NSFetchedResultsController *fetchController;
-
 @end
 
 

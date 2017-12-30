@@ -26,7 +26,6 @@ const CGFloat KVBFontSize = 20.0f;
 @property(nonatomic, strong) UILabel *toLabel;
 @property(nonatomic, strong) UILabel *departureDateLabel;
 @property(nonatomic, strong) UILabel *backDateLabel;
-@property(nonatomic, strong) UIButton *saveButton;
 @property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) UIImageView *backImage;
 @property(nonatomic, strong) KVBFlyightModel *flightModel;
@@ -89,7 +88,7 @@ const CGFloat KVBFontSize = 20.0f;
         _saveButton = [UIButton new];
         _saveButton.layer.cornerRadius = KVBCornerRadiusButton;
         _saveButton.backgroundColor = UIColor.grayColor;
-        [_saveButton addTarget:self action:@selector(saveButtonAction) forControlEvents:UIControlEventTouchDown];
+        [_saveButton addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchDown];
         [_saveButton setTitle:@"Save flight" forState:UIControlStateNormal];
         
         _imageView = [UIImageView new];
@@ -186,7 +185,7 @@ const CGFloat KVBFontSize = 20.0f;
 
 #pragma mark - UIButton Action
 
-- (void)saveButtonAction
+- (void)buttonAction
 {
     
     [self.coreDataServise saveFlight:self.flightModel];

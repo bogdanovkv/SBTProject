@@ -12,4 +12,6 @@
 
 - (instancetype)initWithFetchController:(NSFetchedResultsController*)fetchController;
 
+@property(readonly, nonatomic) NSFetchedResultsController *fetchController;
+
 @end

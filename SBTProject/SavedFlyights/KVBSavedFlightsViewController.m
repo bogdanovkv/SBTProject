@@ -10,7 +10,9 @@
 #import "KVBFlightsDataSource.h"
 #import "KVBCoreDataServise.h"
 #import "KVBSavedFlightCollectionCell.h"
+#import "KVBFlyightModel.h"
 #import "Flyight+CoreDataClass.h"
+#import "KVBFlyightDetailedViewController.h"
 #import <Masonry.h>
 
 @interface KVBSavedFlightsViewController ()<UICollectionViewDelegate, NSFetchedResultsControllerDelegate>
@@ -75,15 +77,10 @@
     }];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = UIColor.redColor;
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 
@@ -118,6 +115,20 @@
 
 #pragma mark - UICollectionViewDelegate
 
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    Flyight *flight = [self.fetchController objectAtIndexPath:indexPath];
+
+    KVBFlyightModel *flightModel = [[KVBFlyightModel alloc]initWithFlight:flight];
+    
+    KVBFlyightDetailedViewController *detailedVC = [[KVBFlyightDetailedViewController alloc]
+                                                    initWithFlightModel:flightModel
+                                                    departureCity:flight.departure
+                                                    arrivalCity:flight.arrival
+                                                    withCoreDataServise:self.coreDataService];
+    
+    [self.navigationController pushViewController:detailedVC animated:YES];
+}
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     KVBSavedFlightCollectionCell *customCell = (KVBSavedFlightCollectionCell*)cell;
