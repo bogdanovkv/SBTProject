@@ -26,13 +26,11 @@ const CGFloat KVBFontSize = 20.0f;
 @property(nonatomic, strong) UILabel *toLabel;
 @property(nonatomic, strong) UILabel *departureDateLabel;
 @property(nonatomic, strong) UILabel *backDateLabel;
-@property(nonatomic, strong) UIButton *saveButton;
 @property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) UIImageView *backImage;
 @property(nonatomic, strong) KVBFlyightModel *flightModel;
 @property(nonatomic, strong) Cities *departureCity;
 @property(nonatomic, strong) Cities *arrivalCity;
-@property(nonatomic, strong) KVBCoreDataServise *coreDataServise;
 
 @end
 
@@ -60,7 +58,7 @@ const CGFloat KVBFontSize = 20.0f;
         
         _flightModel.arrivalCode = _arrivalCity.codeIATA;
         _flightModel.departureCode = _departureCity.codeIATA;
-        
+
         _fromLabel = [UILabel new];
         _fromLabel.numberOfLines = 0;
         _fromLabel.text = [NSString stringWithFormat:@"From:    %@", _departureCity.name];
@@ -88,7 +86,7 @@ const CGFloat KVBFontSize = 20.0f;
         _saveButton = [UIButton new];
         _saveButton.layer.cornerRadius = KVBCornerRadiusButton;
         _saveButton.backgroundColor = UIColor.grayColor;
-        [_saveButton addTarget:self action:@selector(saveButtonAction) forControlEvents:UIControlEventTouchDown];
+        [_saveButton addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchDown];
         [_saveButton setTitle:@"Save flight" forState:UIControlStateNormal];
         
         _imageView = [UIImageView new];
@@ -160,14 +158,14 @@ const CGFloat KVBFontSize = 20.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UIColor *topColor = [UIColor colorWithRed:14 / 255.0 green:115 / 255.0 blue:68 / 255.0 alpha:1.0f];
-    UIColor *middleColor = [UIColor colorWithRed:118 / 255.0 green:208 / 255.0 blue:227 / 255.0 alpha:1.0f];
-    UIColor *bottomColor = [UIColor colorWithRed:209 / 255.0 green:58 / 255.0 blue:31 / 255.0 alpha:1.0f];
+    UIColor *topColor = [UIColor colorWithRed:89 / 255.0 green:89 / 255.0 blue:89 / 255.0 alpha:1.0f];
+    UIColor *middleColor = [UIColor colorWithRed:200 / 255.0 green:200 / 255.0 blue:200 / 255.0 alpha:1.0f];
+    UIColor *bottomColor = [UIColor colorWithRed:0 / 255.0 green:0 / 255.0 blue:0 / 255.0 alpha:1.0f];
    
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
     gradient.colors = @[(id)topColor.CGColor, (id)middleColor.CGColor, (id)bottomColor.CGColor ];
-    
+
     [self.view.layer insertSublayer:gradient atIndex:0];
     
 }
@@ -185,11 +183,10 @@ const CGFloat KVBFontSize = 20.0f;
 
 #pragma mark - UIButton Action
 
-- (void)saveButtonAction
+- (void)buttonAction
 {
     
     [self.coreDataServise saveFlight:self.flightModel];
-    NSLog(@"In core data %li flights", [self.coreDataServise recieveAllFlyights].count);
 }
 
 @end

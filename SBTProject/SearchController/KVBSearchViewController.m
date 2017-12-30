@@ -21,6 +21,8 @@
 #import "KVBFlyightInfoViewController.h"
 #import <Masonry.h>
 
+const NSInteger KVBSearchButtonSize = 35;
+
 @interface KVBSearchViewController ()<UITableViewDelegate, NSURLSessionDataDelegate, NSURLSessionDelegate, KVBSearchViewDelegate>
 @property(nonatomic, strong) UITableView *tableWithFlights;
 @property(nonatomic, strong) Cities *departureCity;
@@ -29,7 +31,7 @@
 @property(nonatomic, strong) UIButton *searchButton;
 @property(nonatomic, strong) KVBFlightsTableDataSource *dataSourse;
 @property(nonatomic,strong) KVBFlyightsRequests *request;
-
+@property(nonatomic, assign) BOOL isHide;
 
 @end
 
@@ -40,6 +42,8 @@
     self = [super init];
     if (self)
     {
+        _isHide = NO;
+        
         _departureCity = city;
         
         _request = [KVBFlyightsRequests new];
@@ -80,7 +84,7 @@
             make.top.equalTo(_searchView.mas_bottom);
             make.left.equalTo(self.view.mas_left);
             make.right.equalTo(self.view.mas_right);
-            make.height.equalTo(@(30));
+            make.height.mas_equalTo(KVBSearchButtonSize);
         }];
         
         [_tableWithFlights mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -112,7 +116,6 @@
 
 - (void) startSearch
 {
-#pragma mark -LayoutIfNeeded is needed?
     self.dataSourse.departureCity = self.departureCity;
     self.dataSourse.arrivalCity = self.arrivalCity;
     
@@ -125,14 +128,7 @@
             [self.tableWithFlights reloadData];
         });
     }];
-//    [self.view layoutIfNeeded];
-//    [UIView animateWithDuration:1 animations:^{
-//        [self.searchButton mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.height.equalTo(@(0));
-//        }];
-//        [self.searchButton setTitle:nil forState:UIControlStateNormal];
-//        [self.view layoutIfNeeded];
-//    }];
+    [self hideSearchButton];
 }
 
 - (void)updatePopularDirectionsFromCity
@@ -157,23 +153,25 @@
 
 - (void)arrivalCityChangedWithCity:(Cities *)city
 {
-   self.arrivalCity = city;
+    self.arrivalCity = city;
+    [self showSearchButton];
 }
 
 - (void)arrivalDateChangedWithDate:(NSDate *)date
 {
-    
+    [self showSearchButton];
 }
 
 - (void)departureCityChangedWithCity:(Cities *)city
 {
     self.departureCity = city;
     [self updatePopularDirectionsFromCity];
+    [self showSearchButton];
 }
 
 - (void)departureDateChangedWithDate:(NSDate *)date
 {
-    
+    [self showSearchButton];
 }
 
 
@@ -186,4 +184,39 @@
     [self.navigationController pushViewController:flightInfoVC animated:YES];
 }
 
+
+#pragma mark - Animations
+
+- (void)showSearchButton
+{
+    if (!self.isHide){
+        return;
+    }
+    [self.view layoutIfNeeded];
+    [UIView animateWithDuration:1 animations:^{
+        [self.searchButton mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(KVBSearchButtonSize);
+        }];
+        [self.searchButton setTitle:@"Search" forState:UIControlStateNormal];
+        [self.view layoutIfNeeded];
+    }];
+    self.isHide = NO;
+}
+
+- (void) hideSearchButton
+{
+    if(self.isHide)
+    {
+        return;
+    }
+    [self.view layoutIfNeeded];
+    [UIView animateWithDuration:1 animations:^{
+        [self.searchButton mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+        }];
+        [self.searchButton setTitle:nil forState:UIControlStateNormal];
+        [self.view layoutIfNeeded];
+    }];
+    self.isHide = YES;
+}
 @end

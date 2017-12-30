@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class KVBCoreDataServise;
 @interface KVBSavedFlightsViewController : UIViewController
+
+- (instancetype)initWithCoreDataService:(KVBCoreDataServise*)coreDataServise;
 
 @end

@@ -16,13 +16,16 @@
 
 @interface KVBCoreDataServise : NSObject
 
+@property(nonatomic, readonly, strong) NSManagedObjectContext *context;
+
 - (instancetype)initWithContext: (NSManagedObjectContext*) context;
 - (NSArray*)recieveCountries;
-- (NSArray*)recieveCitiesFromCountry:(Countries*) country;
+- (NSArray<Cities*>*)recieveCitiesFromCountry:(Countries*) country;
 - (NSArray<Cities*>*)recieveCityByCityCode:(NSString*)codeIATA;
 - (NSArray*)findLocationInEntity:(NSString*) entity withName:(NSString*) name;
-- (NSArray*)recieveCityByName:(NSString*)cityName inCountry:(Countries*)country;
+- (NSArray<Cities*>*)recieveCityByName:(NSString*)cityName inCountry:(Countries*)country;
 - (NSArray<Flyight*>*)recieveAllFlyights;
 - (void)saveFlight:(KVBFlyightModel*)flyightModel;
+- (void)deleteFlight:(Flyight*)flight;
 
 @end

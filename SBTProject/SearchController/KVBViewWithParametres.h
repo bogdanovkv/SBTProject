@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class Cities;
 @protocol KVBSearchViewDelegate;
+
 
 @interface KVBViewWithParametres : UIView
 

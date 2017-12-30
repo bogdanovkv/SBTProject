@@ -7,7 +7,8 @@
 //
 
 #import "KVBFlyightModel.h"
-
+#import "Flyight+CoreDataClass.h"
+#import "Cities+CoreDataClass.h"
 @implementation KVBFlyightModel
 
 + (NSArray<KVBFlyightModel*>*)arrayFromDictionaries:(NSDictionary*) flightsDictionary
@@ -49,7 +50,6 @@
 {
     self = [super init];
     if (self) {
-        _airlineName = [self validValueFromString:flightDictionary[@"airline"]];
         _arrivalCode = [self validValueFromString:flightDictionary[@"destination"]];
         _departureCode = [self validValueFromString:flightDictionary[@"origin"]];
         _departureDate = [self dateFromString:flightDictionary[@"departure_at"] ];
@@ -61,6 +61,22 @@
     return self;
 }
 
+- (instancetype)initWithFlight:(Flyight*)flight
+{
+    self = [super init];
+    if(self)
+    {
+        _airlineCode = flight.airline;
+        _departureDate = flight.departureDate;
+        _departureCode = flight.departure.codeIATA;
+        _arrivalCode = flight.arrival.codeIATA;
+        _cost = flight.cost;
+        _classNumber = flight.classNumber;
+        _arrivalDate = flight.arrivalDate;
+        _flightNumber = flight.flightNumber;
+    }
+    return self;
+}
 - (NSString*)validValueFromString:(NSString*) inputString
 {
     NSString *validString = @"No info";
