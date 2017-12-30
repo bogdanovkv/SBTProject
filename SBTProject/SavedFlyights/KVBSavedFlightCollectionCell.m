@@ -9,7 +9,7 @@
 #import "KVBSavedFlightCollectionCell.h"
 #import <Masonry.h>
 
-const NSInteger KVBFontSizeInCollectionCell = 25;
+const NSInteger KVBFontSizeInCollectionCell = 22;
 const NSInteger KVBElementOffsetInCollectionCell = 15;
 const CGSize KVBPlaneIconSize = {30,30};
 
@@ -34,28 +34,30 @@ const CGSize KVBPlaneIconSize = {30,30};
     self = [super initWithFrame:frame];
     if (self)
     {
+        UIFont *font = [UIFont fontWithName:@"AvenirNextCondensed-MediumItalic" size:KVBFontSizeInCollectionCell];
+        
         _fromLabel = [UILabel new];
-        _fromLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:KVBFontSizeInCollectionCell];
+        _fromLabel.font = font;
         _fromLabel.textAlignment = NSTextAlignmentCenter;
         
         _toLabel = [UILabel new];
-        _toLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:KVBFontSizeInCollectionCell];
+        _toLabel.font = font;
         _toLabel.textAlignment = NSTextAlignmentCenter;
 
         _priceLabel = [UILabel new];
-        _priceLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:KVBFontSizeInCollectionCell];
+        _priceLabel.font = font;
         _priceLabel.textAlignment = NSTextAlignmentCenter;
 
         _departureDateLabel = [UILabel new];
-        _departureDateLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:KVBFontSizeInCollectionCell];
-        _fromLabel.textAlignment = NSTextAlignmentCenter;
+        _departureDateLabel.font = font;
+        _departureDateLabel.textAlignment = NSTextAlignmentCenter;
 
         _backDateLabel = [UILabel new];
-        _backDateLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:KVBFontSizeInCollectionCell];
+        _backDateLabel.font = font;
         _backDateLabel.textAlignment = NSTextAlignmentCenter;
 
         _classLabel = [UILabel new];
-        _classLabel.font = [UIFont fontWithName:@"SnellRoundhand-Black" size:KVBFontSizeInCollectionCell];
+        _classLabel.font = font;
         _classLabel.textAlignment = NSTextAlignmentCenter;
         
 

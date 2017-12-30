@@ -8,6 +8,10 @@
 
 #import "KVBFlyightInfoViewController.h"
 
+@class Flyight;
+
 @interface KVBFlyightDetailedViewController : KVBFlyightInfoViewController
+
+@property(nonatomic, strong) Flyight *flight;
 
 @end

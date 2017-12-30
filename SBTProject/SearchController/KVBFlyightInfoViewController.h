@@ -14,6 +14,7 @@
 @interface KVBFlyightInfoViewController : UIViewController
 
 @property(nonatomic, strong) UIButton *saveButton;
+@property(nonatomic, strong) KVBCoreDataServise *coreDataServise;
 
 - (instancetype)initWithFlightModel:(KVBFlyightModel*)flightModel departureCity:(Cities*)departureCity arrivalCity:(Cities*)arrivalCity         withCoreDataServise: (KVBCoreDataServise*) coreDataServise;
 - (void)buttonAction;

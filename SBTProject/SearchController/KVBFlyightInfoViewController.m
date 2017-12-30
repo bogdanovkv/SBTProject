@@ -31,7 +31,6 @@ const CGFloat KVBFontSize = 20.0f;
 @property(nonatomic, strong) KVBFlyightModel *flightModel;
 @property(nonatomic, strong) Cities *departureCity;
 @property(nonatomic, strong) Cities *arrivalCity;
-@property(nonatomic, strong) KVBCoreDataServise *coreDataServise;
 
 @end
 
@@ -59,7 +58,6 @@ const CGFloat KVBFontSize = 20.0f;
         
         _flightModel.arrivalCode = _arrivalCity.codeIATA;
         _flightModel.departureCode = _departureCity.codeIATA;
-        NSLog(@"ZZZZZZZ%@", _flightModel.departureCode);
 
         _fromLabel = [UILabel new];
         _fromLabel.numberOfLines = 0;

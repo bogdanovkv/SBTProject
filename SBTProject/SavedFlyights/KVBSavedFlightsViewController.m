@@ -36,6 +36,8 @@
         viewLayout.itemSize = CGSizeMake(300,300);
         viewLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
+        _coreDataService = coreDataServise;
+        
         _fetchController = [[NSFetchedResultsController alloc] initWithFetchRequest:[Flyight fetchRequest]
                                                                managedObjectContext:coreDataServise.context
                                                                  sectionNameKeyPath:nil
@@ -97,9 +99,7 @@
            
         case NSFetchedResultsChangeDelete:
         {
-//            [_collectionWithFlyights performBatchUpdates:^{
-//                [_collectionWithFlyights deleteItemsAtIndexPaths:@[newIndexPath]];
-//            } completion:nil];
+            [_collectionWithFlyights reloadData];
             break;
         }
 
@@ -110,7 +110,6 @@
             break;
     }
 }
-
 
 
 #pragma mark - UICollectionViewDelegate
@@ -126,6 +125,7 @@
                                                     departureCity:flight.departure
                                                     arrivalCity:flight.arrival
                                                     withCoreDataServise:self.coreDataService];
+    detailedVC.flight = flight;
     
     [self.navigationController pushViewController:detailedVC animated:YES];
 }

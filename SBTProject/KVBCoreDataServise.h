@@ -26,5 +26,6 @@
 - (NSArray<Cities*>*)recieveCityByName:(NSString*)cityName inCountry:(Countries*)country;
 - (NSArray<Flyight*>*)recieveAllFlyights;
 - (void)saveFlight:(KVBFlyightModel*)flyightModel;
+- (void)deleteFlight:(Flyight*)flight;
 
 @end

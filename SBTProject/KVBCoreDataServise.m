@@ -149,4 +149,10 @@
     return NO;
 }
 
+- (void)deleteFlight:(Flyight*)flight
+{
+    [self.context deleteObject:flight];
+    [self.context save:nil];
+}
+
 @end
