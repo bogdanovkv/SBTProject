@@ -1,0 +1,901 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1405594E1FEB81FC000014D5 /* KVBPopalarDirectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405594D1FEB81FC000014D5 /* KVBPopalarDirectionCell.m */; };
+		140559511FEB835F000014D5 /* KVBFlyightModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 140559501FEB835F000014D5 /* KVBFlyightModel.m */; };
+		1405B43A1FF42C1300044DAA /* KVBFlyightInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405B4391FF42C1300044DAA /* KVBFlyightInfoViewController.m */; };
+		1408232C1FEC24B60030298C /* KVBCollectionViewFlightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1408232B1FEC24B60030298C /* KVBCollectionViewFlightCell.m */; };
+		140823351FED6C040030298C /* KVBTableViewFlightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140823341FED6C040030298C /* KVBTableViewFlightCell.m */; };
+		1408AB9F1FEFF9C200C0E2C9 /* KVBCoreDataServise.m in Sources */ = {isa = PBXBuildFile; fileRef = 1408AB9E1FEFF9C200C0E2C9 /* KVBCoreDataServise.m */; };
+		1408C9DF1FEEE961007D2B3E /* KVBLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1408C9DE1FEEE960007D2B3E /* KVBLocationViewController.m */; };
+<<<<<<< HEAD
+		140CAB6B1FF583E300B6E339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 140CAB6A1FF583E300B6E339 /* Assets.xcassets */; };
+		140DD7991FF7EB9700FE750B /* KVBFlyightDetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140DD7981FF7EB9700FE750B /* KVBFlyightDetailedViewController.m */; };
+		141061B11FF63F620092699C /* KVBSavedFlightCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 141061B01FF63F620092699C /* KVBSavedFlightCollectionCell.m */; };
+		141061B71FF6EEDF0092699C /* Flyight+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 141061B51FF6EEDE0092699C /* Flyight+CoreDataClass.m */; };
+		141061B91FF6EF1F0092699C /* Flyight+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 141061B81FF6EF1F0092699C /* Flyight+CoreDataProperties.m */; };
+=======
+		140DD79F1FFA4F7100FE750B /* KVBResetAllSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140DD79E1FFA4F7100FE750B /* KVBResetAllSettingsCell.m */; };
+		140DD7A51FFA503200FE750B /* KVBSettingTableDataSourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 140DD7A41FFA503200FE750B /* KVBSettingTableDataSourse.m */; };
+		140DD7A81FFA51CC00FE750B /* KVBLanguageSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140DD7A61FFA51CC00FE750B /* KVBLanguageSettingsCell.m */; };
+>>>>>>> feature/KVB_settingsViewController
+		14113C8B1FEA85C400781FBD /* KVBFlyightsRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14113C8A1FEA85C400781FBD /* KVBFlyightsRequests.m */; };
+		141920661FE3CD6500F85CF5 /* SBTProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141920641FE3CD6500F85CF5 /* SBTProject.xcdatamodeld */; };
+		141920691FE3D68900F85CF5 /* KVBPreparatoryCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 141920681FE3D68900F85CF5 /* KVBPreparatoryCoreData.m */; };
+		14764B931FE528EF00EEC944 /* Countries+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B891FE528EF00EEC944 /* Countries+CoreDataClass.m */; };
+		14764B941FE528EF00EEC944 /* Countries+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B8A1FE528EF00EEC944 /* Countries+CoreDataProperties.m */; };
+		14764B951FE528EF00EEC944 /* Airpots+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B8D1FE528EF00EEC944 /* Airpots+CoreDataClass.m */; };
+		14764B961FE528EF00EEC944 /* Airpots+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B8E1FE528EF00EEC944 /* Airpots+CoreDataProperties.m */; };
+		14764B971FE528EF00EEC944 /* Cities+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B911FE528EF00EEC944 /* Cities+CoreDataClass.m */; };
+		14764B981FE528EF00EEC944 /* Cities+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B921FE528EF00EEC944 /* Cities+CoreDataProperties.m */; };
+		14DA56631FE26CA900FAB89A /* KVBSavedFlightsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DA56621FE26CA900FAB89A /* KVBSavedFlightsViewController.m */; };
+		14DA56691FE26FC200FAB89A /* KVBFlightsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DA56681FE26FC200FAB89A /* KVBFlightsDataSource.m */; };
+		14DA566D1FE278A100FAB89A /* KVBSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DA566C1FE278A100FAB89A /* KVBSettingsViewController.m */; };
+		14DA56711FE2814500FAB89A /* KVBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DA56701FE2814500FAB89A /* KVBRequest.m */; };
+		14F39DB81FE160BF00EDEA1A /* KVBSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F39DB71FE160BF00EDEA1A /* KVBSearchViewController.m */; };
+		14F39DBC1FE163D000EDEA1A /* KVBViewWithParametres.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F39DBB1FE163D000EDEA1A /* KVBViewWithParametres.m */; };
+		14F39DBF1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F39DBE1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m */; };
+		14F682C91FDEEE84004F3BE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F682C81FDEEE84004F3BE5 /* AppDelegate.m */; };
+		14F682DA1FDEEE84004F3BE5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F682D91FDEEE84004F3BE5 /* main.m */; };
+		14F682E41FDEEE85004F3BE5 /* SBTProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F682E31FDEEE85004F3BE5 /* SBTProjectTests.m */; };
+		14F682EF1FDEEE85004F3BE5 /* SBTProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F682EE1FDEEE85004F3BE5 /* SBTProjectUITests.m */; };
+		2F98F260D73A6FE2B8527F0F /* libPods-SBTProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F65B3908A7847E85AC9B499 /* libPods-SBTProject.a */; };
+		8FB6B97505A9CF26106FE29D /* libPods-SBTProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2348D838546EADDA4A9B962A /* libPods-SBTProjectTests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		14F682E01FDEEE85004F3BE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14F682BC1FDEEE84004F3BE5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14F682C31FDEEE84004F3BE5;
+			remoteInfo = SBTProject;
+		};
+		14F682EB1FDEEE85004F3BE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14F682BC1FDEEE84004F3BE5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14F682C31FDEEE84004F3BE5;
+			remoteInfo = SBTProject;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1405594C1FEB81FC000014D5 /* KVBPopalarDirectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBPopalarDirectionCell.h; sourceTree = "<group>"; };
+		1405594D1FEB81FC000014D5 /* KVBPopalarDirectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBPopalarDirectionCell.m; sourceTree = "<group>"; };
+		1405594F1FEB835F000014D5 /* KVBFlyightModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFlyightModel.h; sourceTree = "<group>"; };
+		140559501FEB835F000014D5 /* KVBFlyightModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFlyightModel.m; sourceTree = "<group>"; };
+		1405B4381FF42C1300044DAA /* KVBFlyightInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFlyightInfoViewController.h; sourceTree = "<group>"; };
+		1405B4391FF42C1300044DAA /* KVBFlyightInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFlyightInfoViewController.m; sourceTree = "<group>"; };
+		1408232A1FEC24B60030298C /* KVBCollectionViewFlightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBCollectionViewFlightCell.h; sourceTree = "<group>"; };
+		1408232B1FEC24B60030298C /* KVBCollectionViewFlightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBCollectionViewFlightCell.m; sourceTree = "<group>"; };
+		140823331FED6C040030298C /* KVBTableViewFlightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBTableViewFlightCell.h; sourceTree = "<group>"; };
+		140823341FED6C040030298C /* KVBTableViewFlightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBTableViewFlightCell.m; sourceTree = "<group>"; };
+		1408AB9D1FEFF9C200C0E2C9 /* KVBCoreDataServise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBCoreDataServise.h; sourceTree = "<group>"; };
+		1408AB9E1FEFF9C200C0E2C9 /* KVBCoreDataServise.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBCoreDataServise.m; sourceTree = "<group>"; };
+		1408C9DD1FEEE960007D2B3E /* KVBLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KVBLocationViewController.h; path = /Users/konstantinbogdanov/SBTProject/SBTProject/MainScreen/KVBLocationViewController.h; sourceTree = "<absolute>"; };
+		1408C9DE1FEEE960007D2B3E /* KVBLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KVBLocationViewController.m; path = /Users/konstantinbogdanov/SBTProject/SBTProject/MainScreen/KVBLocationViewController.m; sourceTree = "<absolute>"; };
+<<<<<<< HEAD
+		140CAB6A1FF583E300B6E339 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		140DD7971FF7EB9700FE750B /* KVBFlyightDetailedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFlyightDetailedViewController.h; sourceTree = "<group>"; };
+		140DD7981FF7EB9700FE750B /* KVBFlyightDetailedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFlyightDetailedViewController.m; sourceTree = "<group>"; };
+		141061AF1FF63F620092699C /* KVBSavedFlightCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBSavedFlightCollectionCell.h; sourceTree = "<group>"; };
+		141061B01FF63F620092699C /* KVBSavedFlightCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBSavedFlightCollectionCell.m; sourceTree = "<group>"; };
+		141061B31FF6EEDE0092699C /* Flyight+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Flyight+CoreDataClass.h"; path = "/Users/konstantinbogdanov/SBTProject/SBTProject/CoreData/Flyight+CoreDataClass.h"; sourceTree = "<absolute>"; };
+		141061B41FF6EEDE0092699C /* Flyight+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Flyight+CoreDataProperties.h"; path = "/Users/konstantinbogdanov/SBTProject/SBTProject/CoreData/Flyight+CoreDataProperties.h"; sourceTree = "<absolute>"; };
+		141061B51FF6EEDE0092699C /* Flyight+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Flyight+CoreDataClass.m"; path = "/Users/konstantinbogdanov/SBTProject/SBTProject/CoreData/Flyight+CoreDataClass.m"; sourceTree = "<absolute>"; };
+		141061B81FF6EF1F0092699C /* Flyight+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Flyight+CoreDataProperties.m"; sourceTree = "<group>"; };
+=======
+		140DD79D1FFA4F7100FE750B /* KVBResetAllSettingsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBResetAllSettingsCell.h; sourceTree = "<group>"; };
+		140DD79E1FFA4F7100FE750B /* KVBResetAllSettingsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBResetAllSettingsCell.m; sourceTree = "<group>"; };
+		140DD7A31FFA503200FE750B /* KVBSettingTableDataSourse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBSettingTableDataSourse.h; sourceTree = "<group>"; };
+		140DD7A41FFA503200FE750B /* KVBSettingTableDataSourse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBSettingTableDataSourse.m; sourceTree = "<group>"; };
+		140DD7A61FFA51CC00FE750B /* KVBLanguageSettingsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KVBLanguageSettingsCell.m; path = /Users/konstantinbogdanov/SBTProject/SBTProject/SettingsViewController/KVBLanguageSettingsCell.m; sourceTree = "<absolute>"; };
+		140DD7A71FFA51CC00FE750B /* KVBLanguageSettingsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KVBLanguageSettingsCell.h; path = /Users/konstantinbogdanov/SBTProject/SBTProject/SettingsViewController/KVBLanguageSettingsCell.h; sourceTree = "<absolute>"; };
+>>>>>>> feature/KVB_settingsViewController
+		14113C891FEA85C400781FBD /* KVBFlyightsRequests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFlyightsRequests.h; sourceTree = "<group>"; };
+		14113C8A1FEA85C400781FBD /* KVBFlyightsRequests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFlyightsRequests.m; sourceTree = "<group>"; };
+		141920651FE3CD6500F85CF5 /* SBTProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SBTProject.xcdatamodel; sourceTree = "<group>"; };
+		141920671FE3D68900F85CF5 /* KVBPreparatoryCoreData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBPreparatoryCoreData.h; sourceTree = "<group>"; };
+		141920681FE3D68900F85CF5 /* KVBPreparatoryCoreData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBPreparatoryCoreData.m; sourceTree = "<group>"; };
+		14764B871FE528EF00EEC944 /* Countries+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Countries+CoreDataProperties.h"; sourceTree = "<group>"; };
+		14764B881FE528EF00EEC944 /* Countries+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Countries+CoreDataClass.h"; sourceTree = "<group>"; };
+		14764B891FE528EF00EEC944 /* Countries+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Countries+CoreDataClass.m"; sourceTree = "<group>"; };
+		14764B8A1FE528EF00EEC944 /* Countries+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Countries+CoreDataProperties.m"; sourceTree = "<group>"; };
+		14764B8B1FE528EF00EEC944 /* Airpots+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Airpots+CoreDataProperties.h"; sourceTree = "<group>"; };
+		14764B8C1FE528EF00EEC944 /* Airpots+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Airpots+CoreDataClass.h"; sourceTree = "<group>"; };
+		14764B8D1FE528EF00EEC944 /* Airpots+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Airpots+CoreDataClass.m"; sourceTree = "<group>"; };
+		14764B8E1FE528EF00EEC944 /* Airpots+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Airpots+CoreDataProperties.m"; sourceTree = "<group>"; };
+		14764B8F1FE528EF00EEC944 /* Cities+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cities+CoreDataProperties.h"; sourceTree = "<group>"; };
+		14764B901FE528EF00EEC944 /* Cities+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cities+CoreDataClass.h"; sourceTree = "<group>"; };
+		14764B911FE528EF00EEC944 /* Cities+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Cities+CoreDataClass.m"; sourceTree = "<group>"; };
+		14764B921FE528EF00EEC944 /* Cities+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Cities+CoreDataProperties.m"; sourceTree = "<group>"; };
+		14DA56611FE26CA900FAB89A /* KVBSavedFlightsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBSavedFlightsViewController.h; sourceTree = "<group>"; };
+		14DA56621FE26CA900FAB89A /* KVBSavedFlightsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBSavedFlightsViewController.m; sourceTree = "<group>"; };
+		14DA56671FE26FC200FAB89A /* KVBFlightsDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFlightsDataSource.h; sourceTree = "<group>"; };
+		14DA56681FE26FC200FAB89A /* KVBFlightsDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFlightsDataSource.m; sourceTree = "<group>"; };
+		14DA566B1FE278A100FAB89A /* KVBSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBSettingsViewController.h; sourceTree = "<group>"; };
+		14DA566C1FE278A100FAB89A /* KVBSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBSettingsViewController.m; sourceTree = "<group>"; };
+		14DA566F1FE2814500FAB89A /* KVBRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBRequest.h; sourceTree = "<group>"; };
+		14DA56701FE2814500FAB89A /* KVBRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBRequest.m; sourceTree = "<group>"; };
+		14F39DB61FE160BF00EDEA1A /* KVBSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBSearchViewController.h; sourceTree = "<group>"; };
+		14F39DB71FE160BF00EDEA1A /* KVBSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBSearchViewController.m; sourceTree = "<group>"; };
+		14F39DBA1FE163D000EDEA1A /* KVBViewWithParametres.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBViewWithParametres.h; sourceTree = "<group>"; };
+		14F39DBB1FE163D000EDEA1A /* KVBViewWithParametres.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBViewWithParametres.m; sourceTree = "<group>"; };
+		14F39DBD1FE1D03900EDEA1A /* KVBFlightsTableDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFlightsTableDataSource.h; sourceTree = "<group>"; };
+		14F39DBE1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFlightsTableDataSource.m; sourceTree = "<group>"; };
+		14F682C41FDEEE84004F3BE5 /* SBTProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SBTProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		14F682C71FDEEE84004F3BE5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		14F682C81FDEEE84004F3BE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		14F682D81FDEEE84004F3BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14F682D91FDEEE84004F3BE5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		14F682DF1FDEEE85004F3BE5 /* SBTProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SBTProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		14F682E31FDEEE85004F3BE5 /* SBTProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBTProjectTests.m; sourceTree = "<group>"; };
+		14F682E51FDEEE85004F3BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14F682EA1FDEEE85004F3BE5 /* SBTProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SBTProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		14F682EE1FDEEE85004F3BE5 /* SBTProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBTProjectUITests.m; sourceTree = "<group>"; };
+		14F682F01FDEEE85004F3BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2348D838546EADDA4A9B962A /* libPods-SBTProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SBTProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F65B3908A7847E85AC9B499 /* libPods-SBTProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SBTProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68AB1F786A5CB3EFD0611F5E /* Pods-SBTProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBTProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SBTProjectTests/Pods-SBTProjectTests.release.xcconfig"; sourceTree = "<group>"; };
+		A3A7A9D138D0467A0430EBAC /* Pods-SBTProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBTProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-SBTProject/Pods-SBTProject.release.xcconfig"; sourceTree = "<group>"; };
+		B0A46D21A8AC625914977360 /* Pods-SBTProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBTProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SBTProjectTests/Pods-SBTProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E0EADD2C3F1B0C3DC00B7547 /* Pods-SBTProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBTProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SBTProject/Pods-SBTProject.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		14F682C11FDEEE84004F3BE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F98F260D73A6FE2B8527F0F /* libPods-SBTProject.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14F682DC1FDEEE85004F3BE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FB6B97505A9CF26106FE29D /* libPods-SBTProjectTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14F682E71FDEEE85004F3BE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		06E30C2AC13669356F289BF8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5F65B3908A7847E85AC9B499 /* libPods-SBTProject.a */,
+				2348D838546EADDA4A9B962A /* libPods-SBTProjectTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1419206A1FE3D6BD00F85CF5 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				141061B41FF6EEDE0092699C /* Flyight+CoreDataProperties.h */,
+				141061B81FF6EF1F0092699C /* Flyight+CoreDataProperties.m */,
+				141061B31FF6EEDE0092699C /* Flyight+CoreDataClass.h */,
+				141061B51FF6EEDE0092699C /* Flyight+CoreDataClass.m */,
+				14764B871FE528EF00EEC944 /* Countries+CoreDataProperties.h */,
+				14764B891FE528EF00EEC944 /* Countries+CoreDataClass.m */,
+				14764B881FE528EF00EEC944 /* Countries+CoreDataClass.h */,
+				14764B8A1FE528EF00EEC944 /* Countries+CoreDataProperties.m */,
+				14764B8B1FE528EF00EEC944 /* Airpots+CoreDataProperties.h */,
+				14764B8E1FE528EF00EEC944 /* Airpots+CoreDataProperties.m */,
+				14764B8C1FE528EF00EEC944 /* Airpots+CoreDataClass.h */,
+				14764B8D1FE528EF00EEC944 /* Airpots+CoreDataClass.m */,
+				14764B8F1FE528EF00EEC944 /* Cities+CoreDataProperties.h */,
+				14764B921FE528EF00EEC944 /* Cities+CoreDataProperties.m */,
+				14764B901FE528EF00EEC944 /* Cities+CoreDataClass.h */,
+				14764B911FE528EF00EEC944 /* Cities+CoreDataClass.m */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		14DA56601FE2691A00FAB89A /* SavedFlyights */ = {
+			isa = PBXGroup;
+			children = (
+				14DA56611FE26CA900FAB89A /* KVBSavedFlightsViewController.h */,
+				14DA56621FE26CA900FAB89A /* KVBSavedFlightsViewController.m */,
+				140DD7971FF7EB9700FE750B /* KVBFlyightDetailedViewController.h */,
+				140DD7981FF7EB9700FE750B /* KVBFlyightDetailedViewController.m */,
+				14DA56671FE26FC200FAB89A /* KVBFlightsDataSource.h */,
+				14DA56681FE26FC200FAB89A /* KVBFlightsDataSource.m */,
+				141061AF1FF63F620092699C /* KVBSavedFlightCollectionCell.h */,
+				141061B01FF63F620092699C /* KVBSavedFlightCollectionCell.m */,
+			);
+			path = SavedFlyights;
+			sourceTree = "<group>";
+		};
+		14DA566A1FE2775500FAB89A /* SettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14DA566B1FE278A100FAB89A /* KVBSettingsViewController.h */,
+				14DA566C1FE278A100FAB89A /* KVBSettingsViewController.m */,
+				140DD7A31FFA503200FE750B /* KVBSettingTableDataSourse.h */,
+				140DD7A41FFA503200FE750B /* KVBSettingTableDataSourse.m */,
+				140DD79D1FFA4F7100FE750B /* KVBResetAllSettingsCell.h */,
+				140DD79E1FFA4F7100FE750B /* KVBResetAllSettingsCell.m */,
+				140DD7A71FFA51CC00FE750B /* KVBLanguageSettingsCell.h */,
+				140DD7A61FFA51CC00FE750B /* KVBLanguageSettingsCell.m */,
+			);
+			path = SettingsViewController;
+			sourceTree = "<group>";
+		};
+		14DA566E1FE280A400FAB89A /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				1408C9DD1FEEE960007D2B3E /* KVBLocationViewController.h */,
+				1408C9DE1FEEE960007D2B3E /* KVBLocationViewController.m */,
+				14DA566F1FE2814500FAB89A /* KVBRequest.h */,
+				14DA56701FE2814500FAB89A /* KVBRequest.m */,
+				141920671FE3D68900F85CF5 /* KVBPreparatoryCoreData.h */,
+				141920681FE3D68900F85CF5 /* KVBPreparatoryCoreData.m */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		14F39DB91FE1635600EDEA1A /* SearchController */ = {
+			isa = PBXGroup;
+			children = (
+				14F39DBA1FE163D000EDEA1A /* KVBViewWithParametres.h */,
+				14F39DBB1FE163D000EDEA1A /* KVBViewWithParametres.m */,
+				14F39DB61FE160BF00EDEA1A /* KVBSearchViewController.h */,
+				14F39DB71FE160BF00EDEA1A /* KVBSearchViewController.m */,
+				1405B4381FF42C1300044DAA /* KVBFlyightInfoViewController.h */,
+				1405B4391FF42C1300044DAA /* KVBFlyightInfoViewController.m */,
+				14F39DBD1FE1D03900EDEA1A /* KVBFlightsTableDataSource.h */,
+				14F39DBE1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m */,
+				1405594C1FEB81FC000014D5 /* KVBPopalarDirectionCell.h */,
+				1405594D1FEB81FC000014D5 /* KVBPopalarDirectionCell.m */,
+				140823331FED6C040030298C /* KVBTableViewFlightCell.h */,
+				140823341FED6C040030298C /* KVBTableViewFlightCell.m */,
+				1408232A1FEC24B60030298C /* KVBCollectionViewFlightCell.h */,
+				1408232B1FEC24B60030298C /* KVBCollectionViewFlightCell.m */,
+				14113C891FEA85C400781FBD /* KVBFlyightsRequests.h */,
+				14113C8A1FEA85C400781FBD /* KVBFlyightsRequests.m */,
+			);
+			path = SearchController;
+			sourceTree = "<group>";
+		};
+		14F682BB1FDEEE84004F3BE5 = {
+			isa = PBXGroup;
+			children = (
+				14F682C61FDEEE84004F3BE5 /* SBTProject */,
+				14F682E21FDEEE85004F3BE5 /* SBTProjectTests */,
+				14F682ED1FDEEE85004F3BE5 /* SBTProjectUITests */,
+				14F682C51FDEEE84004F3BE5 /* Products */,
+				D7766B59FBECA027EA0D4DC9 /* Pods */,
+				06E30C2AC13669356F289BF8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		14F682C51FDEEE84004F3BE5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				14F682C41FDEEE84004F3BE5 /* SBTProject.app */,
+				14F682DF1FDEEE85004F3BE5 /* SBTProjectTests.xctest */,
+				14F682EA1FDEEE85004F3BE5 /* SBTProjectUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		14F682C61FDEEE84004F3BE5 /* SBTProject */ = {
+			isa = PBXGroup;
+			children = (
+				14F682C71FDEEE84004F3BE5 /* AppDelegate.h */,
+				14F682C81FDEEE84004F3BE5 /* AppDelegate.m */,
+				1405594F1FEB835F000014D5 /* KVBFlyightModel.h */,
+				140559501FEB835F000014D5 /* KVBFlyightModel.m */,
+				1408AB9D1FEFF9C200C0E2C9 /* KVBCoreDataServise.h */,
+				1408AB9E1FEFF9C200C0E2C9 /* KVBCoreDataServise.m */,
+				1419206A1FE3D6BD00F85CF5 /* CoreData */,
+				14DA566E1FE280A400FAB89A /* MainScreen */,
+				14F39DB91FE1635600EDEA1A /* SearchController */,
+				14DA566A1FE2775500FAB89A /* SettingsViewController */,
+				14DA56601FE2691A00FAB89A /* SavedFlyights */,
+				141920641FE3CD6500F85CF5 /* SBTProject.xcdatamodeld */,
+				140CAB6A1FF583E300B6E339 /* Assets.xcassets */,
+				14F682D81FDEEE84004F3BE5 /* Info.plist */,
+				14F682D91FDEEE84004F3BE5 /* main.m */,
+			);
+			path = SBTProject;
+			sourceTree = "<group>";
+		};
+		14F682E21FDEEE85004F3BE5 /* SBTProjectTests */ = {
+			isa = PBXGroup;
+			children = (
+				14F682E31FDEEE85004F3BE5 /* SBTProjectTests.m */,
+				14F682E51FDEEE85004F3BE5 /* Info.plist */,
+			);
+			path = SBTProjectTests;
+			sourceTree = "<group>";
+		};
+		14F682ED1FDEEE85004F3BE5 /* SBTProjectUITests */ = {
+			isa = PBXGroup;
+			children = (
+				14F682EE1FDEEE85004F3BE5 /* SBTProjectUITests.m */,
+				14F682F01FDEEE85004F3BE5 /* Info.plist */,
+			);
+			path = SBTProjectUITests;
+			sourceTree = "<group>";
+		};
+		D7766B59FBECA027EA0D4DC9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E0EADD2C3F1B0C3DC00B7547 /* Pods-SBTProject.debug.xcconfig */,
+				A3A7A9D138D0467A0430EBAC /* Pods-SBTProject.release.xcconfig */,
+				B0A46D21A8AC625914977360 /* Pods-SBTProjectTests.debug.xcconfig */,
+				68AB1F786A5CB3EFD0611F5E /* Pods-SBTProjectTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		14F682C31FDEEE84004F3BE5 /* SBTProject */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14F682F31FDEEE85004F3BE5 /* Build configuration list for PBXNativeTarget "SBTProject" */;
+			buildPhases = (
+				8E0E5D3FEA239524EF52E2D5 /* [CP] Check Pods Manifest.lock */,
+				14F682C01FDEEE84004F3BE5 /* Sources */,
+				14F682C11FDEEE84004F3BE5 /* Frameworks */,
+				14F682C21FDEEE84004F3BE5 /* Resources */,
+				7EB0C66D128B9AC86C240498 /* [CP] Embed Pods Frameworks */,
+				8BBE8D14F8DD1B8171E496D6 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SBTProject;
+			productName = SBTProject;
+			productReference = 14F682C41FDEEE84004F3BE5 /* SBTProject.app */;
+			productType = "com.apple.product-type.application";
+		};
+		14F682DE1FDEEE85004F3BE5 /* SBTProjectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14F682F61FDEEE85004F3BE5 /* Build configuration list for PBXNativeTarget "SBTProjectTests" */;
+			buildPhases = (
+				7BA38ACB2B3F6090D635D27E /* [CP] Check Pods Manifest.lock */,
+				14F682DB1FDEEE85004F3BE5 /* Sources */,
+				14F682DC1FDEEE85004F3BE5 /* Frameworks */,
+				14F682DD1FDEEE85004F3BE5 /* Resources */,
+				C5E71AA18EDC77E3D06A4DC4 /* [CP] Embed Pods Frameworks */,
+				2E2AA6D9276909C4C8E7CC9C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				14F682E11FDEEE85004F3BE5 /* PBXTargetDependency */,
+			);
+			name = SBTProjectTests;
+			productName = SBTProjectTests;
+			productReference = 14F682DF1FDEEE85004F3BE5 /* SBTProjectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		14F682E91FDEEE85004F3BE5 /* SBTProjectUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14F682F91FDEEE85004F3BE5 /* Build configuration list for PBXNativeTarget "SBTProjectUITests" */;
+			buildPhases = (
+				14F682E61FDEEE85004F3BE5 /* Sources */,
+				14F682E71FDEEE85004F3BE5 /* Frameworks */,
+				14F682E81FDEEE85004F3BE5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				14F682EC1FDEEE85004F3BE5 /* PBXTargetDependency */,
+			);
+			name = SBTProjectUITests;
+			productName = SBTProjectUITests;
+			productReference = 14F682EA1FDEEE85004F3BE5 /* SBTProjectUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		14F682BC1FDEEE84004F3BE5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Константин Богданов";
+				TargetAttributes = {
+					14F682C31FDEEE84004F3BE5 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					14F682DE1FDEEE85004F3BE5 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 14F682C31FDEEE84004F3BE5;
+					};
+					14F682E91FDEEE85004F3BE5 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 14F682C31FDEEE84004F3BE5;
+					};
+				};
+			};
+			buildConfigurationList = 14F682BF1FDEEE84004F3BE5 /* Build configuration list for PBXProject "SBTProject" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 14F682BB1FDEEE84004F3BE5;
+			productRefGroup = 14F682C51FDEEE84004F3BE5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				14F682C31FDEEE84004F3BE5 /* SBTProject */,
+				14F682DE1FDEEE85004F3BE5 /* SBTProjectTests */,
+				14F682E91FDEEE85004F3BE5 /* SBTProjectUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		14F682C21FDEEE84004F3BE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				140CAB6B1FF583E300B6E339 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14F682DD1FDEEE85004F3BE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14F682E81FDEEE85004F3BE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E2AA6D9276909C4C8E7CC9C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SBTProjectTests/Pods-SBTProjectTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7BA38ACB2B3F6090D635D27E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SBTProjectTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7EB0C66D128B9AC86C240498 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SBTProject/Pods-SBTProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8BBE8D14F8DD1B8171E496D6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SBTProject/Pods-SBTProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E0E5D3FEA239524EF52E2D5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SBTProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5E71AA18EDC77E3D06A4DC4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SBTProjectTests/Pods-SBTProjectTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		14F682C01FDEEE84004F3BE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14DA56631FE26CA900FAB89A /* KVBSavedFlightsViewController.m in Sources */,
+				14DA566D1FE278A100FAB89A /* KVBSettingsViewController.m in Sources */,
+				14764B981FE528EF00EEC944 /* Cities+CoreDataProperties.m in Sources */,
+				14764B931FE528EF00EEC944 /* Countries+CoreDataClass.m in Sources */,
+				1408232C1FEC24B60030298C /* KVBCollectionViewFlightCell.m in Sources */,
+<<<<<<< HEAD
+				141061B11FF63F620092699C /* KVBSavedFlightCollectionCell.m in Sources */,
+=======
+				140DD7A51FFA503200FE750B /* KVBSettingTableDataSourse.m in Sources */,
+>>>>>>> feature/KVB_settingsViewController
+				14F39DBF1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m in Sources */,
+				14764B961FE528EF00EEC944 /* Airpots+CoreDataProperties.m in Sources */,
+				140DD79F1FFA4F7100FE750B /* KVBResetAllSettingsCell.m in Sources */,
+				141920661FE3CD6500F85CF5 /* SBTProject.xcdatamodeld in Sources */,
+				14F39DBC1FE163D000EDEA1A /* KVBViewWithParametres.m in Sources */,
+				14113C8B1FEA85C400781FBD /* KVBFlyightsRequests.m in Sources */,
+				141920691FE3D68900F85CF5 /* KVBPreparatoryCoreData.m in Sources */,
+				1405594E1FEB81FC000014D5 /* KVBPopalarDirectionCell.m in Sources */,
+				14764B951FE528EF00EEC944 /* Airpots+CoreDataClass.m in Sources */,
+				140DD7A81FFA51CC00FE750B /* KVBLanguageSettingsCell.m in Sources */,
+				14764B941FE528EF00EEC944 /* Countries+CoreDataProperties.m in Sources */,
+				1405B43A1FF42C1300044DAA /* KVBFlyightInfoViewController.m in Sources */,
+				1408AB9F1FEFF9C200C0E2C9 /* KVBCoreDataServise.m in Sources */,
+				14F682DA1FDEEE84004F3BE5 /* main.m in Sources */,
+				14F682C91FDEEE84004F3BE5 /* AppDelegate.m in Sources */,
+				1408C9DF1FEEE961007D2B3E /* KVBLocationViewController.m in Sources */,
+				141061B71FF6EEDF0092699C /* Flyight+CoreDataClass.m in Sources */,
+				14DA56691FE26FC200FAB89A /* KVBFlightsDataSource.m in Sources */,
+				14F39DB81FE160BF00EDEA1A /* KVBSearchViewController.m in Sources */,
+				140DD7991FF7EB9700FE750B /* KVBFlyightDetailedViewController.m in Sources */,
+				14764B971FE528EF00EEC944 /* Cities+CoreDataClass.m in Sources */,
+				140823351FED6C040030298C /* KVBTableViewFlightCell.m in Sources */,
+				141061B91FF6EF1F0092699C /* Flyight+CoreDataProperties.m in Sources */,
+				14DA56711FE2814500FAB89A /* KVBRequest.m in Sources */,
+				140559511FEB835F000014D5 /* KVBFlyightModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14F682DB1FDEEE85004F3BE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14F682E41FDEEE85004F3BE5 /* SBTProjectTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14F682E61FDEEE85004F3BE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14F682EF1FDEEE85004F3BE5 /* SBTProjectUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		14F682E11FDEEE85004F3BE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14F682C31FDEEE84004F3BE5 /* SBTProject */;
+			targetProxy = 14F682E01FDEEE85004F3BE5 /* PBXContainerItemProxy */;
+		};
+		14F682EC1FDEEE85004F3BE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14F682C31FDEEE84004F3BE5 /* SBTProject */;
+			targetProxy = 14F682EB1FDEEE85004F3BE5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		14F682F11FDEEE85004F3BE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		14F682F21FDEEE85004F3BE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		14F682F41FDEEE85004F3BE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0EADD2C3F1B0C3DC00B7547 /* Pods-SBTProject.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2U7B3D7RG7;
+				INFOPLIST_FILE = SBTProject/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kvb.SBTProject;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		14F682F51FDEEE85004F3BE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3A7A9D138D0467A0430EBAC /* Pods-SBTProject.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2U7B3D7RG7;
+				INFOPLIST_FILE = SBTProject/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kvb.SBTProject;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		14F682F71FDEEE85004F3BE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0A46D21A8AC625914977360 /* Pods-SBTProjectTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SBTProjectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sbt.SBTProjectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SBTProject.app/SBTProject";
+			};
+			name = Debug;
+		};
+		14F682F81FDEEE85004F3BE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68AB1F786A5CB3EFD0611F5E /* Pods-SBTProjectTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SBTProjectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sbt.SBTProjectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SBTProject.app/SBTProject";
+			};
+			name = Release;
+		};
+		14F682FA1FDEEE85004F3BE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SBTProjectUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sbt.SBTProjectUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SBTProject;
+			};
+			name = Debug;
+		};
+		14F682FB1FDEEE85004F3BE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SBTProjectUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sbt.SBTProjectUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SBTProject;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		14F682BF1FDEEE84004F3BE5 /* Build configuration list for PBXProject "SBTProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14F682F11FDEEE85004F3BE5 /* Debug */,
+				14F682F21FDEEE85004F3BE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14F682F31FDEEE85004F3BE5 /* Build configuration list for PBXNativeTarget "SBTProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14F682F41FDEEE85004F3BE5 /* Debug */,
+				14F682F51FDEEE85004F3BE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14F682F61FDEEE85004F3BE5 /* Build configuration list for PBXNativeTarget "SBTProjectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14F682F71FDEEE85004F3BE5 /* Debug */,
+				14F682F81FDEEE85004F3BE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14F682F91FDEEE85004F3BE5 /* Build configuration list for PBXNativeTarget "SBTProjectUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14F682FA1FDEEE85004F3BE5 /* Debug */,
+				14F682FB1FDEEE85004F3BE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		141920641FE3CD6500F85CF5 /* SBTProject.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				141920651FE3CD6500F85CF5 /* SBTProject.xcdatamodel */,
+			);
+			currentVersion = 141920651FE3CD6500F85CF5 /* SBTProject.xcdatamodel */;
+			path = SBTProject.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 14F682BC1FDEEE84004F3BE5 /* Project object */;
+}
