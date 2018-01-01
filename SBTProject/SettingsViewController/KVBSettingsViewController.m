@@ -7,10 +7,15 @@
 //
 
 #import "KVBSettingsViewController.h"
+#import "KVBSettingTableDataSourse.h"
+#import "KVBResetAllSettingsCell.h"
+#import "KVBLanguageSettingsCell.h"
+
 #import <Masonry.h>
 
 @interface KVBSettingsViewController ()
 @property(nonatomic, strong) UITableView *tableWithSettings;
+@property(nonatomic, strong) KVBSettingTableDataSourse *dataSourse;
 
 @end
 
@@ -21,8 +26,12 @@
     self = [super init];
     if (self)
     {
+        _dataSourse = [KVBSettingTableDataSourse new];
+        
         _tableWithSettings = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStylePlain];
-        [_tableWithSettings registerClass:[UITableViewCell class]  forCellReuseIdentifier:@"Cell"];
+        _tableWithSettings.dataSource = _dataSourse;
+        [_tableWithSettings registerClass:[KVBLanguageSettingsCell class]  forCellReuseIdentifier:KVBLanguageSettingCell];
+        [_tableWithSettings registerClass:[KVBResetAllSettingsCell class]  forCellReuseIdentifier:KVBResetTableViewCell];
         
         [self.view addSubview:_tableWithSettings];
         

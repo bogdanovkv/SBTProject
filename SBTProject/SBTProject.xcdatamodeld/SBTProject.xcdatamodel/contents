@@ -15,6 +15,8 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameRu" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="airport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Airpots" inverseName="parrrentCity" inverseEntity="Airpots" syncable="YES"/>
+        <relationship name="flightsFrom" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flyight" inverseName="departure" inverseEntity="Flyight" syncable="YES"/>
+        <relationship name="flightTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flyight" inverseName="arrival" inverseEntity="Flyight" syncable="YES"/>
         <relationship name="parrentCountry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Countries" inverseName="childCity" inverseEntity="Countries" syncable="YES"/>
     </entity>
     <entity name="Countries" representedClassName="Countries" syncable="YES">
@@ -32,13 +34,13 @@
         <attribute name="cost" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="departureDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="flightNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="arrival" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cities" syncable="YES"/>
-        <relationship name="departure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cities" syncable="YES"/>
+        <relationship name="arrival" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cities" inverseName="flightTo" inverseEntity="Cities" syncable="YES"/>
+        <relationship name="departure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cities" inverseName="flightsFrom" inverseEntity="Cities" syncable="YES"/>
     </entity>
     <elements>
         <element name="Airpots" positionX="-8201" positionY="-5842" width="128" height="148"/>
-        <element name="Cities" positionX="-8417" positionY="-5839" width="128" height="133"/>
+        <element name="Cities" positionX="-8433" positionY="-5976" width="128" height="163"/>
         <element name="Countries" positionX="-8633" positionY="-5839" width="128" height="135"/>
-        <element name="Flyight" positionX="-8424" positionY="-5778" width="128" height="165"/>
+        <element name="Flyight" positionX="-8208" positionY="-6075" width="128" height="165"/>
     </elements>
 </model>
