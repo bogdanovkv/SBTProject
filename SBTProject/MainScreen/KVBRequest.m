@@ -9,7 +9,9 @@
 #import "KVBRequest.h"
 #import "KVBPreparatoryCoreData.h"
 
+
 @interface KVBRequest()
+
 
 @property(nonatomic, strong) KVBPreparatoryCoreData *coreDataConstructor;
 @property(nonatomic, strong) NSOperationQueue *downloadTaskQueue;
@@ -21,30 +23,50 @@
 - (instancetype)init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _coreDataConstructor = [KVBPreparatoryCoreData new];
         _downloadTaskQueue = [[NSOperationQueue alloc] init];
     }
     return self;
 }
 
-- (void)whereAreMe
+- (void)whereAreMeWithComletition:(void (^)(NSString *countryName, NSString *cityName,NSString *stringError))completionHandler
 {
     NSURLComponents *urlComponents = [NSURLComponents componentsWithString:KVBLocationsRequestWhereAreMe];
-   
+    
     NSURLQueryItem *locale = [NSURLQueryItem queryItemWithName:@"locale" value:@"ru"];
     NSURLQueryItem *callback = [NSURLQueryItem queryItemWithName:@"callback" value:@""];
     NSURLQueryItem *token = [NSURLQueryItem queryItemWithName:@"token" value:KVBTravelpayouts];
-
+    
     urlComponents.queryItems = @[locale, callback, token];
     
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:self.delegate delegateQueue:nil];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:urlComponents.URL];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:self.delegate delegateQueue:self.downloadTaskQueue];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:urlComponents.URL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (!data)
+        {
+            completionHandler(@"", @"", @"Can't recieve data from server");
+            return;
+        }
+        
+        NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSString *countryName = recievedData[@"country_name"];
+        NSString *cityName = recievedData[@"name"];
+        
+        if(countryName.length == 0 && cityName.length == 0)
+        {
+            completionHandler(@"", @"", @"Something goes wrong. Sorry");
+            return;
+        }
+            
+        completionHandler(countryName, cityName, @"");
+    }];
     
     [dataTask resume];
-    
 }
+
 
 - (void)recieveAllContriesWithCities
 {

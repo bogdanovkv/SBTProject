@@ -6,7 +6,6 @@
 //
 
 #import "KVBLocationViewController.h"
-
 #import "KVBSearchViewController.h"
 #import "KVBSavedFlightsViewController.h"
 #import "KVBSettingsViewController.h"
@@ -17,10 +16,12 @@
 #import "KVBCoreDataServise.h"
 #import <Masonry.h>
 
-const CGFloat KVBLeftRightOffset = 20;
+static CGFloat const KVBLeftRightOffset = 20;
 static NSString *const KVBCityIdentifier = @"CitiesCell";
 
+
 @interface KVBLocationViewController ()<NSURLSessionDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+
 
 @property(nonatomic, strong) UILabel *welcomeLabel;
 @property(nonatomic, strong) UITextField *cityField;
@@ -37,14 +38,15 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
 
 @end
 
+
 @implementation KVBLocationViewController
+
 
 - (instancetype)initWithContext:(NSManagedObjectContext*) context
 {
     self = [super init];
     if (self)
     {
-        
         _request = [KVBRequest new];
         _request.delegate = self;
         
@@ -105,13 +107,33 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
     
-    [self.request whereAreMe];
-    
     if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"isDataExist"] isEqualToString: @"Exist"])
     {
         [self.request recieveAllContriesWithCities];
-        
     }
+    
+    [self.request whereAreMeWithComletition:^(NSString *countryName, NSString *cityName, NSString *stringError) {
+
+        dispatch_async(dispatch_get_main_queue(), ^
+                       {
+                           if (stringError.length)
+                           {
+                               NSLog(@"%@", stringError);
+                           }
+                           
+                           NSArray *countryArray = [self.coreDataService findLocationInEntity:NSStringFromClass([Countries class]) withName:countryName];
+                           self.country= countryArray.firstObject;
+                           
+                           NSArray *cityArray = [self.coreDataService recieveCityByName:cityName inCountry:self.country];
+                           self.city = cityArray.firstObject;
+                           
+                           self.countryField.text = self.country.name;
+                           self.cityField.text = self.city.name;
+                           
+                       });
+    }];
+    
+
 }
 
 - (void) setupConstraints
@@ -121,7 +143,6 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         make.right.equalTo(self.view.mas_right).offset(-KVBLeftRightOffset);
         make.left.equalTo(self.view.mas_left).offset(KVBLeftRightOffset);
         make.height.mas_equalTo(40);
-        
     }];
     
     [self.welcomeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -202,30 +223,6 @@ didCompleteWithError:(nullable NSError *)error
                            self.cityField.text = nil;
                        });
     }
-    
-}
-
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
-    didReceiveData:(NSData *)data
-{
-    
-    NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    self.request.currentLoacation = recievedData;
-    NSString *countryName = recievedData[@"country_name"];
-    NSString *cityName = recievedData[@"name"];
-    
-    dispatch_async(dispatch_get_main_queue(), ^
-                   {
-                       NSArray *countryArray = [self.coreDataService findLocationInEntity:NSStringFromClass([Countries class]) withName:countryName];
-                       self.country= countryArray.firstObject;
-                       
-                       NSArray *cityArray = [self.coreDataService recieveCityByName:cityName inCountry:self.country];
-                       self.city = cityArray.firstObject;
-                       
-                       self.countryField.text = self.country.name;
-                       self.cityField.text = self.city.name;
-                       
-                   });
     
 }
 

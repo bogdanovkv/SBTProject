@@ -24,10 +24,7 @@
 		141920691FE3D68900F85CF5 /* KVBPreparatoryCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 141920681FE3D68900F85CF5 /* KVBPreparatoryCoreData.m */; };
 		14484E611FFBD0E900498D18 /* KVBSettingTableDataSourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 14484E5B1FFBD0E800498D18 /* KVBSettingTableDataSourse.m */; };
 		14484E621FFBD0E900498D18 /* KVBLanguageSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14484E5C1FFBD0E800498D18 /* KVBLanguageSettingsCell.m */; };
-		14484E631FFBD0E900498D18 /* KVBSettingTableDataSourse.h in Sources */ = {isa = PBXBuildFile; fileRef = 14484E5D1FFBD0E900498D18 /* KVBSettingTableDataSourse.h */; };
 		14484E641FFBD0E900498D18 /* KVBResetAllSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14484E5E1FFBD0E900498D18 /* KVBResetAllSettingsCell.m */; };
-		14484E651FFBD0E900498D18 /* KVBLanguageSettingsCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 14484E5F1FFBD0E900498D18 /* KVBLanguageSettingsCell.h */; };
-		14484E661FFBD0E900498D18 /* KVBResetAllSettingsCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 14484E601FFBD0E900498D18 /* KVBResetAllSettingsCell.h */; };
 		14764B931FE528EF00EEC944 /* Countries+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B891FE528EF00EEC944 /* Countries+CoreDataClass.m */; };
 		14764B941FE528EF00EEC944 /* Countries+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B8A1FE528EF00EEC944 /* Countries+CoreDataProperties.m */; };
 		14764B951FE528EF00EEC944 /* Airpots+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B8D1FE528EF00EEC944 /* Airpots+CoreDataClass.m */; };
@@ -582,10 +579,7 @@
 			files = (
 				14484E611FFBD0E900498D18 /* KVBSettingTableDataSourse.m in Sources */,
 				14484E621FFBD0E900498D18 /* KVBLanguageSettingsCell.m in Sources */,
-				14484E631FFBD0E900498D18 /* KVBSettingTableDataSourse.h in Sources */,
 				14484E641FFBD0E900498D18 /* KVBResetAllSettingsCell.m in Sources */,
-				14484E651FFBD0E900498D18 /* KVBLanguageSettingsCell.h in Sources */,
-				14484E661FFBD0E900498D18 /* KVBResetAllSettingsCell.h in Sources */,
 				14DA56631FE26CA900FAB89A /* KVBSavedFlightsViewController.m in Sources */,
 				14DA566D1FE278A100FAB89A /* KVBSettingsViewController.m in Sources */,
 				14764B981FE528EF00EEC944 /* Cities+CoreDataProperties.m in Sources */,

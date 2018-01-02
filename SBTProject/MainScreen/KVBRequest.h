@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface KVBRequest : NSObject
+
+
 @property(strong, nonatomic) NSDictionary *currentLoacation;
 @property(weak, nonatomic) id<NSURLSessionDelegate> delegate;
 
-- (void)whereAreMe;
+- (void)whereAreMeWithComletition:(void (^)(NSString *countryName, NSString *cityName, NSString *stringError))completionHandler;
 - (void)recieveAllContriesWithCities;
 
-@end
 
+@end

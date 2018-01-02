@@ -94,18 +94,4 @@
     return [dateFormatter dateFromString:dateString];
 }
 
-//FlyightDictionary
-//MIL =         {
-//    airline = I9;
-//    "departure_at" = "2018-01-23T13:15:00Z";
-//    destination = MIL;
-//    "expires_at" = "2017-12-24T03:37:46Z";
-//    "flight_number" = 822;
-//    origin = MOW;
-//    price = 4773;
-//    "return_at" = "2018-01-26T16:30:00Z";
-//    transfers = 0;
-//};
-
-
 @end
