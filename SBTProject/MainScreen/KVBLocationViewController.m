@@ -9,18 +9,21 @@
 #import "KVBSearchViewController.h"
 #import "KVBSavedFlightsViewController.h"
 #import "KVBSettingsViewController.h"
-#import "KVBRequest.h"
+#import "KVBLocationServise.h"
 #import "Countries+CoreDataClass.h"
 #import "Cities+CoreDataClass.h"
 #import <CoreData/CoreData.h>
 #import "KVBCoreDataServise.h"
+#import "KVBLocationsTableViewCell.h"
+#import "KVBFirstStartCoreDataLoader.h"
 #import <Masonry.h>
 
 static CGFloat const KVBLeftRightOffset = 20;
-static NSString *const KVBCityIdentifier = @"CitiesCell";
+static NSString * const KVBLocationCellReuseIdentifier = @"KVBLocationCellReuseIdentifier";
+static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose your location:";
 
 
-@interface KVBLocationViewController ()<NSURLSessionDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface KVBLocationViewController ()<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, KVBFirstStartLoadingDelegate>
 
 
 @property(nonatomic, strong) UILabel *welcomeLabel;
@@ -30,7 +33,7 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
 @property(nonatomic, strong) UIButton *acceptButton;
 @property(nonatomic, strong) UITableView *tableWithCities;
 @property(nonatomic, weak) NSManagedObjectContext *context;
-@property(nonatomic, strong) KVBRequest *request;
+@property(nonatomic, strong) KVBLocationServise *request;
 @property(nonatomic, strong) Cities *city;
 @property(nonatomic, strong) Countries *country;
 @property(nonatomic, strong) KVBCoreDataServise *coreDataService;
@@ -47,8 +50,8 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
     self = [super init];
     if (self)
     {
-        _request = [KVBRequest new];
-        _request.delegate = self;
+        
+        _request = [[KVBLocationServise alloc]initWithDelegate:self];
         
         _context = context;
         
@@ -63,18 +66,17 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         
         _welcomeLabel = [UILabel new];
         _welcomeLabel.backgroundColor = UIColor.clearColor;
-        _welcomeLabel.text = @"Hello !\nPlease, choose your location:";
+        _welcomeLabel.text = KVBWelcomeLableDefaultText;
         _welcomeLabel.numberOfLines = 0;
         _welcomeLabel.textAlignment = NSTextAlignmentCenter;
         
         _tableWithCities = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 400) style:UITableViewStyleGrouped];
-        [_tableWithCities registerClass:[UITableViewCell class] forCellReuseIdentifier: KVBCityIdentifier];
+        [_tableWithCities registerClass:[KVBLocationsTableViewCell class] forCellReuseIdentifier: KVBLocationCellReuseIdentifier];
         _tableWithCities.dataSource = self;
         _tableWithCities.delegate = self;
         
         _cityField = [UITextField new];
         _cityField.backgroundColor = UIColor.clearColor;
-        _cityField.text = @"Loading";
         _cityField.placeholder = @"City";
         _cityField.textAlignment = NSTextAlignmentCenter;
         _cityField.delegate = self;
@@ -84,7 +86,6 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         
         _countryField = [UITextField new];
         _countryField.backgroundColor = UIColor.clearColor;
-        _countryField.text = @"Loading";
         _countryField.placeholder = @"Country";
         _countryField.textAlignment = NSTextAlignmentCenter;
         _countryField.delegate = self;
@@ -110,31 +111,17 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
     if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"isDataExist"] isEqualToString: @"Exist"])
     {
         [self.request recieveAllContriesWithCities];
+        self.welcomeLabel.text = @"Please wait";
     }
-    
-    [self.request whereAreMeWithComletition:^(NSString *countryName, NSString *cityName, NSString *stringError) {
-
-        dispatch_async(dispatch_get_main_queue(), ^
-                       {
-                           if (stringError.length)
-                           {
-                               NSLog(@"%@", stringError);
-                           }
-                           
-                           NSArray *countryArray = [self.coreDataService findLocationInEntity:NSStringFromClass([Countries class]) withName:countryName];
-                           self.country= countryArray.firstObject;
-                           
-                           NSArray *cityArray = [self.coreDataService recieveCityByName:cityName inCountry:self.country];
-                           self.city = cityArray.firstObject;
-                           
-                           self.countryField.text = self.country.name;
-                           self.cityField.text = self.city.name;
-                           
-                       });
-    }];
-    
-
+    else
+    {
+        [self loadingComplete];
+    }
+   
 }
+
+
+#pragma mark - Constraints
 
 - (void) setupConstraints
 {
@@ -150,21 +137,18 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
         make.left.equalTo(self.view.mas_left).offset(KVBLeftRightOffset);
         make.right.equalTo(self.view.mas_right).offset(-KVBLeftRightOffset);
         make.height.equalTo(@(120));
-        
     }];
     
     [self.cityField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_welcomeLabel.mas_bottom).offset(20);
         make.right.equalTo(self.view.mas_right).offset(-KVBLeftRightOffset);
         make.width.equalTo(_countryField.mas_width);
-        
     }];
     
     [self.countryField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_welcomeLabel.mas_bottom).offset(20);
         make.left.equalTo(self.view.mas_left).offset(KVBLeftRightOffset);
         make.right.equalTo(_cityField.mas_left).offset(-KVBLeftRightOffset);
-        
     }];
 }
 
@@ -201,7 +185,7 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
     }
     else
     {
-        NSArray * pathArray = @[@(self.acceptButton.center), @(CGPointMake(self.acceptButton.center.x -15, self.acceptButton.center.y)),@(CGPointMake(self.acceptButton.center.x + 15, self.acceptButton.center.y)), @(self.acceptButton.center)];
+        NSArray * pathArray = @[@(self.acceptButton.center), @(CGPointMake(self.acceptButton.center.x - 15, self.acceptButton.center.y)),@(CGPointMake(self.acceptButton.center.x + 15, self.acceptButton.center.y)), @(self.acceptButton.center)];
         
         CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
         pathAnimation.values = pathArray;
@@ -211,31 +195,15 @@ static NSString *const KVBCityIdentifier = @"CitiesCell";
 }
 
 
-#pragma mark -NSURLSessionDelegate
-
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
-didCompleteWithError:(nullable NSError *)error
-{
-    if(error)
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-                           self.welcomeLabel.text = [NSString stringWithFormat:@"%@ Please write your location.", error.localizedDescription];
-                           self.cityField.text = nil;
-                       });
-    }
-    
-}
-
-
 #pragma mark - UITableViewDataSource
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:KVBCityIdentifier forIndexPath:indexPath];
+    KVBLocationsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:KVBLocationCellReuseIdentifier forIndexPath:indexPath];
     
     Countries *country = self.countriesArray[indexPath.row];
     
-    cell.textLabel.text = country.name;
+    cell.locationName = country.name;
     
     return cell;
 }
@@ -291,6 +259,35 @@ didCompleteWithError:(nullable NSError *)error
         [self.cityField becomeFirstResponder];
     }
 }
+
+
+#pragma mark - UITableViewDelegate
+
+- (void)loadingComplete
+{
+    [self.request whereAreMeWithComletition:^(NSString *countryName, NSString *cityName, NSString *stringError) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^
+                       {
+                           self.welcomeLabel.text = KVBWelcomeLableDefaultText;
+                           if (stringError.length)
+                           {
+                               self.welcomeLabel.text = stringError;
+                           }
+                           
+                           NSArray *countryArray = [self.coreDataService findLocationInEntity:NSStringFromClass([Countries class]) withName:countryName];
+                           self.country= countryArray.firstObject;
+                           
+                           NSArray *cityArray = [self.coreDataService recieveCityByName:cityName inCountry:self.country];
+                           self.city = cityArray.firstObject;
+                           
+                           self.countryField.text = self.country.name;
+                           self.cityField.text = self.city.name;
+                       });
+    }];
+    
+}
+
 
 @end
 

@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol KVBFirstStartLoadingDelegate;
 
-@interface KVBRequest : NSObject
+
+@interface KVBLocationServise : NSObject
 
 
-@property(strong, nonatomic) NSDictionary *currentLoacation;
-@property(weak, nonatomic) id<NSURLSessionDelegate> delegate;
+@property(nonatomic, copy) NSDictionary *currentLoacation;
 
+- (instancetype)initWithDelegate:(id<KVBFirstStartLoadingDelegate>) delegate;
 - (void)whereAreMeWithComletition:(void (^)(NSString *countryName, NSString *cityName, NSString *stringError))completionHandler;
 - (void)recieveAllContriesWithCities;
 

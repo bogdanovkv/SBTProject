@@ -6,26 +6,35 @@
 //  Copyright © 2017 Константин Богданов. All rights reserved.
 //
 
-#import "KVBRequest.h"
-#import "KVBPreparatoryCoreData.h"
+#import "KVBLocationServise.h"
+#import "KVBFirstStartCoreDataLoader.h"
+@protocol KVBFirstStartLoadingDelegate;
 
 
-@interface KVBRequest()
+@interface KVBLocationServise()
 
 
-@property(nonatomic, strong) KVBPreparatoryCoreData *coreDataConstructor;
+@property(nonatomic, weak) id<KVBFirstStartLoadingDelegate> delegate;
+@property(nonatomic, strong) KVBFirstStartCoreDataLoader *coreDataConstructor;
 @property(nonatomic, strong) NSOperationQueue *downloadTaskQueue;
+
+
 @end
 
 
-@implementation KVBRequest
+@implementation KVBLocationServise
 
-- (instancetype)init
+
+- (instancetype)initWithDelegate:(id<KVBFirstStartLoadingDelegate>) delegate
 {
     self = [super init];
     if (self)
     {
-        _coreDataConstructor = [KVBPreparatoryCoreData new];
+        _delegate = delegate;
+        
+        _coreDataConstructor = [KVBFirstStartCoreDataLoader new];
+        _coreDataConstructor.delegate = self.delegate;
+        
         _downloadTaskQueue = [[NSOperationQueue alloc] init];
     }
     return self;
@@ -42,12 +51,12 @@
     urlComponents.queryItems = @[locale, callback, token];
     
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:self.delegate delegateQueue:self.downloadTaskQueue];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:nil delegateQueue:self.downloadTaskQueue];
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:urlComponents.URL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         if (!data)
         {
-            completionHandler(@"", @"", @"Can't recieve data from server");
+            completionHandler(@"", @"", @"Can't recieve data from server.");
             return;
         }
         
@@ -73,7 +82,6 @@
     [self recieveByURL:KVBRequestAllCountries];
     [self recieveByURL:KVBRequestAllCities];
     [self recieveByURL:KVBRequestAllAirports];
-
 }
 
 - (void)recieveByURL: (NSString*) string

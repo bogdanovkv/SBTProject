@@ -6,18 +6,23 @@
 //  Copyright © 2017 Константин Богданов. All rights reserved.
 //
 
-#import "KVBPreparatoryCoreData.h"
+#import "KVBFirstStartCoreDataLoader.h"
 #import "Cities+CoreDataClass.h"
 #import "Countries+CoreDataClass.h"
 #import "Airpots+CoreDataClass.h"
 #import "AppDelegate.h"
-@interface KVBPreparatoryCoreData()
+
+
+@interface KVBFirstStartCoreDataLoader()
+
 
 @property(nonatomic, strong) NSManagedObjectContext *context;
 
+
 @end
 
-@implementation KVBPreparatoryCoreData
+
+@implementation KVBFirstStartCoreDataLoader
 
 - (instancetype)init
 {
@@ -64,6 +69,7 @@
     }
 
 }
+
 
 -(void) setupCoreData
 {
@@ -113,6 +119,7 @@
     
     
     [[NSUserDefaults standardUserDefaults] setValue:@"Exist" forKey:@"isDataExist"];
+    [self.delegate loadingComplete];
 }
 
 
