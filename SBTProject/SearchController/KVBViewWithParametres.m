@@ -10,30 +10,39 @@
 #import "KVBCoreDataServise.h"
 #import "Cities+CoreDataClass.h"
 #import "Countries+CoreDataClass.h"
+#import "KVBLocationsTableViewCell.h"
 #import <Masonry.h>
 
 const CGFloat KVBLeftRightOffsetInView = 20;
 static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
 
+
 @interface KVBViewWithParametres()<UITableViewDelegate, UITableViewDataSource>
+
 
 @property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) UIView *inputView;
+@property(nonatomic, strong) UIView *seperatorView;
 @property(nonatomic, strong) UITableView *tableWithCities;
 @property(nonatomic, strong) UITableView *tableWithCountries;
 @property(nonatomic, strong) KVBCoreDataServise *coreDataServise;
 @property(nonatomic, copy) NSArray *countriesArray;
 @property(nonatomic, copy) NSArray *citiesArray;
+@property(nonatomic, strong) UITapGestureRecognizer *tapRecognaiser;
+
 
 @end
 
+
 @implementation KVBViewWithParametres
+
 
 - (instancetype)initWithContext: (NSManagedObjectContext*) context
 {
     self = [super init];
     if (self)
     {
+        _tapRecognaiser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeWidth)];
         
         _departureDate = [UITextField new];
         _departureDate.placeholder = @"te.st.date";
@@ -41,7 +50,7 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
         _departureDate.borderStyle = UITextBorderStyleRoundedRect;
         _departureDate.backgroundColor = UIColor.whiteColor;
         _departureDate.alpha = 0.8;
-
+        
         _arrivalDate = [UITextField new];
         _arrivalDate.placeholder = @"te.st.date";
         _arrivalDate.backgroundColor = UIColor.clearColor;
@@ -52,12 +61,13 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
         _tableWithCities = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStyleGrouped];
         _tableWithCities.delegate = self;
         _tableWithCities.dataSource = self;
-        [_tableWithCities registerClass:[UITableViewCell class] forCellReuseIdentifier:KVBDefaulrCellIdentifier];
-        
+        [_tableWithCities registerClass:[KVBLocationsTableViewCell class] forCellReuseIdentifier:KVBDefaulrCellIdentifier];
+        [_tableWithCities addGestureRecognizer:_tapRecognaiser];
+     
         _tableWithCountries = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStyleGrouped];
         _tableWithCountries.delegate = self;
         _tableWithCountries.dataSource = self;
-        [_tableWithCountries registerClass:[UITableViewCell class] forCellReuseIdentifier:KVBDefaulrCellIdentifier];
+        [_tableWithCountries registerClass:[KVBLocationsTableViewCell class] forCellReuseIdentifier:KVBDefaulrCellIdentifier];
         
         _inputView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 320)];
         [_inputView addSubview:_tableWithCountries];
@@ -95,6 +105,7 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
         [self addSubview:_arrivalDate];
 
         [self setupConstreints];
+        
     }
     return self;
 }
@@ -137,8 +148,8 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
     [self.tableWithCountries mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.inputView.mas_top);
         make.left.equalTo(self.inputView.mas_left);
-        make.right.equalTo(self.tableWithCities.mas_left).offset(5);
-        make.width.equalTo(self.tableWithCities.mas_width);
+        make.width.mas_equalTo(UIScreen.mainScreen.bounds.size.width * 0.8);
+        make.right.equalTo(self.tableWithCities.mas_left).offset(-5);
         make.bottom.equalTo(self.inputView.mas_bottom);
     }];
     
@@ -156,20 +167,30 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:KVBDefaulrCellIdentifier];
-    
+    KVBLocationsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:KVBDefaulrCellIdentifier];
+
     if ([tableView isEqual:self.tableWithCountries])
     {
         Countries *country = self.countriesArray[indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@", country.name];
+        cell.locationName = [NSString stringWithFormat:@"%@", country.name];
     }
     if ([tableView isEqual:self.tableWithCities])
     {
         Cities *city = self.citiesArray[indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@", city.name];
+        cell.locationName = [NSString stringWithFormat:@"%@", city.name];
     }
 
     return cell;
+}
+
+- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if ([tableView isEqual:self.tableWithCities])
+    {
+        return @"Cities";
+    }
+    return @"Countries";
+
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -201,11 +222,11 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
         Cities *city = self.citiesArray[indexPath.row];
         [self updateTextFieldWithCity:city];
     }
-
 }
 
 - (void)updateTextFieldWithCity:(Cities*)city
 {
+    
     if ([self.arrivalField isFirstResponder])
     {
         [self updateTextField:self.arrivalField withCity:city];
@@ -217,7 +238,6 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
         [self updateTextField:self.departureField withCity:city];
         [self.delegate departureCityChangedWithCity:city];
         [self.departureField resignFirstResponder];
-
     }
 }
 
@@ -225,5 +245,41 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
 {
     textField.text = [NSString stringWithFormat:@"%@, %@", city.parrentCountry.codeIATA, city.name];
 }
+
+
+#pragma mark - Animations
+
+- (void)changeWidth
+{
+    
+    CGFloat width = self.bounds.size.width * 0.8;
+    
+    if(self.tableWithCountries.bounds.size.width > width/2)
+    {
+        width = self.bounds.size.width * 0.2;
+        [self.tableWithCities removeGestureRecognizer:self.tapRecognaiser];
+        [self.tableWithCountries addGestureRecognizer:self.tapRecognaiser];
+    }
+    else
+    {
+        [self.tableWithCountries removeGestureRecognizer:self.tapRecognaiser];
+        [self.tableWithCities addGestureRecognizer:self.tapRecognaiser];
+    }
+    
+    [self.inputView layoutIfNeeded];
+
+    [self.tableWithCountries mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.inputView.mas_top);
+        make.left.equalTo(self.inputView.mas_left);
+        make.width.mas_equalTo(width);
+        make.right.equalTo(self.tableWithCities.mas_left).offset(-5);
+        make.bottom.equalTo(self.inputView.mas_bottom);
+    }];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.inputView layoutIfNeeded];
+    }];
+}
+
 
 @end

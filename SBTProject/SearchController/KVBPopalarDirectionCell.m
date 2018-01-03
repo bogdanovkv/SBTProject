@@ -40,6 +40,9 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
         [_collectionView registerClass:[KVBCollectionViewFlightCell class] forCellWithReuseIdentifier:KVBCollectionViewCustomCell];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
+        _collectionView.backgroundColor = UIColor.clearColor;
+        
+        self.backgroundColor = UIColor.clearColor;
         [self.contentView addSubview:_collectionView];
 
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {

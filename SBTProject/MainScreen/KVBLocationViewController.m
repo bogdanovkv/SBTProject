@@ -74,6 +74,7 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
         [_tableWithCities registerClass:[KVBLocationsTableViewCell class] forCellReuseIdentifier: KVBLocationCellReuseIdentifier];
         _tableWithCities.dataSource = self;
         _tableWithCities.delegate = self;
+
         
         _cityField = [UITextField new];
         _cityField.backgroundColor = UIColor.clearColor;

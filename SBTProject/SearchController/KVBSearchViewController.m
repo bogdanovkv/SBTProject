@@ -70,6 +70,10 @@ const NSInteger KVBSearchButtonSize = 35;
         _tableWithFlights.estimatedRowHeight = 44.0;
         _tableWithFlights.rowHeight = UITableViewAutomaticDimension;
         
+        UIImageView *imageView = [UIImageView new];
+        imageView.image = [UIImage imageNamed:@"texture"];
+        _tableWithFlights.backgroundView = imageView;
+        
         [self.view addSubview:_searchView];
         [self.view addSubview:_searchButton];
         [self.view addSubview:_tableWithFlights];
