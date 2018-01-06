@@ -11,13 +11,14 @@
 #import "Cities+CoreDataClass.h"
 #import "Countries+CoreDataClass.h"
 #import "KVBLocationsTableViewCell.h"
+#import "KVBDatePicker.h"
 #import <Masonry.h>
 
 const CGFloat KVBLeftRightOffsetInView = 20;
 static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
 
 
-@interface KVBViewWithParametres()<UITableViewDelegate, UITableViewDataSource>
+@interface KVBViewWithParametres()<UITableViewDelegate, UITableViewDataSource, KVBDatePickerDelegate>
 
 
 @property(nonatomic, strong) UIImageView *imageView;
@@ -25,10 +26,13 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
 @property(nonatomic, strong) UIView *seperatorView;
 @property(nonatomic, strong) UITableView *tableWithCities;
 @property(nonatomic, strong) UITableView *tableWithCountries;
+@property(nonatomic, strong) UITextField *departureDateLabel;
+@property(nonatomic, strong) UITextField *arrivalDateLabel;
 @property(nonatomic, strong) KVBCoreDataServise *coreDataServise;
 @property(nonatomic, copy) NSArray *countriesArray;
 @property(nonatomic, copy) NSArray *citiesArray;
 @property(nonatomic, strong) UITapGestureRecognizer *tapRecognaiser;
+@property(nonatomic, strong) KVBDatePicker *datePicker;
 
 
 @end
@@ -44,20 +48,25 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
     {
         _tapRecognaiser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeWidth)];
         
-        _departureDate = [UITextField new];
-        _departureDate.placeholder = @"te.st.date";
-        _departureDate.backgroundColor = UIColor.clearColor;
-        _departureDate.borderStyle = UITextBorderStyleRoundedRect;
-        _departureDate.backgroundColor = UIColor.whiteColor;
-        _departureDate.alpha = 0.8;
+        _datePicker = [[KVBDatePicker alloc] initWithFrame:CGRectMake(0, 0, 0, 320)];
+        _datePicker.delegate = self;
         
-        _arrivalDate = [UITextField new];
-        _arrivalDate.placeholder = @"te.st.date";
-        _arrivalDate.backgroundColor = UIColor.clearColor;
-        _arrivalDate.borderStyle = UITextBorderStyleRoundedRect;
-        _arrivalDate.backgroundColor = UIColor.whiteColor;
-        _arrivalDate.alpha = 0.8;
-
+        _departureDateLabel = [UITextField new];
+        _departureDateLabel.placeholder = @"te.st.date";
+        _departureDateLabel.backgroundColor = UIColor.clearColor;
+        _departureDateLabel.borderStyle = UITextBorderStyleRoundedRect;
+        _departureDateLabel.backgroundColor = UIColor.whiteColor;
+        _departureDateLabel.alpha = 0.8;
+        _departureDateLabel.inputView = _datePicker;
+        
+        _arrivalDateLabel = [UITextField new];
+        _arrivalDateLabel.placeholder = @"te.st.date";
+        _arrivalDateLabel.backgroundColor = UIColor.clearColor;
+        _arrivalDateLabel.borderStyle = UITextBorderStyleRoundedRect;
+        _arrivalDateLabel.backgroundColor = UIColor.whiteColor;
+        _arrivalDateLabel.alpha = 0.8;
+        _arrivalDateLabel.inputView = _datePicker;
+        
         _tableWithCities = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStyleGrouped];
         _tableWithCities.delegate = self;
         _tableWithCities.dataSource = self;
@@ -101,14 +110,17 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
         [self addSubview:_imageView];
         [self addSubview:_departureField];
         [self addSubview:_arrivalField];
-        [self addSubview:_departureDate];
-        [self addSubview:_arrivalDate];
+        [self addSubview:_departureDateLabel];
+        [self addSubview:_arrivalDateLabel];
 
         [self setupConstreints];
         
     }
     return self;
 }
+
+
+#pragma mark - Contraints
 
 - (void)setupConstreints
 {
@@ -130,15 +142,15 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
         make.height.equalTo(@(20));
     }];
     
-    [_departureDate mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_departureDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_departureField.mas_bottom).offset(KVBLeftRightOffsetInView);
         make.left.equalTo(self.mas_left).offset(KVBLeftRightOffsetInView);
-        make.right.equalTo(_arrivalDate.mas_left).offset(-KVBLeftRightOffsetInView);
+        make.right.equalTo(_arrivalDateLabel.mas_left).offset(-KVBLeftRightOffsetInView);
         make.height.equalTo(@(20));
-        make.width.equalTo(_arrivalDate.mas_width);
+        make.width.equalTo(_arrivalDateLabel.mas_width);
     }];
     
-    [_arrivalDate mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_arrivalDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_arrivalField.mas_bottom).offset(KVBLeftRightOffsetInView);
         make.right.equalTo(self.mas_right).offset(-KVBLeftRightOffsetInView);
         make.height.equalTo(_departureField.mas_height);
@@ -165,8 +177,8 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
 
 #pragma mark - UITableViewDataSourse
 
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
     KVBLocationsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:KVBDefaulrCellIdentifier];
 
     if ([tableView isEqual:self.tableWithCountries])
@@ -185,12 +197,7 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
 
 - (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if ([tableView isEqual:self.tableWithCities])
-    {
-        return @"Cities";
-    }
-    return @"Countries";
-
+    return [tableView isEqual:self.tableWithCities] ? @"Cities" :  @"Countries";
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -205,6 +212,7 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
     }
     return 0;
 }
+
 
 #pragma mark - UITableViewDelegate
 
@@ -281,5 +289,28 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
     }];
 }
 
+#pragma mark - KVBDatePickerDelegate
+
+
+- (void)dateChanged:(NSDate *)newDate
+{
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.dateFormat = @"dd.MM.yy' 'HH:mm";
+    
+    if ([self.arrivalDateLabel isFirstResponder])
+    {
+        self.arrivalDate = newDate;
+        self.arrivalDateLabel.text = [dateFormatter stringFromDate:newDate];
+        [self.arrivalDateLabel resignFirstResponder];
+        [self.delegate arrivalDateChangedWithDate:newDate];
+    }
+    if ([self.departureDateLabel isFirstResponder])
+    {
+        self.depatrtureDate = newDate;
+        self.departureDateLabel.text = [dateFormatter stringFromDate:newDate];
+        [self.departureDateLabel resignFirstResponder];
+        [self.delegate departureDateChangedWithDate:newDate];
+    }
+}
 
 @end

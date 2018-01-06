@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-@class KVBCoreDataServise;
-@interface KVBPopalarDirectionCell : UITableViewCell
 
-- (instancetype)initWithCollection:(NSArray *)popularDirections;
+@class KVBCoreDataServise;
+
+
+@interface KVBPopularDirectionCell : UITableViewCell
+
+- (instancetype)initWithCollection:(NSArray*)popularDirections;
+
 
 @property(nonatomic, weak) UINavigationController *navController;
 @property(nonatomic, weak) KVBCoreDataServise *coreDataServise;
+
+
 @end

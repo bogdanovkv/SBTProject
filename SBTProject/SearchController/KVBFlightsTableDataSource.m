@@ -11,7 +11,7 @@
 #import "KVBFlightsTableDataSource.h"
 #import "KVBSearchViewController.h"
 #import "KVBFlyightsRequests.h"
-#import "KVBPopalarDirectionCell.h"
+#import "KVBPopularDirectionCell.h"
 #import "KVBTableViewFlightCell.h"
 #import "KVBFlyightModel.h"
 #import "KVBCoreDataServise.h"
@@ -20,7 +20,9 @@
 
 @interface KVBFlightsTableDataSource()
 
+
 @property(nonatomic, strong) NSArray* sections;
+
 
 @end
 
@@ -63,4 +65,12 @@
     return 2;
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section)
+    {
+        return @"Tickets";
+    }
+    return @"Popular directions";
+}
 @end

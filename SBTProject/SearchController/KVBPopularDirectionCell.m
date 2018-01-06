@@ -6,7 +6,7 @@
 //  Copyright © 2017 Константин Богданов. All rights reserved.
 //
 
-#import "KVBPopalarDirectionCell.h"
+#import "KVBPopularDirectionCell.h"
 #import "KVBCollectionViewFlightCell.h"
 #import "KVBFlyightInfoViewController.h"
 #import "KVBFlyightModel.h"
@@ -14,16 +14,16 @@
 #import <Masonry.h>
 static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCell";
 
-@interface KVBPopalarDirectionCell()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface KVBPopularDirectionCell()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property(nonatomic, strong) UICollectionView *collectionView;
 @property(nonatomic, copy) NSArray *popularDirections;
 @end
 
 
-@implementation KVBPopalarDirectionCell
+@implementation KVBPopularDirectionCell
 
 
-- (instancetype)initWithCollection:(NSArray *)popularDirections
+- (instancetype)initWithCollection:(NSArray*)popularDirections
 {
     self = [super init];
     if(self)
@@ -32,8 +32,7 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
         
         UICollectionViewFlowLayout *viewLayout = [[UICollectionViewFlowLayout alloc] init];
         viewLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        viewLayout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
-        viewLayout.estimatedItemSize = CGSizeMake(100, 100);
+        viewLayout.itemSize = CGSizeMake(250, 150);
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:viewLayout];
         _collectionView.backgroundColor = UIColor.whiteColor;
@@ -45,17 +44,17 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
         self.backgroundColor = UIColor.clearColor;
         [self.contentView addSubview:_collectionView];
 
+
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentView.mas_top);
             make.left.equalTo(self.contentView.mas_left);
-            make.height.mas_equalTo(180);
+            make.height.mas_equalTo(150);
             make.right.equalTo(self.contentView.mas_right);
             make.bottom.equalTo(self.contentView.mas_bottom);
         }];
         [_collectionView reloadData];
 
         [super updateConstraints];
-
     }
     return self;
 }

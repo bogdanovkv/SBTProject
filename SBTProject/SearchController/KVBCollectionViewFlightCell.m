@@ -58,7 +58,6 @@ const NSInteger KVBElementOffset = 15;
             make.top.equalTo(_departureLabel.mas_bottom).offset(KVBElementOffset);
             make.left.equalTo(self.contentView.mas_left).offset(KVBElementOffset);
             make.right.equalTo(self.contentView.mas_right).offset(-KVBElementOffset);
-            make.bottom.equalTo(self.contentView.mas_bottom).offset(-KVBElementOffset);
             
         }];
         

@@ -10,7 +10,7 @@
 
 static NSString *const KVBCustomFlightCellIdentifier = @"KVBCustomFlightCellIdentifier";
 
-@class KVBPopalarDirectionCell;
+@class KVBPopularDirectionCell;
 @class KVBCoreDataServise;
 @class KVBFlyightModel;
 @class Cities;
@@ -19,7 +19,7 @@ static NSString *const KVBCustomFlightCellIdentifier = @"KVBCustomFlightCellIden
 @property(nonatomic, strong) KVBCoreDataServise *coreDataServise;
 @property(nonatomic, copy) NSArray<KVBFlyightModel*> *popularDirections;
 @property(nonatomic, copy) NSArray<KVBFlyightModel*> *cheapTickets;
-@property(nonatomic, strong) KVBPopalarDirectionCell *cell;
+@property(nonatomic, strong) KVBPopularDirectionCell *cell;
 @property(nonatomic, weak) Cities *departureCity;
 @property(nonatomic, weak) Cities *arrivalCity;
 
