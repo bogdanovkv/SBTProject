@@ -8,8 +8,9 @@
 
 #import "KVBTableViewFlightCell.h"
 #import <Masonry.h>
-const NSInteger KVBElementOffsetTable = 10;
-const NSInteger KVBPhotoSize = 50;
+
+static NSInteger const KVBElementOffsetTable = 10;
+static NSInteger const KVBPhotoSize = 50;
 
 @interface KVBTableViewFlightCell()
 @property(nonatomic, strong) UILabel *arrivalLabel;
@@ -66,6 +67,9 @@ const NSInteger KVBPhotoSize = 50;
     return self;
 }
 
+
+#pragma mark - Contraints
+
 - (void)setupConstraints
 {
     [_arrivalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -108,6 +112,9 @@ const NSInteger KVBPhotoSize = 50;
     [super updateConstraints];
 }
 
+
+#pragma mark - Setters
+
 - (void)setDeparture:(NSString *)departure
 {
     _departure = departure;
@@ -141,4 +148,17 @@ const NSInteger KVBPhotoSize = 50;
     dateFormatter.dateFormat = @"dd.MM.yyyy' 'HH:mm";
     _departureDateLabel.text = [dateFormatter stringFromDate:_departureDate];
 }
+
+-(void)prepareForReuse
+{
+    [super prepareForReuse];
+    
+    _arrival = nil;
+    _departure = nil;
+    _departureDate = nil;
+    _arrivalDate = nil;
+    _price = nil;
+}
+
+
 @end

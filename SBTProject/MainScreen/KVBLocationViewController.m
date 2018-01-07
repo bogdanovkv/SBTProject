@@ -75,7 +75,6 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
         _tableWithCities.dataSource = self;
         _tableWithCities.delegate = self;
 
-        
         _cityField = [UITextField new];
         _cityField.backgroundColor = UIColor.clearColor;
         _cityField.placeholder = @"City";
@@ -171,17 +170,23 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
         
         KVBSearchViewController *searchViewConctroller = [[KVBSearchViewController alloc] initWithDeparture:self.city withContext:self.context];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:searchViewConctroller];
-        navController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0];
+        UIImage *searchImage = [UIImage imageNamed:@"search_icon"];
+        searchImage = [searchImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        navController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Search" image:searchImage tag:0];
         
         KVBSavedFlightsViewController *sfvc = [[KVBSavedFlightsViewController alloc] initWithCoreDataService:self.coreDataService];
         UINavigationController *navControllerForSaved = [[UINavigationController alloc] initWithRootViewController:sfvc];
-        navControllerForSaved.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemDownloads tag:1];
+        UIImage *savedImage = [UIImage imageNamed:@"saved_icon"];
+        savedImage = [savedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        navControllerForSaved.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"Saved" image:savedImage tag:1];
         
         KVBSettingsViewController *settingVC = [KVBSettingsViewController new];
-        settingVC.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemHistory tag:2];
+        UIImage *settingsImage = [UIImage imageNamed:@"settings_icon"];
+        settingsImage = [settingsImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        settingVC.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"Settings" image:settingsImage tag:2];
         
         tabBarController.viewControllers = @[navController, navControllerForSaved, settingVC];
-
+        tabBarController.tabBar.barTintColor = [UIColor colorWithRed:0 / 255.0 green:199 / 255.0 blue:156 / 255.0 alpha:1.0f];
         [self presentViewController:tabBarController animated:YES completion:nil];
     }
     else

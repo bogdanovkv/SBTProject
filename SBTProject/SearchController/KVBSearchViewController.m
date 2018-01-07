@@ -23,7 +23,10 @@
 
 const NSInteger KVBSearchButtonSize = 35;
 
-@interface KVBSearchViewController ()<UITableViewDelegate, NSURLSessionDataDelegate, NSURLSessionDelegate, KVBSearchViewDelegate>
+
+@interface KVBSearchViewController ()<UITableViewDelegate, KVBSearchViewDelegate>
+
+
 @property(nonatomic, strong) UITableView *tableWithFlights;
 @property(nonatomic, strong) Cities *departureCity;
 @property(nonatomic, strong) Cities *arrivalCity;
@@ -33,9 +36,12 @@ const NSInteger KVBSearchButtonSize = 35;
 @property(nonatomic, strong) KVBFlyightsRequests *request;
 @property(nonatomic,getter=isHide, assign) BOOL hide;
 
+
 @end
 
+
 @implementation KVBSearchViewController
+
 
 - (instancetype)initWithDeparture: (Cities*) city withContext: (NSManagedObjectContext*) context
 {
@@ -47,7 +53,6 @@ const NSInteger KVBSearchButtonSize = 35;
         _departureCity = city;
         
         _request = [KVBFlyightsRequests new];
-        _request.user = self;
         
         _searchView = [[KVBViewWithParametres alloc]initWithContext:context];
         _searchView.departureField.text = [NSString stringWithFormat:@"%@, %@", city.parrentCountry.codeIATA, city.name];
@@ -69,10 +74,8 @@ const NSInteger KVBSearchButtonSize = 35;
         _tableWithFlights.dataSource = _dataSourse;
         _tableWithFlights.estimatedRowHeight = 44.0;
         _tableWithFlights.rowHeight = UITableViewAutomaticDimension;
-        
-        UIImageView *imageView = [UIImageView new];
-        imageView.image = [UIImage imageNamed:@"texture"];
-        _tableWithFlights.backgroundView = imageView;
+        _tableWithFlights.backgroundColor = [UIColor colorWithRed:183 / 255.0 green:145 / 255.0 blue:196 / 255.0 alpha:1.0f];
+        _tableWithFlights.separatorColor = UIColor.clearColor;
         
         [self.view addSubview:_searchView];
         [self.view addSubview:_searchButton];
@@ -116,7 +119,7 @@ const NSInteger KVBSearchButtonSize = 35;
     [self.navigationController setNavigationBarHidden:YES];
 }
 
-#pragma mark -Buttons
+#pragma mark - Buttons
 
 - (void) startSearch
 {

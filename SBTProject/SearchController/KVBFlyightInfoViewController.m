@@ -104,7 +104,6 @@ const CGFloat KVBFontSize = 20.0f;
         [self.view addSubview:_imageView];
         
         [self setupConstraints];
-        
     }
     return self;
 }
@@ -152,7 +151,6 @@ const CGFloat KVBFontSize = 20.0f;
     [_backImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-    
 }
 
 - (void)viewDidLoad {
@@ -185,7 +183,6 @@ const CGFloat KVBFontSize = 20.0f;
 
 - (void)buttonAction
 {
-    
     [self.coreDataServise saveFlight:self.flightModel];
 }
 

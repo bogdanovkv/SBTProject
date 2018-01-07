@@ -35,43 +35,47 @@ const NSInteger KVBElementOffset = 15;
         _imageView.image = [UIImage imageNamed:@"iconfl.png"];
         
         self.layer.cornerRadius = 15;
+        self.backgroundColor = [UIColor colorWithRed:86 / 255.0 green:114 / 255.0 blue:209 / 255.0 alpha:1.0f];
         
         [self.contentView addSubview:_imageView];
         [self.contentView addSubview:_arrivalLabel];
         [self.contentView addSubview:_departureLabel];
         [self.contentView addSubview:_priceLabel];
 
-        [_arrivalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView.mas_top).offset(KVBElementOffset);
-            make.left.equalTo(self.contentView.mas_left).offset(KVBElementOffset);
-            make.right.equalTo(_imageView.mas_left).offset(-KVBElementOffset);
-
-        }];
-        
-        [_departureLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_arrivalLabel.mas_bottom).offset(KVBElementOffset);
-            make.left.equalTo(self.contentView.mas_left).offset(KVBElementOffset);
-            make.right.equalTo(_imageView.mas_left).offset(-KVBElementOffset);
-
-        }];
-        [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_departureLabel.mas_bottom).offset(KVBElementOffset);
-            make.left.equalTo(self.contentView.mas_left).offset(KVBElementOffset);
-            make.right.equalTo(self.contentView.mas_right).offset(-KVBElementOffset);
-            
-        }];
-        
-        [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.contentView.mas_right).offset(-KVBElementOffset);
-            make.top.equalTo(self.contentView.mas_top).offset(KVBElementOffset);
-            make.height.mas_equalTo(80);
-            make.width.mas_equalTo(80);
-        }];
-        
-        [super updateConstraints];
+        [self setupConstraints];
     }
     return self;
 }
 
-
+- (void)setupConstraints
+{
+    [_arrivalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.contentView.mas_top).offset(KVBElementOffset);
+        make.left.equalTo(self.contentView.mas_left).offset(KVBElementOffset);
+        make.right.equalTo(_imageView.mas_left).offset(-KVBElementOffset);
+        
+    }];
+    
+    [_departureLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_arrivalLabel.mas_bottom).offset(KVBElementOffset);
+        make.left.equalTo(self.contentView.mas_left).offset(KVBElementOffset);
+        make.right.equalTo(_imageView.mas_left).offset(-KVBElementOffset);
+        
+    }];
+    [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_departureLabel.mas_bottom).offset(KVBElementOffset);
+        make.left.equalTo(self.contentView.mas_left).offset(KVBElementOffset);
+        make.right.equalTo(self.contentView.mas_right).offset(-KVBElementOffset);
+        
+    }];
+    
+    [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView.mas_right).offset(-KVBElementOffset);
+        make.top.equalTo(self.contentView.mas_top).offset(KVBElementOffset);
+        make.height.mas_equalTo(80);
+        make.width.mas_equalTo(80);
+    }];
+    
+    [super updateConstraints];
+}
 @end

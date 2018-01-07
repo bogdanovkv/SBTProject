@@ -11,6 +11,7 @@
 #import "KVBFlyightInfoViewController.h"
 #import "KVBFlyightModel.h"
 #import "KVBCoreDataServise.h"
+#import "Cities+CoreDataClass.h"
 #import <Masonry.h>
 static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCell";
 
@@ -42,8 +43,8 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
         _collectionView.backgroundColor = UIColor.clearColor;
         
         self.backgroundColor = UIColor.clearColor;
+        
         [self.contentView addSubview:_collectionView];
-
 
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentView.mas_top);
@@ -52,9 +53,11 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
             make.right.equalTo(self.contentView.mas_right);
             make.bottom.equalTo(self.contentView.mas_bottom);
         }];
-        [_collectionView reloadData];
 
         [super updateConstraints];
+        
+        [_collectionView reloadData];
+
     }
     return self;
 }
@@ -67,10 +70,12 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
 
     KVBFlyightModel *flight = self.popularDirections[indexPath.row];
     
-    cell.arrivalLabel.text = flight.arrivalCode;
-    cell.departureLabel.text = flight.departureCode;
-    cell.priceLabel.text = [NSString stringWithFormat:@"%li", flight.cost];
-    cell.backgroundColor = UIColor.grayColor;
+    Cities *arrivalCity = [self.coreDataServise recieveCityByCityCode:flight.arrivalCode].firstObject;
+    Cities *departureCity = [self.coreDataServise recieveCityByCityCode:flight.departureCode].firstObject;
+    
+    cell.arrivalLabel.text = [NSString stringWithFormat:@"To: %@", arrivalCity.name];
+    cell.departureLabel.text = [NSString stringWithFormat:@"From: %@", departureCity.name];
+    cell.priceLabel.text = [NSString stringWithFormat:@"%li p.", flight.cost];
     
     return cell;
 }
@@ -80,11 +85,9 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     KVBFlyightModel *model = self.popularDirections[indexPath.row];
     Cities *departureCity = [self.coreDataServise recieveCityByCityCode:model.departureCode].firstObject;
     Cities *arrivalCity = [self.coreDataServise recieveCityByCityCode:model.arrivalCode].firstObject;
-
     
     KVBFlyightInfoViewController *flightInfoVC = [[KVBFlyightInfoViewController alloc] initWithFlightModel:self.popularDirections[indexPath.row] departureCity:departureCity arrivalCity:arrivalCity withCoreDataServise:self.coreDataServise];
 

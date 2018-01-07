@@ -295,7 +295,7 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
 - (void)dateChanged:(NSDate *)newDate
 {
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    dateFormatter.dateFormat = @"dd.MM.yy' 'HH:mm";
+    dateFormatter.dateFormat = @"dd.MM.yy";
     
     if ([self.arrivalDateLabel isFirstResponder])
     {

@@ -12,8 +12,10 @@ static NSString *const KVBPopularDirections = @"http://api.travelpayouts.com/v1/
 static NSString *const KVBCheapTiktetFromCityToCity = @"http://api.travelpayouts.com/v1/prices/cheap";
 
 @class Cities;
+
+
 @interface KVBFlyightsRequests : NSObject
-@property(nonatomic, weak) id<NSURLSessionDataDelegate, NSURLSessionDelegate> user;
+
 
 - (void) recieveCheapTicketsFromCity:(Cities*)departure departmentDate: (NSDate*) departmentDate toCity:(Cities*) destination arrivalDate: (NSDate*) arrivalDate withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler;
 
