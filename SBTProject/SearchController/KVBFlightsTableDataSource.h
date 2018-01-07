@@ -8,19 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-static NSString *const KVBCustomFlightCellIdentifier = @"KVBCustomFlightCellIdentifier";
+static NSString * const KVBCustomFlightCellIdentifier = @"KVBCustomFlightCellIdentifier";
+extern NSString * const KVBHeaderIdentifier;
 
-@class KVBPopalarDirectionCell;
+@class KVBPopularDirectionCell;
 @class KVBCoreDataServise;
 @class KVBFlyightModel;
 @class Cities;
 
+
 @interface KVBFlightsTableDataSource : NSObject <UITableViewDataSource>
+
+
 @property(nonatomic, strong) KVBCoreDataServise *coreDataServise;
 @property(nonatomic, copy) NSArray<KVBFlyightModel*> *popularDirections;
 @property(nonatomic, copy) NSArray<KVBFlyightModel*> *cheapTickets;
-@property(nonatomic, strong) KVBPopalarDirectionCell *cell;
+@property(nonatomic, strong) KVBPopularDirectionCell *cell;
 @property(nonatomic, weak) Cities *departureCity;
 @property(nonatomic, weak) Cities *arrivalCity;
+
 
 @end

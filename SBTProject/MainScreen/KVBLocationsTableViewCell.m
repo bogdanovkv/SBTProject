@@ -29,9 +29,9 @@
     if (self)
     {
         _locationLabel = [UILabel new];
-        _locationLabel.font = [UIFont systemFontOfSize:23];
+        _locationLabel.font = [UIFont systemFontOfSize:30];
         
-        self.contentView.layer.cornerRadius  = 10;
+        self.layer.cornerRadius  = 10;
         
         [self.contentView addSubview:_locationLabel];
         

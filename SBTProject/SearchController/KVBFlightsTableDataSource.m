@@ -11,16 +11,20 @@
 #import "KVBFlightsTableDataSource.h"
 #import "KVBSearchViewController.h"
 #import "KVBFlyightsRequests.h"
-#import "KVBPopalarDirectionCell.h"
+#import "KVBPopularDirectionCell.h"
 #import "KVBTableViewFlightCell.h"
 #import "KVBFlyightModel.h"
 #import "KVBCoreDataServise.h"
 #import "Cities+CoreDataClass.h"
 
+NSString * const KVBHeaderIdentifier = @"KVBHeaderIdentifier";
+
 
 @interface KVBFlightsTableDataSource()
 
+
 @property(nonatomic, strong) NSArray* sections;
+
 
 @end
 
@@ -45,10 +49,17 @@
             Cities *city = [self.coreDataServise recieveCityByCityCode:model.arrivalCode].firstObject;
             cell.arrival = city.name;
         }
+        else
+            
+        {
+            cell.arrival = self.arrivalCity.name;
+        }
+        
         cell.departure = self.departureCity.name;
         cell.price = [NSString stringWithFormat:@"%li p.", model.cost];
         cell.arrivalDate = model.arrivalDate;
         cell.departureDate = model.departureDate;
+        
         return cell;
     }
 }
@@ -62,5 +73,6 @@
 {
     return 2;
 }
+
 
 @end

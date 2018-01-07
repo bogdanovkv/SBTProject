@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1405594E1FEB81FC000014D5 /* KVBPopalarDirectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405594D1FEB81FC000014D5 /* KVBPopalarDirectionCell.m */; };
+		1405594E1FEB81FC000014D5 /* KVBPopularDirectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405594D1FEB81FC000014D5 /* KVBPopularDirectionCell.m */; };
 		140559511FEB835F000014D5 /* KVBFlyightModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 140559501FEB835F000014D5 /* KVBFlyightModel.m */; };
 		1405B43A1FF42C1300044DAA /* KVBFlyightInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405B4391FF42C1300044DAA /* KVBFlyightInfoViewController.m */; };
 		1408232C1FEC24B60030298C /* KVBCollectionViewFlightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1408232B1FEC24B60030298C /* KVBCollectionViewFlightCell.m */; };
@@ -21,6 +21,8 @@
 		141061B91FF6EF1F0092699C /* Flyight+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 141061B81FF6EF1F0092699C /* Flyight+CoreDataProperties.m */; };
 		14113C8B1FEA85C400781FBD /* KVBFlyightsRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14113C8A1FEA85C400781FBD /* KVBFlyightsRequests.m */; };
 		1415C5911FFCEEDA00BB172E /* KVBLocationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1415C58F1FFCEED900BB172E /* KVBLocationsTableViewCell.m */; };
+		1415C5942000E63600BB172E /* KVBDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1415C5932000E63600BB172E /* KVBDatePicker.m */; };
+		1416D33B2002868900340074 /* KVBHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1416D33A2002868900340074 /* KVBHeaderView.m */; };
 		141920661FE3CD6500F85CF5 /* SBTProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141920641FE3CD6500F85CF5 /* SBTProject.xcdatamodeld */; };
 		141920691FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 141920681FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.m */; };
 		14484E611FFBD0E900498D18 /* KVBSettingTableDataSourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 14484E5B1FFBD0E800498D18 /* KVBSettingTableDataSourse.m */; };
@@ -65,8 +67,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1405594C1FEB81FC000014D5 /* KVBPopalarDirectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBPopalarDirectionCell.h; sourceTree = "<group>"; };
-		1405594D1FEB81FC000014D5 /* KVBPopalarDirectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBPopalarDirectionCell.m; sourceTree = "<group>"; };
+		1405594C1FEB81FC000014D5 /* KVBPopularDirectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBPopularDirectionCell.h; sourceTree = "<group>"; };
+		1405594D1FEB81FC000014D5 /* KVBPopularDirectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBPopularDirectionCell.m; sourceTree = "<group>"; };
 		1405594F1FEB835F000014D5 /* KVBFlyightModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFlyightModel.h; sourceTree = "<group>"; };
 		140559501FEB835F000014D5 /* KVBFlyightModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFlyightModel.m; sourceTree = "<group>"; };
 		1405B4381FF42C1300044DAA /* KVBFlyightInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFlyightInfoViewController.h; sourceTree = "<group>"; };
@@ -92,6 +94,10 @@
 		14113C8A1FEA85C400781FBD /* KVBFlyightsRequests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFlyightsRequests.m; sourceTree = "<group>"; };
 		1415C58F1FFCEED900BB172E /* KVBLocationsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVBLocationsTableViewCell.m; sourceTree = "<group>"; };
 		1415C5901FFCEEDA00BB172E /* KVBLocationsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVBLocationsTableViewCell.h; sourceTree = "<group>"; };
+		1415C5922000E63600BB172E /* KVBDatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBDatePicker.h; sourceTree = "<group>"; };
+		1415C5932000E63600BB172E /* KVBDatePicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBDatePicker.m; sourceTree = "<group>"; };
+		1416D3392002868900340074 /* KVBHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBHeaderView.h; sourceTree = "<group>"; };
+		1416D33A2002868900340074 /* KVBHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBHeaderView.m; sourceTree = "<group>"; };
 		141920651FE3CD6500F85CF5 /* SBTProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SBTProject.xcdatamodel; sourceTree = "<group>"; };
 		141920671FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFirstStartCoreDataLoader.h; sourceTree = "<group>"; };
 		141920681FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFirstStartCoreDataLoader.m; sourceTree = "<group>"; };
@@ -255,14 +261,18 @@
 			children = (
 				14F39DBA1FE163D000EDEA1A /* KVBViewWithParametres.h */,
 				14F39DBB1FE163D000EDEA1A /* KVBViewWithParametres.m */,
+				1415C5922000E63600BB172E /* KVBDatePicker.h */,
+				1415C5932000E63600BB172E /* KVBDatePicker.m */,
 				14F39DB61FE160BF00EDEA1A /* KVBSearchViewController.h */,
 				14F39DB71FE160BF00EDEA1A /* KVBSearchViewController.m */,
+				1416D3392002868900340074 /* KVBHeaderView.h */,
+				1416D33A2002868900340074 /* KVBHeaderView.m */,
 				1405B4381FF42C1300044DAA /* KVBFlyightInfoViewController.h */,
 				1405B4391FF42C1300044DAA /* KVBFlyightInfoViewController.m */,
 				14F39DBD1FE1D03900EDEA1A /* KVBFlightsTableDataSource.h */,
 				14F39DBE1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m */,
-				1405594C1FEB81FC000014D5 /* KVBPopalarDirectionCell.h */,
-				1405594D1FEB81FC000014D5 /* KVBPopalarDirectionCell.m */,
+				1405594C1FEB81FC000014D5 /* KVBPopularDirectionCell.h */,
+				1405594D1FEB81FC000014D5 /* KVBPopularDirectionCell.m */,
 				140823331FED6C040030298C /* KVBTableViewFlightCell.h */,
 				140823341FED6C040030298C /* KVBTableViewFlightCell.m */,
 				1408232A1FEC24B60030298C /* KVBCollectionViewFlightCell.h */,
@@ -587,6 +597,7 @@
 				14484E641FFBD0E900498D18 /* KVBResetAllSettingsCell.m in Sources */,
 				14DA56631FE26CA900FAB89A /* KVBSavedFlightsViewController.m in Sources */,
 				14DA566D1FE278A100FAB89A /* KVBSettingsViewController.m in Sources */,
+				1415C5942000E63600BB172E /* KVBDatePicker.m in Sources */,
 				14764B981FE528EF00EEC944 /* Cities+CoreDataProperties.m in Sources */,
 				14764B931FE528EF00EEC944 /* Countries+CoreDataClass.m in Sources */,
 				1408232C1FEC24B60030298C /* KVBCollectionViewFlightCell.m in Sources */,
@@ -594,11 +605,12 @@
 				14F39DBF1FE1D03900EDEA1A /* KVBFlightsTableDataSource.m in Sources */,
 				1415C5911FFCEEDA00BB172E /* KVBLocationsTableViewCell.m in Sources */,
 				14764B961FE528EF00EEC944 /* Airpots+CoreDataProperties.m in Sources */,
+				1416D33B2002868900340074 /* KVBHeaderView.m in Sources */,
 				141920661FE3CD6500F85CF5 /* SBTProject.xcdatamodeld in Sources */,
 				14F39DBC1FE163D000EDEA1A /* KVBViewWithParametres.m in Sources */,
 				14113C8B1FEA85C400781FBD /* KVBFlyightsRequests.m in Sources */,
 				141920691FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.m in Sources */,
-				1405594E1FEB81FC000014D5 /* KVBPopalarDirectionCell.m in Sources */,
+				1405594E1FEB81FC000014D5 /* KVBPopularDirectionCell.m in Sources */,
 				14764B951FE528EF00EEC944 /* Airpots+CoreDataClass.m in Sources */,
 				14764B941FE528EF00EEC944 /* Countries+CoreDataProperties.m in Sources */,
 				1405B43A1FF42C1300044DAA /* KVBFlyightInfoViewController.m in Sources */,

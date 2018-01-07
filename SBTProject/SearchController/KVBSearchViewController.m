@@ -10,7 +10,7 @@
 #import "KVBViewWithParametres.h"
 #import "KVBFlightsTableDataSource.h"
 #import "KVBFlyightsRequests.h"
-#import "KVBPopalarDirectionCell.h"
+#import "KVBPopularDirectionCell.h"
 #import "KVBTableViewFlightCell.h"
 #import "KVBCoreDataServise.h"
 #import "Cities+CoreDataClass.h"
@@ -19,35 +19,41 @@
 #import "KVBFlyightsRequests.h"
 #import "KVBFlyightModel.h"
 #import "KVBFlyightInfoViewController.h"
+#import "KVBHeaderView.h"
 #import <Masonry.h>
 
 const NSInteger KVBSearchButtonSize = 35;
 
-@interface KVBSearchViewController ()<UITableViewDelegate, NSURLSessionDataDelegate, NSURLSessionDelegate, KVBSearchViewDelegate>
+
+@interface KVBSearchViewController ()<UITableViewDelegate, KVBSearchViewDelegate>
+
+
 @property(nonatomic, strong) UITableView *tableWithFlights;
 @property(nonatomic, strong) Cities *departureCity;
 @property(nonatomic, strong) Cities *arrivalCity;
 @property(nonatomic, strong) KVBViewWithParametres *searchView;
 @property(nonatomic, strong) UIButton *searchButton;
 @property(nonatomic, strong) KVBFlightsTableDataSource *dataSourse;
-@property(nonatomic,strong) KVBFlyightsRequests *request;
-@property(nonatomic, assign) BOOL isHide;
+@property(nonatomic, strong) KVBFlyightsRequests *request;
+@property(nonatomic,getter=isHide, assign) BOOL hide;
+
 
 @end
 
+
 @implementation KVBSearchViewController
+
 
 - (instancetype)initWithDeparture: (Cities*) city withContext: (NSManagedObjectContext*) context
 {
     self = [super init];
     if (self)
     {
-        _isHide = NO;
+        _hide = NO;
         
         _departureCity = city;
         
         _request = [KVBFlyightsRequests new];
-        _request.user = self;
         
         _searchView = [[KVBViewWithParametres alloc]initWithContext:context];
         _searchView.departureField.text = [NSString stringWithFormat:@"%@, %@", city.parrentCountry.codeIATA, city.name];
@@ -55,7 +61,7 @@ const NSInteger KVBSearchButtonSize = 35;
         _searchView.delegate = self;
         
         _searchButton = [UIButton new];
-        _searchButton.backgroundColor = UIColor.blueColor;
+        _searchButton.backgroundColor = [UIColor colorWithRed:0 / 255.0 green:199 / 255.0 blue:156 / 255.0 alpha:1.0f];
         [_searchButton setTitle:@"Search" forState:UIControlStateNormal];
         [_searchButton addTarget:self action:@selector(startSearch) forControlEvents:UIControlEventTouchDown];
         _searchButton.layer.cornerRadius = 7.5;
@@ -63,12 +69,15 @@ const NSInteger KVBSearchButtonSize = 35;
         _tableWithFlights = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStylePlain];
         _tableWithFlights.delegate = self;
         [_tableWithFlights registerClass:[KVBTableViewFlightCell class] forCellReuseIdentifier:KVBCustomFlightCellIdentifier];
-        [_tableWithFlights registerClass:[KVBPopalarDirectionCell class] forCellReuseIdentifier:@"Cell"];
+        [_tableWithFlights registerClass:[KVBPopularDirectionCell class] forCellReuseIdentifier:@"Cell"];
+        [_tableWithFlights registerClass:[KVBHeaderView class] forHeaderFooterViewReuseIdentifier:KVBHeaderIdentifier];
         _dataSourse = [KVBFlightsTableDataSource new];
         _dataSourse.coreDataServise = [[KVBCoreDataServise alloc]initWithContext:context];
         _tableWithFlights.dataSource = _dataSourse;
         _tableWithFlights.estimatedRowHeight = 44.0;
         _tableWithFlights.rowHeight = UITableViewAutomaticDimension;
+        _tableWithFlights.backgroundColor = [UIColor colorWithRed:40 / 255.0 green:73 / 255.0 blue:82 / 255.0 alpha:1.0f];
+        _tableWithFlights.separatorColor = UIColor.clearColor;
         
         [self.view addSubview:_searchView];
         [self.view addSubview:_searchButton];
@@ -112,14 +121,14 @@ const NSInteger KVBSearchButtonSize = 35;
     [self.navigationController setNavigationBarHidden:YES];
 }
 
-#pragma mark -Buttons
+#pragma mark - Buttons
 
 - (void) startSearch
 {
     self.dataSourse.departureCity = self.departureCity;
     self.dataSourse.arrivalCity = self.arrivalCity;
     
-    [self.request recieveCheapTicketsFromCity:self.departureCity departmentDate:nil toCity:self.arrivalCity arrivalDate:nil withCompletitionHandler:^(NSData *data, NSError *error) {
+    [self.request recieveCheapTicketsFromCity:self.departureCity departmentDate:self.searchView.depatrtureDate toCity:self.arrivalCity arrivalDate:self.searchView.arrivalDate withCompletitionHandler:^(NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 
@@ -139,7 +148,7 @@ const NSInteger KVBSearchButtonSize = 35;
             NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             
             self.dataSourse.popularDirections = [KVBFlyightModel arrayFromDictionaries:recievedData[@"data"]];
-            self.dataSourse.cell = [[KVBPopalarDirectionCell alloc] initWithCollection:self.dataSourse.popularDirections];
+            self.dataSourse.cell = [[KVBPopularDirectionCell alloc] initWithCollection:self.dataSourse.popularDirections];
             self.dataSourse.cell.navController = self.navigationController;
             self.dataSourse.cell.coreDataServise = self.dataSourse.coreDataServise;
     
@@ -179,9 +188,36 @@ const NSInteger KVBSearchButtonSize = 35;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(!indexPath.section)
+    {
+        return;
+    }
+    
     KVBFlyightInfoViewController *flightInfoVC = [[KVBFlyightInfoViewController alloc] initWithFlightModel:self.dataSourse.cheapTickets[indexPath.row] departureCity:self.departureCity arrivalCity:self.arrivalCity withCoreDataServise:self.dataSourse.coreDataServise];
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     [self.navigationController pushViewController:flightInfoVC animated:YES];
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    KVBHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:KVBHeaderIdentifier];
+    if(!section)
+    {
+        headerView.sectionNameLabel.text = @"Popular directions";
+    }
+    else
+    {
+        headerView.sectionNameLabel.text = @"Tickets";
+
+    }
+    return headerView;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 24.0;
 }
 
 
@@ -200,7 +236,7 @@ const NSInteger KVBSearchButtonSize = 35;
         [self.searchButton setTitle:@"Search" forState:UIControlStateNormal];
         [self.view layoutIfNeeded];
     }];
-    self.isHide = NO;
+    self.hide = NO;
 }
 
 - (void) hideSearchButton
@@ -217,6 +253,6 @@ const NSInteger KVBSearchButtonSize = 35;
         [self.searchButton setTitle:nil forState:UIControlStateNormal];
         [self.view layoutIfNeeded];
     }];
-    self.isHide = YES;
+    self.hide = YES;
 }
 @end
