@@ -35,7 +35,7 @@ const NSInteger KVBElementOffset = 15;
         _imageView.image = [UIImage imageNamed:@"iconfl.png"];
         
         self.layer.cornerRadius = 15;
-        self.backgroundColor = [UIColor colorWithRed:86 / 255.0 green:114 / 255.0 blue:209 / 255.0 alpha:1.0f];
+        self.backgroundColor = [UIColor colorWithRed:255 / 255.0 green:246 / 255.0 blue:196 / 255.0 alpha:1.0f];
         
         [self.contentView addSubview:_imageView];
         [self.contentView addSubview:_arrivalLabel];

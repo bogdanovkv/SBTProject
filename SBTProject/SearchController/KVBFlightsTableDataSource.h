@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-static NSString *const KVBCustomFlightCellIdentifier = @"KVBCustomFlightCellIdentifier";
+static NSString * const KVBCustomFlightCellIdentifier = @"KVBCustomFlightCellIdentifier";
+extern NSString * const KVBHeaderIdentifier;
 
 @class KVBPopularDirectionCell;
 @class KVBCoreDataServise;

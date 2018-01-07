@@ -17,6 +17,8 @@
 #import "KVBCoreDataServise.h"
 #import "Cities+CoreDataClass.h"
 
+NSString * const KVBHeaderIdentifier = @"KVBHeaderIdentifier";
+
 
 @interface KVBFlightsTableDataSource()
 
@@ -47,10 +49,17 @@
             Cities *city = [self.coreDataServise recieveCityByCityCode:model.arrivalCode].firstObject;
             cell.arrival = city.name;
         }
+        else
+            
+        {
+            cell.arrival = self.arrivalCity.name;
+        }
+        
         cell.departure = self.departureCity.name;
         cell.price = [NSString stringWithFormat:@"%li p.", model.cost];
         cell.arrivalDate = model.arrivalDate;
         cell.departureDate = model.departureDate;
+        
         return cell;
     }
 }
@@ -65,14 +74,16 @@
     return 2;
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (section)
-    {
-        return @"Tickets";
-    }
-    return @"Popular directions";
-}
+
+
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    if (section)
+//    {
+//        return @"Tickets";
+//    }
+//    return @"Popular directions";
+//}
 
 
 @end

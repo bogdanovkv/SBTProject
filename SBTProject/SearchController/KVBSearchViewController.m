@@ -19,6 +19,7 @@
 #import "KVBFlyightsRequests.h"
 #import "KVBFlyightModel.h"
 #import "KVBFlyightInfoViewController.h"
+#import "KVBHeaderView.h"
 #import <Masonry.h>
 
 const NSInteger KVBSearchButtonSize = 35;
@@ -69,12 +70,13 @@ const NSInteger KVBSearchButtonSize = 35;
         _tableWithFlights.delegate = self;
         [_tableWithFlights registerClass:[KVBTableViewFlightCell class] forCellReuseIdentifier:KVBCustomFlightCellIdentifier];
         [_tableWithFlights registerClass:[KVBPopularDirectionCell class] forCellReuseIdentifier:@"Cell"];
+        [_tableWithFlights registerClass:[KVBHeaderView class] forHeaderFooterViewReuseIdentifier:KVBHeaderIdentifier];
         _dataSourse = [KVBFlightsTableDataSource new];
         _dataSourse.coreDataServise = [[KVBCoreDataServise alloc]initWithContext:context];
         _tableWithFlights.dataSource = _dataSourse;
         _tableWithFlights.estimatedRowHeight = 44.0;
         _tableWithFlights.rowHeight = UITableViewAutomaticDimension;
-        _tableWithFlights.backgroundColor = [UIColor colorWithRed:183 / 255.0 green:145 / 255.0 blue:196 / 255.0 alpha:1.0f];
+        _tableWithFlights.backgroundColor = [UIColor colorWithRed:40 / 255.0 green:73 / 255.0 blue:82 / 255.0 alpha:1.0f];
         _tableWithFlights.separatorColor = UIColor.clearColor;
         
         [self.view addSubview:_searchView];
@@ -193,7 +195,29 @@ const NSInteger KVBSearchButtonSize = 35;
     
     KVBFlyightInfoViewController *flightInfoVC = [[KVBFlyightInfoViewController alloc] initWithFlightModel:self.dataSourse.cheapTickets[indexPath.row] departureCity:self.departureCity arrivalCity:self.arrivalCity withCoreDataServise:self.dataSourse.coreDataServise];
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     [self.navigationController pushViewController:flightInfoVC animated:YES];
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    KVBHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:KVBHeaderIdentifier];
+    if(!section)
+    {
+        headerView.sectionNameLabel.text = @"Popular directions";
+    }
+    else
+    {
+        headerView.sectionNameLabel.text = @"Tickets";
+
+    }
+    return headerView;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 24.0;
 }
 
 
