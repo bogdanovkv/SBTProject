@@ -75,15 +75,4 @@ NSString * const KVBHeaderIdentifier = @"KVBHeaderIdentifier";
 }
 
 
-
-//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    if (section)
-//    {
-//        return @"Tickets";
-//    }
-//    return @"Popular directions";
-//}
-
-
 @end
