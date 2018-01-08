@@ -14,7 +14,9 @@
 @class Flyight;
 @class KVBFlyightModel;
 
+
 @interface KVBCoreDataServise : NSObject
+
 
 @property(nonatomic, readonly, strong) NSManagedObjectContext *context;
 
@@ -27,5 +29,6 @@
 - (NSArray<Flyight*>*)recieveAllFlyights;
 - (void)saveFlight:(KVBFlyightModel*)flyightModel;
 - (void)deleteFlight:(Flyight*)flight;
+
 
 @end
