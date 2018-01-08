@@ -84,7 +84,7 @@
     [self recieveByURL:KVBRequestAllAirports];
 }
 
-- (void)recieveByURL: (NSString*) string
+- (void)recieveByURL:(NSString*) string
 {
     NSURLComponents *urlComponents = [NSURLComponents componentsWithString:string];
     

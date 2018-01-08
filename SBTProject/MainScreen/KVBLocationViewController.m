@@ -159,7 +159,7 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
 }
 
 
-#pragma mark UIButton events
+#pragma mark - UIButton events
 
 - (void)acceptLocation
 {

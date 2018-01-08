@@ -15,9 +15,14 @@
 #import <Masonry.h>
 static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCell";
 
+
 @interface KVBPopularDirectionCell()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+
+
 @property(nonatomic, strong) UICollectionView *collectionView;
 @property(nonatomic, copy) NSArray *popularDirections;
+
+
 @end
 
 
@@ -93,5 +98,6 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
 
     [self.navController pushViewController:flightInfoVC animated:YES];
 }
+
 
 @end

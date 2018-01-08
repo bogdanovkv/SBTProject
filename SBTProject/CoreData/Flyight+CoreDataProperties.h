@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Flyight (CoreDataProperties)
 
+
 + (NSFetchRequest<Flyight *> *)fetchRequest;
 
 @property (nullable, nonatomic, copy) NSString *airline;
@@ -23,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int16_t flightNumber;
 @property (nullable, nonatomic, retain) Cities *arrival;
 @property (nullable, nonatomic, retain) Cities *departure;
+
 
 @end
 
