@@ -27,5 +27,8 @@ extern NSString * const KVBHeaderIdentifier;
 @property(nonatomic, weak) Cities *departureCity;
 @property(nonatomic, weak) Cities *arrivalCity;
 
+- (void)noChepTickets;
+- (void)noPopularDirections;
+
 
 @end

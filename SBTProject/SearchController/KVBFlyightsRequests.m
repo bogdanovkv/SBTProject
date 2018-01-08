@@ -69,9 +69,12 @@
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:[NSURLRequest requestWithURL:components.URL] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(!data)
         {
+            NSString *errorText = @"No tickets";
+            NSError *noDataError = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey:errorText}];
+            completionHandler(data, noDataError);
             return ;
         }
-        completionHandler(data, error);
+        completionHandler(data, nil);
     }];
     
     [dataTask resume];

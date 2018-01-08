@@ -131,6 +131,13 @@ static NSInteger const KVBSearchButtonSize = 35;
     
     [self.request recieveCheapTicketsFromCity:self.departureCity departmentDate:self.searchView.depatrtureDate toCity:self.arrivalCity arrivalDate:self.searchView.arrivalDate withCompletitionHandler:^(NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (error)
+            {
+                [self.dataSourse noChepTickets];
+                [self.tableWithFlights reloadData];
+                return ;
+            }
             NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 
             NSDictionary *cheap = recievedData[@"data"];
@@ -145,6 +152,13 @@ static NSInteger const KVBSearchButtonSize = 35;
 {
     [self.request recievePopularDirectionFRomCity:self.departureCity onPage:0 withCompletitionHandler:^(NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if(error)
+            {
+                [self.dataSourse noPopularDirections];
+                [self.tableWithFlights reloadData];
+                return ;
+            }
             
             NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             
@@ -191,6 +205,12 @@ static NSInteger const KVBSearchButtonSize = 35;
 {
     if(!indexPath.section)
     {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        return;
+    }
+    if(![[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[KVBTableViewFlightCell class]])
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;
     }
     
