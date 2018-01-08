@@ -11,7 +11,7 @@
 @implementation Flyight (CoreDataProperties)
 
 + (NSFetchRequest<Flyight *> *)fetchRequest {
-    NSFetchRequest *fetchRequest =  [[NSFetchRequest alloc] initWithEntityName:@"Flyight"];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Flyight"];
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"arrival.name" ascending:YES]];
     return fetchRequest;
 }

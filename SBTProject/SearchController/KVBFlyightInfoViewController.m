@@ -109,7 +109,7 @@ static NSInteger const KVBButtonCornerRadius = 15;
         _imageView.image = [UIImage imageNamed:@"collIcon"];
         _imageView.frame = CGRectMake(-40, -40, 40, 40);
         
-        self.view.backgroundColor = [UIColor colorWithRed:40 / 255.0 green:73 / 255.0 blue:82 / 255.0 alpha:1.0f];;
+        self.view.backgroundColor = [UIColor colorWithRed:40 / 255.0 green:73 / 255.0 blue:82 / 255.0 alpha:1.0f];
         
         [self.view addSubview:_fromLabel];
         [self.view addSubview:_timeLabel];
@@ -185,7 +185,10 @@ static NSInteger const KVBButtonCornerRadius = 15;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:40 / 255.0 green:73 / 255.0 blue:82 / 255.0 alpha:1.0f];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0 / 255.0 green:199 / 255.0 blue:156 / 255.0 alpha:1.0f];
 }
 
 
