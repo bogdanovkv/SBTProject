@@ -211,7 +211,6 @@ static NSInteger const KVBSearchButtonSize = 35;
     else
     {
         headerView.sectionNameLabel.text = @"Tickets";
-
     }
     return headerView;
 }

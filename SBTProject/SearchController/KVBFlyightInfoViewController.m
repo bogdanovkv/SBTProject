@@ -27,6 +27,7 @@ static NSInteger const KVBButtonCornerRadius = 15;
 @property(nonatomic, strong) UILabel *backTimeLabel;
 @property(nonatomic, strong) UILabel *backDateLabel;
 @property(nonatomic, strong) UILabel *priceLabel;
+@property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) KVBFlyightModel *flightModel;
 @property(nonatomic, strong) Cities *departureCity;
 @property(nonatomic, strong) Cities *arrivalCity;
@@ -47,6 +48,7 @@ static NSInteger const KVBButtonCornerRadius = 15;
         dateFormatter.dateFormat = @"dd.MM.yyyy' 'HH:mm";
         
         UIColor *lightGreen = [UIColor colorWithRed:133 / 255.0 green:214 / 255.0 blue:213 / 255.0 alpha:1.0f];
+        
         _coreDataServise = coreDataServise;
         
         _flightModel = flightModel;
@@ -103,6 +105,10 @@ static NSInteger const KVBButtonCornerRadius = 15;
         _saveButton.layer.cornerRadius = KVBButtonCornerRadius;
         _saveButton.tintColor = UIColor.whiteColor;
         
+        _imageView = [UIImageView new];
+        _imageView.image = [UIImage imageNamed:@"collIcon"];
+        _imageView.frame = CGRectMake(-40, -40, 40, 40);
+        
         self.view.backgroundColor = [UIColor colorWithRed:40 / 255.0 green:73 / 255.0 blue:82 / 255.0 alpha:1.0f];;
         
         [self.view addSubview:_fromLabel];
@@ -113,6 +119,7 @@ static NSInteger const KVBButtonCornerRadius = 15;
         [self.view addSubview:_backDateLabel];
         [self.view addSubview:_priceLabel];
         [self.view addSubview:_saveButton];
+        [self.view addSubview:_imageView];
         
         [self setupConstraints];
     }
@@ -187,6 +194,41 @@ static NSInteger const KVBButtonCornerRadius = 15;
 - (void)buttonAction
 {
     [self.coreDataServise saveFlight:self.flightModel];
+    [self startAnimation];
+    
 }
 
+
+#pragma mark - Animation
+
+- (void)startAnimation
+{
+    double duration  = 1.7;
+    
+    NSMutableArray *array = [NSMutableArray array];
+    CGFloat funcOfX;
+    CGFloat x;
+    CGFloat dx = 0.5 * self.view.bounds.size.width / 100;
+    CGFloat a =  (self.view.bounds.size.height - KVBElementBottomOffset) / pow(0.5 * self.view.bounds.size.width, 2) ; // y = ax^2
+    
+    for (int i = 0; i<100; i++)
+    {
+        x = i * dx;
+        funcOfX = a * pow(x, 2);
+        [array addObject:@(CGPointMake(x, funcOfX))];
+    }
+    
+    CABasicAnimation *basicAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+    basicAnimation.fromValue  = @0;
+    basicAnimation.toValue = @1.5;
+    basicAnimation.duration = duration;
+    
+    
+    
+    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    pathAnimation.values = array;
+    pathAnimation.duration = duration;
+    [self.imageView.layer addAnimation:pathAnimation forKey:@"position"];
+    [self.imageView.layer addAnimation:basicAnimation forKey:@"transform.rotation"];
+}
 @end
