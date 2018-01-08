@@ -80,7 +80,6 @@
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"codeIATA == %@", codeIATA];
     
     NSArray *cityInArray = [self.context executeFetchRequest:fetchRequest error:nil];
-    NSLog(@"%li", cityInArray.count);
 
     return cityInArray;
 }
@@ -126,8 +125,8 @@
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Flyight class])];
     
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"airline == %@ AND classNumber == %li AND cost == %i AND flightNumber == %li"
-                              ,flyightModel.airlineCode,
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"airline == %@ AND classNumber == %li AND cost == %i AND flightNumber == %li",
+                              flyightModel.airlineCode,
                               flyightModel.classNumber,
                               (int)flyightModel.cost,
                               flyightModel.flightNumber];

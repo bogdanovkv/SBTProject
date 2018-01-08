@@ -22,8 +22,7 @@
 #import "KVBHeaderView.h"
 #import <Masonry.h>
 
-const NSInteger KVBSearchButtonSize = 35;
-
+static NSInteger const KVBSearchButtonSize = 35;
 
 @interface KVBSearchViewController ()<UITableViewDelegate, KVBSearchViewDelegate>
 
@@ -55,6 +54,9 @@ const NSInteger KVBSearchButtonSize = 35;
         
         _request = [KVBFlyightsRequests new];
         
+        _dataSourse = [KVBFlightsTableDataSource new];
+        _dataSourse.coreDataServise = [[KVBCoreDataServise alloc]initWithContext:context];
+        
         _searchView = [[KVBViewWithParametres alloc]initWithContext:context];
         _searchView.departureField.text = [NSString stringWithFormat:@"%@, %@", city.parrentCountry.codeIATA, city.name];
         _searchView.backgroundColor = UIColor.whiteColor;
@@ -71,8 +73,6 @@ const NSInteger KVBSearchButtonSize = 35;
         [_tableWithFlights registerClass:[KVBTableViewFlightCell class] forCellReuseIdentifier:KVBCustomFlightCellIdentifier];
         [_tableWithFlights registerClass:[KVBPopularDirectionCell class] forCellReuseIdentifier:@"Cell"];
         [_tableWithFlights registerClass:[KVBHeaderView class] forHeaderFooterViewReuseIdentifier:KVBHeaderIdentifier];
-        _dataSourse = [KVBFlightsTableDataSource new];
-        _dataSourse.coreDataServise = [[KVBCoreDataServise alloc]initWithContext:context];
         _tableWithFlights.dataSource = _dataSourse;
         _tableWithFlights.estimatedRowHeight = 44.0;
         _tableWithFlights.rowHeight = UITableViewAutomaticDimension;
@@ -120,6 +120,7 @@ const NSInteger KVBSearchButtonSize = 35;
     [super viewWillAppear:YES];
     [self.navigationController setNavigationBarHidden:YES];
 }
+
 
 #pragma mark - Buttons
 

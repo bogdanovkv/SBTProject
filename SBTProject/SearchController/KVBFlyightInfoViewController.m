@@ -12,22 +12,21 @@
 #import "KVBCoreDataServise.h"
 #import <Masonry.h>
 
-const NSInteger KVBElementOffsetInFlyightInfo = 15;
-const NSInteger KVBButtonHeight = 40;
-const NSInteger KVBElementBottomOffset = 64;
-const NSInteger KVBNavigationBarSize = 64;
-const NSInteger KVBCornerRadiusButton = 15;
-const CGFloat KVBFontSize = 20.0f;
-
+static NSInteger const KVBElementOffsetInFlyightInfo = 15;
+static NSInteger const KVBButtonHeight = 40;
+static NSInteger const KVBElementBottomOffset = 64;
+static NSInteger const KVBNavigationBarSize = 64;
+static NSInteger const KVBButtonCornerRadius = 15;
 
 @interface KVBFlyightInfoViewController ()
 
 @property(nonatomic, strong) UILabel *fromLabel;
-@property(nonatomic, strong) UILabel *toLabel;
+@property(nonatomic, strong) UILabel *backLabel;
+@property(nonatomic, strong) UILabel *timeLabel;
 @property(nonatomic, strong) UILabel *departureDateLabel;
+@property(nonatomic, strong) UILabel *backTimeLabel;
 @property(nonatomic, strong) UILabel *backDateLabel;
-@property(nonatomic, strong) UIImageView *imageView;
-@property(nonatomic, strong) UIImageView *backImage;
+@property(nonatomic, strong) UILabel *priceLabel;
 @property(nonatomic, strong) KVBFlyightModel *flightModel;
 @property(nonatomic, strong) Cities *departureCity;
 @property(nonatomic, strong) Cities *arrivalCity;
@@ -44,10 +43,10 @@ const CGFloat KVBFontSize = 20.0f;
     self = [super init];
     if (self)
     {
-        UIFont *font = [UIFont fontWithName:@"Baskerville-BoldItalic"  size:KVBFontSize];
         NSDateFormatter *dateFormatter = [NSDateFormatter new];
         dateFormatter.dateFormat = @"dd.MM.yyyy' 'HH:mm";
         
+        UIColor *lightGreen = [UIColor colorWithRed:133 / 255.0 green:214 / 255.0 blue:213 / 255.0 alpha:1.0f];
         _coreDataServise = coreDataServise;
         
         _flightModel = flightModel;
@@ -60,48 +59,60 @@ const CGFloat KVBFontSize = 20.0f;
         _flightModel.departureCode = _departureCity.codeIATA;
 
         _fromLabel = [UILabel new];
-        _fromLabel.numberOfLines = 0;
-        _fromLabel.text = [NSString stringWithFormat:@"From:    %@", _departureCity.name];
-        _fromLabel.font = font;
-        _fromLabel.shadowColor = UIColor.whiteColor;
-
-        _toLabel = [UILabel new];
-        _toLabel.numberOfLines = 0;
-        _toLabel.text = [NSString stringWithFormat:@"To:    %@", _arrivalCity.name];
-        _toLabel.font = font;
-        _toLabel.shadowColor = UIColor.whiteColor;
-
+        _fromLabel.text = [NSString stringWithFormat:@"%@ - %@",departureCity.name , _arrivalCity.name];
+        _fromLabel.backgroundColor = lightGreen;
+        
+        _timeLabel = [UILabel new];
+        dateFormatter.dateFormat = @"HH:mm";
+        _timeLabel.text = [dateFormatter stringFromDate:flightModel.departureDate];
+        _timeLabel.layer.cornerRadius = 5.0;
+        _timeLabel.clipsToBounds = YES;
+        _timeLabel.backgroundColor = [UIColor colorWithRed:133 / 255.0 green:214 / 255.0 blue:213 / 255.0 alpha:1.0f];
+        
         _departureDateLabel = [UILabel new];
-        _departureDateLabel.numberOfLines = 0;
-        _departureDateLabel.text = [NSString stringWithFormat:@"Departure at %@", [dateFormatter stringFromDate:flightModel.arrivalDate]];
-        _departureDateLabel.font = font;
-        _departureDateLabel.shadowColor = UIColor.whiteColor;
-
+        dateFormatter.dateFormat = @"MMM d, yyyy, EEEE";
+        _departureDateLabel.text = [dateFormatter stringFromDate:flightModel.departureDate];
+        _departureDateLabel.textColor = UIColor.whiteColor;
+        
+        _backLabel = [UILabel new];
+        _backLabel.text = [NSString stringWithFormat:@"%@ - %@",_arrivalCity.name , _departureCity.name];
+        _backLabel.backgroundColor = lightGreen;
+        
+        _backTimeLabel = [UILabel new];
+        dateFormatter.dateFormat = @"HH:mm";
+        _backTimeLabel.text = [dateFormatter stringFromDate:flightModel.arrivalDate];
+        _backTimeLabel.layer.cornerRadius = 5.0;
+        _backTimeLabel.clipsToBounds = YES;
+        _backTimeLabel.backgroundColor = [UIColor colorWithRed:133 / 255.0 green:214 / 255.0 blue:213 / 255.0 alpha:1.0f];
+        
         _backDateLabel = [UILabel new];
-        _backDateLabel.numberOfLines = 0;
-        _backDateLabel.text = [NSString stringWithFormat:@"Return at %@", [dateFormatter stringFromDate:flightModel.departureDate]];
-        _backDateLabel.font = font;
-        _backDateLabel.shadowColor = UIColor.whiteColor;
-    
+        dateFormatter.dateFormat = @"MMM d, yyyy, EEEE";
+        _backDateLabel.text = [dateFormatter stringFromDate:flightModel.arrivalDate];
+        _backDateLabel.textColor = UIColor.whiteColor;
+        
+        _priceLabel = [UILabel new];
+        _priceLabel.text = [NSString stringWithFormat:@"Price %li p.", flightModel.cost];
+        _priceLabel.backgroundColor = lightGreen;
+        _priceLabel.textAlignment = NSTextAlignmentCenter;
+        
         _saveButton = [UIButton new];
-        _saveButton.layer.cornerRadius = KVBCornerRadiusButton;
-        _saveButton.backgroundColor = UIColor.grayColor;
-        [_saveButton addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchDown];
+        [_saveButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         [_saveButton setTitle:@"Save flight" forState:UIControlStateNormal];
+        [_saveButton addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchDown];
+        _saveButton.backgroundColor = lightGreen;
+        _saveButton.layer.cornerRadius = KVBButtonCornerRadius;
+        _saveButton.tintColor = UIColor.whiteColor;
         
-        _imageView = [UIImageView new];
-        _imageView.image = [UIImage imageNamed:@"bigplane"];;
+        self.view.backgroundColor = [UIColor colorWithRed:40 / 255.0 green:73 / 255.0 blue:82 / 255.0 alpha:1.0f];;
         
-        _backImage = [UIImageView new];
-        _backImage.image = [UIImage imageNamed:@"background"];
-        
-        [self.view addSubview:_backImage];
         [self.view addSubview:_fromLabel];
-        [self.view addSubview:_toLabel];
+        [self.view addSubview:_timeLabel];
         [self.view addSubview:_departureDateLabel];
+        [self.view addSubview:_backLabel];
+        [self.view addSubview:_backTimeLabel];
         [self.view addSubview:_backDateLabel];
+        [self.view addSubview:_priceLabel];
         [self.view addSubview:_saveButton];
-        [self.view addSubview:_imageView];
         
         [self setupConstraints];
     }
@@ -111,61 +122,53 @@ const CGFloat KVBFontSize = 20.0f;
 - (void)setupConstraints
 {
     [_fromLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_top).offset(KVBNavigationBarSize + KVBElementOffsetInFlyightInfo);
-        make.left.equalTo(self.view.mas_left).offset(KVBElementOffsetInFlyightInfo);
-        make.right.equalTo(self.view.mas_right).offset(-KVBElementOffsetInFlyightInfo);
-    }];
-    
-    [_toLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_fromLabel.mas_bottom).offset(KVBElementOffsetInFlyightInfo);
-        make.left.equalTo(self.view.mas_left).offset(KVBElementOffsetInFlyightInfo);
-        make.right.equalTo(self.view.mas_right).offset(-KVBElementOffsetInFlyightInfo);
-    }];
-    
-    [_departureDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_toLabel.mas_bottom).offset(KVBElementOffsetInFlyightInfo);
-        make.left.equalTo(self.view.mas_left).offset(KVBElementOffsetInFlyightInfo);
-        make.right.equalTo(self.view.mas_right).offset(KVBElementOffsetInFlyightInfo);
-    }];
-    
-    [_saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_left).offset(KVBElementOffsetInFlyightInfo);
-        make.height.mas_equalTo(KVBButtonHeight);
-        make.right.equalTo(self.view.mas_right).offset(-KVBElementOffsetInFlyightInfo);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-KVBElementBottomOffset);
-    }];
-    
-    [_backDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(_saveButton.mas_top).offset(-KVBElementOffsetInFlyightInfo);
-        make.left.equalTo(self.view.mas_left).offset(KVBElementOffsetInFlyightInfo);
-        make.right.equalTo(self.view.mas_right).offset(-KVBElementOffsetInFlyightInfo);
-    }];
-    
-    [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view.mas_centerX);
-        make.centerY.equalTo(self.view.mas_centerY);
+        make.top.equalTo(self.view.mas_top).offset(KVBNavigationBarSize);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
     }];
     
-    [_backImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+    [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_fromLabel.mas_bottom).offset(KVBElementOffsetInFlyightInfo);
+        make.left.equalTo(self.view.mas_left).offset(KVBElementOffsetInFlyightInfo);
+    }];
+    
+    [_departureDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_fromLabel.mas_bottom).offset(KVBElementOffsetInFlyightInfo);
+        make.left.equalTo(_timeLabel.mas_right).offset(KVBElementOffsetInFlyightInfo);
+    }];
+    
+    [_backLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_departureDateLabel.mas_bottom).offset(KVBElementOffsetInFlyightInfo);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+    }];
+    
+    [_backTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_backLabel.mas_bottom).offset(KVBElementOffsetInFlyightInfo);
+        make.left.equalTo(self.view.mas_left).offset(KVBElementOffsetInFlyightInfo);
+    }];
+
+    [_backDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_backLabel.mas_bottom).offset(KVBElementOffsetInFlyightInfo);
+        make.left.equalTo(_backTimeLabel.mas_right).offset(KVBElementOffsetInFlyightInfo);
+    }];
+    
+    [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_backDateLabel.mas_bottom).offset(KVBElementOffsetInFlyightInfo);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+    }];
+    
+    [_saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left).offset(KVBElementOffsetInFlyightInfo);
+        make.right.equalTo(self.view.mas_right).offset(- KVBElementOffsetInFlyightInfo);;
+        make.height.mas_equalTo(KVBButtonHeight);
+        make.bottom.equalTo(self.view.mas_bottom).offset(- KVBElementOffsetInFlyightInfo - KVBElementBottomOffset);
     }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    UIColor *topColor = [UIColor colorWithRed:89 / 255.0 green:89 / 255.0 blue:89 / 255.0 alpha:1.0f];
-    UIColor *middleColor = [UIColor colorWithRed:200 / 255.0 green:200 / 255.0 blue:200 / 255.0 alpha:1.0f];
-    UIColor *bottomColor = [UIColor colorWithRed:0 / 255.0 green:0 / 255.0 blue:0 / 255.0 alpha:1.0f];
-   
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.view.bounds;
-    gradient.colors = @[(id)topColor.CGColor, (id)middleColor.CGColor, (id)bottomColor.CGColor ];
-
-    [self.view.layer insertSublayer:gradient atIndex:0];
-    
 }
 
 - (void)didReceiveMemoryWarning {
