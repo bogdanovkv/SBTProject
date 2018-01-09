@@ -51,10 +51,7 @@
         _collectionWithFlyights.dataSource = _dataSourse;
         _collectionWithFlyights.delegate = self;
         
-        _backImage = [UIImageView new];
-        _backImage.image = [UIImage imageNamed:@"asphalt"];
-        _collectionWithFlyights.backgroundView = _backImage;
-        
+        _collectionWithFlyights.backgroundColor = [UIColor colorWithRed:40 / 255.0 green:73 / 255.0 blue:82 / 255.0 alpha:1.0f];
         
         _fetchController.delegate = self;
         

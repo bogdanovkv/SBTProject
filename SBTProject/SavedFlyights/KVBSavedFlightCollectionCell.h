@@ -11,7 +11,7 @@
 @interface KVBSavedFlightCollectionCell : UICollectionViewCell
 
 @property(nonatomic, copy) NSString *from;
-@property(nonatomic, copy) NSString *to;
+@property(nonatomic, copy) NSString *back;
 @property(nonatomic, strong) NSDate *departureDate;
 @property(nonatomic, strong) NSDate *backDate;
 @property(nonatomic, assign) NSInteger classNumber;
