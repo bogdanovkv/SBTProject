@@ -134,15 +134,15 @@ static NSInteger const KVBSearchButtonSize = 35;
             
             if (error)
             {
-                [self.dataSourse noChepTickets];
-                [self.tableWithFlights reloadData];
+                [self updateTableView:self.tableWithFlights WithNewArray:nil inSection:1];
                 return ;
             }
             NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 
             NSDictionary *cheap = recievedData[@"data"];
-            self.dataSourse.cheapTickets = [KVBFlyightModel arrayFromDictionariesWithjClassType:cheap];
-            [self.tableWithFlights reloadData];
+            
+            
+            [self updateTableView:self.tableWithFlights WithNewArray:[KVBFlyightModel arrayFromDictionariesWithjClassType:cheap] inSection:1];
         });
     }];
     [self hideSearchButton];
@@ -275,4 +275,44 @@ static NSInteger const KVBSearchButtonSize = 35;
     }];
     self.hide = YES;
 }
+
+
+#pragma mark - UITableView animations
+
+- (void)updateTableView:(UITableView*)tableView WithNewArray:(NSArray*)newArray inSection:(NSInteger)section
+{
+    NSMutableArray *oldIndexPathes = [NSMutableArray array];
+    NSMutableArray *newIndexPathes = [NSMutableArray array];
+    
+    if(!newArray.count)
+    {
+        newArray = [self.dataSourse noChepTickets];
+    }
+    
+    for (int i = 0; i<self.dataSourse.cheapTickets.count; i++)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:section];
+        [oldIndexPathes addObject:indexPath];
+    }
+    for (int i = 0; i<newArray.count; i++)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:section];
+        [newIndexPathes addObject:indexPath];
+    }
+
+    [tableView performBatchUpdates:^{
+        [tableView deleteRowsAtIndexPaths:oldIndexPathes withRowAnimation:UITableViewRowAnimationLeft];
+        self.dataSourse.cheapTickets = nil;
+    } completion:^(BOOL finished) {
+        [tableView performBatchUpdates:^{
+            [tableView insertRowsAtIndexPaths:newIndexPathes withRowAnimation:UITableViewRowAnimationLeft];
+            self.dataSourse.cheapTickets = newArray;
+        } completion:nil];
+    }];
+        
+    
+   
+    
+}
+
 @end

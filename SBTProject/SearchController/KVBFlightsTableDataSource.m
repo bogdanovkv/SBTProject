@@ -89,6 +89,7 @@ NSString * const KVBHeaderIdentifier = @"KVBHeaderIdentifier";
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+
     return section == 0 ? 1 : self.cheapTickets.count;
 }
 
@@ -100,12 +101,12 @@ NSString * const KVBHeaderIdentifier = @"KVBHeaderIdentifier";
 
 #pragma mark - Errors from servise
 
--(void)noChepTickets
+- (NSArray*)noChepTickets
 {
-    self.cheapTickets = @[self.errorCell];
+    return @[self.errorCell];
 }
 
--(void)noPopularDirections
+- (void)noPopularDirections
 {
     self.popularDirections = nil;
 }
