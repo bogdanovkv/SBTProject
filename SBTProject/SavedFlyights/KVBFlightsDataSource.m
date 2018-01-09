@@ -32,10 +32,8 @@
     
     Flyight *flight = [self.fetchController objectAtIndexPath:indexPath];
     
-    
-    cell.backgroundColor = UIColor.grayColor;
-    cell.from = flight.departure.name;
-    cell.to = flight.arrival.name;
+    cell.from = [NSString stringWithFormat:@"%@ - %@", flight.departure.name, flight.arrival.name];
+    cell.back = [NSString stringWithFormat:@"%@ - %@", flight.arrival.name, flight.departure.name];
     cell.price = flight.cost;
     cell.departureDate = flight.departureDate;
     cell.backDate = flight.arrivalDate;

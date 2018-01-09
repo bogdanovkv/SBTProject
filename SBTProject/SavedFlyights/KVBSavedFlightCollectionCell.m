@@ -17,13 +17,14 @@ const CGSize KVBPlaneIconSize = {30,30};
 @interface KVBSavedFlightCollectionCell()
 
 @property(nonatomic, strong) UILabel *fromLabel;
+@property(nonatomic, strong) UILabel *timeLabel;
 @property(nonatomic, strong) UILabel *toLabel;
+@property(nonatomic, strong) UILabel *backTimeLabel;
 @property(nonatomic, strong) UILabel *priceLabel;
 @property(nonatomic, strong) UILabel *departureDateLabel;
 @property(nonatomic, strong) UILabel *backDateLabel;
 @property(nonatomic, strong) UILabel *classLabel;
 @property(nonatomic, strong) UIImageView *imageView;
-@property(nonatomic, strong) UIImageView *backImage;
 
 @end
 
@@ -35,26 +36,31 @@ const CGSize KVBPlaneIconSize = {30,30};
     if (self)
     {
         UIFont *font = [UIFont fontWithName:@"AvenirNextCondensed-MediumItalic" size:KVBFontSizeInCollectionCell];
+        UIColor *labelColor = [UIColor colorWithRed:133 / 255.0 green:214 / 255.0 blue:213 / 255.0 alpha:1.0f];
         
         _fromLabel = [UILabel new];
         _fromLabel.font = font;
-        _fromLabel.textAlignment = NSTextAlignmentCenter;
+        _fromLabel.backgroundColor = labelColor;
+        
+        _timeLabel = [UILabel new];
+        _timeLabel.font = font;
         
         _toLabel = [UILabel new];
         _toLabel.font = font;
-        _toLabel.textAlignment = NSTextAlignmentCenter;
+        _toLabel.backgroundColor = labelColor;
 
         _priceLabel = [UILabel new];
         _priceLabel.font = font;
-        _priceLabel.textAlignment = NSTextAlignmentCenter;
+        _priceLabel.backgroundColor = labelColor;
 
+        _backTimeLabel = [UILabel new];
+        _backTimeLabel.font = font;
+        
         _departureDateLabel = [UILabel new];
         _departureDateLabel.font = font;
-        _departureDateLabel.textAlignment = NSTextAlignmentCenter;
 
         _backDateLabel = [UILabel new];
         _backDateLabel.font = font;
-        _backDateLabel.textAlignment = NSTextAlignmentCenter;
 
         _classLabel = [UILabel new];
         _classLabel.font = font;
@@ -65,18 +71,15 @@ const CGSize KVBPlaneIconSize = {30,30};
         _imageView.image = [UIImage imageNamed:@"collIcon"];
         
 
-        _backImage = [UIImageView new];
-        _backImage.image = [UIImage imageNamed:@"backCollection"];
-        _backImage.layer.cornerRadius = 15;
-        _backImage.layer.masksToBounds = YES;
-        
+       
         self.layer.cornerRadius = 15;
+        self.backgroundColor = [UIColor colorWithRed:255 / 255.0 green:246 / 255.0 blue:196 / 255.0 alpha:1.0f];
 
-
-        [self.contentView addSubview:_backImage];
         [self.contentView addSubview:_imageView];
+        [self.contentView addSubview:_timeLabel];
         [self.contentView addSubview:_fromLabel];
         [self.contentView addSubview:_toLabel];
+        [self.contentView addSubview:_backTimeLabel];
         [self.contentView addSubview:_priceLabel];
         [self.contentView addSubview:_departureDateLabel];
         [self.contentView addSubview:_backDateLabel];
@@ -92,22 +95,22 @@ const CGSize KVBPlaneIconSize = {30,30};
 
 - (void)setupConstraints
 {
-    [_backImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView.mas_top);
-        make.left.equalTo(self.contentView.mas_left);
-        make.right.equalTo(self.contentView.mas_right);
-        make.bottom.equalTo(self.contentView.mas_bottom);
-    }];
-    
     [_fromLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_top).offset(KVBElementOffsetInCollectionCell);
         make.left.equalTo(self.contentView.mas_left);
         make.right.equalTo(self.contentView.mas_right);
     }];
     
-    [_departureDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_fromLabel.mas_bottom).offset(KVBElementOffsetInCollectionCell);
         make.left.equalTo(self.contentView.mas_left);
+        make.height.equalTo(_fromLabel);
+        make.width.equalTo(_backTimeLabel);
+    }];
+    
+    [_departureDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_fromLabel.mas_bottom).offset(KVBElementOffsetInCollectionCell);
+        make.left.equalTo(_timeLabel.mas_right).offset(KVBElementOffsetInCollectionCell);
         make.right.equalTo(self.contentView.mas_right);
         make.height.equalTo(_fromLabel);
     }];
@@ -116,28 +119,34 @@ const CGSize KVBPlaneIconSize = {30,30};
         make.top.equalTo(_departureDateLabel.mas_bottom).offset(KVBElementOffsetInCollectionCell);
         make.left.equalTo(self.contentView.mas_left);
         make.right.equalTo(self.contentView.mas_right);
-        make.height.equalTo(_departureDateLabel);
+        make.height.equalTo(_fromLabel);
     }];
-
-    [_backDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    [_backTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_toLabel.mas_bottom).offset(KVBElementOffsetInCollectionCell);
         make.left.equalTo(self.contentView.mas_left);
+        make.height.equalTo(_fromLabel);
+    }];
+    
+    [_backDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_toLabel.mas_bottom).offset(KVBElementOffsetInCollectionCell);
+        make.left.equalTo(_backTimeLabel.mas_right).offset(KVBElementOffsetInCollectionCell);
         make.right.equalTo(self.contentView.mas_right);
-        make.height.equalTo(_toLabel);
+        make.height.equalTo(_fromLabel);
     }];
 
     [_classLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_backDateLabel.mas_bottom).offset(KVBElementOffsetInCollectionCell);
         make.left.equalTo(self.contentView.mas_left);
         make.right.equalTo(self.contentView.mas_right);
-        make.height.equalTo(_backDateLabel);
+        make.height.equalTo(_fromLabel);
     }];
 
     [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_classLabel.mas_bottom).offset(KVBElementOffsetInCollectionCell);
         make.left.equalTo(self.contentView.mas_left);
         make.right.equalTo(self.contentView.mas_right);
-        make.height.equalTo(_classLabel);
+        make.height.equalTo(_fromLabel);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(- KVBPlaneIconSize.height - KVBElementOffsetInCollectionCell);
     }];
     
@@ -147,32 +156,37 @@ const CGSize KVBPlaneIconSize = {30,30};
 
 #pragma mark - Setters
 
-- (void)setTo:(NSString *)to
+- (void)setBack:(NSString *)back
 {
-    _to = to;
-    self.toLabel.text = [NSString stringWithFormat:@"To %@", _to];
+    _back = back;
+    self.toLabel.text = _back;
 }
 
 - (void)setFrom:(NSString *)from
 {
     _from = from;
-    self.fromLabel.text = [NSString stringWithFormat:@"From %@", _from];
+    self.fromLabel.text = _from;
 }
 
 - (void)setBackDate:(NSDate *)backDate
 {
     _backDate = backDate;
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    dateFormatter.dateFormat = @"dd.MM.yyyy' 'HH:mm";
-    self.backDateLabel.text = [NSString stringWithFormat:@"Return at %@", [dateFormatter stringFromDate:_backDate]];
+    dateFormatter.dateFormat = @"MMM d, yyyy, EEEE";
+    self.backDateLabel.text = [dateFormatter stringFromDate:_backDate];
+    dateFormatter.dateFormat = @"HH:mm";
+    self.backTimeLabel.text = [dateFormatter stringFromDate:backDate];
+
 }
 
 - (void)setDepartureDate:(NSDate*)departureDate
 {
     _departureDate = departureDate;
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    dateFormatter.dateFormat = @"dd.MM.yyyy' 'HH:mm";
-    self.departureDateLabel.text =  [NSString stringWithFormat:@"Departure at %@", [dateFormatter stringFromDate:_departureDate]];
+    dateFormatter.dateFormat = @"MMM d, yyyy, EEEE";
+    self.departureDateLabel.text = [dateFormatter stringFromDate:_departureDate];
+    dateFormatter.dateFormat = @"HH:mm";
+    self.timeLabel.text = [dateFormatter stringFromDate:_departureDate];
 }
 
 - (void)setPrice:(NSInteger)price

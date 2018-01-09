@@ -19,7 +19,6 @@
     {
         _sectionNameLabel = [UILabel new];
         _sectionNameLabel.textAlignment = NSTextAlignmentCenter;
-        _sectionNameLabel.text = @"TEST";
         _sectionNameLabel.backgroundColor = [UIColor colorWithRed:133 / 255.0 green:214 / 255.0 blue:213 / 255.0 alpha:1.0f];
         
         [self.contentView addSubview:_sectionNameLabel];

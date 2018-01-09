@@ -39,6 +39,7 @@ static NSInteger const KVBButtonInsidePickerHeight = 35;
         _datePicker.datePickerMode = UIDatePickerModeDate;
         _datePicker.backgroundColor = [UIColor colorWithRed:133 / 255.0 green:214 / 255.0 blue:213 / 255.0 alpha:1.0f];
         _datePicker.minimumDate = [NSDate date];
+        
         [self addSubview:_datePicker];
         [self addSubview:_okButton];
         
