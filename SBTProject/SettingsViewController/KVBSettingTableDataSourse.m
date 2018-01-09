@@ -21,14 +21,13 @@
     else
     {
         cell = [tableView dequeueReusableCellWithIdentifier:KVBLanguageSettingCell forIndexPath:indexPath];
-
     }
 
     return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 1;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

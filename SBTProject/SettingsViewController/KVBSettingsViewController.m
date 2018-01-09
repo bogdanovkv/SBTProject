@@ -9,28 +9,38 @@
 #import "KVBSettingsViewController.h"
 #import "KVBSettingTableDataSourse.h"
 #import "KVBResetAllSettingsCell.h"
-#import "KVBLanguageSettingsCell.h"
-
+#import "KVBCoreDataServise.h"
 #import <Masonry.h>
 
-@interface KVBSettingsViewController ()
+@interface KVBSettingsViewController()<UITableViewDelegate, KVBCustomCellProtocol>
+
+
 @property(nonatomic, strong) UITableView *tableWithSettings;
 @property(nonatomic, strong) KVBSettingTableDataSourse *dataSourse;
+@property(nonatomic, strong) KVBCoreDataServise *coreDataServise;
+
 
 @end
 
+
 @implementation KVBSettingsViewController
 
-- (instancetype)init
+- (instancetype)initWithCoreDataServise:(KVBCoreDataServise*)coreDataServise
 {
     self = [super init];
     if (self)
     {
+        _coreDataServise = coreDataServise;
+        
         _dataSourse = [KVBSettingTableDataSourse new];
         
         _tableWithSettings = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStylePlain];
         _tableWithSettings.dataSource = _dataSourse;
-        [_tableWithSettings registerClass:[KVBLanguageSettingsCell class]  forCellReuseIdentifier:KVBLanguageSettingCell];
+        _tableWithSettings.delegate = self;
+        _tableWithSettings.estimatedRowHeight = 44;
+        _tableWithSettings.rowHeight = UITableViewAutomaticDimension;
+        _tableWithSettings.separatorColor = UIColor.clearColor;
+        _tableWithSettings.backgroundColor = [UIColor colorWithRed:40 / 255.0 green:73 / 255.0 blue:82 / 255.0 alpha:1.0f];
         [_tableWithSettings registerClass:[KVBResetAllSettingsCell class]  forCellReuseIdentifier:KVBResetTableViewCell];
         
         [self.view addSubview:_tableWithSettings];
@@ -38,10 +48,7 @@
         [_tableWithSettings mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);
         }];
-        
     }
-    
-    
     return self;
 }
 
@@ -55,6 +62,21 @@
     // Dispose of any resources that can be recreated.
 }
 
- 
 
+#pragma mark - UITableViewDelegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    KVBResetAllSettingsCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.delegate = self;
+    [cell showButton];
+}
+
+
+#pragma mark - DeleteAction
+- (void)deleteFromCoreData
+{
+    [self.coreDataServise deleAllFlights];
+}
 @end

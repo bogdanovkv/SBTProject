@@ -26,7 +26,6 @@
 		141920661FE3CD6500F85CF5 /* SBTProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141920641FE3CD6500F85CF5 /* SBTProject.xcdatamodeld */; };
 		141920691FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 141920681FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.m */; };
 		14484E611FFBD0E900498D18 /* KVBSettingTableDataSourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 14484E5B1FFBD0E800498D18 /* KVBSettingTableDataSourse.m */; };
-		14484E621FFBD0E900498D18 /* KVBLanguageSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14484E5C1FFBD0E800498D18 /* KVBLanguageSettingsCell.m */; };
 		14484E641FFBD0E900498D18 /* KVBResetAllSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14484E5E1FFBD0E900498D18 /* KVBResetAllSettingsCell.m */; };
 		14764B931FE528EF00EEC944 /* Countries+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B891FE528EF00EEC944 /* Countries+CoreDataClass.m */; };
 		14764B941FE528EF00EEC944 /* Countries+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B8A1FE528EF00EEC944 /* Countries+CoreDataProperties.m */; };
@@ -102,10 +101,8 @@
 		141920671FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFirstStartCoreDataLoader.h; sourceTree = "<group>"; };
 		141920681FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFirstStartCoreDataLoader.m; sourceTree = "<group>"; };
 		14484E5B1FFBD0E800498D18 /* KVBSettingTableDataSourse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBSettingTableDataSourse.m; sourceTree = "<group>"; };
-		14484E5C1FFBD0E800498D18 /* KVBLanguageSettingsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBLanguageSettingsCell.m; sourceTree = "<group>"; };
 		14484E5D1FFBD0E900498D18 /* KVBSettingTableDataSourse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBSettingTableDataSourse.h; sourceTree = "<group>"; };
 		14484E5E1FFBD0E900498D18 /* KVBResetAllSettingsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBResetAllSettingsCell.m; sourceTree = "<group>"; };
-		14484E5F1FFBD0E900498D18 /* KVBLanguageSettingsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBLanguageSettingsCell.h; sourceTree = "<group>"; };
 		14484E601FFBD0E900498D18 /* KVBResetAllSettingsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBResetAllSettingsCell.h; sourceTree = "<group>"; };
 		14764B871FE528EF00EEC944 /* Countries+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Countries+CoreDataProperties.h"; sourceTree = "<group>"; };
 		14764B881FE528EF00EEC944 /* Countries+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Countries+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -231,8 +228,6 @@
 			children = (
 				14DA566B1FE278A100FAB89A /* KVBSettingsViewController.h */,
 				14DA566C1FE278A100FAB89A /* KVBSettingsViewController.m */,
-				14484E5F1FFBD0E900498D18 /* KVBLanguageSettingsCell.h */,
-				14484E5C1FFBD0E800498D18 /* KVBLanguageSettingsCell.m */,
 				14484E601FFBD0E900498D18 /* KVBResetAllSettingsCell.h */,
 				14484E5E1FFBD0E900498D18 /* KVBResetAllSettingsCell.m */,
 				14484E5D1FFBD0E900498D18 /* KVBSettingTableDataSourse.h */,
@@ -593,7 +588,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				14484E611FFBD0E900498D18 /* KVBSettingTableDataSourse.m in Sources */,
-				14484E621FFBD0E900498D18 /* KVBLanguageSettingsCell.m in Sources */,
 				14484E641FFBD0E900498D18 /* KVBResetAllSettingsCell.m in Sources */,
 				14DA56631FE26CA900FAB89A /* KVBSavedFlightsViewController.m in Sources */,
 				14DA566D1FE278A100FAB89A /* KVBSettingsViewController.m in Sources */,

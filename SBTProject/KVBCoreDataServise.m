@@ -154,4 +154,16 @@
     [self.context save:nil];
 }
 
+- (void)deleAllFlights
+{
+    NSArray *allFlights = [self.context executeFetchRequest:[Flyight fetchRequest] error:nil];
+    
+    for (id flight in allFlights)
+    {
+        [self.context deleteObject:flight];
+    }
+    [self.context save:nil];
+}
+
+
 @end

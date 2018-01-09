@@ -29,6 +29,7 @@
 - (NSArray<Flyight*>*)recieveAllFlyights;
 - (void)saveFlight:(KVBFlyightModel*)flyightModel;
 - (void)deleteFlight:(Flyight*)flight;
+- (void)deleAllFlights;
 
 
 @end

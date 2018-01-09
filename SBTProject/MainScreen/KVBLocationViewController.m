@@ -180,7 +180,7 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
         savedImage = [savedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         navControllerForSaved.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"Saved" image:savedImage tag:1];
         
-        KVBSettingsViewController *settingVC = [KVBSettingsViewController new];
+        KVBSettingsViewController *settingVC = [[KVBSettingsViewController alloc]initWithCoreDataServise:self.coreDataService];
         UIImage *settingsImage = [UIImage imageNamed:@"settings_icon"];
         settingsImage = [settingsImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         settingVC.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"Settings" image:settingsImage tag:2];
