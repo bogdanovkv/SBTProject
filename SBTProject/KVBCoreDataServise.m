@@ -54,7 +54,7 @@
     return arrayWithCities;
 }
 
-- (NSArray*)findLocationInEntity:(NSString*) entity withName:(NSString*) name
+- (NSArray*)findLocationInEntity:(NSString*)entity withName:(NSString*)name
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:entity];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name == %@ OR nameRu == %@",[name capitalizedString] ,[name capitalizedString]];
