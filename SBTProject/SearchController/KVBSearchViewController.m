@@ -309,10 +309,6 @@ static NSInteger const KVBSearchButtonSize = 35;
             self.dataSourse.cheapTickets = newArray;
         } completion:nil];
     }];
-        
-    
-   
-    
 }
 
 @end

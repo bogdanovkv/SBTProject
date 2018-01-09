@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class KVBCoreDataServise;
+
+
 @interface KVBSettingsViewController : UIViewController
+
+
+- (instancetype)initWithCoreDataServise:(KVBCoreDataServise*)coreDataServise;
+
 
 @end

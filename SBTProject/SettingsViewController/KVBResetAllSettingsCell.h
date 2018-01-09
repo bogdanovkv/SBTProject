@@ -7,7 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol KVBCustomCellProtocol;
+
 
 @interface KVBResetAllSettingsCell : UITableViewCell
+
+
+@property(weak, nonatomic) id<KVBCustomCellProtocol> delegate;
+
+- (void)showButton;
+
+
+@end
+
+
+@protocol KVBCustomCellProtocol
+
+@required
+
+- (void)deleteFromCoreData;
+
 
 @end
