@@ -7,6 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <Expecta.h>
+#import <OCMock.h>
+
 @interface SBTProjectTests : XCTestCase
 
 @end

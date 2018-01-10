@@ -7,6 +7,7 @@ target 'SBTProject' do
   target 'SBTProjectTests' do
     inherit! :search_paths
     	pod ‘OCMock’, '~> 3.4.1’
+        pod 'Expecta', '~> 1.0'
   end
 
 end
