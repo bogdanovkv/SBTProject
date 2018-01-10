@@ -10,7 +10,6 @@
 
 #import "KVBFlightsTableDataSource.h"
 #import "KVBSearchViewController.h"
-#import "KVBFlyightsRequests.h"
 #import "KVBPopularDirectionCell.h"
 #import "KVBTableViewFlightCell.h"
 #import "KVBFlyightModel.h"

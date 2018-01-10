@@ -6,14 +6,14 @@
 //  Copyright © 2017 Константин Богданов. All rights reserved.
 //
 
-#import "KVBFlyightsRequests.h"
+#import "KVBFlightServise.h"
 #import "Cities+CoreDataClass.h"
 
-@interface KVBFlyightsRequests()
+@interface KVBFlightServise()
 @property(nonatomic, strong) NSOperationQueue *dataTaskQueue;
 @end
 
-@implementation KVBFlyightsRequests
+@implementation KVBFlightServise
 
 - (void) recieveCheapTicketsFromCity:(Cities*)departure departmentDate: (NSDate*) departmentDate toCity:(Cities*) destination arrivalDate: (NSDate*) arrivalDate withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler
 {

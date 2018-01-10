@@ -14,7 +14,7 @@ static NSString *const KVBCheapTiktetFromCityToCity = @"http://api.travelpayouts
 @class Cities;
 
 
-@interface KVBFlyightsRequests : NSObject
+@interface KVBFlightServise : NSObject
 
 
 - (void) recieveCheapTicketsFromCity:(Cities*)departure departmentDate: (NSDate*) departmentDate toCity:(Cities*) destination arrivalDate: (NSDate*) arrivalDate withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler;

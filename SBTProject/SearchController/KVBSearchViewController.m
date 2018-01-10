@@ -9,14 +9,14 @@
 #import "KVBSearchViewController.h"
 #import "KVBViewWithParametres.h"
 #import "KVBFlightsTableDataSource.h"
-#import "KVBFlyightsRequests.h"
+#import "KVBFlightServise.h"
 #import "KVBPopularDirectionCell.h"
 #import "KVBTableViewFlightCell.h"
 #import "KVBCoreDataServise.h"
 #import "Cities+CoreDataClass.h"
 #import "Countries+CoreDataClass.h"
 #import "Airpots+CoreDataClass.h"
-#import "KVBFlyightsRequests.h"
+#import "KVBFlightServise.h"
 #import "KVBFlyightModel.h"
 #import "KVBFlyightInfoViewController.h"
 #import "KVBHeaderView.h"
@@ -33,7 +33,7 @@ static NSInteger const KVBSearchButtonSize = 35;
 @property(nonatomic, strong) KVBViewWithParametres *searchView;
 @property(nonatomic, strong) UIButton *searchButton;
 @property(nonatomic, strong) KVBFlightsTableDataSource *dataSourse;
-@property(nonatomic, strong) KVBFlyightsRequests *request;
+@property(nonatomic, strong) KVBFlightServise *flightServise;
 @property(nonatomic,getter=isHide, assign) BOOL hide;
 
 
@@ -52,7 +52,7 @@ static NSInteger const KVBSearchButtonSize = 35;
         
         _departureCity = city;
         
-        _request = [KVBFlyightsRequests new];
+        _flightServise = [KVBFlightServise new];
         
         _dataSourse = [KVBFlightsTableDataSource new];
         _dataSourse.coreDataServise = [[KVBCoreDataServise alloc]initWithContext:context];
@@ -129,7 +129,7 @@ static NSInteger const KVBSearchButtonSize = 35;
     self.dataSourse.departureCity = self.departureCity;
     self.dataSourse.arrivalCity = self.arrivalCity;
     
-    [self.request recieveCheapTicketsFromCity:self.departureCity departmentDate:self.searchView.depatrtureDate toCity:self.arrivalCity arrivalDate:self.searchView.arrivalDate withCompletitionHandler:^(NSData *data, NSError *error) {
+    [self.flightServise recieveCheapTicketsFromCity:self.departureCity departmentDate:self.searchView.depatrtureDate toCity:self.arrivalCity arrivalDate:self.searchView.arrivalDate withCompletitionHandler:^(NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (error)
@@ -150,7 +150,7 @@ static NSInteger const KVBSearchButtonSize = 35;
 
 - (void)updatePopularDirectionsFromCity
 {
-    [self.request recievePopularDirectionFRomCity:self.departureCity onPage:0 withCompletitionHandler:^(NSData *data, NSError *error) {
+    [self.flightServise recievePopularDirectionFRomCity:self.departureCity onPage:0 withCompletitionHandler:^(NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if(error)
