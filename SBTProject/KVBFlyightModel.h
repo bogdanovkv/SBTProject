@@ -21,8 +21,8 @@
 @property(nonatomic, assign) NSInteger flightNumber;
 @property(nonatomic, assign) NSInteger classNumber;
 
-+ (NSArray<KVBFlyightModel*>*) arrayFromDictionaries:(NSDictionary*) flightsDictionary;
-+ (NSArray<KVBFlyightModel*>*)arrayFromDictionariesWithjClassType:(NSDictionary*) flightsDictionary;
++ (NSArray<KVBFlyightModel*>*)arrayFromDictionaries:(NSDictionary*)flightsDictionary;
++ (NSArray<KVBFlyightModel*>*)arrayFromDictionariesWithjClassType:(NSDictionary*)flightsDictionary;
 
 - (instancetype)initWithFlight:(Flyight*)flight;
 - (instancetype)initWithDictionary:(NSDictionary*) flightDictionary;

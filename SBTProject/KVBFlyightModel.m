@@ -9,25 +9,37 @@
 #import "KVBFlyightModel.h"
 #import "Flyight+CoreDataClass.h"
 #import "Cities+CoreDataClass.h"
+
+
 @implementation KVBFlyightModel
 
-+ (NSArray<KVBFlyightModel*>*)arrayFromDictionaries:(NSDictionary*) flightsDictionary
+
++ (NSArray<KVBFlyightModel*>*)arrayFromDictionaries:(NSDictionary*)flightsDictionary
 {
+    if (!flightsDictionary)
+    {
+        return nil;
+    }
+    
     NSMutableArray *array = [NSMutableArray array];
     
-    NSArray *allKeys = [flightsDictionary allKeys];
+    NSArray *allKeys = flightsDictionary.allKeys;
     
     for(NSString *key in allKeys)
     {
-        KVBFlyightModel *flight = [[KVBFlyightModel alloc] initWithDictionary:flightsDictionary[key]];
+        KVBFlyightModel *flight = [[KVBFlyightModel alloc]initWithDictionary:flightsDictionary[key]];
         [array addObject:flight];
-        
     }
     return array;
 }
 
-+ (NSArray<KVBFlyightModel*>*)arrayFromDictionariesWithjClassType:(NSDictionary*) flightsDictionary
++ (NSArray<KVBFlyightModel*>*)arrayFromDictionariesWithjClassType:(NSDictionary*)flightsDictionary
 {
+    if (!flightsDictionary)
+    {
+        return nil;
+    }
+    
     NSMutableArray *array = [NSMutableArray array];
     
     NSArray *allKeys = [flightsDictionary allKeys];
@@ -48,6 +60,11 @@
 
 - (instancetype)initWithDictionary:(NSDictionary*)flightDictionary
 {
+    if (!flightDictionary)
+    {
+        return nil;
+    }
+    
     self = [super init];
     if (self) {
         _arrivalCode = [self validValueFromString:flightDictionary[@"destination"]];
@@ -77,10 +94,10 @@
     }
     return self;
 }
-- (NSString*)validValueFromString:(NSString*) inputString
+- (NSString*)validValueFromString:(NSString*)inputString
 {
     NSString *validString = @"No info";
-    if(inputString)
+    if(inputString.length)
     {
         validString = inputString;
     }
@@ -89,6 +106,11 @@
           
 - (NSDate*)dateFromString:(NSString*)dateString
 {
+    if (!dateString.length)
+    {
+        return nil;
+    }
+    
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
     
