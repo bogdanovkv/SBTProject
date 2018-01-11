@@ -33,7 +33,7 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
 @property(nonatomic, strong) UIButton *acceptButton;
 @property(nonatomic, strong) UITableView *tableWithCities;
 @property(nonatomic, weak) NSManagedObjectContext *context;
-@property(nonatomic, strong) KVBLocationServise *request;
+@property(nonatomic, strong) KVBLocationServise *servise;
 @property(nonatomic, strong) Cities *city;
 @property(nonatomic, strong) Countries *country;
 @property(nonatomic, strong) KVBCoreDataServise *coreDataService;
@@ -51,7 +51,7 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
     if (self)
     {
         
-        _request = [[KVBLocationServise alloc]initWithDelegate:self];
+        _servise = [[KVBLocationServise alloc]initWithDelegate:self withContex:context];
         
         _context = context;
         
@@ -110,14 +110,13 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
     
     if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"isDataExist"] isEqualToString: @"Exist"])
     {
-        [self.request recieveAllContriesWithCities];
+        [self.servise recieveAllContriesWithCities];
         self.welcomeLabel.text = @"Please wait";
     }
     else
     {
         [self loadingComplete];
     }
-   
 }
 
 
@@ -267,14 +266,13 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
 }
 
 
-#pragma mark - UITableViewDelegate
+#pragma mark - KVBFirstStartLoadingDelegate
 
 - (void)loadingComplete
 {
-    [self.request whereAreMeWithComletition:^(NSString *countryName, NSString *cityName, NSString *stringError) {
+    [self.servise whereAreMeWithComletition:^(NSString *countryName, NSString *cityName, NSString *stringError) {
         
-        dispatch_async(dispatch_get_main_queue(), ^
-                       {
+        dispatch_async(dispatch_get_main_queue(), ^{
                            self.welcomeLabel.text = KVBWelcomeLableDefaultText;
                            if (stringError.length)
                            {
@@ -291,7 +289,6 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
                            self.cityField.text = self.city.name;
                        });
     }];
-    
 }
 
 

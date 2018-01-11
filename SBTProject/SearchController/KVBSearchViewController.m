@@ -259,7 +259,7 @@ static NSInteger const KVBSearchButtonSize = 35;
     self.hide = NO;
 }
 
-- (void) hideSearchButton
+- (void)hideSearchButton
 {
     if(self.isHide)
     {

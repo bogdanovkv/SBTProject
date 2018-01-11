@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+
+@class NSManagedObjectContext;
 @protocol KVBFirstStartLoadingDelegate;
 
 
@@ -16,7 +18,7 @@
 
 @property(nonatomic, copy) NSDictionary *currentLoacation;
 
-- (instancetype)initWithDelegate:(id<KVBFirstStartLoadingDelegate>) delegate;
+- (instancetype)initWithDelegate:(id<KVBFirstStartLoadingDelegate>)delegate withContex:(NSManagedObjectContext*)context;
 - (void)whereAreMeWithComletition:(void (^)(NSString *countryName, NSString *cityName, NSString *stringError))completionHandler;
 - (void)recieveAllContriesWithCities;
 

@@ -8,6 +8,8 @@
 
 #import "KVBLocationServise.h"
 #import "KVBFirstStartCoreDataLoader.h"
+
+
 @protocol KVBFirstStartLoadingDelegate;
 
 
@@ -25,14 +27,14 @@
 @implementation KVBLocationServise
 
 
-- (instancetype)initWithDelegate:(id<KVBFirstStartLoadingDelegate>) delegate
+- (instancetype)initWithDelegate:(id<KVBFirstStartLoadingDelegate>)delegate withContex:(NSManagedObjectContext*)context
 {
     self = [super init];
     if (self)
     {
         _delegate = delegate;
         
-        _coreDataConstructor = [KVBFirstStartCoreDataLoader new];
+        _coreDataConstructor = [[KVBFirstStartCoreDataLoader alloc]initWithContext:context];
         _coreDataConstructor.delegate = self.delegate;
         
         _downloadTaskQueue = [[NSOperationQueue alloc] init];

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class NSManagedObjectContext;
 @protocol KVBFirstStartLoadingDelegate;
 
 static NSString * const KVBTravelpayouts = @"fe17c550289588390f32bb8a4caf562f";
@@ -26,10 +27,17 @@ static NSString * const KVBRequestAllAirports = @"http://api.travelpayouts.com/d
 @property(nonatomic, copy) NSDictionary *airportDictionary;
 @property(nonatomic, weak) id<KVBFirstStartLoadingDelegate> delegate;
 
+- (instancetype)initWithContext:(NSManagedObjectContext*)context;
+
+
+
 @end
+
 
 @protocol KVBFirstStartLoadingDelegate
 
+
 - (void)loadingComplete;
+
 
 @end

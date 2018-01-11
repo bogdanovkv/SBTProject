@@ -24,13 +24,12 @@
 
 @implementation KVBFirstStartCoreDataLoader
 
-- (instancetype)init
+- (instancetype)initWithContext:(NSManagedObjectContext*)context
 {
     self = [super init];
-    if (self) {
-        AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-        
-        _context = appDelegate.persistentContainer.viewContext;
+    if (self)
+    {
+        _context = context;
     }
     return self;
 }
@@ -71,8 +70,9 @@
 }
 
 
--(void) setupCoreData
+-(void)setupCoreData
 {
+    
     for (NSDictionary *country in self.countriesDictionary)
     {
         Countries *newCountry = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Countries class]) inManagedObjectContext:self.context];
@@ -97,7 +97,6 @@
         NSDictionary *namesCities = city[@"name_translations"];
         
         newCity.nameRu = namesCities[@"ru"];
-        
     }
     
     for (NSDictionary *airport in self.airportDictionary)
@@ -113,10 +112,13 @@
         newAirport.nameRu = namesAirport[@"ru"];
         
     }
-    
     NSError *saveError=nil;
     [self.context save: &saveError];
     
+    if(saveError)
+    {
+        return;
+    }
     
     [[NSUserDefaults standardUserDefaults] setValue:@"Exist" forKey:@"isDataExist"];
     [self.delegate loadingComplete];
