@@ -83,8 +83,6 @@
         NSDictionary *namesCountries = country[@"name_translations"];
         
         newCountry.nameRu = namesCountries[@"ru"];
-        
-        
     }
     
     for (NSDictionary *city in self.citiesDictionary)

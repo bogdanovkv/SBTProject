@@ -33,7 +33,7 @@
     return array;
 }
 
-+ (NSArray<KVBFlyightModel*>*)arrayFromDictionariesWithjClassType:(NSDictionary*)flightsDictionary
++ (NSArray<KVBFlyightModel*>*)arrayFromDictionariesWithClassType:(NSDictionary*)flightsDictionary
 {
     if (!flightsDictionary)
     {

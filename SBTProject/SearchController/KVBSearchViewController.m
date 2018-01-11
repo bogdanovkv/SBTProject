@@ -142,7 +142,7 @@ static NSInteger const KVBSearchButtonSize = 35;
             NSDictionary *cheap = recievedData[@"data"];
             
             
-            [self updateTableView:self.tableWithFlights WithNewArray:[KVBFlyightModel arrayFromDictionariesWithjClassType:cheap] inSection:1];
+            [self updateTableView:self.tableWithFlights WithNewArray:[KVBFlyightModel arrayFromDictionariesWithClassType:cheap] inSection:1];
         });
     }];
     [self hideSearchButton];

@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-
+/**
+ Класс для инициализации кор даты.
+*/
 @interface KVBPersistentContainer : NSObject
 
 
-@property (readonly, strong) NSPersistentContainer *persistentContainer;
+@property (readonly, strong) NSPersistentContainer *persistentContainer; /**< Контейнер для работы с кор датой*/
 
 
 @end
