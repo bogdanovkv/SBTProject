@@ -12,17 +12,24 @@
 
 @protocol KVBSearchViewDelegate;
 
-
+/**
+ View для задания параметров поиска авиаперелетов.
+ */
 @interface KVBViewWithParametres : UIView
 
-- (instancetype)initWithContext: (NSManagedObjectContext*) context;
 
-@property(nonatomic, strong) UITextField *departureField;
-@property(nonatomic, strong) UITextField *arrivalField;
-@property(nonatomic, strong) UITextField *backgroundImage;
-@property(nonatomic, strong) NSDate *depatrtureDate;
-@property(nonatomic, strong) NSDate *arrivalDate;
-@property(nonatomic, weak) id<KVBSearchViewDelegate> delegate;
+@property(nonatomic, strong) UITextField *departureField;           /** Лейбл для задания города вылета */
+@property(nonatomic, strong) UITextField *arrivalField;             /** Лейбл для задания города прибытия */
+@property(nonatomic, strong) NSDate *depatrtureDate;                /** Лейбл для задания даты вылета */
+@property(nonatomic, strong) NSDate *arrivalDate;                   /** Лейбл для задания даты вылета обратно */
+@property(nonatomic, weak) id<KVBSearchViewDelegate> delegate;      /** Делегат */
+
+/**
+ Инициализирует вью с контекстом
+ @param context - контекст для получения списка городов и стран
+ @return экзмепляр KVBViewWithParametres
+ */
+- (instancetype)initWithContext:(NSManagedObjectContext*)context;
 
 @end
 

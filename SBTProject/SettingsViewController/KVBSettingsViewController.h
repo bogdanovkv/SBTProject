@@ -10,11 +10,17 @@
 
 @class KVBCoreDataServise;
 
-
+/**
+ Констроллер с таблице в которой выводятся настройки
+ */
 @interface KVBSettingsViewController : UIViewController
 
-
-- (instancetype)initWithCoreDataServise:(KVBCoreDataServise*)coreDataServise;
+/**
+ Инициализизирует контроллер с заданым сервисом CoreData
+ @param coreDataServise сервис для работы с CoreData.
+ @return объект KVBSettingsViewController.
+ */
+- (instancetype _Nonnull)initWithCoreDataServise:( KVBCoreDataServise * _Nonnull)coreDataServise;
 
 
 @end

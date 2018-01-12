@@ -129,7 +129,7 @@ static NSInteger const KVBSearchButtonSize = 35;
     self.dataSourse.departureCity = self.departureCity;
     self.dataSourse.arrivalCity = self.arrivalCity;
     
-    [self.flightServise recieveCheapTicketsFromCity:self.departureCity departmentDate:self.searchView.depatrtureDate toCity:self.arrivalCity arrivalDate:self.searchView.arrivalDate withCompletitionHandler:^(NSData *data, NSError *error) {
+    [self.flightServise recieveCheapTicketsFromCity:self.departureCity departureDate:self.searchView.depatrtureDate toCity:self.arrivalCity arrivalDate:self.searchView.arrivalDate withCompletitionHandler:^(NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (error)
@@ -140,7 +140,6 @@ static NSInteger const KVBSearchButtonSize = 35;
             NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 
             NSDictionary *cheap = recievedData[@"data"];
-            
             
             [self updateTableView:self.tableWithFlights WithNewArray:[KVBFlyightModel arrayFromDictionariesWithClassType:cheap] inSection:1];
         });

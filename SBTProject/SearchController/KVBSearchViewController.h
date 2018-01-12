@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 @class Cities;
 
+/**
+ Контроллер для поиска авиабилетов. Содержит вью для поиска и табличку для вывода результатов.
+ */
 @interface KVBSearchViewController : UIViewController
 
-- (instancetype)initWithDeparture: (Cities*) city withContext: (NSManagedObjectContext*) context;
+/**
+ Инициализирует контроллер с заданым местоположением и контекстом.
+ @param city -  город вылета
+ @param context - контекст для работы с CoreData
+ @return экземпляр KVBSearchViewController
+ */
+- (instancetype)initWithDeparture:(Cities*)city withContext:(NSManagedObjectContext*)context;
 
 @end

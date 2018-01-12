@@ -22,7 +22,9 @@ NSString * const KVBRequestAllAirports = @"http://api.travelpayouts.com/data/air
 
 
 @property(nonatomic, strong) NSManagedObjectContext *context;
-
+@property(nonatomic, copy) NSDictionary *countriesDictionary;
+@property(nonatomic, copy) NSDictionary *citiesDictionary;
+@property(nonatomic, copy) NSDictionary *airportDictionary;
 
 @end
 

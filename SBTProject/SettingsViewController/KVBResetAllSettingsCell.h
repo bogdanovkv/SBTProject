@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 @protocol KVBCustomCellProtocol;
 
-
+/**
+ Ячейка таблицы с кнопкой для удаления всезх полетов из CoreData
+ */
 @interface KVBResetAllSettingsCell : UITableViewCell
 
 
-@property(weak, nonatomic) id<KVBCustomCellProtocol> delegate;
+@property(weak, nonatomic) id<KVBCustomCellProtocol> delegate; /**< Делегат который реализует метод deleteFromCoreData. */
 
 - (void)showButton;
 

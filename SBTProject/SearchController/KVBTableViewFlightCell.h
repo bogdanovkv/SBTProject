@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ Ячека таблицы для отображения полетов.
+ */
 @interface KVBTableViewFlightCell : UITableViewCell
 
-@property(nonatomic, strong) NSString *arrival;
-@property(nonatomic, strong) NSString *departure;
-@property(nonatomic, strong) UIImageView *customImage;
-@property(nonatomic, strong) NSString *price;
-@property(nonatomic, strong) NSDate *departureDate;
-@property(nonatomic, strong) NSDate *arrivalDate;
+@property(nonatomic, strong) NSString *arrival;             /**< Название страны отправления. */
+@property(nonatomic, strong) NSString *departure;           /**< Название страны прибития. */
+@property(nonatomic, strong) UIImageView *customImage;      /**< картинка отображаемая в таблице. */
+@property(nonatomic, strong) NSString *price;               /**< Цена. */
+@property(nonatomic, strong) NSDate *departureDate;         /**< Дата вылета. */
+@property(nonatomic, strong) NSDate *arrivalDate;           /**< Да вылета обратно. */
 
 @end

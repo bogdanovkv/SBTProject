@@ -12,6 +12,10 @@ static NSString *const KVBResetTableViewCell = @"KVBResetTableViewCell";
 static NSString *const KVBLanguageSettingCell = @"KVBLanguageSettingCell";
 static NSString *const KVBProfileSettings = @"KVBProfileSettings";
 
+
+/**
+ Датасорс для таблицы с настройками
+ */
 @interface KVBSettingTableDataSourse : NSObject<UITableViewDataSource>
 
 @end

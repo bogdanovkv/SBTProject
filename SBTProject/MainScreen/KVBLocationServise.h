@@ -12,14 +12,30 @@
 @class NSManagedObjectContext;
 @protocol KVBFirstStartLoadingDelegate;
 
-
+/**
+ Сервис для определения мостоположения и подгрузки данных о странах и городах с сервера.
+ */
 @interface KVBLocationServise : NSObject
 
-
-@property(nonatomic, copy) NSDictionary *currentLoacation;
-
-- (instancetype)initWithDelegate:(id<KVBFirstStartLoadingDelegate>)delegate withContex:(NSManagedObjectContext*)context;
-- (void)whereAreMeWithComletition:(void (^)(NSString *countryName, NSString *cityName, NSString *stringError))completionHandler;
+/**
+ Инициализирует сервис в заданом контексте с заданым дегатом.
+ @param delegate делегат для обработки завершения загрузки
+ @param context контекст для CoreData
+ @return экземпляр KVBLocationServise
+ */
+- (instancetype _Nonnull)initWithDelegate:(id<KVBFirstStartLoadingDelegate> _Nonnull)delegate withContex:(NSManagedObjectContext* _Nonnull)context;
+/**
+ Получает с сервера данные о местоположении пользователя
+ @param completionHandler блок который будет выполнен по завершении загрузки.
+ Параметры блока:
+ countryName - название страны, в которой находтся пользователь
+ cityName - название города пользователся
+ stringError - строка ошибки, если ошибки нет, то будет передана пустая строка @""
+ */
+- (void)whereAreMeWithComletition:(void (^_Nullable)(NSString * _Nonnull countryName, NSString * _Nonnull cityName, NSString * _Nullable stringError))completionHandler;
+/**
+ Получает данные список стран и городов и запускает запись их в кор дату.
+ */
 - (void)recieveAllContriesWithCities;
 
 

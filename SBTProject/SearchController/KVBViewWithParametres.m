@@ -18,7 +18,7 @@ const CGFloat KVBLeftRightOffsetInView = 20;
 static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
 
 
-@interface KVBViewWithParametres()<UITableViewDelegate, UITableViewDataSource, KVBDatePickerDelegate>
+@interface KVBViewWithParametres()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, KVBDatePickerDelegate>
 
 
 @property(nonatomic, strong) UIImageView *imageView;
@@ -52,7 +52,7 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
         _datePicker.delegate = self;
         
         _departureDateLabel = [UITextField new];
-        _departureDateLabel.placeholder = @"te.st.date";
+        _departureDateLabel.placeholder = @"de.pa.rture";
         _departureDateLabel.backgroundColor = UIColor.clearColor;
         _departureDateLabel.borderStyle = UITextBorderStyleRoundedRect;
         _departureDateLabel.backgroundColor = UIColor.whiteColor;
@@ -60,7 +60,7 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
         _departureDateLabel.inputView = _datePicker;
         
         _arrivalDateLabel = [UITextField new];
-        _arrivalDateLabel.placeholder = @"te.st.date";
+        _arrivalDateLabel.placeholder = @"ar.ri.val";
         _arrivalDateLabel.backgroundColor = UIColor.clearColor;
         _arrivalDateLabel.borderStyle = UITextBorderStyleRoundedRect;
         _arrivalDateLabel.backgroundColor = UIColor.whiteColor;
@@ -232,6 +232,9 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
     }
 }
 
+
+#pragma mark - UITextFields events
+
 - (void)updateTextFieldWithCity:(Cities*)city
 {
     
@@ -252,6 +255,14 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
 - (void)updateTextField:(UITextField*)textField withCity:(Cities *)city
 {
     textField.text = [NSString stringWithFormat:@"%@, %@", city.parrentCountry.codeIATA, city.name];
+}
+
+
+#pragma mark UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    return NO;
 }
 
 

@@ -44,6 +44,10 @@
 
 - (void)whereAreMeWithComletition:(void (^)(NSString *countryName, NSString *cityName,NSString *stringError))completionHandler
 {
+    if(!completionHandler)
+    {
+        return;
+    }
     NSURLComponents *urlComponents = [NSURLComponents componentsWithString:KVBLocationsRequestWhereAreMe];
     
     NSURLQueryItem *locale = [NSURLQueryItem queryItemWithName:@"locale" value:@"ru"];

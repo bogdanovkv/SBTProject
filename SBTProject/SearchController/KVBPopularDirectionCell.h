@@ -9,15 +9,22 @@
 #import <UIKit/UIKit.h>
 
 @class KVBCoreDataServise;
-
-
+@class KVBFlyightModel;
+/**
+ Класс ячейки таблицы которая содержит внутри себя  UICollectionView
+ */
 @interface KVBPopularDirectionCell : UITableViewCell
 
-- (instancetype)initWithCollection:(NSArray*)popularDirections;
 
+@property(nonatomic, weak) UINavigationController *navController;       /**< Navigation controller в котором отображается ячека */
+@property(nonatomic, weak) KVBCoreDataServise *coreDataServise;         /**< Сервис для работы с CoreData */
 
-@property(nonatomic, weak) UINavigationController *navController;
-@property(nonatomic, weak) KVBCoreDataServise *coreDataServise;
+/**
+Инициализирует ячейку с коллекш вью.
+ @param popularDirections массив с моделями полетов
+ @return возвращает ячейку с коллекшн вью заполненной полетами.
+ */
+- (instancetype)initWithCollection:(NSArray<KVBFlyightModel*>*)popularDirections;
 
 
 @end

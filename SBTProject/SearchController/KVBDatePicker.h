@@ -10,11 +10,13 @@
 
 @protocol KVBDatePickerDelegate;
 
-
+/**
+ Класс для выбора даты.
+ */
 @interface KVBDatePicker : UIView
 
 
-@property(nonatomic, weak) id<KVBDatePickerDelegate> delegate;
+@property(nonatomic, weak) id<KVBDatePickerDelegate> delegate;      /**< Делегат у которого вызывается метод dateChanged: при выборе даты в дата пикере */
 
 
 @end

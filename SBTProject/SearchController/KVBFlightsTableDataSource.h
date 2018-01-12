@@ -17,17 +17,28 @@ extern NSString * const KVBHeaderIdentifier;
 @class Cities;
 
 
+/**
+ Дата сорс для таблицы с полетами.
+ */
 @interface KVBFlightsTableDataSource : NSObject <UITableViewDataSource>
 
 
-@property(nonatomic, strong) KVBCoreDataServise *coreDataServise;
-@property(nonatomic, copy) NSArray<KVBFlyightModel*> *popularDirections;
-@property(nonatomic, copy) NSArray<KVBFlyightModel*> *cheapTickets;
-@property(nonatomic, strong) KVBPopularDirectionCell *cell;
-@property(nonatomic, weak) Cities *departureCity;
-@property(nonatomic, weak) Cities *arrivalCity;
+@property(nonatomic, strong) KVBCoreDataServise *coreDataServise;           /**< Сервис для работы с кор дата */
+@property(nonatomic, copy) NSArray<KVBFlyightModel*> *popularDirections;    /**< Массив с полетами для вывода я в первой секции таблицы */
+@property(nonatomic, copy) NSArray<KVBFlyightModel*> *cheapTickets;         /**< Массив с полетами для вывода во второй секции таблицы */
+@property(nonatomic, strong) KVBPopularDirectionCell *cell;                 /**< Ячейка с коллекшн вью в первой секции таблшицы */
+@property(nonatomic, weak) Cities *departureCity;                           /**< Город вылета */
+@property(nonatomic, weak) Cities *arrivalCity;                             /**< Город прибытия */
 
+
+/**
+ Вспомогательный метод на случай, если не пришло билетов с сервера.
+ @return возвращает массив с ячейкой таблицы, с луйблом "No tickets" которую можно вывести вместо пустой таблицы.
+ */
 - (NSArray*)noChepTickets;
+/**
+ Обнуляет массив popularDirections, и вместо него будет выводиться ячейка с лейблом "No popular directions"
+ */
 - (void)noPopularDirections;
 
 

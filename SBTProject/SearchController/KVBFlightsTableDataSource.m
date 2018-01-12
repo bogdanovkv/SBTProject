@@ -49,7 +49,7 @@ NSString * const KVBHeaderIdentifier = @"KVBHeaderIdentifier";
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0)
+    if(!indexPath.section)
     {
         if (!self.popularDirections.count)
         {

@@ -10,6 +10,15 @@
 
 const NSInteger KVBElementOffset = 15;
 
+
+@interface KVBCollectionViewFlightCell()
+
+
+@property(nonatomic, strong) UIImageView *imageView;        /**< Картинка для отображения  */
+
+
+@end
+
 @implementation KVBCollectionViewFlightCell
 
 - (instancetype)initWithFrame:(CGRect)frame

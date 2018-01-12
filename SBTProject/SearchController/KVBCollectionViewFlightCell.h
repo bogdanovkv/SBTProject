@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+
+/**
+ Ячейка коллекшн вью для отображения данных о полете
+*/
 @interface KVBCollectionViewFlightCell : UICollectionViewCell
 
-@property(nonatomic, strong) UILabel *arrivalLabel;
-@property(nonatomic, strong) UILabel *departureLabel;
-@property(nonatomic, strong) UIImageView *imageView;
-@property(nonatomic, strong) UILabel *priceLabel;
+@property(nonatomic, strong) UILabel *arrivalLabel;         /**< Название страны отправления. */
+@property(nonatomic, strong) UILabel *departureLabel;       /**< Название страны назначения. */
+@property(nonatomic, strong) UILabel *priceLabel;           /**< Цена.  */
 
 @end

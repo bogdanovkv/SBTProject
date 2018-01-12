@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+/**
+ Хедер для таблицы. С лейблом на весь хэдер и выравнием текста по центру.
+ */
 @interface KVBHeaderView : UITableViewHeaderFooterView
 
 
-@property(nonatomic, strong) UILabel *sectionNameLabel;
+@property(nonatomic, strong) UILabel *sectionNameLabel;     /**< Лэйбл хэдера */
 
 
 @end

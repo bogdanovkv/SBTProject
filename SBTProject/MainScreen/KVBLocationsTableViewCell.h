@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+/**
+ Класс ячейки с лейблом на всю ширину и высоту ячейки. Для отображения списка городов или стран в таблице.
+ */
 @interface KVBLocationsTableViewCell : UITableViewCell
 
 
-@property(nonatomic, copy) NSString *locationName;
+@property(nonatomic, copy) NSString *locationName; /**< Строка для задания названия города/страны, которая будет отображаться в ячейке. */
 
 
 @end
