@@ -117,11 +117,10 @@
 
     KVBFlyightModel *flightModel = [[KVBFlyightModel alloc]initWithFlight:flight];
     
-    KVBFlyightDetailedViewController *detailedVC = [[KVBFlyightDetailedViewController alloc]
-                                                    initWithFlightModel:flightModel
-                                                    departureCity:flight.departure
-                                                    arrivalCity:flight.arrival
-                                                    withCoreDataServise:self.coreDataService];
+    KVBFlyightDetailedViewController *detailedVC = [[KVBFlyightDetailedViewController alloc]initWithFlightModel:flightModel
+                                                                                                  departureCity:flight.departure
+                                                                                                    arrivalCity:flight.arrival
+                                                                                            withCoreDataServise:self.coreDataService];
     detailedVC.flight = flight;
     
     [self.navigationController pushViewController:detailedVC animated:YES];

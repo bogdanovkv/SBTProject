@@ -8,15 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+
+/**
+ Ячейка коллекшн вью для отображения данных о полете.
+ */
 @interface KVBSavedFlightCollectionCell : UICollectionViewCell
 
-@property(nonatomic, copy) NSString *from;
-@property(nonatomic, copy) NSString *back;
-@property(nonatomic, strong) NSDate *departureDate;
-@property(nonatomic, strong) NSDate *backDate;
-@property(nonatomic, assign) NSInteger classNumber;
-@property(nonatomic, assign) NSInteger price;
+@property(nonatomic, copy) NSString *from;              /**< Название города вылета. */
+@property(nonatomic, copy) NSString *back;              /**< Названия города назначения. */
+@property(nonatomic, strong) NSDate *departureDate;     /**< Дата вылета. */
+@property(nonatomic, strong) NSDate *backDate;          /**< Дата билетов назад. */
+@property(nonatomic, assign) NSInteger classNumber;     /**< Номер класса полета. */
+@property(nonatomic, assign) NSInteger price;           /**< Цена. */
 
+/**
+ Запускает анимацию летящего самолетика.
+ */
 - (void)startAnimation;
 
 @end

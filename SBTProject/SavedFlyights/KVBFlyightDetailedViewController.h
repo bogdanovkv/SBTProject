@@ -9,9 +9,11 @@
 #import "KVBFlyightInfoViewController.h"
 
 @class Flyight;
-
+/**
+ Контроллер для отображения подробной информации о полете. Наследник KVBFlyightInfoViewController. Внутри переопределен метод - (void)buttonAction и тайтл кнопки.(см. хедер KVBFlyightInfoViewController)
+ */
 @interface KVBFlyightDetailedViewController : KVBFlyightInfoViewController
 
-@property(nonatomic, strong) Flyight *flight;
+@property(nonatomic, strong) Flyight *flight; /**< Модель полета из кор даты которая отображается. */
 
 @end

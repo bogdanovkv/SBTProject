@@ -17,7 +17,7 @@
 
 -(instancetype)initWithFlightModel:(KVBFlyightModel *)flightModel departureCity:(Cities *)departureCity arrivalCity:(Cities *)arrivalCity withCoreDataServise:(KVBCoreDataServise *)coreDataServise
 {
-   self =  [ super initWithFlightModel:flightModel departureCity:departureCity arrivalCity:arrivalCity withCoreDataServise:coreDataServise];
+   self =  [super initWithFlightModel:flightModel departureCity:departureCity arrivalCity:arrivalCity withCoreDataServise:coreDataServise];
     
     if(self)
     {

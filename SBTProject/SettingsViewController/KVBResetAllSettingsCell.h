@@ -17,6 +17,9 @@
 
 @property(weak, nonatomic) id<KVBCustomCellProtocol> delegate; /**< Делегат который реализует метод deleteFromCoreData. */
 
+/**
+ Показывает кнопку Delete
+ */
 - (void)showButton;
 
 

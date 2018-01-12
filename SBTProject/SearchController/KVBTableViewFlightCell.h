@@ -13,9 +13,9 @@
  */
 @interface KVBTableViewFlightCell : UITableViewCell
 
-@property(nonatomic, strong) NSString *arrival;             /**< Название страны отправления. */
-@property(nonatomic, strong) NSString *departure;           /**< Название страны прибития. */
-@property(nonatomic, strong) UIImageView *customImage;      /**< картинка отображаемая в таблице. */
+@property(nonatomic, strong) NSString *arrival;             /**< Название города отправления. */
+@property(nonatomic, strong) NSString *departure;           /**< Название города прибития. */
+@property(nonatomic, strong) UIImageView *customImage;      /**< Картинка отображаемая в таблице. */
 @property(nonatomic, strong) NSString *price;               /**< Цена. */
 @property(nonatomic, strong) NSDate *departureDate;         /**< Дата вылета. */
 @property(nonatomic, strong) NSDate *arrivalDate;           /**< Да вылета обратно. */

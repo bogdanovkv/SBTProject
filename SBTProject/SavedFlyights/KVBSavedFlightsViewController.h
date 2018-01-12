@@ -9,8 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @class KVBCoreDataServise;
+
+/**
+ Контроллер для отображения полетов сохраненных в кор дате.
+ */
 @interface KVBSavedFlightsViewController : UIViewController
 
+
+/**
+Инициализирует контроллер с заданым кор дата сервисом.
+ @param coreDataServise сервис для работы с кор датой.
+ @return контроллер с заданым кор дата сервисом.
+ */
 - (instancetype)initWithCoreDataService:(KVBCoreDataServise*)coreDataServise;
+
 
 @end

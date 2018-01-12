@@ -14,8 +14,8 @@
 */
 @interface KVBCollectionViewFlightCell : UICollectionViewCell
 
-@property(nonatomic, strong) UILabel *arrivalLabel;         /**< Название страны отправления. */
-@property(nonatomic, strong) UILabel *departureLabel;       /**< Название страны назначения. */
+@property(nonatomic, strong) UILabel *arrivalLabel;         /**< Название города отправления. */
+@property(nonatomic, strong) UILabel *departureLabel;       /**< Название города назначения. */
 @property(nonatomic, strong) UILabel *priceLabel;           /**< Цена.  */
 
 @end
