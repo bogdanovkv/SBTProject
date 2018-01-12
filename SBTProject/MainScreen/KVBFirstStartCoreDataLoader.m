@@ -12,6 +12,11 @@
 #import "Airpots+CoreDataClass.h"
 #import "AppDelegate.h"
 
+NSString * const KVBTravelpayouts = @"fe17c550289588390f32bb8a4caf562f";
+NSString * const KVBLocationsRequestWhereAreMe = @"http://www.travelpayouts.com/whereami";
+NSString * const KVBRequestAllCountries = @"http://api.travelpayouts.com/data/countries.json";
+NSString * const KVBRequestAllCities = @"http://api.travelpayouts.com/data/cities.json";
+NSString * const KVBRequestAllAirports = @"http://api.travelpayouts.com/data/airports.json";
 
 @interface KVBFirstStartCoreDataLoader()
 

@@ -11,11 +11,11 @@
 @class NSManagedObjectContext;
 @protocol KVBFirstStartLoadingDelegate;
 
-static NSString * const KVBTravelpayouts = @"fe17c550289588390f32bb8a4caf562f";
-static NSString * const KVBLocationsRequestWhereAreMe = @"http://www.travelpayouts.com/whereami";
-static NSString * const KVBRequestAllCountries = @"http://api.travelpayouts.com/data/countries.json";
-static NSString * const KVBRequestAllCities = @"http://api.travelpayouts.com/data/cities.json";
-static NSString * const KVBRequestAllAirports = @"http://api.travelpayouts.com/data/airports.json";
+extern NSString * const KVBTravelpayouts;
+extern NSString * const KVBLocationsRequestWhereAreMe;
+extern NSString * const KVBRequestAllCountries;
+extern NSString * const KVBRequestAllCities;
+extern NSString * const KVBRequestAllAirports;
 
 
 @interface KVBFirstStartCoreDataLoader : NSObject <NSURLSessionDelegate>
