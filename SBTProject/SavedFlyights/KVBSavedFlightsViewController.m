@@ -111,7 +111,7 @@
 
 #pragma mark - UICollectionViewDelegate
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+-(void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
     Flyight *flight = [self.fetchController objectAtIndexPath:indexPath];
 

@@ -181,7 +181,7 @@
         }
     };
     
-    NSArray<KVBFlyightModel*> *testArray = [KVBFlyightModel arrayFromDictionariesWithjClassType:testDictionary];
+    NSArray<KVBFlyightModel*> *testArray = [KVBFlyightModel arrayFromDictionariesWithClassType:testDictionary];
     
     expect(testArray.count).equal(@3);
     expect([testArray[0] isKindOfClass:[KVBFlyightModel class]]).beTruthy();

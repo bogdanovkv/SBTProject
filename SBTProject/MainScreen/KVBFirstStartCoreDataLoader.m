@@ -12,19 +12,21 @@
 #import "Airpots+CoreDataClass.h"
 #import "AppDelegate.h"
 
+
 NSString * const KVBTravelpayouts = @"fe17c550289588390f32bb8a4caf562f";
 NSString * const KVBLocationsRequestWhereAreMe = @"http://www.travelpayouts.com/whereami";
 NSString * const KVBRequestAllCountries = @"http://api.travelpayouts.com/data/countries.json";
 NSString * const KVBRequestAllCities = @"http://api.travelpayouts.com/data/cities.json";
 NSString * const KVBRequestAllAirports = @"http://api.travelpayouts.com/data/airports.json";
 
+
 @interface KVBFirstStartCoreDataLoader()
 
 
 @property(nonatomic, strong) NSManagedObjectContext *context;
-@property(nonatomic, copy) NSDictionary *countriesDictionary;
-@property(nonatomic, copy) NSDictionary *citiesDictionary;
-@property(nonatomic, copy) NSDictionary *airportDictionary;
+@property(nonatomic, copy) NSArray *countriesDictionary;
+@property(nonatomic, copy) NSArray *citiesDictionary;
+@property(nonatomic, copy) NSArray *airportDictionary;
 
 @end
 
@@ -47,40 +49,45 @@ NSString * const KVBRequestAllAirports = @"http://api.travelpayouts.com/data/air
 {
     NSError *error = nil;
     NSData *data = [NSData dataWithContentsOfURL:location];
-    NSDictionary* reciever = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    NSArray* reciever = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
    
-    if(!error)
+    if(error)
     {
-            if([downloadTask.currentRequest.URL isEqual:[NSURL URLWithString: KVBRequestAllCountries]])
-        {
-            self.countriesDictionary = reciever;
-        }
-        if([downloadTask.currentRequest.URL isEqual:[NSURL URLWithString: KVBRequestAllCities]])
-        {
-            self.citiesDictionary = reciever;
-        }
-    
-        if([downloadTask.currentRequest.URL isEqual:[NSURL URLWithString: KVBRequestAllAirports]])
-        {
-            self.airportDictionary = reciever;
-        }
-        
-        if(self.countriesDictionary.count != 0 && self.citiesDictionary.count != 0 && self.airportDictionary.count != 0)
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                        [self setupCoreData];
-            
-            });
-        }
+        return;
     }
-
+    
+    if([downloadTask.currentRequest.URL isEqual:[NSURL URLWithString: KVBRequestAllCountries]])
+    {
+        self.countriesDictionary = reciever;
+    }
+    
+    if([downloadTask.currentRequest.URL isEqual:[NSURL URLWithString: KVBRequestAllCities]])
+    {
+        self.citiesDictionary = reciever;
+    }
+    
+    if([downloadTask.currentRequest.URL isEqual:[NSURL URLWithString: KVBRequestAllAirports]])
+    {
+        self.airportDictionary = reciever;
+    }
+    
+    if(self.countriesDictionary.count != 0 && self.citiesDictionary.count != 0 && self.airportDictionary.count != 0)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+                    [self setupCoreDataWithCountries:self.countriesDictionary withCities:self.citiesDictionary withAirports:self.airportDictionary];
+        });
+    }
 }
 
 
--(void)setupCoreData
+- (BOOL)setupCoreDataWithCountries:(NSArray*)countriesDictionary withCities:(NSArray*)citiesDictionary withAirports:(NSArray*)airportDictionary
 {
+    if(!(countriesDictionary.count != 0 && citiesDictionary.count != 0 && airportDictionary.count != 0))
+    {
+        return NO;
+    }
     
-    for (NSDictionary *country in self.countriesDictionary)
+    for (NSDictionary *country in countriesDictionary)
     {
         Countries *newCountry = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Countries class]) inManagedObjectContext:self.context];
         newCountry.name = country[@"name"];
@@ -92,7 +99,7 @@ NSString * const KVBRequestAllAirports = @"http://api.travelpayouts.com/data/air
         newCountry.nameRu = namesCountries[@"ru"];
     }
     
-    for (NSDictionary *city in self.citiesDictionary)
+    for (NSDictionary *city in citiesDictionary)
     {
         Cities *newCity = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Cities class]) inManagedObjectContext:self.context];
         newCity.name = city[@"name"];
@@ -104,7 +111,7 @@ NSString * const KVBRequestAllAirports = @"http://api.travelpayouts.com/data/air
         newCity.nameRu = namesCities[@"ru"];
     }
     
-    for (NSDictionary *airport in self.airportDictionary)
+    for (NSDictionary *airport in airportDictionary)
     {
         Airpots *newAirport = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Airpots class]) inManagedObjectContext:self.context];
         newAirport.name = airport[@"name"];
@@ -117,16 +124,16 @@ NSString * const KVBRequestAllAirports = @"http://api.travelpayouts.com/data/air
         newAirport.nameRu = namesAirport[@"ru"];
         
     }
-    NSError *saveError=nil;
-    [self.context save: &saveError];
     
-    if(saveError)
+    if(![self.context save:nil])
     {
-        return;
+        return NO;
     }
     
     [[NSUserDefaults standardUserDefaults] setValue:@"Exist" forKey:@"isDataExist"];
     [self.delegate loadingComplete];
+    
+    return YES;
 }
 
 

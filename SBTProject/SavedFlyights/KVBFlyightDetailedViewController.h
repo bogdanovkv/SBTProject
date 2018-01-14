@@ -14,6 +14,6 @@
  */
 @interface KVBFlyightDetailedViewController : KVBFlyightInfoViewController
 
-@property(nonatomic, strong) Flyight *flight; /**< Модель полета из кор даты которая отображается. */
+@property(nonatomic, strong) Flyight *flight; /**< Модель полета из кор даты, которая отображается. */
 
 @end
