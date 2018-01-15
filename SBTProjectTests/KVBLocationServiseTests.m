@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import <Expecta.h>
 #import <OCMock.h>
+#import <OHHTTPStubs.h>
 #import "KVBLocationServise.h"
 
 
@@ -28,7 +29,7 @@
 }
 
 - (void)tearDown {
-    
+    self.locationServise = nil;
     [super tearDown];
 }
 

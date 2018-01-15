@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4E54086678DA69D997DF9D5669814F5C"
-               BuildableName = "libPods-SBTProjectTests.a"
-               BlueprintName = "Pods-SBTProjectTests"
+               BlueprintIdentifier = "0A578B91EB23BBD0EB78884A6FCB29D9"
+               BuildableName = "libOHHTTPStubs.a"
+               BlueprintName = "OHHTTPStubs"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4E54086678DA69D997DF9D5669814F5C"
-            BuildableName = "libPods-SBTProjectTests.a"
-            BlueprintName = "Pods-SBTProjectTests"
+            BlueprintIdentifier = "0A578B91EB23BBD0EB78884A6FCB29D9"
+            BuildableName = "libOHHTTPStubs.a"
+            BlueprintName = "OHHTTPStubs"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
