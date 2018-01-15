@@ -12,6 +12,7 @@
 
 @implementation KVBHeaderView
 
+
 - (instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier
 {
     self = [super initWithReuseIdentifier:reuseIdentifier];

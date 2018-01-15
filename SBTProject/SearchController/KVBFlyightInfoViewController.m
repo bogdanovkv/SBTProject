@@ -226,8 +226,6 @@ static NSInteger const KVBButtonCornerRadius = 15;
     basicAnimation.toValue = @1.5;
     basicAnimation.duration = duration;
     
-    
-    
     CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     pathAnimation.values = array;
     pathAnimation.duration = duration;
