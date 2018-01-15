@@ -37,7 +37,7 @@
         _coreDataConstructor = [[KVBFirstStartCoreDataLoader alloc]initWithContext:context];
         _coreDataConstructor.delegate = self.delegate;
         
-        _downloadTaskQueue = [[NSOperationQueue alloc] init];
+        _downloadTaskQueue  = [[NSOperationQueue alloc] init];
     }
     return self;
 }
@@ -90,7 +90,7 @@
     [self recieveByURL:KVBRequestAllAirports];
 }
 
-- (void)recieveByURL:(NSString*) string
+- (void)recieveByURL:(NSString*)string
 {
     NSURLComponents *urlComponents = [NSURLComponents componentsWithString:string];
     

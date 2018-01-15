@@ -35,7 +35,7 @@
 
 @property(nonatomic, strong) NSManagedObjectContext *context;
 
-- (BOOL)setupCoreDataWithCountries:(NSDictionary*)countriesDictionary withCities:(NSDictionary*)citiesDictionary withAirports:(NSDictionary*)airportDictionary;
+- (BOOL)setupCoreDataWithCountries:(NSArray*)countriesDictionary withCities:(NSArray*)citiesDictionary withAirports:(NSArray*)airportDictionary;
 
 
 @end
@@ -54,8 +54,9 @@
 - (void)setUp {
     [super setUp];
     KVBPersistentContainer *persistentContainer = [KVBPersistentContainer new];
-    self.coreDataLoader = OCMPartialMock([[KVBFirstStartCoreDataLoader alloc]initWithContext:nil]);
-    self.coreDataLoader.context = OCMPartialMock(persistentContainer.persistentContainer.viewContext);
+    NSManagedObjectContext *context = OCMPartialMock(persistentContainer.persistentContainer.viewContext);
+
+    self.coreDataLoader = OCMPartialMock([[KVBFirstStartCoreDataLoader alloc]initWithContext:context]);
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -73,7 +74,7 @@
 
 - (void)testSetupCoreDataWithCountriesReturnNoWithCountries
 {
-    NSDictionary *country =  @{
+    NSArray *country =  @[@{
         @"code": @"NC",
         @"name": @"New Caledonia",
         @"currency": @"XPF",
@@ -88,7 +89,7 @@
             @"it": @"Nuova Caledonia",
             @"th": @"ประเทศนิวแคลิโดเนีย"
         }
-    };
+    }];
     
     BOOL result = [self.coreDataLoader setupCoreDataWithCountries:country withCities:nil withAirports:nil];
     
@@ -97,7 +98,7 @@
 
 - (void)testSetupCoreDataWithCountriesReturnNoWithCities
 {
-    NSDictionary *city =  @{
+    NSArray *city = @[ @{
                                @"code": @"SCE",
                                @"name": @"State College",
                                @"coordinates": @{
@@ -117,7 +118,7 @@
                                    @"th": @"สเตทคอลเลจ"
                                },
                                @"country_code": @"US"
-                               };
+                               }];
     
     BOOL result = [self.coreDataLoader setupCoreDataWithCountries:nil withCities:city withAirports:nil];
     
@@ -126,7 +127,7 @@
 
 - (void)testSetupCoreDataWithCountriesReturnNoWithAirports
 {
-    NSDictionary *airport =  @{
+    NSArray *airport = @[ @{
                             @"code": @"MQP",
                             @"name": @"Kruger Mpumalanga International Airport",
                             @"coordinates": @{
@@ -145,7 +146,7 @@
                             },
                             @"country_code": @"ZA",
                             @"city_code": @"NLP"
-                            };
+                            }];
     
     
     
@@ -153,6 +154,7 @@
     
     expect(result).beFalsy();
 }
+
 
 
 
