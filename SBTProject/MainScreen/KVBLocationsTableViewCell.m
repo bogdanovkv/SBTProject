@@ -60,7 +60,6 @@
 -(void)setLocationName:(NSString *)locationName
 {
     _locationName = locationName;
-    
     _locationLabel.text = _locationName;
 }
 
