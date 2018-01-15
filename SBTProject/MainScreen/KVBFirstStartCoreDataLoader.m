@@ -10,7 +10,6 @@
 #import "Cities+CoreDataClass.h"
 #import "Countries+CoreDataClass.h"
 #import "Airpots+CoreDataClass.h"
-#import "AppDelegate.h"
 
 
 NSString * const KVBTravelpayouts = @"fe17c550289588390f32bb8a4caf562f";

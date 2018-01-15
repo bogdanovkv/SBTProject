@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SBTProject/MainScreen/KVBFirstStartCoreDataLoader.m"
-            timestampString = "537699448.599497"
+            filePath = "SBTProject/MainScreen/KVBLocationServise.m"
+            timestampString = "537732279.168923"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "-setupCoreDataWithCountries:withCities:withAirports:"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "-whereAreMeWithComletition:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
