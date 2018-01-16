@@ -12,7 +12,7 @@
 #import "KVBFlyightModel.h"
 
 
-@interface KVBFlyightModel(XCTests)
+@interface KVBFlyightModel(KVBXCTests)
 
 
 - (instancetype)initWithDictionary:(NSDictionary*)flightDictionary;

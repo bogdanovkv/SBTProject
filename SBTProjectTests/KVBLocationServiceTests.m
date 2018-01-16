@@ -11,24 +11,24 @@
 #import <OCMock.h>
 #import <OHHTTPStubs.h>
 #import <OHHTTPStubsResponse+JSON.h>
-#import "KVBLocationServise.h"
+#import "KVBLocationServiсe.h"
 
 
 static NSString * const KVBTravelPayoutHost = @"www.travelpayouts.com";
 
-@interface KVBLocationServiseTests : XCTestCase
+@interface KVBLocationServiceTests : XCTestCase
 
-@property(nonatomic, strong) KVBLocationServise *locationServise;
+@property(nonatomic, strong) KVBLocationServiсe *locationServise;
 
 @end
 
 
-@implementation KVBLocationServiseTests
+@implementation KVBLocationServiceTests
 
 
 - (void)setUp {
     [super setUp];
-    self.locationServise = OCMPartialMock([KVBLocationServise new]);
+    self.locationServise = OCMPartialMock([KVBLocationServiсe new]);
 }
 
 - (void)tearDown {
@@ -80,7 +80,7 @@ static NSString * const KVBTravelPayoutHost = @"www.travelpayouts.com";
 
 }
 
-- (void)testWhereAreMeRecieveLocationGetIncorrectLocation
+- (void)testWhereAreMeRecieveIncorrectLocation
 {
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return [request.URL.host isEqualToString:KVBTravelPayoutHost];
@@ -111,7 +111,7 @@ static NSString * const KVBTravelPayoutHost = @"www.travelpayouts.com";
 
 }
 
-- (void)testWhereAreMeRecieveLocationGetNoData
+- (void)testWhereAreMeRecievetNoData
 {
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return [request.URL.host isEqualToString:KVBTravelPayoutHost];

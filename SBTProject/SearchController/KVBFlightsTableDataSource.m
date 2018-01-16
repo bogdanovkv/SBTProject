@@ -13,7 +13,7 @@
 #import "KVBPopularDirectionCell.h"
 #import "KVBTableViewFlightCell.h"
 #import "KVBFlyightModel.h"
-#import "KVBCoreDataServise.h"
+#import "KVBCoreDataService.h"
 #import "Cities+CoreDataClass.h"
 
 NSString * const KVBHeaderIdentifier = @"KVBHeaderIdentifier";

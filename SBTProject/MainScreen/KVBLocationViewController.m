@@ -9,11 +9,11 @@
 #import "KVBSearchViewController.h"
 #import "KVBSavedFlightsViewController.h"
 #import "KVBSettingsViewController.h"
-#import "KVBLocationServise.h"
+#import "KVBLocationServiсe.h"
 #import "Countries+CoreDataClass.h"
 #import "Cities+CoreDataClass.h"
 #import <CoreData/CoreData.h>
-#import "KVBCoreDataServise.h"
+#import "KVBCoreDataService.h"
 #import "KVBLocationsTableViewCell.h"
 #import "KVBFirstStartCoreDataLoader.h"
 #import <Masonry.h>
@@ -33,10 +33,10 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
 @property(nonatomic, strong) UIButton *acceptButton;
 @property(nonatomic, strong) UITableView *tableWithCities;
 @property(nonatomic, weak) NSManagedObjectContext *context;
-@property(nonatomic, strong) KVBLocationServise *servise;
+@property(nonatomic, strong) KVBLocationServiсe *servise;
 @property(nonatomic, strong) Cities *city;
 @property(nonatomic, strong) Countries *country;
-@property(nonatomic, strong) KVBCoreDataServise *coreDataService;
+@property(nonatomic, strong) KVBCoreDataService *coreDataService;
 
 
 @end
@@ -51,11 +51,11 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
     if (self)
     {
         
-        _servise = [[KVBLocationServise alloc]initWithDelegate:self withContex:context];
+        _servise = [[KVBLocationServiсe alloc]initWithDelegate:self withContex:context];
         
         _context = context;
         
-        _coreDataService = [[KVBCoreDataServise alloc] initWithContext:context];
+        _coreDataService = [[KVBCoreDataService alloc] initWithContext:context];
         
         _acceptButton = [UIButton new];
         [_acceptButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];

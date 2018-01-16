@@ -6,10 +6,10 @@
 //  Copyright © 2017 Константин Богданов. All rights reserved.
 //
 
-#import "KVBFlyightInfoViewController.h"
+#import "KVBFlightInfoViewController.h"
 #import "Cities+CoreDataClass.h"
 #import "KVBFlyightModel.h"
-#import "KVBCoreDataServise.h"
+#import "KVBCoreDataService.h"
 #import <Masonry.h>
 
 static NSInteger const KVBElementOffsetInFlyightInfo = 15;
@@ -18,7 +18,7 @@ static NSInteger const KVBElementBottomOffset = 64;
 static NSInteger const KVBNavigationBarSize = 64;
 static NSInteger const KVBButtonCornerRadius = 15;
 
-@interface KVBFlyightInfoViewController ()
+@interface KVBFlightInfoViewController ()
 
 @property(nonatomic, strong) UILabel *fromLabel;
 @property(nonatomic, strong) UILabel *backLabel;
@@ -34,12 +34,12 @@ static NSInteger const KVBButtonCornerRadius = 15;
 
 @end
 
-@implementation KVBFlyightInfoViewController
+@implementation KVBFlightInfoViewController
 
 - (instancetype)initWithFlightModel:(KVBFlyightModel*)flightModel
                       departureCity:(Cities*)departureCity
                         arrivalCity:(Cities*)arrivalCity
-                withCoreDataServise: (KVBCoreDataServise*) coreDataServise
+                withCoreDataServise: (KVBCoreDataService*) coreDataServise
 {
     self = [super init];
     if (self)

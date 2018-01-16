@@ -6,14 +6,14 @@
 //  Copyright © 2017 Константин Богданов. All rights reserved.
 //
 
-#import "KVBLocationServise.h"
+#import "KVBLocationServiсe.h"
 #import "KVBFirstStartCoreDataLoader.h"
 
 
 @protocol KVBFirstStartLoadingDelegate;
 
 
-@interface KVBLocationServise()
+@interface KVBLocationServiсe()
 
 
 @property(nonatomic, weak) id<KVBFirstStartLoadingDelegate> delegate;
@@ -24,7 +24,7 @@
 @end
 
 
-@implementation KVBLocationServise
+@implementation KVBLocationServiсe
 
 
 - (instancetype)initWithDelegate:(id<KVBFirstStartLoadingDelegate>)delegate withContex:(NSManagedObjectContext*)context

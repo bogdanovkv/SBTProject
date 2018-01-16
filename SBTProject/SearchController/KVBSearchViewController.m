@@ -9,16 +9,16 @@
 #import "KVBSearchViewController.h"
 #import "KVBViewWithParametres.h"
 #import "KVBFlightsTableDataSource.h"
-#import "KVBFlightServise.h"
+#import "KVBFlightService.h"
 #import "KVBPopularDirectionCell.h"
 #import "KVBTableViewFlightCell.h"
-#import "KVBCoreDataServise.h"
+#import "KVBCoreDataService.h"
 #import "Cities+CoreDataClass.h"
 #import "Countries+CoreDataClass.h"
 #import "Airpots+CoreDataClass.h"
-#import "KVBFlightServise.h"
+#import "KVBFlightService.h"
 #import "KVBFlyightModel.h"
-#import "KVBFlyightInfoViewController.h"
+#import "KVBFlightInfoViewController.h"
 #import "KVBHeaderView.h"
 #import <Masonry.h>
 
@@ -33,7 +33,7 @@ static NSInteger const KVBSearchButtonSize = 35;
 @property(nonatomic, strong) KVBViewWithParametres *searchView;
 @property(nonatomic, strong) UIButton *searchButton;
 @property(nonatomic, strong) KVBFlightsTableDataSource *dataSourse;
-@property(nonatomic, strong) KVBFlightServise *flightServise;
+@property(nonatomic, strong) KVBFlightService *flightServise;
 @property(nonatomic,getter=isHide, assign) BOOL hide;
 
 
@@ -52,10 +52,10 @@ static NSInteger const KVBSearchButtonSize = 35;
         
         _departureCity = city;
         
-        _flightServise = [KVBFlightServise new];
+        _flightServise = [KVBFlightService new];
         
         _dataSourse = [KVBFlightsTableDataSource new];
-        _dataSourse.coreDataServise = [[KVBCoreDataServise alloc]initWithContext:context];
+        _dataSourse.coreDataServise = [[KVBCoreDataService alloc]initWithContext:context];
         
         _searchView = [[KVBViewWithParametres alloc]initWithContext:context];
         _searchView.departureField.text = [NSString stringWithFormat:@"%@, %@", city.parrentCountry.codeIATA, city.name];
@@ -213,7 +213,7 @@ static NSInteger const KVBSearchButtonSize = 35;
         return;
     }
     
-    KVBFlyightInfoViewController *flightInfoVC = [[KVBFlyightInfoViewController alloc] initWithFlightModel:self.dataSourse.cheapTickets[indexPath.row] departureCity:self.departureCity arrivalCity:self.arrivalCity withCoreDataServise:self.dataSourse.coreDataServise];
+    KVBFlightInfoViewController *flightInfoVC = [[KVBFlightInfoViewController alloc] initWithFlightModel:self.dataSourse.cheapTickets[indexPath.row] departureCity:self.departureCity arrivalCity:self.arrivalCity withCoreDataServise:self.dataSourse.coreDataServise];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     

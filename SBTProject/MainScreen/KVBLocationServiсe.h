@@ -15,7 +15,7 @@
 /**
  Сервис для определения мостоположения и подгрузки данных о странах и городах с сервера.
  */
-@interface KVBLocationServise : NSObject
+@interface KVBLocationServiсe : NSObject
 
 /**
  Инициализирует сервис в заданом контексте с заданым дегатом.

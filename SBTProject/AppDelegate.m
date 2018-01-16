@@ -30,12 +30,11 @@
     
     self.persistentContainer = [KVBPersistentContainer new];
     
-    KVBLocationViewController *welcomeVC = [[KVBLocationViewController alloc] initWithContext:self.persistentContainer.persistentContainer.viewContext];
+    KVBLocationViewController *welcomeVC = [[KVBLocationViewController alloc]initWithContext:self.persistentContainer.persistentContainer.viewContext];
     
     self.window.rootViewController = welcomeVC;
 
     [self.window makeKeyAndVisible];
-    
     
     return YES;
 }

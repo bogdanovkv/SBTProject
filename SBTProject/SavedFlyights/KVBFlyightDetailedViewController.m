@@ -7,15 +7,15 @@
 //
 
 #import "KVBFlyightDetailedViewController.h"
-#import "KVBCoreDataServise.h"
+#import "KVBCoreDataService.h"
 
-@interface KVBFlyightInfoViewController ()
+@interface KVBFlightInfoViewController ()
 
 @end
 
 @implementation KVBFlyightDetailedViewController
 
--(instancetype)initWithFlightModel:(KVBFlyightModel *)flightModel departureCity:(Cities *)departureCity arrivalCity:(Cities *)arrivalCity withCoreDataServise:(KVBCoreDataServise *)coreDataServise
+-(instancetype)initWithFlightModel:(KVBFlyightModel *)flightModel departureCity:(Cities *)departureCity arrivalCity:(Cities *)arrivalCity withCoreDataServise:(KVBCoreDataService *)coreDataServise
 {
    self =  [super initWithFlightModel:flightModel departureCity:departureCity arrivalCity:arrivalCity withCoreDataServise:coreDataServise];
     

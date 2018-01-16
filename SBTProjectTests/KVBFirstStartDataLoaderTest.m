@@ -30,7 +30,7 @@
 
 @end
 
-@interface KVBFirstStartCoreDataLoader(XCTests)
+@interface KVBFirstStartCoreDataLoader(KVBXCTests)
 
 
 @property(nonatomic, strong) NSManagedObjectContext *context;
@@ -147,8 +147,6 @@
                             @"country_code": @"ZA",
                             @"city_code": @"NLP"
                             }];
-    
-    
     
     BOOL result = [self.coreDataLoader setupCoreDataWithCountries:nil withCities:nil withAirports:airport];
     

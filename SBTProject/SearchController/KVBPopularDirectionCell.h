@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class KVBCoreDataServise;
+@class KVBCoreDataService;
 @class KVBFlyightModel;
 /**
  Класс ячейки таблицы которая содержит внутри себя  UICollectionView
@@ -17,7 +17,7 @@
 
 
 @property(nonatomic, weak) UINavigationController *navController;       /**< Navigation controller в котором отображается ячека */
-@property(nonatomic, weak) KVBCoreDataServise *coreDataServise;         /**< Сервис для работы с CoreData */
+@property(nonatomic, weak) KVBCoreDataService *coreDataServise;         /**< Сервис для работы с CoreData */
 
 /**
 Инициализирует ячейку с коллекш вью.

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class KVBCoreDataServise;
+@class KVBCoreDataService;
 @class KVBFlyightModel;
 @class Cities;
 
@@ -15,11 +15,11 @@
 /**
  Контроллер для отображения подробной информации о полете.
  */
-@interface KVBFlyightInfoViewController : UIViewController
+@interface KVBFlightInfoViewController : UIViewController
 
 
 @property(nonatomic, strong) UIButton *saveButton;                              /**< Кнока для сохранения полета */
-@property(nonatomic, readonly, strong) KVBCoreDataServise *coreDataServise;     /**< Сервис для работы с кор дата */
+@property(nonatomic, readonly, strong) KVBCoreDataService *coreDataServise;     /**< Сервис для работы с кор дата */
 
 
 /**
@@ -29,7 +29,7 @@
  @param arrivalCity город прибытия
  @return coreDataServise сервис для работы с кор дата
  */
-- (instancetype)initWithFlightModel:(KVBFlyightModel*)flightModel departureCity:(Cities*)departureCity arrivalCity:(Cities*)arrivalCity withCoreDataServise:(KVBCoreDataServise*) coreDataServise;
+- (instancetype)initWithFlightModel:(KVBFlyightModel*)flightModel departureCity:(Cities*)departureCity arrivalCity:(Cities*)arrivalCity withCoreDataServise:(KVBCoreDataService*) coreDataServise;
 /**
  Метод который вызывается по нажатию saveButton. Вынесен сюда для возможности переиспользования. Если не переопределен, то сохраняет полет и запускает анимацию.
  */
