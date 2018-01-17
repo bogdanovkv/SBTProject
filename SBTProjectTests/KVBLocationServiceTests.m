@@ -137,6 +137,22 @@ static NSString * const KVBTravelPayoutHost = @"www.travelpayouts.com";
     expect(currentError).after(3).notTo.equal(@"");
 }
 
+- (void)testWhereAreMeWithoutBlock
+{
+    __block BOOL wasCalled = NO;
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        wasCalled = YES;
+        return [request.URL.host isEqualToString:KVBTravelPayoutHost];
+        
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        return nil;
+    }];
+
+    [self.locationServise whereAreMeWithComletition:nil];
+
+    expect(wasCalled).after(3).beFalsy();
+}
+
 
 
 

@@ -119,11 +119,16 @@
     expect(self.flightModel.departureCode).equal(@"No info");
     expect(self.flightModel.classNumber).equal(@0);
 }
-
-- (void)testArrayFromDictionariesToBeNil
+- (void)testArrayFromDictionariesNotBeNil
 {
     
-   
+    NSArray *testArray = [KVBFlyightModel arrayFromDictionaries:nil];
+    
+    expect(testArray).to.beNil();
+}
+
+- (void)testArrayFromDictionariesNotToBeNil
+{
     NSDictionary *testDictionary = @{
                                      @0: @{
             @"price": @35443,
@@ -150,7 +155,14 @@
     expect([testArray.lastObject isKindOfClass:[KVBFlyightModel class]]).beTruthy();
 }
 
-- (void)testArrayFromDictionariesWithjClassType
+- (void)testArrayFromDictionariesWithClassNotBeNil
+{
+    NSArray *testArray = [KVBFlyightModel arrayFromDictionariesWithClassType:nil];
+    
+    expect(testArray).to.beNil();
+}
+
+- (void)testArrayFromDictionariesWithClassType
 {
     NSDictionary *testDictionary =    @{
                                        @"HKT": @{
@@ -187,7 +199,6 @@
     expect([testArray[0] isKindOfClass:[KVBFlyightModel class]]).beTruthy();
     expect([testArray[1] isKindOfClass:[KVBFlyightModel class]]).beTruthy();
     expect([testArray[2] isKindOfClass:[KVBFlyightModel class]]).beTruthy();
-
 }
 
 
