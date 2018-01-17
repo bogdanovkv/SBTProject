@@ -6,7 +6,7 @@
 //  Copyright © 2017 Константин Богданов. All rights reserved.
 //
 
-#import "KVBCoreDataServise.h"
+#import "KVBCoreDataService.h"
 #import "Cities+CoreDataClass.h"
 #import "Countries+CoreDataClass.h"
 #import "Airpots+CoreDataClass.h"
@@ -14,7 +14,7 @@
 #import "KVBFlyightModel.h"
 
 
-@implementation KVBCoreDataServise
+@implementation KVBCoreDataService
 
 - (instancetype)initWithContext:(NSManagedObjectContext *)context
 {

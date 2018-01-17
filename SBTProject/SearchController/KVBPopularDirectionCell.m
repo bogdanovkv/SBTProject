@@ -8,9 +8,9 @@
 
 #import "KVBPopularDirectionCell.h"
 #import "KVBCollectionViewFlightCell.h"
-#import "KVBFlyightInfoViewController.h"
+#import "KVBFlightInfoViewController.h"
 #import "KVBFlyightModel.h"
-#import "KVBCoreDataServise.h"
+#import "KVBCoreDataService.h"
 #import "Cities+CoreDataClass.h"
 #import <Masonry.h>
 static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCell";
@@ -94,7 +94,7 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
     Cities *departureCity = [self.coreDataServise recieveCityByCityCode:model.departureCode].firstObject;
     Cities *arrivalCity = [self.coreDataServise recieveCityByCityCode:model.arrivalCode].firstObject;
     
-    KVBFlyightInfoViewController *flightInfoVC = [[KVBFlyightInfoViewController alloc] initWithFlightModel:self.popularDirections[indexPath.row] departureCity:departureCity arrivalCity:arrivalCity withCoreDataServise:self.coreDataServise];
+    KVBFlightInfoViewController *flightInfoVC = [[KVBFlightInfoViewController alloc] initWithFlightModel:self.popularDirections[indexPath.row] departureCity:departureCity arrivalCity:arrivalCity withCoreDataServise:self.coreDataServise];
 
     [self.navController pushViewController:flightInfoVC animated:YES];
 }

@@ -8,7 +8,7 @@
 
 #import "KVBSavedFlightsViewController.h"
 #import "KVBFlightsDataSource.h"
-#import "KVBCoreDataServise.h"
+#import "KVBCoreDataService.h"
 #import "KVBSavedFlightCollectionCell.h"
 #import "KVBFlyightModel.h"
 #import "Flyight+CoreDataClass.h"
@@ -19,7 +19,7 @@
 
 @property(nonatomic, strong) UICollectionView *collectionWithFlyights;
 @property(nonatomic, strong) KVBFlightsDataSource *dataSourse;
-@property(nonatomic, strong) KVBCoreDataServise* coreDataService;
+@property(nonatomic, strong) KVBCoreDataService* coreDataService;
 @property(nonatomic, strong) UIImageView *backImage;
 @property(nonatomic, strong) NSFetchedResultsController *fetchController;
 
@@ -27,7 +27,7 @@
 
 @implementation KVBSavedFlightsViewController
 
-- (instancetype)initWithCoreDataService:(KVBCoreDataServise*)coreDataServise
+- (instancetype)initWithCoreDataService:(KVBCoreDataService*)coreDataServise
 {
     self = [super init];
     if (self) {

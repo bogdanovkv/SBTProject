@@ -6,20 +6,20 @@
 //  Copyright © 2017 Константин Богданов. All rights reserved.
 //
 
-#import "KVBFlightServise.h"
+#import "KVBFlightService.h"
 #import "Cities+CoreDataClass.h"
 
 
 NSString *const KVBPopularDirections = @"http://api.travelpayouts.com/v1/city-directions";
 NSString *const KVBCheapTiktetFromCityToCity = @"http://api.travelpayouts.com/v1/prices/cheap";
 
-@interface KVBFlightServise()
+@interface KVBFlightService()
 @property(nonatomic, strong) NSOperationQueue *dataTaskQueue;
 @end
 
-@implementation KVBFlightServise
+@implementation KVBFlightService
 
-- (void) recieveCheapTicketsFromCity:(Cities*)departure departureDate: (NSDate*) departureDate toCity:(Cities*) destination arrivalDate: (NSDate*) arrivalDate withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler
+- (void) recieveCheapTicketsFromCity:(Cities*)departure departureDate: (NSDate*) departureDate toCity:(Cities*) destination arrivalDate:(NSDate*)arrivalDate withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler
 {
     NSURLComponents *urlComponents = [NSURLComponents componentsWithString:KVBCheapTiktetFromCityToCity];
     
@@ -66,7 +66,7 @@ NSString *const KVBCheapTiktetFromCityToCity = @"http://api.travelpayouts.com/v1
     [self recieveByURL:urlComponents withCompletitionHandler:completionHandler];
 }
 
-- (void)recieveByURL: (NSURLComponents*) components withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler
+- (void)recieveByURL:(NSURLComponents*)components withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler
 {
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:nil delegateQueue:self.dataTaskQueue];

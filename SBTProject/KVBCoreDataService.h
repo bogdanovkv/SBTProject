@@ -18,7 +18,7 @@
 /**
  Сервис для работы с CoreData. Поддерживает сущности Cities, Countries, Flyight. Предполагается что даннные для сущностей Cities и Countries уже загружены в CoreData.
  */
-@interface KVBCoreDataServise : NSObject
+@interface KVBCoreDataService : NSObject
 
 
 @property(nonatomic, readonly, strong) NSManagedObjectContext *context;     /**< Контекст в котором работает класс*/

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class KVBCoreDataServise;
+@class KVBCoreDataService;
 
 /**
  Констроллер с таблице в которой выводятся настройки
@@ -20,7 +20,7 @@
  @param coreDataServise сервис для работы с CoreData.
  @return объект KVBSettingsViewController.
  */
-- (instancetype _Nonnull)initWithCoreDataServise:( KVBCoreDataServise * _Nonnull)coreDataServise;
+- (instancetype _Nonnull)initWithCoreDataServise:( KVBCoreDataService * _Nonnull)coreDataServise;
 
 
 @end

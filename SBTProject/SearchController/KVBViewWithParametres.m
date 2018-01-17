@@ -7,7 +7,7 @@
 //
 
 #import "KVBViewWithParametres.h"
-#import "KVBCoreDataServise.h"
+#import "KVBCoreDataService.h"
 #import "Cities+CoreDataClass.h"
 #import "Countries+CoreDataClass.h"
 #import "KVBLocationsTableViewCell.h"
@@ -28,7 +28,7 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
 @property(nonatomic, strong) UITableView *tableWithCountries;
 @property(nonatomic, strong) UITextField *departureDateLabel;
 @property(nonatomic, strong) UITextField *arrivalDateLabel;
-@property(nonatomic, strong) KVBCoreDataServise *coreDataServise;
+@property(nonatomic, strong) KVBCoreDataService *coreDataServise;
 @property(nonatomic, copy) NSArray *countriesArray;
 @property(nonatomic, copy) NSArray *citiesArray;
 @property(nonatomic, strong) UITapGestureRecognizer *tapRecognaiser;
@@ -101,7 +101,7 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
         _imageView = [UIImageView new];
         _imageView.image = [UIImage imageNamed:@"backimg.jpg"];
         
-        _coreDataServise = [[KVBCoreDataServise alloc]initWithContext:context];
+        _coreDataServise = [[KVBCoreDataService alloc]initWithContext:context];
         
         _countriesArray = [_coreDataServise recieveCountries];
         

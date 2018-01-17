@@ -9,7 +9,7 @@
 #import "KVBSettingsViewController.h"
 #import "KVBSettingTableDataSourse.h"
 #import "KVBResetAllSettingsCell.h"
-#import "KVBCoreDataServise.h"
+#import "KVBCoreDataService.h"
 #import <Masonry.h>
 
 @interface KVBSettingsViewController()<UITableViewDelegate, KVBCustomCellProtocol>
@@ -17,7 +17,7 @@
 
 @property(nonatomic, strong) UITableView *tableWithSettings;
 @property(nonatomic, strong) KVBSettingTableDataSourse *dataSourse;
-@property(nonatomic, strong) KVBCoreDataServise *coreDataServise;
+@property(nonatomic, strong) KVBCoreDataService *coreDataServise;
 
 
 @end
@@ -25,7 +25,7 @@
 
 @implementation KVBSettingsViewController
 
-- (instancetype)initWithCoreDataServise:(KVBCoreDataServise*)coreDataServise
+- (instancetype)initWithCoreDataServise:(KVBCoreDataService*)coreDataServise
 {
     self = [super init];
     if (self)

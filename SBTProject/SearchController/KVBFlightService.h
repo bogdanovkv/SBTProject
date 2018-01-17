@@ -18,7 +18,7 @@ extern NSString *const KVBCheapTiktetFromCityToCity;
 /**
  Сервис для получения списка билетов по заданым направлениям.
  */
-@interface KVBFlightServise : NSObject
+@interface KVBFlightService : NSObject
 
 /**
 Получает дешевые билеты
@@ -28,7 +28,7 @@ extern NSString *const KVBCheapTiktetFromCityToCity;
  @param arrivalDate дата вылета обратно
  @param completionHandler блок который выполняется по завершению, если данные получены ошибка = nil
  */
-- (void)recieveCheapTicketsFromCity:(Cities*)departure departureDate:(NSDate*)departuretDate toCity:(Cities*)destination arrivalDate: (NSDate*)arrivalDate withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler;
+- (void)recieveCheapTicketsFromCity:(Cities*)departure departureDate:(NSDate*)departuretDate toCity:(Cities*)destination arrivalDate:(NSDate*)arrivalDate withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler;
 
 /**
  Получает популярные билеты
