@@ -14,11 +14,11 @@
 		14077F722009FA3000F03B24 /* KVBFirstStartDataLoaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14077F712009FA3000F03B24 /* KVBFirstStartDataLoaderTest.m */; };
 		14077F99200CFB4C00F03B24 /* KVBLocationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14077F98200CFB4C00F03B24 /* KVBLocationServiceTests.m */; };
 		14077F9B200E602E00F03B24 /* KVBFlightServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14077F9A200E602E00F03B24 /* KVBFlightServiceTests.m */; };
+		14077F9D200F58CF00F03B24 /* KVBFlyightModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14077F9C200F58CF00F03B24 /* KVBFlyightModelTest.m */; };
 		1408232C1FEC24B60030298C /* KVBCollectionViewFlightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1408232B1FEC24B60030298C /* KVBCollectionViewFlightCell.m */; };
 		140823351FED6C040030298C /* KVBTableViewFlightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140823341FED6C040030298C /* KVBTableViewFlightCell.m */; };
 		1408AB9F1FEFF9C200C0E2C9 /* KVBCoreDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1408AB9E1FEFF9C200C0E2C9 /* KVBCoreDataService.m */; };
 		140995992005580A001FE3CA /* KVBLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140995982005580A001FE3CA /* KVBLocationViewController.m */; };
-		1409959E20066320001FE3CA /* KVBFlyightModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409959D20066320001FE3CA /* KVBFlyightModelTest.m */; };
 		140CAB6B1FF583E300B6E339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 140CAB6A1FF583E300B6E339 /* Assets.xcassets */; };
 		140DD7991FF7EB9700FE750B /* KVBFlyightDetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140DD7981FF7EB9700FE750B /* KVBFlyightDetailedViewController.m */; };
 		141061B11FF63F620092699C /* KVBSavedFlightCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 141061B01FF63F620092699C /* KVBSavedFlightCollectionCell.m */; };
@@ -81,6 +81,7 @@
 		14077F712009FA3000F03B24 /* KVBFirstStartDataLoaderTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFirstStartDataLoaderTest.m; sourceTree = "<group>"; };
 		14077F98200CFB4C00F03B24 /* KVBLocationServiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBLocationServiceTests.m; sourceTree = "<group>"; };
 		14077F9A200E602E00F03B24 /* KVBFlightServiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFlightServiceTests.m; sourceTree = "<group>"; };
+		14077F9C200F58CF00F03B24 /* KVBFlyightModelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVBFlyightModelTest.m; sourceTree = "<group>"; };
 		1408232A1FEC24B60030298C /* KVBCollectionViewFlightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBCollectionViewFlightCell.h; sourceTree = "<group>"; };
 		1408232B1FEC24B60030298C /* KVBCollectionViewFlightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBCollectionViewFlightCell.m; sourceTree = "<group>"; };
 		140823331FED6C040030298C /* KVBTableViewFlightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBTableViewFlightCell.h; sourceTree = "<group>"; };
@@ -89,7 +90,6 @@
 		1408AB9E1FEFF9C200C0E2C9 /* KVBCoreDataService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBCoreDataService.m; sourceTree = "<group>"; };
 		140995972005580A001FE3CA /* KVBLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVBLocationViewController.h; sourceTree = "<group>"; };
 		140995982005580A001FE3CA /* KVBLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVBLocationViewController.m; sourceTree = "<group>"; };
-		1409959D20066320001FE3CA /* KVBFlyightModelTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KVBFlyightModelTest.m; path = /Users/konstantinbogdanov/SBTProject/SBTProjectTests/KVBFlyightModelTest.m; sourceTree = "<absolute>"; };
 		140CAB6A1FF583E300B6E339 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		140DD7971FF7EB9700FE750B /* KVBFlyightDetailedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFlyightDetailedViewController.h; sourceTree = "<group>"; };
 		140DD7981FF7EB9700FE750B /* KVBFlyightDetailedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFlyightDetailedViewController.m; sourceTree = "<group>"; };
@@ -336,9 +336,9 @@
 		14F682E21FDEEE85004F3BE5 /* SBTProjectTests */ = {
 			isa = PBXGroup;
 			children = (
-				1409959D20066320001FE3CA /* KVBFlyightModelTest.m */,
 				14077F712009FA3000F03B24 /* KVBFirstStartDataLoaderTest.m */,
 				14077F98200CFB4C00F03B24 /* KVBLocationServiceTests.m */,
+				14077F9C200F58CF00F03B24 /* KVBFlyightModelTest.m */,
 				14077F9A200E602E00F03B24 /* KVBFlightServiceTests.m */,
 				14F682E51FDEEE85004F3BE5 /* Info.plist */,
 			);
@@ -645,8 +645,8 @@
 			files = (
 				14077F99200CFB4C00F03B24 /* KVBLocationServiceTests.m in Sources */,
 				14077F722009FA3000F03B24 /* KVBFirstStartDataLoaderTest.m in Sources */,
-				1409959E20066320001FE3CA /* KVBFlyightModelTest.m in Sources */,
 				14077F9B200E602E00F03B24 /* KVBFlightServiceTests.m in Sources */,
+				14077F9D200F58CF00F03B24 /* KVBFlyightModelTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
