@@ -63,7 +63,6 @@
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [self.persistentContainer.persistentContainer.viewContext save:nil];
 }
 
 @end
