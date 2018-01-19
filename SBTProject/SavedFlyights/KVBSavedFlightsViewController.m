@@ -88,21 +88,13 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(nullable NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(nullable NSIndexPath *)newIndexPath
 {
     switch(type) {
+        case NSFetchedResultsChangeDelete:
         case NSFetchedResultsChangeInsert:
         {
             [_collectionWithFlyights reloadData];
             break;
         }
-           
-        case NSFetchedResultsChangeDelete:
-        {
-            [_collectionWithFlyights reloadData];
-            break;
-        }
-
         case NSFetchedResultsChangeUpdate:
-            break;
-            
         case NSFetchedResultsChangeMove:
             break;
     }

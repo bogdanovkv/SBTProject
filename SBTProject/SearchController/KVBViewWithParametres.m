@@ -23,7 +23,6 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
 
 @property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) UIView *inputView;
-@property(nonatomic, strong) UIView *seperatorView;
 @property(nonatomic, strong) UITableView *tableWithCities;
 @property(nonatomic, strong) UITableView *tableWithCountries;
 @property(nonatomic, strong) UITextField *departureDateLabel;

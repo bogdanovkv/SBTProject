@@ -171,22 +171,16 @@ const CGSize KVBPlaneIconSize = {30,30};
 - (void)setBackDate:(NSDate *)backDate
 {
     _backDate = backDate;
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    dateFormatter.dateFormat = @"MMM d, yyyy, EEEE";
-    self.backDateLabel.text = [dateFormatter stringFromDate:_backDate];
-    dateFormatter.dateFormat = @"HH:mm";
-    self.backTimeLabel.text = [dateFormatter stringFromDate:backDate];
+   
+    self.backTimeLabel.text = [self stringFromDate:_backDate];
 
 }
 
 - (void)setDepartureDate:(NSDate*)departureDate
 {
     _departureDate = departureDate;
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    dateFormatter.dateFormat = @"MMM d, yyyy, EEEE";
-    self.departureDateLabel.text = [dateFormatter stringFromDate:_departureDate];
-    dateFormatter.dateFormat = @"HH:mm";
-    self.timeLabel.text = [dateFormatter stringFromDate:_departureDate];
+   
+    self.timeLabel.text = [self stringFromDate:_departureDate];
 }
 
 - (void)setPrice:(NSInteger)price
@@ -199,6 +193,19 @@ const CGSize KVBPlaneIconSize = {30,30};
 {
     _classNumber = classNumber;
     self.classLabel.text = [NSString stringWithFormat:@"Class %li", _classNumber];
+}
+
+
+#pragma mark - DateSetup
+
+- (NSString*)stringFromDate:(NSDate*)date
+{
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.dateFormat = @"MMM d, yyyy, EEEE";
+    self.departureDateLabel.text = [dateFormatter stringFromDate:_departureDate];
+    dateFormatter.dateFormat = @"HH:mm";
+    
+    return  [dateFormatter stringFromDate:_departureDate];
 }
 
 

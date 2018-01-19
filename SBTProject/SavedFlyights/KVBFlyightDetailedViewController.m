@@ -9,11 +9,9 @@
 #import "KVBFlyightDetailedViewController.h"
 #import "KVBCoreDataService.h"
 
-@interface KVBFlightInfoViewController ()
-
-@end
 
 @implementation KVBFlyightDetailedViewController
+
 
 -(instancetype)initWithFlightModel:(KVBFlyightModel *)flightModel departureCity:(Cities *)departureCity arrivalCity:(Cities *)arrivalCity withCoreDataServise:(KVBCoreDataService *)coreDataServise
 {
@@ -25,6 +23,7 @@
     }
     return self;
 }
+
 -(void)buttonAction
 {
     [self.coreDataServise deleteFlight:self.flight];
