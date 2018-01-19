@@ -15,7 +15,9 @@
 #import "KVBFlyightDetailedViewController.h"
 #import <Masonry.h>
 
+
 @interface KVBSavedFlightsViewController ()<UICollectionViewDelegate, NSFetchedResultsControllerDelegate>
+
 
 @property(nonatomic, strong) UICollectionView *collectionWithFlyights;
 @property(nonatomic, strong) KVBFlightsDataSource *dataSourse;
@@ -23,9 +25,12 @@
 @property(nonatomic, strong) UIImageView *backImage;
 @property(nonatomic, strong) NSFetchedResultsController *fetchController;
 
+
 @end
 
+
 @implementation KVBSavedFlightsViewController
+
 
 - (instancetype)initWithCoreDataService:(KVBCoreDataService*)coreDataServise
 {
@@ -47,7 +52,7 @@
         
         _collectionWithFlyights = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:viewLayout];
         _collectionWithFlyights.backgroundColor = UIColor.whiteColor;
-        [_collectionWithFlyights registerClass:[KVBSavedFlightCollectionCell class] forCellWithReuseIdentifier:@"Cell"];
+        [_collectionWithFlyights registerClass:[KVBSavedFlightCollectionCell class] forCellWithReuseIdentifier:KVBSavedFlightsCellIdentifier];
         _collectionWithFlyights.dataSource = _dataSourse;
         _collectionWithFlyights.delegate = self;
         

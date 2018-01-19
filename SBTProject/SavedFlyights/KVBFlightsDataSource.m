@@ -11,6 +11,10 @@
 #import "Cities+CoreDataClass.h"
 #import "Flyight+CoreDataClass.h"
 
+
+NSString * const KVBSavedFlightsCellIdentifier = @"KVBSavedFlightsCellIdentifier";
+
+
 @interface KVBFlightsDataSource()
 
 @end
@@ -28,7 +32,7 @@
     return self;
 }
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    KVBSavedFlightCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    KVBSavedFlightCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:KVBSavedFlightsCellIdentifier forIndexPath:indexPath];
     
     Flyight *flight = [self.fetchController objectAtIndexPath:indexPath];
     

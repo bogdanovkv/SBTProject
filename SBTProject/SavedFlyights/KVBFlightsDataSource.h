@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+extern NSString * const KVBSavedFlightsCellIdentifier;
 /**
  Датасорс для коллекшн вью.
  */

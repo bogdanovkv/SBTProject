@@ -58,7 +58,6 @@ NSString * const KVBHeaderIdentifier = @"KVBHeaderIdentifier";
         return self.cell == nil ? [tableView dequeueReusableCellWithIdentifier:@"Cell"]: self.cell;
     }
     
-    KVBTableViewFlightCell *cell = [tableView dequeueReusableCellWithIdentifier:KVBCustomFlightCellIdentifier forIndexPath:indexPath];
 
     KVBFlyightModel *model = self.cheapTickets[indexPath.row];
     
@@ -67,16 +66,9 @@ NSString * const KVBHeaderIdentifier = @"KVBHeaderIdentifier";
         return self.errorCell;
     }
     
-    if(self.arrivalCity == nil)
-    {
-        Cities *city = [self.coreDataServise recieveCityByCityCode:model.arrivalCode].firstObject;
-        cell.arrival = city.name;
-    }
-    else
-    {
-        cell.arrival = self.arrivalCity.name;
-    }
+    KVBTableViewFlightCell *cell = [tableView dequeueReusableCellWithIdentifier:KVBCustomFlightCellIdentifier forIndexPath:indexPath];
     
+    cell.arrival = self.arrivalCity ? self.arrivalCity.name : [self.coreDataServise recieveCityByCityCode:model.arrivalCode].firstObject.name;
     cell.departure = self.departureCity.name;
     cell.price = [NSString stringWithFormat:@"%li p.", model.cost];
     cell.arrivalDate = model.arrivalDate;
@@ -88,7 +80,6 @@ NSString * const KVBHeaderIdentifier = @"KVBHeaderIdentifier";
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     return section == 0 ? 1 : self.cheapTickets.count;
 }
 
@@ -110,6 +101,8 @@ NSString * const KVBHeaderIdentifier = @"KVBHeaderIdentifier";
     self.popularDirections = nil;
 }
 
+
+#pragma mark - ModelUpdate
 
 
 @end

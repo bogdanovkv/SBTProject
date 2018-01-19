@@ -88,6 +88,7 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.popularDirections.count;
 }
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     KVBFlyightModel *model = self.popularDirections[indexPath.row];
