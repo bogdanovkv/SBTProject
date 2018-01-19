@@ -149,6 +149,9 @@ static NSInteger const KVBPhotoSize = 50;
     _departureDateLabel.text = [dateFormatter stringFromDate:_departureDate];
 }
 
+
+#pragma mark - prepareForReuse
+
 -(void)prepareForReuse
 {
     [super prepareForReuse];

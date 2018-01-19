@@ -13,7 +13,10 @@
 #import "KVBCoreDataService.h"
 #import "Cities+CoreDataClass.h"
 #import <Masonry.h>
+
+
 static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCell";
+NSString *const KVBTableWithCollectionCell = @"KVBTableWithCollectionCell";
 
 
 @interface KVBPopularDirectionCell()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
@@ -31,7 +34,7 @@ static NSString *const KVBCollectionViewCustomCell = @"KVBCollectionViewCustomCe
 
 - (instancetype)initWithCollection:(NSArray*)popularDirections
 {
-    self = [super init];
+    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KVBTableWithCollectionCell];
     if(self)
     {
         _popularDirections = popularDirections;

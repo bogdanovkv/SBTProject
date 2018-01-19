@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
+extern NSString *const KVBTableWithCollectionCell;
+
 @class KVBCoreDataService;
 @class KVBFlyightModel;
 /**

@@ -304,22 +304,34 @@ static NSString * const KVBDefaulrCellIdentifier = @"KVBDefaulrCellIdentifier";
 
 - (void)dateChanged:(NSDate *)newDate
 {
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    dateFormatter.dateFormat = @"dd.MM.yy";
     
     if ([self.arrivalDateLabel isFirstResponder])
     {
         self.arrivalDate = newDate;
-        self.arrivalDateLabel.text = [dateFormatter stringFromDate:newDate];
-        [self.arrivalDateLabel resignFirstResponder];
+        [self updateDateField:self.arrivalDateLabel withDate:newDate withResignResponder:YES];
         [self.delegate arrivalDateChangedWithDate:newDate];
     }
     if ([self.departureDateLabel isFirstResponder])
     {
         self.depatrtureDate = newDate;
-        self.departureDateLabel.text = [dateFormatter stringFromDate:newDate];
-        [self.departureDateLabel resignFirstResponder];
+        [self updateDateField:self.departureDateLabel withDate:newDate withResignResponder:YES];
         [self.delegate departureDateChangedWithDate:newDate];
+    }
+}
+
+
+#pragma mark - KVBDateFieldsUpdate
+
+- (void)updateDateField:(UITextField*)dateField withDate:(NSDate*)date withResignResponder:(BOOL)resign
+{
+    
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.dateFormat = @"dd.MM.yy";
+    
+    dateField.text = [dateFormatter stringFromDate:date];
+    if(resign)
+    {
+        [dateField resignFirstResponder];
     }
 }
 

@@ -55,7 +55,7 @@ NSString * const KVBHeaderIdentifier = @"KVBHeaderIdentifier";
         {
             return self.errorPopularCell;
         }
-        return self.cell == nil ? [tableView dequeueReusableCellWithIdentifier:@"Cell"]: self.cell;
+        return self.cell == nil ? [tableView dequeueReusableCellWithIdentifier:KVBTableWithCollectionCell]: self.cell;
     }
     
 

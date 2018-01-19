@@ -43,7 +43,7 @@ static NSInteger const KVBSearchButtonSize = 35;
 @implementation KVBSearchViewController
 
 
-- (instancetype)initWithDeparture: (Cities*) city withContext: (NSManagedObjectContext*) context
+- (instancetype)initWithDeparture:(Cities*)city withContext:(NSManagedObjectContext*)context
 {
     self = [super init];
     if (self)
@@ -71,7 +71,7 @@ static NSInteger const KVBSearchButtonSize = 35;
         _tableWithFlights = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStylePlain];
         _tableWithFlights.delegate = self;
         [_tableWithFlights registerClass:[KVBTableViewFlightCell class] forCellReuseIdentifier:KVBCustomFlightCellIdentifier];
-        [_tableWithFlights registerClass:[KVBPopularDirectionCell class] forCellReuseIdentifier:@"Cell"];
+        [_tableWithFlights registerClass:[KVBPopularDirectionCell class] forCellReuseIdentifier:KVBTableWithCollectionCell];
         [_tableWithFlights registerClass:[KVBHeaderView class] forHeaderFooterViewReuseIdentifier:KVBHeaderIdentifier];
         _tableWithFlights.dataSource = _dataSourse;
         _tableWithFlights.estimatedRowHeight = 44.0;
