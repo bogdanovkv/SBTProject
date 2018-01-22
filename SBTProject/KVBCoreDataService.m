@@ -13,6 +13,11 @@
 #import "Flyight+CoreDataClass.h"
 #import "KVBFlyightModel.h"
 
+@interface KVBCoreDataService()
+
+@property(nonatomic, strong) dispatch_queue_t queue;
+
+@end
 
 @implementation KVBCoreDataService
 
@@ -21,6 +26,7 @@
     self = [super init];
     if (self) {
         _context = context;
+        _queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     }
     return self;
 }
@@ -165,5 +171,61 @@
     [self.context save:nil];
 }
 
+
+#pragma mark FirstStart
+
+- (BOOL)insertCountriesInCoreDataFromDictionary:(NSArray*)countriesDictionary
+{
+    if([[[NSUserDefaults standardUserDefaults] valueForKey:@"Countries"] isEqualToString: @"Exist"])
+    {
+        return YES;
+    }
+    dispatch_sync(self.queue, ^{
+
+        for (NSDictionary *country in countriesDictionary)
+        {
+            Countries *newCountry = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Countries class]) inManagedObjectContext:self.context];
+            newCountry.name = country[@"name"];
+            newCountry.codeIATA = country[@"code"];
+            newCountry.currency = [NSString stringWithFormat:@"%@", country[@"currency"]];
+        
+            NSDictionary *namesCountries = country[@"name_translations"];
+        
+            newCountry.nameRu = namesCountries[@"ru"];
+        }
+    });
+    
+    [self.context save:nil];
+    [[NSUserDefaults standardUserDefaults] setValue:@"Exist" forKey:@"Countries"];
+
+    return YES;
+}
+
+- (BOOL)insertCitiesInCoreDataFromDictionary:(NSArray*)citiesDictionary
+{
+    if([[[NSUserDefaults standardUserDefaults] valueForKey:@"Cities"] isEqualToString: @"Exist"])
+    {
+        return YES;
+    }
+    dispatch_sync(self.queue, ^{
+
+        for (NSDictionary *city in citiesDictionary)
+        {
+            Cities *newCity = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Cities class]) inManagedObjectContext:self.context];
+            newCity.name = city[@"name"];
+            newCity.codeIATA = city[@"code"];
+            newCity.countryCode =city[@"country_code"];
+        
+            NSDictionary *namesCities = city[@"name_translations"];
+            
+            newCity.nameRu = namesCities[@"ru"];
+        }
+    });
+    
+    [self.context save:nil];
+    [[NSUserDefaults standardUserDefaults] setValue:@"Exist" forKey:@"Cities"];
+    
+    return YES;
+}
 
 @end

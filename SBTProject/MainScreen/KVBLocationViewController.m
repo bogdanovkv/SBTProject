@@ -15,7 +15,6 @@
 #import <CoreData/CoreData.h>
 #import "KVBCoreDataService.h"
 #import "KVBLocationsTableViewCell.h"
-#import "KVBFirstStartCoreDataLoader.h"
 #import <Masonry.h>
 
 static CGFloat const KVBLeftRightOffset = 20;
@@ -23,7 +22,7 @@ static NSString * const KVBLocationCellReuseIdentifier = @"KVBLocationCellReuseI
 static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose your location:";
 
 
-@interface KVBLocationViewController ()<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, KVBFirstStartLoadingDelegate>
+@interface KVBLocationViewController ()<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 
 @property(nonatomic, strong) UILabel *welcomeLabel;
@@ -51,7 +50,7 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
     if (self)
     {
         
-        _servise = [[KVBLocationServiсe alloc]initWithDelegate:self withContex:context];
+        _servise = [[KVBLocationServiсe alloc]initWithContex:context];
         
         _context = context;
         
@@ -108,15 +107,37 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
     
-    if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"isDataExist"] isEqualToString: @"Exist"])
+    self.welcomeLabel.text = @"Please wait";
+    [self updateLocation];
+    
+    if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"Cities"] isEqualToString: @"Exist"])
     {
-        [self.servise recieveAllContriesWithCities];
-        self.welcomeLabel.text = @"Please wait";
+        [self.servise recieveAllCities:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            NSData *data = [NSData dataWithContentsOfURL:location];
+            NSArray* reciever = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            [self.coreDataService insertCitiesInCoreDataFromDictionary:reciever];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self updateLocation];
+            });
+
+        }];
     }
-    else
+    
+    if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"Countries"] isEqualToString: @"Exist"])
     {
-        [self loadingComplete];
+        [self.servise recieveAllContries:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            NSData *data = [NSData dataWithContentsOfURL:location];
+            NSArray* reciever = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            [self.coreDataService insertCountriesInCoreDataFromDictionary:reciever];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self updateLocation];
+            });
+            
+        }];
     }
+
 }
 
 
@@ -267,6 +288,17 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
 
 
 #pragma mark - KVBFirstStartLoadingDelegate
+
+- (void)updateLocation
+{
+    BOOL hasCities = [[[NSUserDefaults standardUserDefaults] valueForKey:@"Cities"] isEqualToString: @"Exist"];
+    BOOL hasCountries = [[[NSUserDefaults standardUserDefaults] valueForKey:@"Countries"] isEqualToString: @"Exist"];
+
+    if(hasCities && hasCountries)
+    {
+        [self loadingComplete];
+    }
+}
 
 - (void)loadingComplete
 {

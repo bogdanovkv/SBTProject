@@ -7,8 +7,13 @@
 //
 
 #import "KVBLocationServiсe.h"
-#import "KVBFirstStartCoreDataLoader.h"
 
+
+NSString * const KVBTravelpayouts = @"fe17c550289588390f32bb8a4caf562f";
+NSString * const KVBLocationsRequestWhereAreMe = @"http://www.travelpayouts.com/whereami";
+NSString * const KVBRequestAllCountries = @"http://api.travelpayouts.com/data/countries.json";
+NSString * const KVBRequestAllCities = @"http://api.travelpayouts.com/data/cities.json";
+NSString * const KVBRequestAllAirports = @"http://api.travelpayouts.com/data/airports.json";
 
 @protocol KVBFirstStartLoadingDelegate;
 
@@ -16,8 +21,6 @@
 @interface KVBLocationServiсe()
 
 
-@property(nonatomic, weak) id<KVBFirstStartLoadingDelegate> delegate;
-@property(nonatomic, strong) KVBFirstStartCoreDataLoader *coreDataConstructor;
 @property(nonatomic, strong) NSOperationQueue *downloadTaskQueue;
 
 
@@ -27,16 +30,11 @@
 @implementation KVBLocationServiсe
 
 
-- (instancetype)initWithDelegate:(id<KVBFirstStartLoadingDelegate>)delegate withContex:(NSManagedObjectContext*)context
+- (instancetype)initWithContex:(NSManagedObjectContext*)context
 {
     self = [super init];
     if (self)
     {
-        _delegate = delegate;
-        
-        _coreDataConstructor = [[KVBFirstStartCoreDataLoader alloc]initWithContext:context];
-        _coreDataConstructor.delegate = self.delegate;
-        
         _downloadTaskQueue  = [[NSOperationQueue alloc] init];
     }
     return self;
@@ -83,24 +81,26 @@
 }
 
 
-- (void)recieveAllContriesWithCities
+
+- (void)recieveAllContries:(void (^)(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler
 {
-    [self recieveByURL:KVBRequestAllCountries];
-    [self recieveByURL:KVBRequestAllCities];
-    [self recieveByURL:KVBRequestAllAirports];
+    [self recieveByURL:[NSURL URLWithString:KVBRequestAllCountries] withCompletitionHandler:completionHandler];
 }
 
-- (void)recieveByURL:(NSString*)string
+- (void)recieveAllCities:(void (^)(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler
+
 {
-    NSURLComponents *urlComponents = [NSURLComponents componentsWithString:string];
-    
+    [self recieveByURL:[NSURL URLWithString:KVBRequestAllCities] withCompletitionHandler:completionHandler];
+
+}
+
+- (void)recieveByURL:(NSURL*)url withCompletitionHandler:(void (^)(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler
+{
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:self.coreDataConstructor delegateQueue:self.downloadTaskQueue];
-    NSURLSessionDownloadTask *dataTask = [session downloadTaskWithRequest:[NSURLRequest requestWithURL:urlComponents.URL]];
-    
-    [dataTask resume];
-    
-}
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:nil delegateQueue:self.downloadTaskQueue];
+    NSURLSessionDownloadTask *dataTask = [session downloadTaskWithRequest:[NSURLRequest requestWithURL:url] completionHandler:completionHandler];
 
+    [dataTask resume];
+}
 
 @end

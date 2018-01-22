@@ -80,6 +80,11 @@
   Удаляет все полеты из CoreData
  */
 - (void)deleAllFlights;
+/**
+Сохраняет контекст
+ */
 
+- (BOOL)insertCitiesInCoreDataFromDictionary:(NSArray*)citiesDictionary;
+- (BOOL)insertCountriesInCoreDataFromDictionary:(NSArray*)countriesDictionary;
 
 @end

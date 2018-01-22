@@ -9,8 +9,14 @@
 #import <Foundation/Foundation.h>
 
 
+extern NSString * const KVBTravelpayouts;
+extern NSString * const KVBLocationsRequestWhereAreMe;
+extern NSString * const KVBRequestAllCountries;
+extern NSString * const KVBRequestAllCities;
+extern NSString * const KVBRequestAllAirports;
+
+
 @class NSManagedObjectContext;
-@protocol KVBFirstStartLoadingDelegate;
 
 /**
  Сервис для определения мостоположения и подгрузки данных о странах и городах с сервера.
@@ -19,11 +25,10 @@
 
 /**
  Инициализирует сервис в заданом контексте с заданым дегатом.
- @param delegate делегат для обработки завершения загрузки
  @param context контекст для CoreData
  @return экземпляр KVBLocationServise
  */
-- (instancetype _Nonnull)initWithDelegate:(id<KVBFirstStartLoadingDelegate> _Nonnull)delegate withContex:(NSManagedObjectContext* _Nonnull)context;
+- (instancetype)initWithContex:(NSManagedObjectContext*)context;
 /**
  Получает с сервера данные о местоположении пользователя
  @param completionHandler блок который будет выполнен по завершении загрузки.
@@ -32,11 +37,14 @@
  cityName - название города пользователся
  stringError - строка ошибки, если ошибки нет, то будет передана пустая строка @""
  */
-- (void)whereAreMeWithComletition:(void (^_Nullable)(NSString * _Nonnull countryName, NSString * _Nonnull cityName, NSString * _Nullable stringError))completionHandler;
+- (void)whereAreMeWithComletition:(void (^)(NSString * countryName, NSString *  cityName, NSString *  stringError))completionHandler;
 /**
- Получает данные список стран и городов и запускает запись их в кор дату.
+ Получает данные список стран
  */
-- (void)recieveAllContriesWithCities;
-
+- (void)recieveAllContries:(void (^)(NSURL * location, NSURLResponse * response, NSError *  error))completionHandler;
+/**
+ Получает данные список городов
+ */
+- (void)recieveAllCities:(void (^)(NSURL * location, NSURLResponse * response, NSError *  error))completionHandler;
 
 @end

@@ -29,7 +29,6 @@
 		1416D340200553D600340074 /* Flyight+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1416D33C200553D600340074 /* Flyight+CoreDataProperties.m */; };
 		1416D341200553D600340074 /* Flyight+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 1416D33F200553D600340074 /* Flyight+CoreDataClass.m */; };
 		141920661FE3CD6500F85CF5 /* SBTProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141920641FE3CD6500F85CF5 /* SBTProject.xcdatamodeld */; };
-		141920691FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 141920681FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.m */; };
 		14484E611FFBD0E900498D18 /* KVBSettingTableDataSourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 14484E5B1FFBD0E800498D18 /* KVBSettingTableDataSourse.m */; };
 		14484E641FFBD0E900498D18 /* KVBResetAllSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14484E5E1FFBD0E900498D18 /* KVBResetAllSettingsCell.m */; };
 		14764B931FE528EF00EEC944 /* Countries+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 14764B891FE528EF00EEC944 /* Countries+CoreDataClass.m */; };
@@ -108,8 +107,6 @@
 		1416D33E200553D600340074 /* Flyight+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Flyight+CoreDataClass.h"; sourceTree = "<group>"; };
 		1416D33F200553D600340074 /* Flyight+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Flyight+CoreDataClass.m"; sourceTree = "<group>"; };
 		141920651FE3CD6500F85CF5 /* SBTProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SBTProject.xcdatamodel; sourceTree = "<group>"; };
-		141920671FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBFirstStartCoreDataLoader.h; sourceTree = "<group>"; };
-		141920681FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBFirstStartCoreDataLoader.m; sourceTree = "<group>"; };
 		14484E5B1FFBD0E800498D18 /* KVBSettingTableDataSourse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBSettingTableDataSourse.m; sourceTree = "<group>"; };
 		14484E5D1FFBD0E900498D18 /* KVBSettingTableDataSourse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVBSettingTableDataSourse.h; sourceTree = "<group>"; };
 		14484E5E1FFBD0E900498D18 /* KVBResetAllSettingsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVBResetAllSettingsCell.m; sourceTree = "<group>"; };
@@ -254,8 +251,6 @@
 				1415C58F1FFCEED900BB172E /* KVBLocationsTableViewCell.m */,
 				14DA566F1FE2814500FAB89A /* KVBLocationServiсe.h */,
 				14DA56701FE2814500FAB89A /* KVBLocationServiсe.m */,
-				141920671FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.h */,
-				141920681FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.m */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -618,7 +613,6 @@
 				14F39DBC1FE163D000EDEA1A /* KVBViewWithParametres.m in Sources */,
 				1416D340200553D600340074 /* Flyight+CoreDataProperties.m in Sources */,
 				14113C8B1FEA85C400781FBD /* KVBFlightService.m in Sources */,
-				141920691FE3D68900F85CF5 /* KVBFirstStartCoreDataLoader.m in Sources */,
 				1405594E1FEB81FC000014D5 /* KVBPopularDirectionCell.m in Sources */,
 				14764B951FE528EF00EEC944 /* Airpots+CoreDataClass.m in Sources */,
 				14764B941FE528EF00EEC944 /* Countries+CoreDataProperties.m in Sources */,
