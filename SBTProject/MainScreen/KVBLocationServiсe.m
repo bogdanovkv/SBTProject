@@ -22,6 +22,7 @@ NSString * const KVBRequestAllAirports = @"http://api.travelpayouts.com/data/air
 
 
 @property(nonatomic, strong) NSOperationQueue *downloadTaskQueue;
+@property(nonatomic, strong) NSURLSession *session;
 
 
 @end
@@ -36,6 +37,8 @@ NSString * const KVBRequestAllAirports = @"http://api.travelpayouts.com/data/air
     if (self)
     {
         _downloadTaskQueue  = [[NSOperationQueue alloc] init];
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+        _session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:nil delegateQueue:self.downloadTaskQueue];
     }
     return self;
 }
@@ -53,10 +56,8 @@ NSString * const KVBRequestAllAirports = @"http://api.travelpayouts.com/data/air
     NSURLQueryItem *token = [NSURLQueryItem queryItemWithName:@"token" value:KVBTravelpayouts];
     
     urlComponents.queryItems = @[locale, callback, token];
-    
-    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:nil delegateQueue:self.downloadTaskQueue];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:urlComponents.URL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+
+    NSURLSessionDataTask *dataTask = [self.session dataTaskWithURL:urlComponents.URL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         if (!data)
         {
@@ -96,9 +97,8 @@ NSString * const KVBRequestAllAirports = @"http://api.travelpayouts.com/data/air
 
 - (void)recieveByURL:(NSURL*)url withCompletitionHandler:(void (^)(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler
 {
-    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:nil delegateQueue:self.downloadTaskQueue];
-    NSURLSessionDownloadTask *dataTask = [session downloadTaskWithRequest:[NSURLRequest requestWithURL:url] completionHandler:completionHandler];
+   
+    NSURLSessionDownloadTask *dataTask = [self.session downloadTaskWithRequest:[NSURLRequest requestWithURL:url] completionHandler:completionHandler];
 
     [dataTask resume];
 }

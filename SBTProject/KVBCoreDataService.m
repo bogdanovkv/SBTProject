@@ -180,7 +180,6 @@
     {
         return YES;
     }
-    dispatch_sync(self.queue, ^{
 
         for (NSDictionary *country in countriesDictionary)
         {
@@ -193,10 +192,12 @@
         
             newCountry.nameRu = namesCountries[@"ru"];
         }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.context save:nil];
+        [[NSUserDefaults standardUserDefaults] setValue:@"Exist" forKey:@"Countries"];
     });
     
-    [self.context save:nil];
-    [[NSUserDefaults standardUserDefaults] setValue:@"Exist" forKey:@"Countries"];
+   
 
     return YES;
 }
@@ -207,7 +208,6 @@
     {
         return YES;
     }
-    dispatch_sync(self.queue, ^{
 
         for (NSDictionary *city in citiesDictionary)
         {
@@ -220,10 +220,12 @@
             
             newCity.nameRu = namesCities[@"ru"];
         }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.context save:nil];
+        [[NSUserDefaults standardUserDefaults] setValue:@"Exist" forKey:@"Cities"];
+        
     });
     
-    [self.context save:nil];
-    [[NSUserDefaults standardUserDefaults] setValue:@"Exist" forKey:@"Cities"];
     
     return YES;
 }

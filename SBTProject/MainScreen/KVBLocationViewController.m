@@ -36,6 +36,7 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
 @property(nonatomic, strong) Cities *city;
 @property(nonatomic, strong) Countries *country;
 @property(nonatomic, strong) KVBCoreDataService *coreDataService;
+@property(nonatomic, strong) dispatch_group_t loadingGroup;
 
 
 @end
@@ -91,6 +92,8 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
         _countryField.inputView = _tableWithCities;
         _countryField.borderStyle = UITextBorderStyleRoundedRect;
         _countryField.clearsOnBeginEditing = YES;
+        
+        _loadingGroup = dispatch_group_create();
 
         [self.view addSubview:_acceptButton];
         [self.view addSubview:_welcomeLabel];
@@ -108,39 +111,52 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
     self.view.backgroundColor = UIColor.whiteColor;
     
     self.welcomeLabel.text = @"Please wait";
-    [self updateLocation];
-    
+
     if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"Cities"] isEqualToString: @"Exist"])
     {
+        dispatch_group_enter(self.loadingGroup);
+        
         [self.servise recieveAllCities:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if(error)
+            {
+                dispatch_group_leave(self.loadingGroup);
+                return ;
+            }
             NSData *data = [NSData dataWithContentsOfURL:location];
             NSArray* reciever = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             [self.coreDataService insertCitiesInCoreDataFromDictionary:reciever];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self updateLocation];
-            });
-
+            dispatch_group_leave(self.loadingGroup);
         }];
     }
-    
     if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"Countries"] isEqualToString: @"Exist"])
     {
-        [self.servise recieveAllContries:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            NSData *data = [NSData dataWithContentsOfURL:location];
-            NSArray* reciever = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            [self.coreDataService insertCountriesInCoreDataFromDictionary:reciever];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self updateLocation];
-            });
-            
-        }];
+        [self recieveCountriesWithGroup:self.loadingGroup];
     }
+    dispatch_group_notify(self.loadingGroup, dispatch_get_main_queue(), ^{
+        [self loadingComplete];
+    });
 
 }
 
 
+#pragma mark - First start
+
+- (void)recieveCountriesWithGroup:(dispatch_group_t)group
+{
+    dispatch_group_enter(group);
+    
+    [self.servise recieveAllContries:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error)
+        {
+            dispatch_group_leave(group);
+            return ;
+        }
+        NSData *data = [NSData dataWithContentsOfURL:location];
+        NSArray* reciever = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        [self.coreDataService insertCountriesInCoreDataFromDictionary:reciever];
+        dispatch_group_leave(group);
+    }];
+}
 #pragma mark - Constraints
 
 - (void) setupConstraints
@@ -286,19 +302,8 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
     }
 }
 
-
 #pragma mark - KVBFirstStartLoadingDelegate
 
-- (void)updateLocation
-{
-    BOOL hasCities = [[[NSUserDefaults standardUserDefaults] valueForKey:@"Cities"] isEqualToString: @"Exist"];
-    BOOL hasCountries = [[[NSUserDefaults standardUserDefaults] valueForKey:@"Countries"] isEqualToString: @"Exist"];
-
-    if(hasCities && hasCountries)
-    {
-        [self loadingComplete];
-    }
-}
 
 - (void)loadingComplete
 {
