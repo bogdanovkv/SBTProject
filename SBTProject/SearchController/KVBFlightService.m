@@ -15,9 +15,22 @@ NSString *const KVBCheapTiktetFromCityToCity = @"http://api.travelpayouts.com/v1
 
 @interface KVBFlightService()
 @property(nonatomic, strong) NSOperationQueue *dataTaskQueue;
+@property(nonatomic, strong) NSURLSession *session;
 @end
 
 @implementation KVBFlightService
+
+-(instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        _dataTaskQueue = [NSOperationQueue new];
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+        _session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:nil delegateQueue:self.dataTaskQueue];
+    }
+    return self;
+}
 
 - (void) recieveCheapTicketsFromCity:(Cities*)departure departureDate: (NSDate*) departureDate toCity:(Cities*) destination arrivalDate:(NSDate*)arrivalDate withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler
 {
@@ -68,9 +81,7 @@ NSString *const KVBCheapTiktetFromCityToCity = @"http://api.travelpayouts.com/v1
 
 - (void)recieveByURL:(NSURLComponents*)components withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler
 {
-    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig  delegate:nil delegateQueue:self.dataTaskQueue];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:[NSURLRequest requestWithURL:components.URL] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:[NSURLRequest requestWithURL:components.URL] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(!data)
         {
             NSString *errorText = @"No tickets";
