@@ -55,7 +55,7 @@
     {
         [self setupParentCountry:country forCity:city];
     }
-    [self.context save:nil];
+    [self save];
 
     return arrayWithCities;
 }
@@ -124,7 +124,7 @@
     flight.departure = [self recieveCityByCityCode:flyightModel.departureCode].firstObject;
     flight.arrival = [self recieveCityByCityCode:flyightModel.arrivalCode].firstObject;
     
-    [self.context save:nil];
+    [self save];
 }
 
 - (BOOL)existFlightInCoreData:(KVBFlyightModel*)flyightModel
@@ -157,7 +157,7 @@
 - (void)deleteFlight:(Flyight*)flight
 {
     [self.context deleteObject:flight];
-    [self.context save:nil];
+    [self save];
 }
 
 - (void)deleAllFlights
@@ -168,7 +168,7 @@
     {
         [self.context deleteObject:flight];
     }
-    [self.context save:nil];
+    [self save];
 }
 
 
@@ -192,8 +192,9 @@
         
             newCountry.nameRu = namesCountries[@"ru"];
         }
+
+    [self save];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.context save:nil];
         [[NSUserDefaults standardUserDefaults] setValue:@"Exist" forKey:@"Countries"];
     });
     
@@ -220,14 +221,24 @@
             
             newCity.nameRu = namesCities[@"ru"];
         }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.context save:nil];
-        [[NSUserDefaults standardUserDefaults] setValue:@"Exist" forKey:@"Cities"];
-        
-    });
     
+    [self save];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSUserDefaults standardUserDefaults] setValue:@"Exist" forKey:@"Cities"];
+    });
     
     return YES;
 }
+
+- (void)save
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self.context hasChanges] && ![self.context save:nil]){}
+    });
+    
+
+
+}
+
 
 @end

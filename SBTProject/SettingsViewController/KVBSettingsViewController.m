@@ -75,6 +75,7 @@
 
 
 #pragma mark - DeleteAction
+
 - (void)deleteFromCoreData
 {
     [self.coreDataServise deleAllFlights];

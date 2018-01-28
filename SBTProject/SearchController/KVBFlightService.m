@@ -32,7 +32,7 @@ NSString *const KVBCheapTiktetFromCityToCity = @"http://api.travelpayouts.com/v1
     return self;
 }
 
-- (void) recieveCheapTicketsFromCity:(Cities*)departure departureDate: (NSDate*) departureDate toCity:(Cities*) destination arrivalDate:(NSDate*)arrivalDate withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler
+- (void)recieveCheapTicketsFromCity:(Cities*)departure departureDate:(NSDate*)departureDate toCity:(Cities*)destination arrivalDate:(NSDate*)arrivalDate withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler
 {
     NSURLComponents *urlComponents = [NSURLComponents componentsWithString:KVBCheapTiktetFromCityToCity];
     
@@ -67,7 +67,7 @@ NSString *const KVBCheapTiktetFromCityToCity = @"http://api.travelpayouts.com/v1
     
 }
 
-- (void) recievePopularDirectionFRomCity:(Cities *)city onPage:(NSInteger)page withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler
+- (void)recievePopularDirectionFRomCity:(Cities *)city onPage:(NSInteger)page withCompletitionHandler:(void (^)(NSData *data, NSError *error))completionHandler
 {
     NSURLComponents *urlComponents = [NSURLComponents componentsWithString:KVBPopularDirections];
     
