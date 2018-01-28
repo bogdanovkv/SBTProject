@@ -103,10 +103,9 @@ static NSString * const KVBTravelPayoutHost = @"www.travelpayouts.com";
     
     [self.locationServise whereAreMeWithComletition:testCompletitionBlock];
     
-    expect(country).after(3).equal(@"");
-    expect(city).after(3).equal(@"");
+    expect(country).after(3).to.beNil();
+    expect(city).after(3).to.beNil();
     expect(currentError).after(3).notTo.equal(@"");
-    expect(currentError).after(3).notTo.beNil();
     
 
 }
@@ -132,8 +131,8 @@ static NSString * const KVBTravelPayoutHost = @"www.travelpayouts.com";
     
     [self.locationServise whereAreMeWithComletition:testCompletitionBlock];
     
-    expect(country).after(3).equal(@"");
-    expect(city).after(3).equal(@"");
+    expect(country).after(3).to.beNil();
+    expect(city).after(3).to.beNil();
     expect(currentError).after(3).notTo.equal(@"");
 }
 
