@@ -60,7 +60,7 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
         _acceptButton = [UIButton new];
         [_acceptButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         [_acceptButton setTitle:@"Next" forState:UIControlStateNormal];
-        [_acceptButton addTarget:self action:@selector(acceptLocation) forControlEvents:UIControlEventTouchDown];
+        [_acceptButton addTarget:self action:@selector(accept) forControlEvents:UIControlEventTouchDown];
         _acceptButton.backgroundColor = UIColor.grayColor;
         _acceptButton.layer.cornerRadius = 15;
         
@@ -114,19 +114,7 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
 
     if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"Cities"] isEqualToString: @"Exist"])
     {
-        dispatch_group_enter(self.loadingGroup);
-        
-        [self.servise recieveAllCities:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            if(error)
-            {
-                dispatch_group_leave(self.loadingGroup);
-                return ;
-            }
-            NSData *data = [NSData dataWithContentsOfURL:location];
-            NSArray* reciever = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            [self.coreDataService insertCitiesInCoreDataFromDictionary:reciever];
-            dispatch_group_leave(self.loadingGroup);
-        }];
+        [self recieveCitiesWithGroup:self.loadingGroup];
     }
     if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"Countries"] isEqualToString: @"Exist"])
     {
@@ -157,6 +145,25 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
         dispatch_group_leave(group);
     }];
 }
+
+- (void)recieveCitiesWithGroup:(dispatch_group_t)group
+{
+    dispatch_group_enter(group);
+    
+    [self.servise recieveAllCities:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if(error)
+        {
+            dispatch_group_leave(group);
+            return ;
+        }
+        NSData *data = [NSData dataWithContentsOfURL:location];
+        NSArray* reciever = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        [self.coreDataService insertCitiesInCoreDataFromDictionary:reciever];
+        dispatch_group_leave(group);
+    }];
+}
+
+
 #pragma mark - Constraints
 
 - (void) setupConstraints
@@ -188,52 +195,65 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
     }];
 }
 
+
+#pragma mark - Memory Warning
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
 #pragma mark - UIButton events
 
-- (void)acceptLocation
-{
-    if (self.country != nil && self.city != nil)
-    {
 
-        UITabBarController *tabBarController = [UITabBarController new];
-        
-        KVBSearchViewController *searchViewConctroller = [[KVBSearchViewController alloc] initWithDeparture:self.city withContext:self.context];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:searchViewConctroller];
-        UIImage *searchImage = [UIImage imageNamed:@"search_icon"];
-        searchImage = [searchImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        navController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Search" image:searchImage tag:0];
-        
-        KVBSavedFlightsViewController *sfvc = [[KVBSavedFlightsViewController alloc] initWithCoreDataService:self.coreDataService];
-        UINavigationController *navControllerForSaved = [[UINavigationController alloc] initWithRootViewController:sfvc];
-        UIImage *savedImage = [UIImage imageNamed:@"saved_icon"];
-        savedImage = [savedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        navControllerForSaved.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"Saved" image:savedImage tag:1];
-        
-        KVBSettingsViewController *settingVC = [[KVBSettingsViewController alloc]initWithCoreDataServise:self.coreDataService];
-        UIImage *settingsImage = [UIImage imageNamed:@"settings_icon"];
-        settingsImage = [settingsImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        settingVC.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"Settings" image:settingsImage tag:2];
-        
-        tabBarController.viewControllers = @[navController, navControllerForSaved, settingVC];
-        tabBarController.tabBar.barTintColor = [UIColor colorWithRed:0 / 255.0 green:199 / 255.0 blue:156 / 255.0 alpha:1.0f];
-        [self presentViewController:tabBarController animated:YES completion:nil];
+- (void)accept
+{
+    if ([self isNamesCorrectCountry:self.country.name withCityName:self.city.name])
+    {
+        [self createTabBarWithPresenting];
     }
     else
     {
-        NSArray * pathArray = @[@(self.acceptButton.center), @(CGPointMake(self.acceptButton.center.x - 15, self.acceptButton.center.y)),@(CGPointMake(self.acceptButton.center.x + 15, self.acceptButton.center.y)), @(self.acceptButton.center)];
-        
-        CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-        pathAnimation.values = pathArray;
-        pathAnimation.duration = 1.0;
-        [self.acceptButton.layer addAnimation:pathAnimation forKey:@"position"];
+        [self animateButton:self.acceptButton withInterval:1.0];
     }
+}
+
+
+#pragma mark - Names Checker
+
+- (BOOL)isNamesCorrectCountry:(NSString*)countryName withCityName:(NSString*)cityName
+{
+    return countryName != nil && cityName != nil;
+}
+
+
+#pragma mark - TabBarController creation
+
+- (void)createTabBarWithPresenting
+{
+    UITabBarController *tabBarController = [UITabBarController new];
+    
+    KVBSearchViewController *searchViewConctroller = [[KVBSearchViewController alloc] initWithDeparture:self.city withContext:self.context];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:searchViewConctroller];
+    UIImage *searchImage = [UIImage imageNamed:@"search_icon"];
+    searchImage = [searchImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Search" image:searchImage tag:0];
+    
+    KVBSavedFlightsViewController *sfvc = [[KVBSavedFlightsViewController alloc] initWithCoreDataService:self.coreDataService];
+    UINavigationController *navControllerForSaved = [[UINavigationController alloc] initWithRootViewController:sfvc];
+    UIImage *savedImage = [UIImage imageNamed:@"saved_icon"];
+    savedImage = [savedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navControllerForSaved.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"Saved" image:savedImage tag:1];
+    
+    KVBSettingsViewController *settingVC = [[KVBSettingsViewController alloc]initWithCoreDataServise:self.coreDataService];
+    UIImage *settingsImage = [UIImage imageNamed:@"settings_icon"];
+    settingsImage = [settingsImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    settingVC.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"Settings" image:settingsImage tag:2];
+    
+    tabBarController.viewControllers = @[navController, navControllerForSaved, settingVC];
+    tabBarController.tabBar.barTintColor = [UIColor colorWithRed:0 / 255.0 green:199 / 255.0 blue:156 / 255.0 alpha:1.0f];
+    [self presentViewController:tabBarController animated:YES completion:nil];
 }
 
 
@@ -302,8 +322,8 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
     }
 }
 
-#pragma mark - KVBFirstStartLoadingDelegate
 
+#pragma mark - KVBFirstStartLoadingDelegate
 
 - (void)loadingComplete
 {
@@ -326,6 +346,19 @@ static NSString * const KVBWelcomeLableDefaultText = @"Hello !\nPlease, choose y
                            self.cityField.text = self.city.name;
                        });
     }];
+}
+
+
+#pragma mark - Animations
+
+- (void)animateButton:(UIButton*)button withInterval:(CFTimeInterval)duration
+{
+    NSArray * pathArray = @[@(button.center), @(CGPointMake(button.center.x - 15, button.center.y)),@(CGPointMake(button.center.x + 15, button.center.y)), @(button.center)];
+    
+    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    pathAnimation.values = pathArray;
+    pathAnimation.duration = duration;
+    [button.layer addAnimation:pathAnimation forKey:@"position"];
 }
 
 
