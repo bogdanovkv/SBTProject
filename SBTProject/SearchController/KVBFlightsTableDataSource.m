@@ -102,7 +102,4 @@ NSString * const KVBHeaderIdentifier = @"KVBHeaderIdentifier";
 }
 
 
-#pragma mark - ModelUpdate
-
-
 @end

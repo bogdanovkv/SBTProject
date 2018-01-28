@@ -21,7 +21,7 @@
  Показывает кнопку Delete
  */
 - (void)showButton;
-
+- (void)removeDeleteButton;
 
 @end
 

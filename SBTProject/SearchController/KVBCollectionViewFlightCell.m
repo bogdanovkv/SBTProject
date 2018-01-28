@@ -26,17 +26,14 @@ const NSInteger KVBElementOffset = 15;
     self = [super initWithFrame:frame];
     if (self) {
         _arrivalLabel = [UILabel new];
-        _arrivalLabel.text = @"TestTest";
         _arrivalLabel.numberOfLines = 0;
         _arrivalLabel.backgroundColor = UIColor.clearColor;
         
         _departureLabel = [UILabel new];
-        _departureLabel.text = @"TestTest";
         _departureLabel.numberOfLines = 0;
         _departureLabel.backgroundColor = UIColor.clearColor;
         
         _priceLabel = [UILabel new];
-        _priceLabel.text = @"TestTest";
         _priceLabel.numberOfLines = 0;
         _priceLabel.backgroundColor = UIColor.clearColor;
         

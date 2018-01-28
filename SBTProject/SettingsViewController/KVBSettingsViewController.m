@@ -62,6 +62,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    NSIndexPath *indexPath =[NSIndexPath indexPathForRow:0 inSection:0];
+    KVBResetAllSettingsCell *cell = [self.tableWithSettings cellForRowAtIndexPath:indexPath];
+    [cell removeDeleteButton];
+}
 
 #pragma mark - UITableViewDelegate
 

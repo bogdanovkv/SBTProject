@@ -58,10 +58,26 @@ const NSInteger KVBDeleteButtonHeight = 40;
 }
 
 
+#pragma mark - Remove button
+
+- (void)removeDeleteButton
+{
+    [_deleteButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.contentView.mas_top);
+        make.right.equalTo(self.contentView.mas_right);
+        make.width.mas_equalTo(0);
+        make.bottom.equalTo(self.contentView.mas_bottom);
+    }];
+    [self.deleteButton setTitle:@"" forState:UIControlStateNormal];
+
+    [super updateConstraints];
+}
+
 #pragma mark - Animation
 
 - (void)showButton
 {
+    
     [self.contentView addSubview:self.deleteButton];
     
     [self.contentView layoutIfNeeded];

@@ -207,7 +207,21 @@ static NSInteger const KVBButtonCornerRadius = 15;
 - (void)startAnimation
 {
     double duration  = 1.7;
+   
+    CABasicAnimation *basicAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+    basicAnimation.fromValue  = @0;
+    basicAnimation.toValue = @1.5;
+    basicAnimation.duration = duration;
     
+    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    pathAnimation.values = [self arrayFromMathFunction];
+    pathAnimation.duration = duration;
+    [self.imageView.layer addAnimation:pathAnimation forKey:@"position"];
+    [self.imageView.layer addAnimation:basicAnimation forKey:@"transform.rotation"];
+}
+
+- (NSArray*)arrayFromMathFunction
+{
     NSMutableArray *array = [NSMutableArray array];
     CGFloat funcOfX;
     CGFloat x;
@@ -221,15 +235,8 @@ static NSInteger const KVBButtonCornerRadius = 15;
         [array addObject:@(CGPointMake(x, funcOfX))];
     }
     
-    CABasicAnimation *basicAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-    basicAnimation.fromValue  = @0;
-    basicAnimation.toValue = @1.5;
-    basicAnimation.duration = duration;
-    
-    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-    pathAnimation.values = array;
-    pathAnimation.duration = duration;
-    [self.imageView.layer addAnimation:pathAnimation forKey:@"position"];
-    [self.imageView.layer addAnimation:basicAnimation forKey:@"transform.rotation"];
+    return array;
 }
+
+
 @end
